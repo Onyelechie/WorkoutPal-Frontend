@@ -1,0 +1,16 @@
+#header {
+  display:flex;
+  align-items: center;
+  column-gap:20px;
+
+  box-sizing: border-box;
+  width: 100%;
+  height:fit-content;
+  padding-inline: 25px;
+
+  font-family:Arial, Helvetica, sans-serif;
+  line-height:20px;
+  color:white;
+  text-shadow:1px 1px 5px black;
+  background-color: rgba(255, 255, 255, 0.5);
+}
