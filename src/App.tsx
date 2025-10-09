@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router';
 import LoginCard from "./LoginCard";
 import Header from "./Header";
 import LandingView from "./views/LandingView";
+import PageNotFound from "./views/PageNotFoundView";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/landing" element={<LandingView/>}/>
+
+          <Route path="*" element={<PageNotFound/>}/>
         </Routes>
       </BrowserRouter>
     </>
