@@ -17,6 +17,7 @@ describe('RequestUtils', () => {
     const mockData = [{ id: 0, name: 'FakeName', username: 'IHaveAFakeName' }];
     const mockResponse = "success";
     const mockURL = '/test/get';
+    const mockID = '123';
     const mockError = new Error('Network Error');
 
     //----------------------Test getRequest----------------------// 
@@ -43,7 +44,7 @@ describe('RequestUtils', () => {
     //----------------------End of Test getRequest----------------------// 
 
     //----------------------Test postRequest----------------------// 
-    it('postRequest returns success when axios.post resolves', async () => {
+    it('postRequest with no ID returns success when axios.post resolves', async () => {
         (axios.post as any).mockResolvedValue({data: mockResponse});
 
         const result = await postRequest(mockURL, mockData);
@@ -52,6 +53,17 @@ describe('RequestUtils', () => {
         expect(axios.post).toHaveBeenCalledTimes(1);
         // the actual URL request needs to contain the backend URL with the endpoint appended
         expect(axios.post).toHaveBeenCalledWith(`${BACKEND_URL}${mockURL}`, mockData);
+    });
+
+    it('postRequest with ID returns success when axios.post resolves', async () => {
+        (axios.post as any).mockResolvedValue({data: mockResponse});
+
+        const result = await postRequest(mockURL, mockData, mockID);
+
+        expect(result).toEqual(mockResponse);
+        expect(axios.post).toHaveBeenCalledTimes(1);
+        // the actual URL request needs to contain the backend URL with the endpoint and ID appended
+        expect(axios.post).toHaveBeenCalledWith(`${BACKEND_URL}${mockURL}/${mockID}`, mockData);
     });
 
     it('postRequest throws an error when axios.post rejects', async () => {
@@ -63,7 +75,7 @@ describe('RequestUtils', () => {
     //----------------------End of Test postRequest----------------------// 
 
     //----------------------Test putRequest----------------------// 
-    it('putRequest returns success when axios.put resolves', async () => {
+    it('putRequest with no ID returns success when axios.put resolves', async () => {
         (axios.put as any).mockResolvedValue({data: mockResponse});
 
         const result = await putRequest(mockURL, mockData);
@@ -72,6 +84,17 @@ describe('RequestUtils', () => {
         expect(axios.put).toHaveBeenCalledTimes(1);
         // the actual URL request needs to contain the backend URL with the endpoint appended
         expect(axios.put).toHaveBeenCalledWith(`${BACKEND_URL}${mockURL}`, mockData);
+    });
+
+    it('putRequest with ID returns success when axios.put resolves', async () => {
+        (axios.put as any).mockResolvedValue({data: mockResponse});
+
+        const result = await putRequest(mockURL, mockData, mockID);
+
+        expect(result).toEqual(mockResponse);
+        expect(axios.put).toHaveBeenCalledTimes(1);
+        // the actual URL request needs to contain the backend URL with the endpoint and ID appended
+        expect(axios.put).toHaveBeenCalledWith(`${BACKEND_URL}${mockURL}/${mockID}`, mockData);
     });
 
     it('postRequest throws an error when axios.put rejects', async () => {

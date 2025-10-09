@@ -27,3 +27,10 @@ npm install
 ```bash
 npm run test
 ```
+
+## To run with test coverage
+
+1. Run the test with coverage:
+```bash
+npm run test:coverage
+```
