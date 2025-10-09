@@ -22,7 +22,6 @@ export async function getRequest(endpoint:string) {
 // note: caller of this util function needs to try {} catch (error) {} for when the request fails
 // payload?:any is an optional parameter - this is the payload to send
 // id?:string is an optional parameter - this is when the request requires an ID in the endpoint
-// if payload is required with no id, the caller must set id to undefined. e.g. postRequest('/sample/user', undefined, {payload: 'data'})
 export async function postRequest (endpoint:string, payload?:any, id?:string) {
     let url = `${BACKEND_URL}${endpoint}`;
 
@@ -38,7 +37,6 @@ export async function postRequest (endpoint:string, payload?:any, id?:string) {
 // note: caller of this util function needs to try {} catch (error) {} for when the request fails
 // payload?:any is an optional parameter - this is the payload to send
 // id?:string is an optional parameter - this is when the request requires an ID in the endpoint
-// if payload is required with no id, the caller must set id to undefined. e.g. postRequest('/sample/user', undefined, {payload: 'data'})
 export async function putRequest (endpoint:string, payload?:any, id?:string) {
     let url = `${BACKEND_URL}${endpoint}`;
 
