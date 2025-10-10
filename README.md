@@ -15,3 +15,22 @@ npm install
 ```bash
 npm run dev
 ```
+
+### How to run tests
+
+1. Install dependencies (if not yet done):
+```bash
+npm install
+```
+
+2. Run the tests:
+```bash
+npm run test
+```
+
+## To run with test coverage
+
+1. Run the test with coverage:
+```bash
+npm run test:coverage
+```

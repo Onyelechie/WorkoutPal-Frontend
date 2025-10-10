@@ -1,7 +1,20 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  test: {
+    globals: true,  
+    environment: 'jsdom',
+    setupFiles: './src/tests/SetupTests.ts',
+    coverage: {
+      provider: 'v8',       // Coverage provider
+      reporter: ['text'], // Formats of coverage report
+      all: true,             // Include files even if not tested
+      include: ['src/**/*.{ts,tsx}'],  // Which files to include
+      exclude: ['**/*.test.{ts,tsx}'] // Exclude test files themselves
+    }
+  },
 })
