@@ -5,11 +5,10 @@ import type { Workout } from '../../types/workout';
 
 export default function WeeklyGrid() {
 
-  // Temporary hard coded data
   const days = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
 
-  const [workoutNames, setWorkoutNames] = useState<string[]>([]);
-  const [exerciseNames, setExerciseNames] = useState<string[][]>([]);
+  const [workoutNames, setWorkoutNames] = useState<string[]>(["Rest", "Rest", "Rest", "Rest", "Rest", "Rest", "Rest"]);
+  const [exerciseNames, setExerciseNames] = useState<string[][]>([[],[],[],[],[],[],[]]);
 
   useEffect(() => {
     fetchWorkouts();
@@ -67,7 +66,7 @@ export default function WeeklyGrid() {
               
               {exerciseNames.map((colArray, colIndex) => (
                 <td key={colIndex} className="weekly-grid-table-list">
-                  {colArray[rowIndex] === undefined ? "" : `${rowIndex+1}.`} {colArray[rowIndex]}
+                  {colArray[rowIndex] === undefined ? "-" : `${rowIndex+1}.`} {colArray[rowIndex]}
                 </td>
               ))}
             </tr>

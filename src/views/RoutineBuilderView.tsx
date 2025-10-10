@@ -11,7 +11,10 @@ export default function RoutineBuilderView() {
             <header className="routine-builder-header">
             <button onClick={notYetImplemented}>Back</button>
             <h2 className="routine-builder-title">Plan your weekly workout routine!</h2>
-            <button onClick={notYetImplemented}>Start today's workout</button>
+            <div className="routine-builder-action-buttons">
+                <button onClick={notYetImplemented}>Edit routine</button>
+                <button onClick={notYetImplemented}>Start today's workout</button>
+            </div>
             </header>
 
             <WeeklyGrid/>

@@ -8,3 +8,8 @@
     justify-content: space-between;
     margin-bottom: 1em;
 }
+
+.routine-builder-action-buttons {
+    display: flex;
+    gap: 10px;
+}
