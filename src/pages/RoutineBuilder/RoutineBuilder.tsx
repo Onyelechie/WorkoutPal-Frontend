@@ -1,9 +1,9 @@
-import { notYetImplemented } from '../utils/ViewUtils';
-import WeeklyGrid from './templates/WeeklyGrid';
+import { notYetImplemented } from '../../utils/construction.ts';
+import WeeklyGrid from '../../components/WeeklyGrid/WeeklyGrid.tsx';
 
-import '../styles/routine-builder.css';
+import './RoutineBuilder.css';
 
-export default function RoutineBuilderView() {
+export default function RoutineBuilder() {
 
     return (
         <>

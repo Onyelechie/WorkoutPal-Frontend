@@ -2,12 +2,12 @@
 
 import {describe, it, expect, beforeEach, vi} from 'vitest';
 import axios from 'axios';
-import { BACKEND_URL, getRequest, postRequest, putRequest } from '../utils/RequestUtils';
+import { BACKEND_URL, getRequest, postRequest, putRequest } from '../apiRequests.ts';
 
 // Mock axios
 vi.mock('axios');
 
-describe('RequestUtils', () => {
+describe('api-requests', () => {
 
     beforeEach(() => {
         vi.clearAllMocks();
