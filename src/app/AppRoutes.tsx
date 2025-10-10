@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
-import LandingView from "../pages/LandingView";
+import Landing from "../pages/Landing";
 import PageNotFound from "../pages/PageNotFound";
-import RoutineBuilderView from "../pages/RoutineBuilder/RoutineBuilder";
+import RoutineBuilder from "../pages/RoutineBuilder/RoutineBuilder";
 
 export default function AppRoutes() {
   return (
@@ -10,8 +10,8 @@ export default function AppRoutes() {
       {/* Inspired from https://www.w3schools.com/react/react_router.asp */}
       <BrowserRouter>
         <Routes>
-          <Route path="/landing" element={<LandingView/>}/>
-          <Route path="/routine" element={<RoutineBuilderView/>}/>
+          <Route path="/landing" element={<Landing/>}/>
+          <Route path="/routine" element={<RoutineBuilder/>}/>
 
           {/* Direct to PageNotFound for routes that are not implemented */}
           <Route path="*" element={<PageNotFound/>}/>
