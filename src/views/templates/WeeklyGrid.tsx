@@ -1,4 +1,4 @@
-import { useEffect, useState, type SetStateAction, type Dispatch } from 'react';
+import { useEffect, useState } from 'react';
 import '../../styles/templates/weekly-grid.css';
 import { getRequest } from '../../utils/RequestUtils';
 import type { Workout } from '../../types/workout';
@@ -30,7 +30,7 @@ export default function WeeklyGrid() {
         wkoutNames.push(response[0].name);
         eNames.push([response[0].exercises[0].exercise.name || "-"]);
       }
-      console.log(eNames);
+
       setWorkoutNames(wkoutNames);
       setExerciseNames(eNames);
 
