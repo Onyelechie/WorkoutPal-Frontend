@@ -27,7 +27,8 @@ export default function Dashboard() {
         <div className="dashboard-container">
             <h1 className="dashboard-header">Dashboard</h1>
 
-            <div className="dashboard-action-buttons">
+            <div className="dashboard-action-buttons grouped-buttons">
+                <button onClick={fetchPosts}>Refresh</button>
                 <button onClick={notYetImplemented}>Create Post</button>
             </div>
 

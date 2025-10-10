@@ -7,6 +7,8 @@ import LandingView from "./views/LandingView";
 import PageNotFound from "./views/PageNotFoundView";
 import RoutineBuilderView from "./views/RoutineBuilderView";
 
+import './styles/global/styles.css';
+
 function App() {
   return (
     <>

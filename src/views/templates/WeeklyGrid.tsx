@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import '../../styles/templates/weekly-grid.css';
 import { getRequest } from '../../utils/RequestUtils';
 import type { Workout } from '../../types/workout';
+
+import '../../styles/templates/weekly-grid.css';
 
 export default function WeeklyGrid() {
 

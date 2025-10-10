@@ -1,5 +1,3 @@
-import '../styles/global/styles.css';
-
 import { useNavigate } from 'react-router-dom';
 
 export default function PageNotFound() {

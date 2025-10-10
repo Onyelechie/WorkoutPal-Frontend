@@ -50,4 +50,10 @@ button:active {
   transform: translateY(0);         /* Reset lift */
 }
 
+/* For buttons that are next to each other, add a gap to them */
+.grouped-buttons {
+  display: flex;
+  gap: 10px;
+}
+
 /******** End of Button styles ********/
