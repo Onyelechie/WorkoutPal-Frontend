@@ -6,6 +6,8 @@ import RoutineBuilderView from "../pages/RoutineBuilder/RoutineBuilder";
 export default function AppRoutes() {
   return (
     <>
+      {/* Routing */}
+      {/* Inspired from https://www.w3schools.com/react/react_router.asp */}
       <BrowserRouter>
         <Routes>
           <Route path="/landing" element={<LandingView/>}/>

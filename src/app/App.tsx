@@ -1,7 +1,7 @@
 import "./App.css";
 
 import '../styles/global.css';
-import Routes from "./AppRoutes";
+import AppRoutes from "./AppRoutes";
 
 function App() {
   return (
@@ -13,10 +13,7 @@ function App() {
       </div>
       */}
 
-      {/* Routing */}
-      {/* Inspired from https://www.w3schools.com/react/react_router.asp */}
-
-      <Routes/>
+      <AppRoutes/>
     </>
   );
 }
