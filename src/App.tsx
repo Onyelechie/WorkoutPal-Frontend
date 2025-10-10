@@ -5,6 +5,7 @@ import LoginCard from "./LoginCard";
 import Header from "./Header";
 import LandingView from "./views/LandingView";
 import PageNotFound from "./views/PageNotFoundView";
+import RoutineBuilderView from "./views/RoutineBuilderView";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/landing" element={<LandingView/>}/>
+          <Route path="/routine" element={<RoutineBuilderView/>}/>
 
           <Route path="*" element={<PageNotFound/>}/>
         </Routes>
