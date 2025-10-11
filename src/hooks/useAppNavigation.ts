@@ -7,4 +7,4 @@ export function useAppNavigation() {
   return {
     goHome: () => navigate('/landing')
   };
-}
+};

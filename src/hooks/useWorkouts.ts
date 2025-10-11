@@ -31,8 +31,6 @@ export function useWorkouts() {
         setExerciseNames(eNames);
 
     } catch (error:any) {
-        console.log("An error occurred");
-        console.log(error);
         setError(error);
     } finally {
         setIsLoading(false);
@@ -50,4 +48,4 @@ export function useWorkouts() {
     error,
     fetchWorkouts
   };
-}
+};

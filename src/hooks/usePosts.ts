@@ -4,6 +4,9 @@ import type { Post } from '../types/api';
 
 export function usePosts() {
 
+  const ENDPOINT = '/mock/posts';
+
+  // state variables
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -13,10 +16,9 @@ export function usePosts() {
       setIsLoading(true);
       setError(null); // remove any previous error messages
 
-      const response = await getRequest('/mock/posts');
+      const response = await getRequest(ENDPOINT);
       setPosts(response);
     } catch (err: any) {
-      console.error('An error occurred while fetching posts:', err);
       setError(err);
     } finally {
       setIsLoading(false);
@@ -33,4 +35,4 @@ export function usePosts() {
     error,
     fetchPosts
   };
-}
+};
