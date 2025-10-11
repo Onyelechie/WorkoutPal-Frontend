@@ -1,4 +1,4 @@
-import './dashboard.css';
+import './Dashboard.css';
 import { notYetImplemented } from "../../utils/construction.ts";
 import { usePosts } from "../../hooks/usePosts.ts";
 
