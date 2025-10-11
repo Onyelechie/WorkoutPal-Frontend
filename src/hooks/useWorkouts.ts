@@ -14,6 +14,8 @@ export function useWorkouts() {
   async function fetchWorkouts() {
     try {
         setIsLoading(true);
+        setError(null); // remove any previous error messages
+
         const response = (await getRequest('/mock/workouts')) as Workout[];
 
         // temporarily assign the workouts to every single day
@@ -22,7 +24,7 @@ export function useWorkouts() {
         let eNames: string[][] = []; // exercise names
         for (let i = 0; i < MAX_DAYS; i++) {
           wkoutNames.push(response[0].name);
-          eNames.push([response[0].exercises[0].exercise.name || "-"]); // temporarily only assign the first exercise to every single day
+          eNames.push([response[0].exercises[0].exercise.name || "-"]); // temporary: only assign the first exercise to every single day
         }
 
         setWorkoutNames(wkoutNames);

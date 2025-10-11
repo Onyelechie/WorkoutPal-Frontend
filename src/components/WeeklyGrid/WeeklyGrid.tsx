@@ -4,10 +4,14 @@ import { getTodayIndex, daysShortForm } from '../../utils/date.ts';
 
 export default function WeeklyGrid() {
 
-  const { workoutNames, exerciseNames } = useWorkouts();
+  const { workoutNames, exerciseNames, isLoading, error } = useWorkouts();
 
   return (
     <>
+      {/* Show message when loading */}
+      <p>{isLoading ? "Loading weekly routines..." : ""}</p>
+      <p>{error ? "Could not get weekly routines at this time. Please try again later." : ""}</p>
+
       <table className="weekly-grid-table">
         <thead className="weekly-grid-table-header">
           {/* While printing out the days, highlight today's day*/}

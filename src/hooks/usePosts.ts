@@ -11,6 +11,8 @@ export function usePosts() {
   async function fetchPosts() {
     try {
       setIsLoading(true);
+      setError(null); // remove any previous error messages
+
       const response = await getRequest('/mock/posts');
       setPosts(response);
     } catch (err: any) {
