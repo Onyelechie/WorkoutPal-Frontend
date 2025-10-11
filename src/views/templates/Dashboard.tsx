@@ -31,7 +31,8 @@ export default function Dashboard() {
                 <button onClick={notYetImplemented}>Create Post</button>
             </div>
 
-            {posts.map((post) => (
+            {/* Show appropriate message if posts.length == 0, otherwise, show the post cards */}
+            {posts.length == 0 ? "There are currently no posts..." : posts.map((post) => (
                 <div key={post.id} className="post-card" onClick={notYetImplemented}>
                     <div className="post-header">
                         <span>{post.postedBy}</span>
@@ -44,6 +45,7 @@ export default function Dashboard() {
                         <span className="post-comments post-clickable" onClick={notYetImplemented}>{post.comments.length} Comment(s)</span>
                     </div>
                 </div>
+
             ))}
         </div>
     </>
