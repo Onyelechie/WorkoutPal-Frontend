@@ -50,6 +50,11 @@ button:active {
   transform: translateY(0);         /* Reset lift */
 }
 
+button:disabled {
+  background-color: var(--color-primary-3);
+  color: rgb(192, 192, 192);
+}
+
 /* For buttons that are next to each other, add a gap to them */
 .grouped-buttons {
   display: flex;

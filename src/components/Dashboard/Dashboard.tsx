@@ -17,7 +17,7 @@ export default function Dashboard() {
             </div>
 
             {/* Show appropriate message if posts.length == 0, otherwise, show the post cards */}
-            {posts.length === 0 ? "There are currently no posts..." : posts.map((post) => (
+            { isLoading ? "Loading..." : posts.length === 0 ? "There are currently no posts..." : posts.map((post) => (
                 <div key={post.id} className="post-card" onClick={notYetImplemented}>
                     <div className="post-header">
                         <span>{post.postedBy}</span>
