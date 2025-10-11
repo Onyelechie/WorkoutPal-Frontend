@@ -22,3 +22,10 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      #TODO: FIX LINTING ISSUES
+      # - name: Run linter
+      #   run: npm run lint
+        
+      - name: Run tests
+        run: npm run test
