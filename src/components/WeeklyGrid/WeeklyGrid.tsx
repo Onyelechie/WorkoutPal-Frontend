@@ -8,7 +8,7 @@ export default function WeeklyGrid() {
 
   return (
     <>
-      {/* Show message when loading */}
+      {/* Show message when loading and on error */}
       <p>{isLoading ? "Loading weekly routines..." : ""}</p>
       <p>{error ? "Could not get weekly routines at this time. Please try again later." : ""}</p>
 
