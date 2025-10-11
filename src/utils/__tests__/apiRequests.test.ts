@@ -1,5 +1,3 @@
-/// <reference types="vitest" />
-
 import {describe, it, expect, beforeEach, vi} from 'vitest';
 import axios from 'axios';
 import { BACKEND_URL, getRequest, postRequest, putRequest } from '../apiRequests.ts';
@@ -7,7 +5,7 @@ import { BACKEND_URL, getRequest, postRequest, putRequest } from '../apiRequests
 // Mock axios
 vi.mock('axios');
 
-describe('api-requests', () => {
+describe('/utils/apiRequests.ts', () => {
 
     beforeEach(() => {
         vi.clearAllMocks();
