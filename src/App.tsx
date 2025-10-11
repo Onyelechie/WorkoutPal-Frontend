@@ -1,8 +1,5 @@
-import { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from 'react-router';
-import LoginCard from "./LoginCard";
-import Header from "./Header";
 import LandingView from "./views/LandingView";
 import PageNotFound from "./views/PageNotFoundView";
 
