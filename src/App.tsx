@@ -1,16 +1,14 @@
-import { useState } from "react";
 import "./style/App.css";
-import LoginCard from "./LoginCard";
 import Header from "./Header";
 import Footer from "./Footer";
-import Navbar from "./Navbar";
+import ProfilePage from "./ProfilePage";
+import LoginCard from "./LoginCard";
 
 function App() {
   return (
     <>
       <Header />
-      <Navbar />
-      <div id="loginCardHolder">
+      <div className="bodyHolder">
         <LoginCard />
       </div>
       <Footer />

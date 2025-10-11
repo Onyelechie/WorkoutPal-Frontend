@@ -1,16 +1,50 @@
-#header {
-  display:flex;
+.header {
+  display: flex;
   align-items: center;
-  column-gap:20px;
+  column-gap: 10px;
+  padding-inline: 10px;
 
-  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+
   width: 100%;
-  height:fit-content;
-  padding-inline: 25px;
+  height: fit-content;
 
-  font-family:Arial, Helvetica, sans-serif;
-  line-height:20px;
-  color:white;
-  text-shadow:1px 1px 5px black;
-  background-color: rgba(255, 255, 255, 0.5);
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  background-color: white;
+}
+
+.navbar {
+  display: flex;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: fit-content;
+  padding: 1rem 2rem 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  background: white;
+}
+
+.navbar-list {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-link {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.navbar-link:hover {
+  color: #ffd700; /* gold highlight */
+}
+.navbar-link:active {
+  color: #ffa500; /* orange when active */
 }

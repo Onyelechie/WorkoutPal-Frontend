@@ -1,12 +1,13 @@
-#footer {
-    display:flex;
-    justify-content: center;
-    align-items:center;
-    width:100%;
-    height:fit-content;
-    gap: 100px;
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  padding: 1rem;
+  gap: 100px;
 
-    color:black;
-    background-color: white;
-    opacity: 0.4;
+  color: black;
+  background-color: white;
+  opacity: 0.4;
 }

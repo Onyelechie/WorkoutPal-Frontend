@@ -1,18 +1,22 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height:100%;
-  width:100%;
+  height: 100%;
+  width: 100%;
 }
 
 a {
@@ -25,18 +29,32 @@ a:hover {
 }
 
 body {
-  margin:auto;
-  width: 100%;
   height: 100%;
-  min-width: 300px;
-  min-height: 300px;
-  background: linear-gradient(45deg, rgb(70, 70, 160), rgb(150, 60, 60));
-  overflow:scroll
+  width: 100%;
+  background: linear-gradient(30deg, rgb(109, 70, 160), rgb(43, 130, 201));
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  flex: 1;
 }
 
 #root {
-  display:flex;
+  display: flex;
   flex-direction: column;
-  height:100%;
-  width:100%;
+  height: 100%;
+  width: 100%;
+  flex: 1;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  gap: 1rem;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
 }

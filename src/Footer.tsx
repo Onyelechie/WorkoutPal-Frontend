@@ -2,11 +2,11 @@ import "./style/footer.css";
 
 function Footer() {
   return (
-    <div id="footer">
+    <footer>
       <p>item1</p>
       <p>item2</p>
       <p>item3</p>
-    </div>
+    </footer>
   );
 }
 export default Footer;

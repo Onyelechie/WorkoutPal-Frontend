@@ -3,18 +3,26 @@ import "./style/LoginCard.css";
 
 function LoginCard() {
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle login logic here
-    alert(`Email: ${email}\nPassword: ${password}`);
+    alert(`Username: ${username}\nEmail: ${email}\nPassword: ${password}`);
   };
 
   return (
     <div className="login-card">
-      <h2>Login</h2>
+      <h2>Create an Account</h2>
       <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
         <input
           type="email"
           placeholder="Email"
@@ -29,11 +37,11 @@ function LoginCard() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Login</button>
+        <button type="submit">Create Account</button>
       </form>
       <div className="loginSwitch">
-        <p>Don't have an account? </p>
-        <a href="/create-account">Create Account</a>
+        <p>Already have an account?</p>
+        <a href="/create-account">Sign In</a>
       </div>
     </div>
   );
