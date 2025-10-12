@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 /* Hook for navigating to different pages */
 export function useAppNavigation() {
@@ -6,5 +6,8 @@ export function useAppNavigation() {
 
   return {
     goHome: () => navigate('/landing')
+  , Profile: () => navigate('/profile')
+  , Login: () => navigate('/login')
+
   };
 };

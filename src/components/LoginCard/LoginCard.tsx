@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./style/LoginCard.css";
+import "./LoginCard.css";
 
 function LoginCard() {
   const [email, setEmail] = useState("");

@@ -1,4 +1,6 @@
 import './Dashboard.css';
+import Header from '../Header/Header.tsx';
+import Footer from '../Footer/Footer.tsx';
 import { notYetImplemented } from "../../utils/construction.ts";
 import { usePosts } from "../../hooks/usePosts.ts";
 
@@ -8,6 +10,7 @@ export default function Dashboard() {
 
     return (
     <>
+        <Header />
         <div className="dashboard-container">
             <h1 className="dashboard-header">Dashboard</h1>
 
@@ -35,6 +38,7 @@ export default function Dashboard() {
 
             ))}
         </div>
+        <Footer />
     </>
     );
 };

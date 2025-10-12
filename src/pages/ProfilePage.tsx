@@ -1,11 +1,16 @@
-import { useState } from "react";
-import ProfileCard from "./ProfileCard";
-import "./style/ProfilePage.css";
-import MyWorkouts from "./WorkoutCardsContainer";
+import ProfileCard from "../components/ProfileCard/ProfileCard";
+import "../styles/ProfilePage.css";
+import MyWorkouts from "../WorkoutCardsContainer";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+
+//Horrendous WIP, I'll redo before sprint 1 is due
 
 function ProfilePage() {
   return (
-    <div className="profilePage">
+    <>
+    <Header />
+    <div className="profile-page-container">
       <ProfileCard />
       <div className="flex-column">
         <div className="bio">
@@ -29,6 +34,9 @@ function ProfilePage() {
         <MyWorkouts />
       </div>
     </div>
+    <Footer />
+    </>
+    
   );
 }
 

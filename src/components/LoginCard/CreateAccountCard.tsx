@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./style/LoginCard.css";
+import "./styles/LoginCard.css";
 
-function LoginCard() {
+function CreateAccountCard() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -47,4 +47,4 @@ function LoginCard() {
   );
 }
 
-export default LoginCard;
+export default CreateAccountCard;

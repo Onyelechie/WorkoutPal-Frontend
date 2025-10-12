@@ -44,17 +44,3 @@ body {
   width: 100%;
   flex: 1;
 }
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  gap: 1rem;
-}
-.flex-row {
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-  width: 100%;
-}

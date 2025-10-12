@@ -5,6 +5,7 @@
   gap: 1rem; /* space between posts */
   padding: 2rem;
   font-family: Arial, sans-serif;
+  flex: 1;
 }
 
 .dashboard-header {

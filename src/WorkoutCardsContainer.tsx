@@ -1,5 +1,5 @@
 import WorkoutCard from "./WorkoutCard";
-import "./style/MyWorkouts.css";
+import "./styles/MyWorkouts.css";
 
 const workouts = [
   { title: "Cardio Blast", description: "High intensity cardio workout." },
