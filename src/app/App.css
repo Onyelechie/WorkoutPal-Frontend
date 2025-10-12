@@ -1,0 +1,13 @@
+#logincard {
+  display:flex;
+  flex-direction: column;
+
+  height:300px;
+  width:300px;
+  padding: 20px;
+  min-width: fit-content;
+  min-height: fit-content;
+  margin:auto;
+  
+  background-color:red;
+}
