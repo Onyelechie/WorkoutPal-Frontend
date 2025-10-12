@@ -1,38 +1,25 @@
-import { useEffect, useState } from "react";
-import { getRequest } from "../../utils/RequestUtils";
-import { notYetImplemented } from "../../utils/ViewUtils";
-
-import '../../styles/templates/dashboard.css';
+import './Dashboard.css';
+import { notYetImplemented } from "../../utils/construction.ts";
+import { usePosts } from "../../hooks/usePosts.ts";
 
 export default function Dashboard() {
 
-    const [posts, setPosts] = useState<any[]>([]);
-
-    useEffect(() => {
-        fetchPosts(); // initialize lists of posts on load
-    }, []);
-
-    async function fetchPosts() {
-        try {
-            const response = await getRequest('/mock/posts');
-            setPosts(response);
-        } catch (error) {
-            console.log("An error occured");
-            console.log(error);
-        }
-    };
+    const { posts, isLoading, error, fetchPosts } = usePosts();
 
     return (
     <>
         <div className="dashboard-container">
             <h1 className="dashboard-header">Dashboard</h1>
 
-            <div className="dashboard-action-buttons">
+            <div className="dashboard-action-buttons grouped-buttons">
+                <button onClick={fetchPosts} disabled={isLoading}>Refresh</button>
                 <button onClick={notYetImplemented}>Create Post</button>
             </div>
 
-            {/* Show appropriate message if posts.length == 0, otherwise, show the post cards */}
-            {posts.length == 0 ? "There are currently no posts..." : posts.map((post) => (
+            {/* Show loading message when its loading. If an error is caught, show a generic try again later message. */}
+            {/* If !isLoading and !error, show appropriate message if posts.length == 0, otherwise, show the post cards */}
+            { isLoading ? "Loading..." : error ? "Could not get posts at this time. Please try again later." : 
+            posts.length === 0 ? "There are currently no posts..." : posts.map((post) => (
                 <div key={post.id} className="post-card" onClick={notYetImplemented}>
                     <div className="post-header">
                         <span>{post.postedBy}</span>

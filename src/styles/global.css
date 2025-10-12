@@ -1,5 +1,5 @@
 /* 
-    This is the global styles.css to be used in all views.
+    This is the global styling to be used in all pages/components.
 */
 
 
@@ -48,6 +48,17 @@ button:hover {
 button:active {
   background-color: var(--color-primary-3);        /* Even darker on click */
   transform: translateY(0);         /* Reset lift */
+}
+
+button:disabled {
+  background-color: var(--color-primary-3);
+  color: rgb(192, 192, 192);
+}
+
+/* For buttons that are next to each other, add a gap to them */
+.grouped-buttons {
+  display: flex;
+  gap: 10px;
 }
 
 /******** End of Button styles ********/

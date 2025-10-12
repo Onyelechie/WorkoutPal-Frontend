@@ -1,13 +1,8 @@
-import '../styles/global/styles.css';
-
-import { useNavigate } from 'react-router-dom';
+import { useAppNavigation } from "../hooks/useAppNavigation";
 
 export default function PageNotFound() {
-    const navigate = useNavigate();
 
-    function goHome() {
-        navigate("/landing");
-    };
+    const { goHome } = useAppNavigation();
 
     return (
     <>

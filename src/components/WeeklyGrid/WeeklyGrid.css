@@ -1,0 +1,21 @@
+.weekly-grid-table {
+    width: 100%;
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+.weekly-grid-table-header th {
+    border-bottom: 1px solid black;
+}
+
+.weekly-grid-table th,
+.weekly-grid-table td {
+  border-left: 1px solid black; /* adds both horizontal and vertical lines */
+  border-right: 1px solid black;
+  padding: 8px;
+}
+
+.highlight-text {
+    text-decoration: underline;
+    color: var(--color-primary-1);
+}

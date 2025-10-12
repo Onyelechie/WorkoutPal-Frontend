@@ -1,17 +1,13 @@
-/// <reference types="vitest" />
-
 import {describe, it, expect, beforeEach, vi} from 'vitest';
 import axios from 'axios';
-import { BACKEND_URL, getRequest, postRequest, putRequest } from '../utils/RequestUtils';
+import { BACKEND_URL, getRequest, postRequest, putRequest } from '../apiRequests.ts';
 
-// Mock axios
-vi.mock('axios');
 
-describe('RequestUtils', () => {
 
-    beforeEach(() => {
-        vi.clearAllMocks();
-    });
+describe('/utils/apiRequests.ts', () => {
+
+    // Mock axios
+    vi.mock('axios');
 
     // mock constants
     const mockData = [{ id: 0, name: 'FakeName', username: 'IHaveAFakeName' }];
@@ -19,6 +15,10 @@ describe('RequestUtils', () => {
     const mockURL = '/test/get';
     const mockID = '123';
     const mockError = new Error('Network Error');
+
+    beforeEach(() => {
+        vi.resetAllMocks();
+    });
 
     //----------------------Test getRequest----------------------// 
     it('getRequest returns data and uses appropriate URL when axios.get resolves', async () => {
