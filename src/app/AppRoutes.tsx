@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import Home from "../pages/Home";
 import PageNotFound from "../pages/PageNotFound";
 import RoutineBuilder from "../pages/RoutineBuilder/RoutineBuilder";
@@ -11,6 +11,9 @@ export default function AppRoutes() {
       {/* All routes in the app */}
       {/* Inspired from https://www.w3schools.com/react/react_router.asp */}
       <Routes>
+        {/* Redirect path '/' to the login. Redirection code retrieved from ChatGPT */}
+        <Route path="/" element={<Navigate to="/login" replace />} />
+
         <Route path="/home" element={<Home />} />
         <Route path="/routine" element={<RoutineBuilder />} />
         <Route path="/login" element={<Login />} />
