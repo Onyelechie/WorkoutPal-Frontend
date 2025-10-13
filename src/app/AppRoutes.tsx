@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router";
-import Landing from "../pages/Landing";
+import Home from "../pages/Home";
 import PageNotFound from "../pages/PageNotFound";
 import RoutineBuilder from "../pages/RoutineBuilder/RoutineBuilder";
 import ProfilePage from "../pages/Profile/ProfilePage";
@@ -11,7 +11,7 @@ export default function AppRoutes() {
       {/* All routes in the app */}
       {/* Inspired from https://www.w3schools.com/react/react_router.asp */}
       <Routes>
-        <Route path="/landing" element={<Landing />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/routine" element={<RoutineBuilder />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<ProfilePage />} />

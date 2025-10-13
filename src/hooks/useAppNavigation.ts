@@ -5,9 +5,9 @@ export function useAppNavigation() {
   const navigate = useNavigate();
 
   return {
-    goHome: () => navigate('/landing')
-  , Profile: () => navigate('/profile')
-  , Login: () => navigate('/login')
-
+    navHome: () => navigate('/home'), 
+    navProfile: () => navigate('/profile'),
+    navLogin: () => navigate('/login'),
+    navRoutine: () => navigate('/routine')
   };
 };
