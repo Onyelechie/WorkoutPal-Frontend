@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getRequest, postRequest } from '../../utils/apiRequests';
+import { getRequest, postRequest, deleteRequest } from '../../utils/apiRequests';
 import { notYetImplemented } from '../../utils/construction.ts';
 import './RoutineBuilder.css';
 
@@ -86,6 +86,16 @@ export default function RoutineBuilder() {
         }
     };
 
+    const handleDeleteRoutine = async (id: number) => {
+        try {
+            await deleteRequest(`/routines/${id}`);
+            setRoutines((prevRoutines) => prevRoutines.filter((routine) => routine.id !== id));
+        } catch (err) {
+            console.error('Failed to delete routine:', err);
+            alert('Failed to delete routine. Please try again.');
+        }
+    };
+
 
 
     return (
@@ -119,6 +129,9 @@ export default function RoutineBuilder() {
                                 }}
                             >
                                 <h3 style={{margin: '0 0 0.5rem 0', color: '#333'}}>{routine.name}</h3>
+                                <button onClick={() => handleDeleteRoutine(routine.id)} style={{ color: 'red' }}>
+                                    Delete
+                                </button>
                             </div>
                         ))}
                     </div>
@@ -214,10 +227,10 @@ export default function RoutineBuilder() {
                                                         <strong>Targets:</strong>{" "}
                                                         {Array.isArray(exercise.targets)
                                                             ? exercise.targets
-                                                                .map(t =>
+                                                                .map((t: string) =>
                                                                     t.replace(/[{}"]/g, '')
                                                                         .trim()
-                                                                        .replace(/\b\w/g, c => c.toUpperCase())
+                                                                        .replace(/\b\w/g, (c: string) => c.toUpperCase())
                                                                 )
                                                                 .join(', ')
                                                             : String(exercise.targets)
@@ -235,7 +248,7 @@ export default function RoutineBuilder() {
                             )}
                         </div>
 
-                        {/* ✅ Currently Added Exercises Section */}
+                        {/* Currently Added Exercises Section */}
                         {selectedExercises.length > 0 && (
                             <div
                                 style={{
