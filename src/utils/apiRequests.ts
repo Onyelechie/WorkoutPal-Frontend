@@ -47,3 +47,10 @@ export async function putRequest (endpoint:string, payload:any, id?:string) {
     const response = await axios.put(url, payload); // payload here is optional
     return response.data; // return the data
 };
+
+// delete request
+// note: caller of this util function needs to try {} catch (error) {} for when the request fails
+export async function deleteRequest(endpoint: string) {
+    const response = await axios.delete(`${BACKEND_URL}${endpoint}`);
+    return response.data; // return the data
+};
