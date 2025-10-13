@@ -1,4 +1,4 @@
-import "./styles/WorkoutCard.css";
+import "./WorkoutCard.css";
 
 interface WorkoutCardProps {
   title: string;
