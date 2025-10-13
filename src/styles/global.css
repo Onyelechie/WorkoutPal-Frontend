@@ -77,6 +77,18 @@ button:disabled {
 
 /******** End of Button styles ********/
 
+/******** Text styles ********/
+
+.text-link {
+  text-decoration: underline;
+}
+
+.text-link:hover {
+  color: var(--color-primary-1);
+}
+
+/******** End of text styles ********/
+
 /* Flex containers */
 
 .flex-column {

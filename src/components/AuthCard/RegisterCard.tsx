@@ -1,19 +1,23 @@
-import React, { useState } from "react";
-import "./styles/LoginCard.css";
+import "./AuthCard.css";
 
-function CreateAccountCard() {
+import React, { useState } from "react";
+import { useAppNavigation } from "../../hooks/useAppNavigation";
+
+export default function RegisterCard() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const { navLogin } = useAppNavigation();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
+    // handle the register logic here
     alert(`Username: ${username}\nEmail: ${email}\nPassword: ${password}`);
   };
 
   return (
-    <div className="login-card">
+    <div className="auth-card">
       <h2>Create an Account</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -39,12 +43,10 @@ function CreateAccountCard() {
         />
         <button type="submit">Create Account</button>
       </form>
-      <div className="loginSwitch">
+      <div className="auth-switch">
         <p>Already have an account?</p>
-        <a href="/create-account">Sign In</a>
+        <a className="text-link" onClick={navLogin}>Sign In</a>
       </div>
     </div>
   );
-}
-
-export default CreateAccountCard;
+};
