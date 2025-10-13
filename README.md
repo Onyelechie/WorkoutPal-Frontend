@@ -1,3 +1,7 @@
+### Prerequisites
+
+1. Node.js v22.20.0 - https://nodejs.org/en/download
+
 ### How to run WorkoutPal-Frontend
 
 1. Clone the repository:
