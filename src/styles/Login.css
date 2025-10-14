@@ -1,0 +1,7 @@
+.login-card-holder {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  flex: 1;
+  justify-content: center;
+}

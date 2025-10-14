@@ -1,0 +1,34 @@
+.workout-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  max-width: 300px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.workout-title {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.workout-desc {
+  margin-bottom: 1rem;
+  color: #666;
+}
+
+.workout-btn {
+  background: rgba(255, 140, 0, 0.9);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.workout-btn:hover {
+  background: #ff9800;
+}

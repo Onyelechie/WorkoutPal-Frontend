@@ -1,0 +1,50 @@
+.profile-container {
+  max-width: fit-content;
+  max-height: fit-content;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.profile-name {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.profile-email {
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.profile-details p {
+  margin: 0.5rem 0;
+  color: #444;
+}
+
+.profile-edit-btn {
+  margin-top: 1.5rem;
+  padding: 0.5rem 1.5rem;
+  background: rgba(255, 140, 0, 0.9);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.profile-edit-btn:hover {
+  background: #ff9800;
+}
