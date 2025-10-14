@@ -1,4 +1,4 @@
-import WorkoutCard from "../WorkoutCards/WorkoutCard";
+import WorkoutCard from "../WorkoutCard/WorkoutCard";
 import "./MyWorkouts.css";
 
 const workouts = [
