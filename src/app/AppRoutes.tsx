@@ -4,6 +4,7 @@ import PageNotFound from "../pages/PageNotFound";
 import RoutineBuilder from "../pages/RoutineBuilder/RoutineBuilder";
 import ProfilePage from "../pages/ProfilePage";
 import Login from "../pages/Login";
+import CreateAccount from "../pages/CreateAccount";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
@@ -18,6 +19,7 @@ export default function AppRoutes() {
           <Route path="/landing" element={<Landing />} />
           <Route path="/routine" element={<RoutineBuilder />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/create-account" element={<CreateAccount />} />
           <Route path="/profile" element={<ProfilePage />} />
 
           {/* Direct to PageNotFound for routes that are not implemented */}

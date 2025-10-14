@@ -1,14 +1,52 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./LoginCard.css";
+import { postRequest } from "../../utils/apiRequests";
+import { useAppNavigation } from "../../hooks/useAppNavigation";
 
 function LoginCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { Profile } = useAppNavigation();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
-    alert(`Email: ${email}\nPassword: ${password}`);
+
+    const payload = {
+      email: email,
+      password: password,
+    };
+
+    postRequest("/login", payload)
+      .then((response) => {
+        if (response.status == 200) {
+          console.log("Login successful");
+          Profile();
+        }
+      })
+      .catch((error) => {
+        if (error?.response) {
+          console.error("Login failed:", error);
+          alert(
+            "Login failed. Please check your credentials and try again. " +
+              error.response.data
+          );
+        }
+      });
+
+    // try {
+    //   const response = await postRequest("/login", payload);
+
+    //   if (response.status == 200) {
+    //     console.log("Login successful");
+    //     Profile();
+    //   }
+    // } catch (error) {
+    //   if(error?.response) {
+    //     console.error("Login failed:", error);
+    //   alert("Login failed. Please check your credentials and try again. ");
+    //   }
+
+    // }
   };
 
   return (
