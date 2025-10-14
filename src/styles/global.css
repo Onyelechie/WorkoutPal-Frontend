@@ -84,6 +84,7 @@ button:disabled {
 }
 
 .text-link:hover {
+  cursor: pointer;
   color: var(--color-primary-1);
 }
 
