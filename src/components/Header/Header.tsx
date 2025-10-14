@@ -3,9 +3,7 @@ import { useAppNavigation } from "../../hooks/useAppNavigation";
 
 function Header() {
 
-  const { goHome } = useAppNavigation();
-  const { Profile } = useAppNavigation();
-  const { Login } = useAppNavigation();
+  const { navHome, navProfile, navLogin, navRoutine } = useAppNavigation();
 
 
   return (
@@ -14,9 +12,10 @@ function Header() {
         <img src="src\assets\react.svg" alt="Temp Logo" />
         <h2>WorkoutPal</h2>
         <nav className="navbar">
-          <button onClick={goHome}>Home</button>
-          <button onClick={Profile}>Profile</button>
-          <button onClick={Login}>Login</button>
+          <button onClick={navHome}>Home</button>
+          <button onClick={navProfile}>Profile</button>
+          <button onClick={navRoutine}>Routine</button>
+          <button onClick={navLogin}>Login</button>
         </nav>
       </div>
     </>

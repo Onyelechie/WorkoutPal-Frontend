@@ -1,5 +1,5 @@
-import WorkoutCard from "./WorkoutCard";
-import "./styles/MyWorkouts.css";
+import WorkoutCard from "../WorkoutCard/WorkoutCard";
+import "./MyWorkouts.css";
 
 const workouts = [
   { title: "Cardio Blast", description: "High intensity cardio workout." },
@@ -11,7 +11,7 @@ const workouts = [
 function MyWorkouts() {
   return (
     <>
-      <div className="MyWorkouts">
+      <div className="my-workouts-container">
         <h2>My Workouts</h2>
         <div className="workout-cards-container">
           {workouts.map((w, i) => (

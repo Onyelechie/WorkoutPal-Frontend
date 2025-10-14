@@ -1,6 +1,6 @@
-import ProfileCard from "../components/ProfileCard/ProfileCard";
-import "../styles/ProfilePage.css";
-import MyWorkouts from "../WorkoutCardsContainer";
+import ProfileCard from "../../components/ProfileCard/ProfileCard";
+import "./ProfilePage.css";
+import MyWorkouts from "../../components/MyWorkouts/MyWorkouts";
 
 //Horrendous WIP, I'll redo before sprint 1 is due
 
