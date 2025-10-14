@@ -27,21 +27,14 @@ function CreateAccountCard() {
       password: hashPass,
     };
 
-    postRequest("/users", payload)
-      .then((response) => {
-        if (response.status == 201) {
-          console.log("Account Created");
-          Login();
-        }
-      })
-      .catch((error) => {
-        if (error?.response) {
-          console.error("Account creation failed: ", error);
-          alert("Account creation failed:  " + error.response.data);
-        }
-      });
-
-    console.log("Account created with details:", payload);
+    try {
+      await postRequest("/users", payload)
+      console.log("Account Created");
+      Login();
+    } catch (error) {
+      console.error("Account creation failed: ", error);
+      alert("Account creation failed:  " + error);
+    }
   };
 
   return (

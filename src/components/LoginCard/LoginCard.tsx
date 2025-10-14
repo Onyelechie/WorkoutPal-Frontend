@@ -16,37 +16,16 @@ function LoginCard() {
       password: password,
     };
 
-    postRequest("/login", payload)
-      .then((response) => {
-        if (response.status == 200) {
-          console.log("Login successful");
-          Profile();
-        }
-      })
-      .catch((error) => {
-        if (error?.response) {
-          console.error("Login failed:", error);
-          alert(
+    try {
+      await postRequest("/login", payload);
+      Profile();
+    } catch (error) {
+      console.error("Login failed:", error);
+      alert(
             "Login failed. Please check your credentials and try again. " +
-              error.response.data
+              error
           );
-        }
-      });
-
-    // try {
-    //   const response = await postRequest("/login", payload);
-
-    //   if (response.status == 200) {
-    //     console.log("Login successful");
-    //     Profile();
-    //   }
-    // } catch (error) {
-    //   if(error?.response) {
-    //     console.error("Login failed:", error);
-    //   alert("Login failed. Please check your credentials and try again. ");
-    //   }
-
-    // }
+    }
   };
 
   return (

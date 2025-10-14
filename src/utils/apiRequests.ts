@@ -31,7 +31,7 @@ export async function postRequest(endpoint: string, payload: any, id?: string) {
   }
 
   const response = await axios.post(url, payload); // payload here is optional
-  return response; // return the data
+  return response.data; // return the data
 }
 
 // put request
