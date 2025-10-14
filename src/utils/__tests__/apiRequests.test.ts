@@ -1,6 +1,6 @@
-import {describe, it, expect, beforeEach, vi} from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import axios from 'axios';
-import { BACKEND_URL, getRequest, postRequest, putRequest } from '../apiRequests.ts';
+import { BACKEND_URL, getRequest, postRequest, putRequest, deleteRequest } from '../apiRequests.ts';
 
 
 
@@ -29,23 +29,23 @@ describe('/utils/apiRequests.ts', () => {
         expect(response).toEqual(mockData);
         expect(axios.get).toHaveBeenCalledTimes(1);
         // the actual URL request needs to contain the backend URL with the endpoint appended
-        expect(axios.get).toHaveBeenCalledWith(`${BACKEND_URL}${mockURL}`); 
+        expect(axios.get).toHaveBeenCalledWith(`${BACKEND_URL}${mockURL}`);
     });
 
     it('getRequest throws an error when axios.get rejects', async () => {
         (axios.get as any).mockRejectedValue(mockError);
 
         await expect(getRequest(mockURL)).rejects.toThrow(mockError);
-        
+
         expect(axios.get).toHaveBeenCalledTimes(1);
         // the actual URL request needs to contain the backend URL with the endpoint appended
-        expect(axios.get).toHaveBeenCalledWith(`${BACKEND_URL}${mockURL}`); 
+        expect(axios.get).toHaveBeenCalledWith(`${BACKEND_URL}${mockURL}`);
     });
     //----------------------End of Test getRequest----------------------// 
 
     //----------------------Test postRequest----------------------// 
     it('postRequest with no ID returns success when axios.post resolves', async () => {
-        (axios.post as any).mockResolvedValue({data: mockResponse});
+        (axios.post as any).mockResolvedValue({ data: mockResponse });
 
         const result = await postRequest(mockURL, mockData);
 
@@ -56,7 +56,7 @@ describe('/utils/apiRequests.ts', () => {
     });
 
     it('postRequest with ID returns success when axios.post resolves', async () => {
-        (axios.post as any).mockResolvedValue({data: mockResponse});
+        (axios.post as any).mockResolvedValue({ data: mockResponse });
 
         const result = await postRequest(mockURL, mockData, mockID);
 
@@ -76,7 +76,7 @@ describe('/utils/apiRequests.ts', () => {
 
     //----------------------Test putRequest----------------------// 
     it('putRequest with no ID returns success when axios.put resolves', async () => {
-        (axios.put as any).mockResolvedValue({data: mockResponse});
+        (axios.put as any).mockResolvedValue({ data: mockResponse });
 
         const result = await putRequest(mockURL, mockData);
 
@@ -87,7 +87,7 @@ describe('/utils/apiRequests.ts', () => {
     });
 
     it('putRequest with ID returns success when axios.put resolves', async () => {
-        (axios.put as any).mockResolvedValue({data: mockResponse});
+        (axios.put as any).mockResolvedValue({ data: mockResponse });
 
         const result = await putRequest(mockURL, mockData, mockID);
 
@@ -104,6 +104,25 @@ describe('/utils/apiRequests.ts', () => {
         expect(axios.put).toHaveBeenCalledTimes(1);
     });
     //----------------------End of Test putRequest----------------------// 
+    //----------------------Test deleteRequest----------------------// 
+    it('deleteRequest returns data and uses appropriate URL when axios.delete resolves', async () => {
+        (axios.delete as any).mockResolvedValue({ data: mockResponse });
+
+        const response = await deleteRequest(mockURL);
+
+        expect(response).toEqual(mockResponse);
+        expect(axios.delete).toHaveBeenCalledTimes(1);
+        expect(axios.delete).toHaveBeenCalledWith(`${BACKEND_URL}${mockURL}`);
+    });
+
+    it('deleteRequest throws an error when axios.delete rejects', async () => {
+        (axios.delete as any).mockRejectedValue(mockError);
+
+        await expect(deleteRequest(mockURL)).rejects.toThrow(mockError);
+        expect(axios.delete).toHaveBeenCalledTimes(1);
+        expect(axios.delete).toHaveBeenCalledWith(`${BACKEND_URL}${mockURL}`);
+    });
+    //----------------------End of Test deleteRequest----------------------// 
 
 });
 
