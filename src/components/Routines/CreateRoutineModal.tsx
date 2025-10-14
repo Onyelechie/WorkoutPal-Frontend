@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getRequest, postRequest } from '../../utils/apiRequests';
+import { toggleExerciseSelection, filterExercises, buildRoutinePayload } from '../../utils/routineHelpers';
 import './RoutineBuilder.css';
 
 interface CreateRoutineModalProps {
@@ -30,14 +31,8 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({ onClose, setRou
         fetchExercises();
     }, []);
 
-    const toggleExerciseSelection = (exercise: any) => {
-        setSelectedExercises((prevSelected) => {
-            if (prevSelected.some((e: any) => e.id === exercise.id)) {
-                return prevSelected.filter((e: any) => e.id !== exercise.id);
-            } else {
-                return [...prevSelected, exercise];
-            }
-        });
+    const handleToggle = (exercise: any) => {
+        setSelectedExercises((prev) => toggleExerciseSelection(prev, exercise));
     };
 
     const handleCreateRoutine = async () => {
@@ -46,15 +41,10 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({ onClose, setRou
             return;
         }
 
-        const payload = {
-            name: routineName.trim(),
-            exerciseIds: selectedExercises.map((e) => e.id),
-        };
+        const payload = buildRoutinePayload(routineName, selectedExercises);
 
         try {
-            const newRoutine = await postRequest('/users/1/routines', payload);
-            console.log('Routine created successfully:', newRoutine);
-
+            await postRequest('/users/1/routines', payload);
             const updatedRoutines = await getRequest('/users/1/routines');
             setRoutines(updatedRoutines);
 
@@ -67,12 +57,12 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({ onClose, setRou
         }
     };
 
+    const filteredExercises = filterExercises(exercises, searchQuery);
+
     return (
         <div className="modal-overlay">
             <div className="modal-content">
-                <button onClick={onClose} className="back-button">
-                    Back
-                </button>
+                <button onClick={onClose} className="back-button">Back</button>
                 <h2 className="modal-title">Create Routine</h2>
 
                 <div className="input-group">
@@ -98,54 +88,45 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({ onClose, setRou
                 <div className="exercise-list">
                     {exLoading && <div>Loading exercises...</div>}
                     {exError && <div>{exError}</div>}
-                    {!exLoading && !exError && exercises && exercises.length > 0 && (
+                    {!exLoading && !exError && filteredExercises.length > 0 && (
                         <ul>
-                            {exercises
-                                .filter((exercise: any) => {
-                                    if (!searchQuery.trim()) return true;
-                                    const targetsStr = Array.isArray(exercise.targets)
-                                        ? exercise.targets.join(', ')
-                                        : String(exercise.targets);
-                                    return (
-                                        exercise.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                                        targetsStr.toLowerCase().includes(searchQuery.toLowerCase())
-                                    );
-                                })
-                                .map((exercise: any) => (
-                                    <li
-                                        key={exercise.id}
-                                        className="exercise-item"
-                                        onClick={() => toggleExerciseSelection(exercise)}
-                                    >
-                                        <input
-                                            type="checkbox"
-                                            checked={selectedExercises.some((e: any) => e.id === exercise.id)}
-                                            readOnly
-                                            style={{ marginRight: '0.5rem' }}
-                                        />
-                                        <strong>{exercise.name}</strong>
-                                        {exercise.targets && (
-                                            <div>
-                                                <strong>Targets:</strong>{' '}
-                                                {Array.isArray(exercise.targets)
-                                                    ? exercise.targets
-                                                        .map((t: string) =>
-                                                            t.replace(/[{}"]/g, '')
-                                                                .trim()
-                                                                .replace(/\b\w/g, (c: string) => c.toUpperCase())
-                                                        )
-                                                        .join(', ')
-                                                    : String(exercise.targets)
-                                                        .replace(/[{}"]/g, '')
-                                                        .trim()
-                                                        .replace(/\b\w/g, (c) => c.toUpperCase())}
-                                            </div>
-                                        )}
-                                    </li>
-                                ))}
+                            {filteredExercises.map((exercise) => (
+                                <li
+                                    key={exercise.id}
+                                    className="exercise-item"
+                                    onClick={() => handleToggle(exercise)}
+                                >
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedExercises.some((e) => e.id === exercise.id)}
+                                        readOnly
+                                        style={{ marginRight: '0.5rem' }}
+                                    />
+                                    <strong>{exercise.name}</strong>
+                                    {exercise.targets && (
+                                        <div>
+                                            <strong>Targets:</strong>{' '}
+                                            {Array.isArray(exercise.targets)
+                                                ? exercise.targets
+                                                    .map((t: string) =>
+                                                        t.replace(/[{}"]/g, '')
+                                                            .trim()
+                                                            .replace(/\b\w/g, (c: string) => c.toUpperCase())
+                                                    )
+                                                    .join(', ')
+                                                : String(exercise.targets)
+                                                    .replace(/[{}"]/g, '')
+                                                    .trim()
+                                                    .replace(/\b\w/g, (c) => c.toUpperCase())}
+                                        </div>
+                                    )}
+                                </li>
+                            ))}
                         </ul>
                     )}
-                    {!exLoading && !exError && exercises && exercises.length === 0 && <div>No exercises found.</div>}
+                    {!exLoading && !exError && filteredExercises.length === 0 && (
+                        <div>No exercises found.</div>
+                    )}
                 </div>
 
                 <button onClick={handleCreateRoutine} className="create-button">
