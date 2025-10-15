@@ -4,10 +4,12 @@
 - [Current acceptance tests](https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/cypress/e2e) - currently only tests authentication (login and register).
 - [Sprint 1 Test Coverage report](/documentation/tests/sprint_1_test_coverage.png)
 
-# Prerequisites
+# Backend Repository
+- [WorkoutPal-Backend](https://github.com/Onyelechie/WorkoutPal-Backend)
 
+# Prerequisites
 1. Node.js v22.20.0 - https://nodejs.org/en/download
-2. Backend and database needs to be running to ensure that frontend functionality works. [Backend repo](https://github.com/Onyelechie/WorkoutPal-Backend)
+2. **Backend and database needs to be running to ensure that frontend functionality works**. [Backend repo](https://github.com/Onyelechie/WorkoutPal-Backend)
 
 # How to run WorkoutPal-Frontend
 
@@ -26,6 +28,7 @@ npm install
 ```bash
 npm run dev
 ```
+**Note**: Please make sure the [backend](https://github.com/Onyelechie/WorkoutPal-Backend) is running.
 
 # How to run tests
 
@@ -62,7 +65,7 @@ npm run test:coverage
     3. Frontend is running on the baseUrl set in cypress.config.ts in the root folder
 
 2. Additional notes:
-    1. The database needs to be running BEFORE the backend starts. See our [backend repo.](https://github.com/Onyelechie/WorkoutPal-Backend)
+    1. The database needs to be running **BEFORE** the backend starts. See our [backend repo.](https://github.com/Onyelechie/WorkoutPal-Backend)
     2. Double check that the frontend is running on the baseUrl set in cypress.config.ts in the root folder. At this point, it should be 'http://localhost:5173'.
     3. Tests will fail without the prerequisites and assumptions.
 
