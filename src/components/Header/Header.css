@@ -26,3 +26,12 @@
   background: white;
   gap: 1rem;
 }
+
+.logout-button {
+  margin-left: auto;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  cursor: pointer;
+}
