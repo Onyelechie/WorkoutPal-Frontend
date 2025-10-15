@@ -7,9 +7,9 @@
 # Top 3 tests of each category
 
 ### Unit tests
-1. [apiRequests.ts](/src/utils/__unit_tests__/apiRequests.test.ts)
-2. [routineHelpers.ts](/src/utils/__unit_tests__/routineHelpers.test.ts)
-3. [date.ts](/src/utils/__unit_tests__/date.test.ts)
+1. [apiRequests.ts](/src/utils/__unit_tests__/apiRequests.test.ts) - tests that our helper for making api requests correctly appends the endpoint to the backend URL for all request types (GET, POST, PUT, DELETE) and that it correctly makes the requests.
+2. [routineHelpers.ts](/src/utils/__unit_tests__/routineHelpers.test.ts) - tests that it correctly filters routines, build routine payloads and toggle selection.
+3. [date.ts](/src/utils/__unit_tests__/date.test.ts) - tests that getTodayIndex() returns values within the bounds
 
 ### Acceptance tests
 1. Only one so far: [auth.cy.ts](/cypress/e2e/auth.cy.ts). The top 3 test functions here would be:
