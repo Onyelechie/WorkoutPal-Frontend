@@ -44,6 +44,7 @@ export default function RegisterCard() {
       <h2>Create an Account</h2>
       <form onSubmit={handleSubmit}>
         <input
+          name="name"
           type="text"
           placeholder="Name"
           value={name}
@@ -51,6 +52,7 @@ export default function RegisterCard() {
           required
         />
         <input
+          name="username"
           type="text"
           placeholder="Username"
           value={username}
@@ -58,6 +60,7 @@ export default function RegisterCard() {
           required
         />
         <input
+          name="email"
           type="email"
           placeholder="Email"
           value={email}
@@ -65,6 +68,7 @@ export default function RegisterCard() {
           required
         />
         <input
+          name="password"
           type="password"
           placeholder="Password"
           value={password}
@@ -72,6 +76,7 @@ export default function RegisterCard() {
           required
         />
         <input
+          name="confirm-password"
           type="password"
           placeholder="Confirm Password"
           value={confirmPassword}

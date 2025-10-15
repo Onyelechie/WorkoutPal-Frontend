@@ -7,7 +7,7 @@ import { useAppNavigation } from "../../hooks/useAppNavigation";
 function LoginCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { navProfile, navRegister } = useAppNavigation();
+  const { navHome, navRegister } = useAppNavigation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ function LoginCard() {
 
     try {
       await postRequest("/login", payload);
-      navProfile();
+      navHome();
     } catch (error) {
       console.error("Login failed:", error);
       alert(
@@ -34,6 +34,7 @@ function LoginCard() {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input
+          name="email"
           type="email"
           placeholder="Email"
           value={email}
@@ -41,6 +42,7 @@ function LoginCard() {
           required
         />
         <input
+          name="password"
           type="password"
           placeholder="Password"
           value={password}
