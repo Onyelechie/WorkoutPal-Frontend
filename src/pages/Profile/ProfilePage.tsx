@@ -1,15 +1,14 @@
-import ProfileCard from "../components/ProfileCard/ProfileCard";
+import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import "../styles/ProfilePage.css";
-import MyWorkouts from "../WorkoutCardsContainer";
-import { useAppNavigation } from "../hooks/useAppNavigation";
-import Login from "./Login";
-import { getRequest } from "../utils/apiRequests";
+import MyWorkouts from "../../components/MyWorkouts/MyWorkouts";
+import { useAppNavigation } from "../../hooks/useAppNavigation";
+import { getRequest } from "../../utils/apiRequests";
 import { useState } from "react";
 
 //Horrendous WIP, I'll redo before sprint 1 is due
 
 function ProfilePage() {
-  const { Login } = useAppNavigation();
+  const { navLogin } = useAppNavigation();
   const [user, setUser] = useState(null);
 
   getRequest("/me")

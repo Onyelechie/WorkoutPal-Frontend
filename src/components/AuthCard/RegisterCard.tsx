@@ -1,11 +1,13 @@
-import { useState } from "react";
-import "./LoginCard.css";
+import "./AuthCard.css";
+
+import React, { useState } from "react";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { postRequest } from "../../utils/apiRequests";
 import bcrypt from "bcryptjs";
 
-function CreateAccountCard() {
-  const { Login } = useAppNavigation();
+export default function RegisterCard() {
+
+  const { navLogin } = useAppNavigation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -30,7 +32,7 @@ function CreateAccountCard() {
     try {
       await postRequest("/users", payload)
       console.log("Account Created");
-      Login();
+      navLogin();
     } catch (error) {
       console.error("Account creation failed: ", error);
       alert("Account creation failed:  " + error);
@@ -38,7 +40,7 @@ function CreateAccountCard() {
   };
 
   return (
-    <div className="login-card">
+    <div className="auth-card">
       <h2>Create an Account</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -78,12 +80,10 @@ function CreateAccountCard() {
         />
         <button type="submit">Create Account</button>
       </form>
-      <div className="loginSwitch">
+      <div className="auth-switch">
         <p>Already have an account?</p>
-        <a href="/login">Sign In</a>
+        <a className="text-link" onClick={navLogin}>Sign In</a>
       </div>
     </div>
   );
-}
-
-export default CreateAccountCard;
+};

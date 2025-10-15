@@ -1,4 +1,8 @@
-.login-card {
+/* 
+  Login and Register cards share the same css.
+*/
+
+.auth-card {
   width: 300px;
   margin: 40px auto;
   padding: 2rem;
@@ -8,12 +12,12 @@
   text-align: center;
 }
 
-.login-card h2 {
+.auth-card h2 {
   margin-bottom: 1.5rem;
   color: #333;
 }
 
-.login-card input {
+.auth-card input {
   width: 100%;
   padding: 0.75rem;
   margin-bottom: 1rem;
@@ -21,7 +25,7 @@
   border-radius: 4px;
 }
 
-.login-card button {
+.auth-card button {
   width: 100%;
   padding: 0.75rem;
   background: #333;
@@ -31,11 +35,11 @@
   cursor: pointer;
 }
 
-.login-card button:hover {
+.auth-card button:hover {
   background: #555;
 }
 
-.login-card .loginSwitch {
+.auth-card .auth-switch {
   margin-top: 1rem;
   display: flex;
   justify-content: center;

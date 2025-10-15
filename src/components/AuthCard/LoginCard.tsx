@@ -1,12 +1,13 @@
-import { useState } from "react";
-import "./LoginCard.css";
+import "./AuthCard.css";
+
+import React, { useState } from "react";
 import { postRequest } from "../../utils/apiRequests";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 
 function LoginCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { Profile } = useAppNavigation();
+  const { navProfile, navRegister } = useAppNavigation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ function LoginCard() {
 
     try {
       await postRequest("/login", payload);
-      Profile();
+      navProfile();
     } catch (error) {
       console.error("Login failed:", error);
       alert(
@@ -29,7 +30,7 @@ function LoginCard() {
   };
 
   return (
-    <div className="login-card">
+    <div className="auth-card">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -48,9 +49,9 @@ function LoginCard() {
         />
         <button type="submit">Login</button>
       </form>
-      <div className="loginSwitch">
+      <div className="auth-switch">
         <p>Don't have an account? </p>
-        <a href="/create-account">Create Account</a>
+        <a className="text-link" onClick={navRegister}>Create Account</a>
       </div>
     </div>
   );
