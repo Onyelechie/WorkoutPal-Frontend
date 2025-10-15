@@ -23,9 +23,27 @@ npm run dev
 npm install
 ```
 
-2. Run the tests:
+2. Run all the tests:
 ```bash
 npm run test
+```
+
+## To selectively run only unit tests
+
+```bash
+npm run test
+```
+
+## To selectively run only acceptance tests
+
+```bash
+npm run test
+```
+
+## To run only a very specific test
+
+```bash
+npm run test path/to/file/here.ts
 ```
 
 ## To run with test coverage
