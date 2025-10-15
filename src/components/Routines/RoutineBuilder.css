@@ -1,0 +1,121 @@
+/* RoutineBuilder.tsx */
+.routine-builder-container {
+    margin: 3em;
+}
+
+.routine-builder-header {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+/* CreateRoutineModal.tsx */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 85%;
+    min-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.back-button {
+    float: left;
+    margin-bottom: 1rem;
+}
+
+.modal-title {
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.text-input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.exercise-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.exercise-item {
+    margin-bottom: 1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.create-button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* RoutineList.tsx */
+
+.routine-list {
+    display: grid;
+    font-family: Arial, sans-serif;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.routine-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.routine-name {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+
+.delete-button {
+    color: red;
+    cursor: pointer;
+    font-size: 1rem;
+}
