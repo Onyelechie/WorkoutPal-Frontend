@@ -51,7 +51,7 @@ describe("/utils/apiRequests.ts", () => {
 
     const result = await postRequest(mockURL, mockData);
 
-    expect(result).toEqual(mockResponse);
+    expect(result.data).toEqual(mockResponse);
     expect(axios.post).toHaveBeenCalledTimes(1);
     // the actual URL request needs to contain the backend URL with the endpoint appended
     expect(axios.post).toHaveBeenCalledWith(
@@ -65,7 +65,7 @@ describe("/utils/apiRequests.ts", () => {
 
     const result = await postRequest(mockURL, mockData, mockID);
 
-    expect(result).toEqual(mockResponse);
+    expect(result.data).toEqual(mockResponse);
     expect(axios.post).toHaveBeenCalledTimes(1);
     // the actual URL request needs to contain the backend URL with the endpoint and ID appended
     expect(axios.post).toHaveBeenCalledWith(
