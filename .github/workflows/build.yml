@@ -1,3 +1,5 @@
+# sources:
+# Help from ChatGPT
 name: CI
 
 on:
@@ -8,24 +10,89 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      # Checkout frontend repo
+      - name: Checkout frontend repo
         uses: actions/checkout@v4
 
+      # Checkout backend repo
+      - name: Checkout backend repo
+        uses: actions/checkout@v4
+        with:
+          repository: Onyelechie/WorkoutPal-Backend
+          path: backend
+
+      # Start Postgres via backend's docker-compose
+      - name: Start backend Postgres
+        working-directory: backend/src/fitness-db
+        run: |
+          docker compose up -d
+          docker compose ps
+
+      # Set up Go for backend API
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.25.1'
+
+      # Install Go dependencies
+      - name: Download Go modules
+        working-directory: backend
+        run: go mod download
+
+      # Run Go API in background
+      - name: Start Go backend API
+        working-directory: backend
+        run: |
+          nohup go run src/cmd/api/main.go > backend.log 2>&1 &
+          sleep 5
+
+      # Wait for backend to be ready
+      - name: Wait for backend API
+        run: |
+          echo "Waiting for backend to start..."
+          for i in {1..30}; do
+            if curl -s http://localhost:8080/health > /dev/null; then
+              echo "Backend API is ready!"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Backend API did not start in time"
+          cat backend/backend.log || true
+          exit 1
+
+      # Set up Node.js for frontend
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
+      # Install frontend dependencies
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      # Build frontend
+      - name: Build frontend
         run: npm run build
 
-      #TODO: FIX LINTING ISSUES
-      # - name: Run linter
-      #   run: npm run lint
-        
-      - name: Run tests
-        run: npm run test
+      # Run unit tests with coverage
+      - name: Run frontend tests with coverage
+        run: npm run test:coverage
+
+      # Run Cypress tests
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run dev
+          wait-on: 'http://localhost:5173'
+          wait-on-timeout: 120
+          browser: chrome
+
+      # Clean up containers
+      - name: Stop backend services
+        if: always()
+        working-directory: backend/src/fitness-db
+        run: docker compose down
+

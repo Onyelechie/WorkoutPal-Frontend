@@ -1,10 +1,11 @@
 import { Routes, Route, Navigate } from "react-router";
 import Home from "../pages/Home";
 import PageNotFound from "../pages/PageNotFound";
-import RoutineBuilder from "../pages/RoutineBuilder/RoutineBuilder";
+
 import ProfilePage from "../pages/Profile/ProfilePage";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
+import Routine from "../pages/Routine/RoutinePage";
 
 export const LOGIN_ROUTE = "/auth/login";
 export const REGISTER_ROUTE = "/auth/register";
@@ -28,7 +29,7 @@ export default function AppRoutes() {
 
         <Route path={HOME_ROUTE} element={<Home />} />
         <Route path={PROFILE_ROUTE} element={<ProfilePage />} />
-        <Route path={ROUTINE_ROUTE} element={<RoutineBuilder />} />
+        <Route path={ROUTINE_ROUTE} element={<Routine />} />
 
         {/* Direct to PageNotFound for routes that are not implemented */}
         <Route path="*" element={<PageNotFound />} />
