@@ -12,6 +12,18 @@
     margin-bottom: 1em;
 }
 
+.exercise-in-routine-list {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+    border: none;
+}
+
+.exercise-in-routine-list li {
+    margin-bottom: 5px;
+}
+
+
 /* CreateRoutineModal.tsx */
 
 .modal-overlay {
