@@ -3,8 +3,6 @@
   flex-direction: column;
   place-items: center;
   height: fit-content;
-  max-width: 1200px;
-  margin-inline: auto;
   gap: 1rem;
   padding: 1rem;
   border-radius: 12px;
@@ -25,10 +23,11 @@
   overflow-y: auto;
   width: 100%;
   height: fit-content;
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--color-light-1);
   border-radius: 12px;
   color: #333;
   padding: 1rem;
+  list-style-position: inside;
 }
 
 .workouts {

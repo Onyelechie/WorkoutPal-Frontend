@@ -1,34 +1,43 @@
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import "./ProfilePage.css";
+import { useAppNavigation } from "../../hooks/useAppNavigation";
+import { useMe } from "../../hooks/useMe";
 import MyWorkouts from "../../components/MyWorkouts/MyWorkouts";
 
-//Horrendous WIP, I'll redo before sprint 1 is due
-
 function ProfilePage() {
+  const { user, isLoading, error } = useMe();
+  const { navLogin } = useAppNavigation();
+
   return (
-    <div className="profile-page-container">
-      <ProfileCard />
-      <div className="flex-column">
-        <div className="bio">
-          <h2>Bio</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in
-            eligendi a laboriosam, veniam nam officiis odit accusantium eum
-            deserunt, ex dolorem saepe laudantium quas totam necessitatibus
-            dolores voluptatem quis?
-          </p>
-        </div>
-        <div className="stats">
-          <h2>Stats</h2>
-          <ul>
-            <li>Total Workouts: 42</li>
-            <li>Average Duration: 45 minutes</li>
-            <li>Calories Burned: 12,500</li>
-            <li>Miles Ran: 26</li>
-          </ul>
-        </div>
-        <MyWorkouts />
-      </div>
+    <div className="profile-page-container flex-row">
+        <>
+          {isLoading && <div>Loading user profile...</div>}
+          {error && <div>Failed to get user. Login? <button onClick={navLogin}>Login</button></div>}
+          {user && !isLoading && !error && (
+            <>
+              <ProfileCard
+              avatar={user.avatar}
+              name={user.name}
+              username={user.username}
+              email={user.email}
+            />
+            <div className="stats-container">
+              <ul className="stats">
+                <li>Age: {user.age}</li>
+                <li>Height: {user.height}</li>
+                <li>Height &#40;Metric&#41; : {user.age}</li>
+                <li>Weight: {user.weight}</li>
+                <li>Weight &#40;Metric&#41; : {user.age}</li>
+              </ul>
+            </div>
+
+            <div className="my-workouts-container">
+              <MyWorkouts/>
+            </div>
+          </>
+          )}
+          
+        </>
     </div>
   );
 }

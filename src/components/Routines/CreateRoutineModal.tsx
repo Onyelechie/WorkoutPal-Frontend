@@ -20,8 +20,8 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({ onClose, setRou
         const fetchExercises = async () => {
             setExLoading(true);
             try {
-                const data = await getRequest('/exercises');
-                setExercises(data);
+                const response = await getRequest('/exercises');
+                setExercises(response.data);
             } catch (err) {
                 setExError('Failed to fetch exercises.');
             } finally {
@@ -44,12 +44,12 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({ onClose, setRou
         const payload = buildRoutinePayload(routineName, selectedExercises);
 
         try {
-            const userData = await getRequest('/me');
-            const userId = userData.id;
+            const userResponse = await getRequest('/me');
+            const userId = userResponse.data.id;
 
             await postRequest(`/users/${userId}/routines`, payload);
-            const updatedRoutines =await getRequest(`/users/${userId}/routines`);
-            setRoutines(updatedRoutines);
+            const newRoutinesResponse = await getRequest(`/users/${userId}/routines`);
+            setRoutines(newRoutinesResponse.data);
 
             onClose();
             setRoutineName('');

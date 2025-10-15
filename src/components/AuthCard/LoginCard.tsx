@@ -17,16 +17,22 @@ function LoginCard() {
       password: password,
     };
 
-    try {
-      await postRequest("/login", payload);
-      navHome();
-    } catch (error) {
-      console.error("Login failed:", error);
-      alert(
-            "Login failed. Please check your credentials and try again. " +
-              error
+
+    postRequest("/login", payload)
+      .then((response) => {
+        if (response.status == 200) {
+          console.log("Login successful");
+          navHome();
+        }
+      })
+      .catch((error) => {
+        if (error?.response) {
+          console.error("Login failed:", error);
+          alert("Login failed. Please check your credentials and try again. " +
+              error.response.data
           );
-    }
+        }
+      });
   };
 
   return (
@@ -53,7 +59,9 @@ function LoginCard() {
       </form>
       <div className="auth-switch">
         <p>Don't have an account? </p>
-        <a className="text-link" onClick={navRegister}>Create Account</a>
+        <a className="text-link" onClick={navRegister}>
+          Create Account
+        </a>
       </div>
     </div>
   );

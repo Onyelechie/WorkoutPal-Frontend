@@ -6,7 +6,6 @@ import { postRequest } from "../../utils/apiRequests";
 import bcrypt from "bcryptjs";
 
 export default function RegisterCard() {
-
   const { navLogin } = useAppNavigation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,7 +29,7 @@ export default function RegisterCard() {
     };
 
     try {
-      await postRequest("/users", payload)
+      await postRequest("/users", payload);
       console.log("Account Created");
       navLogin();
     } catch (error) {
@@ -87,8 +86,10 @@ export default function RegisterCard() {
       </form>
       <div className="auth-switch">
         <p>Already have an account?</p>
-        <a className="text-link" onClick={navLogin}>Sign In</a>
+        <a className="text-link" onClick={navLogin}>
+          Sign In
+        </a>
       </div>
     </div>
   );
-};
+}

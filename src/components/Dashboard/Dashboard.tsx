@@ -18,13 +18,11 @@ export default function Dashboard() {
 
       {/* Show loading message when its loading. If an error is caught, show a generic try again later message. */}
       {/* If !isLoading and !error, show appropriate message if posts.length == 0, otherwise, show the post cards */}
-      {isLoading
-        ? "Loading..."
-        : error
-        ? "Could not get posts at this time. Please try again later."
-        : posts.length === 0
-        ? "There are currently no posts..."
-        : posts.map((post) => (
+      {isLoading && (<div>Loading...</div>)}
+      {error && (<div>Could not get posts at this time. Please try again later.</div>)}
+      {!isLoading && !error && posts.length === 0 && (<div>There are no posts at this time...</div>)}
+
+      {posts && posts.length > 0 && !isLoading && !error && posts.map((post) => (
             <div
               key={post.id}
               className="post-card"
@@ -50,8 +48,11 @@ export default function Dashboard() {
                   {post.comments.length} Comment(s)
                 </span>
               </div>
-            </div>
-          ))}
+            </div>))
+      }
+
+
+      
     </div>
   );
 }

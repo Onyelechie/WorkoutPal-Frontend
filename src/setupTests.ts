@@ -1,5 +1,5 @@
 /* 
-    Global imports used for tests 
+    Global imports used for unit tests 
     Ensures that every tests have the same imports and environment
     If this file is moved, ensure vite.config.ts is updated to reflect the correct path to this file
 */
