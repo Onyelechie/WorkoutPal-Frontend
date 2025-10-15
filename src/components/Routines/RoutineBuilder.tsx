@@ -14,14 +14,18 @@ export default function RoutineBuilder() {
     useEffect(() => {
         async function fetchRoutines() {
             try {
-                const data = await getRequest('/users/1/routines');
-                setRoutines(data);
+                const userData = await getRequest('/me');
+                const userId = userData.id;
+
+                const routinesData = await getRequest(`/users/${userId}/routines`);
+                setRoutines(routinesData);
             } catch (err) {
                 setError('Failed to fetch routines.');
             } finally {
                 setLoading(false);
             }
         }
+
         fetchRoutines();
     }, []);
 

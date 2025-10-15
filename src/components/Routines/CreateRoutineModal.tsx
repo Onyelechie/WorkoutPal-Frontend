@@ -44,8 +44,11 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({ onClose, setRou
         const payload = buildRoutinePayload(routineName, selectedExercises);
 
         try {
-            await postRequest('/users/1/routines', payload);
-            const updatedRoutines = await getRequest('/users/1/routines');
+            const userData = await getRequest('/me');
+            const userId = userData.id;
+
+            await postRequest(`/users/${userId}/routines`, payload);
+            const updatedRoutines =await getRequest(`/users/${userId}/routines`);
             setRoutines(updatedRoutines);
 
             onClose();
