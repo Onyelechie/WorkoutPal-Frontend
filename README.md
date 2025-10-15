@@ -1,6 +1,6 @@
 # Quick Links
 
-- [Current unit tests](https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/src/utils/__tests__)
+- [Current unit tests](https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/src/utils/__unit_tests__)
 - [Current acceptance tests](https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/cypress/e2e) 
 - [Sprint 1 Test Coverage report](/documentation/tests/sprint_1_test_coverage.png)
 
