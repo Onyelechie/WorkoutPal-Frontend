@@ -61,8 +61,9 @@ npm run test:coverage
     3. Frontend is running on the baseUrl set in cypress.config.ts in the root folder
 
 2. Additional notes:
-    1. The database needs to be running BEFORE the backend starts.
-    2. Double check that the frontend is running on the baseUrl set in cypress.config.ts in the root folder. At this point, it should be 'http://localhost:5173'
+    1. The database needs to be running BEFORE the backend starts. See our [backend repo.](https://github.com/Onyelechie/WorkoutPal-Backend)
+    2. Double check that the frontend is running on the baseUrl set in cypress.config.ts in the root folder. At this point, it should be 'http://localhost:5173'.
+    3. Tests will fail without the prerequisites and assumptions.
 
 3. Run all the acceptance tests:
 ```bash
@@ -71,7 +72,7 @@ npm run cy:run
 
 ### To run acceptance test using the Cypress GUI
 
-Same prerequisites and assumptions apply here.
+Same prerequisites, assumptions and notes apply here.
 
 1. Open the UI
 ```bash
