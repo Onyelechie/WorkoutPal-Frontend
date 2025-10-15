@@ -16,7 +16,7 @@ export function useUser(id: number) {
       setError(null); // remove any previous error messages
 
       const response = await getRequest(ENDPOINT);
-      setUser(response);
+      setUser(response.data);
     } catch (err: any) {
       setError(err);
     } finally {

@@ -1,10 +1,30 @@
 import ProfileCard from "../components/ProfileCard/ProfileCard";
 import "../styles/ProfilePage.css";
 import MyWorkouts from "../WorkoutCardsContainer";
+import { useAppNavigation } from "../hooks/useAppNavigation";
+import Login from "./Login";
+import { getRequest } from "../utils/apiRequests";
+import { useState } from "react";
 
 //Horrendous WIP, I'll redo before sprint 1 is due
 
 function ProfilePage() {
+  const { Login } = useAppNavigation();
+  const [user, setUser] = useState(null);
+
+  getRequest("/me")
+    .then((response) => {
+      if (response.status == 200) {
+        console.log("Success");
+      } else console.log("Failure");
+    })
+    .catch((error) => {
+      if (error?.response) {
+        console.error("Failed to fetch user profile: ", error);
+        alert("Failed to fetch user profile: " + error.response.data);
+      }
+    });
+
   return (
     <div className="profile-page-container">
       <ProfileCard />

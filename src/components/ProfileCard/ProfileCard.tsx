@@ -1,7 +1,6 @@
-import React from "react";
 import "./ProfileCard.css";
 
-const ProfileCard: React.FC = () => {
+function ProfileCard() {
   return (
     <div className="profile-container">
       <img
@@ -18,6 +17,6 @@ const ProfileCard: React.FC = () => {
       <button className="profile-edit-btn">Edit Profile</button>
     </div>
   );
-};
+}
 
 export default ProfileCard;

@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import Landing from "../pages/Landing";
 import PageNotFound from "../pages/PageNotFound";
 import RoutineBuilder from "../pages/RoutineBuilder/RoutineBuilder";
-import ProfilePage from "../pages/ProfilePage";
+import ProfilePage from "../pages/Profile";
 import Login from "../pages/Login";
 import CreateAccount from "../pages/CreateAccount";
 import Header from "../components/Header/Header";

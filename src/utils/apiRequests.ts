@@ -15,7 +15,7 @@ axios.defaults.withCredentials = true;
 // note: caller of this util function needs to try {} catch (error) {} for when the request fails
 export async function getRequest(endpoint: string) {
   const response = await axios.get(`${BACKEND_URL}${endpoint}`);
-  return response.data; // return the data
+  return response; // return the response
 }
 
 // post request
@@ -31,7 +31,7 @@ export async function postRequest(endpoint: string, payload: any, id?: string) {
   }
 
   const response = await axios.post(url, payload); // payload here is optional
-  return response.data; // return the data
+  return response; // return the response
 }
 
 // put request
