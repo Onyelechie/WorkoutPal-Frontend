@@ -57,12 +57,12 @@ jobs:
           echo "Waiting for backend to start..."
           for i in {1..30}; do
             if curl -s http://localhost:8080/health > /dev/null; then
-              echo "✅ Backend API is ready!"
+              echo "Backend API is ready!"
               exit 0
             fi
             sleep 2
           done
-          echo "❌ Backend API did not start in time"
+          echo "Backend API did not start in time"
           cat backend/backend.log || true
           exit 1
 
@@ -88,8 +88,8 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          start: npm start
-          wait-on: 'http://localhost:3000'
+          start: npm run dev
+          wait-on: 'http://localhost:5173'
           wait-on-timeout: 120
           browser: chrome
 
