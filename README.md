@@ -1,8 +1,21 @@
 # Quick Links
 
-- [Current unit tests](https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/src/utils/__unit_tests__)
-- [Current acceptance tests](https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/cypress/e2e) 
+- [Current unit tests](https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/src/utils/__unit_tests__) - tests our utils logic
+- [Current acceptance tests](https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/cypress/e2e) - tests authentication (login and register). no direct user story.
 - [Sprint 1 Test Coverage report](/documentation/tests/sprint_1_test_coverage.png)
+
+# Top 3 tests of each category
+
+### Unit tests
+1. [apiRequests.ts](/src/utils/__unit_tests__/apiRequests.test.ts)
+2. [routineHelpers.ts](/src/utils/__unit_tests__/routineHelpers.test.ts)
+3. [date.ts](/src/utils/__unit_tests__/date.test.ts)
+
+### Acceptance tests
+1. Only one so far: [auth.cy.ts](/cypress/e2e/auth.cy.ts). The top 3 test functions here would be:
+    1. 'user can register, login and logout' - line 47
+    2. user cannot have duplicate username and email - line 98
+    3. user cannot login with invalid password for an existing account - line 153
 
 # Prerequisites
 
