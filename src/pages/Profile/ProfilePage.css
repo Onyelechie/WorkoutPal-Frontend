@@ -3,7 +3,6 @@
   flex-direction: column;
   place-items: center;
   height: fit-content;
-  max-width: 1200px;
   gap: 1rem;
   padding: 1rem;
   border-radius: 12px;

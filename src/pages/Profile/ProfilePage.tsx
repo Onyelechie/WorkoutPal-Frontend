@@ -2,6 +2,7 @@ import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import "./ProfilePage.css";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { useMe } from "../../hooks/useMe";
+import MyWorkouts from "../../components/MyWorkouts/MyWorkouts";
 
 function ProfilePage() {
   const { user, isLoading, error } = useMe();
@@ -32,6 +33,10 @@ function ProfilePage() {
               <li>Weight: {user.weight}</li>
               <li>Weight &#40;Metric&#41; : {user.age}</li>
             </ul>
+          </div>
+
+          <div className="my-workouts-container">
+            <MyWorkouts/>
           </div>
         </>
       ) : (
