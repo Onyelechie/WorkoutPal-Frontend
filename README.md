@@ -1,8 +1,8 @@
-### Prerequisites
+# Prerequisites
 
 1. Node.js v22.20.0 - https://nodejs.org/en/download
 
-### How to run WorkoutPal-Frontend
+# How to run WorkoutPal-Frontend
 
 1. Clone the repository:
 ```bash
@@ -20,7 +20,9 @@ npm install
 npm run dev
 ```
 
-### How to run tests
+# How to run tests
+
+### Unit tests
 
 1. Install dependencies (if not yet done):
 ```bash
@@ -32,12 +34,34 @@ npm install
 npm run test
 ```
 
-3. Run all the acceptance tests:
+### To run only a very specific unit test
+
+```bash
+npm run test path/to/file/here.test.ts
+```
+
+## To run with test coverage
+
+1. Run the unit tests with coverage:
+```bash
+npm run test:coverage
+```
+
+### Acceptance tests
+
+1. Prerequisites and assumptions:
+    1. Backend is running and is healthy
+    2. Database is running and is healthy
+    3. Frontend is running on the baseUrl set in cypress.config.ts in the root folder
+
+2. Run all the acceptance tests:
 ```bash
 npm run cy:run
 ```
 
-## To run acceptance test using the Cypress GUI
+### To run acceptance test using the Cypress GUI
+
+Same prerequisites and assumptions apply here.
 
 1. Open the UI
 ```bash
@@ -52,15 +76,4 @@ npm run cy:open
 
 5. See the test run to completion
 
-## To run only a very specific test
 
-```bash
-npm run test path/to/file/here.test.ts
-```
-
-## To run with test coverage
-
-1. Run the unit tests with coverage:
-```bash
-npm run test:coverage
-```
