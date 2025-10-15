@@ -7,7 +7,7 @@
 # Prerequisites
 
 1. Node.js v22.20.0 - https://nodejs.org/en/download
-2. Backend needs to be running to ensure that frontend functionality works. [Backend repo](https://github.com/Onyelechie/WorkoutPal-Backend)
+2. Backend and database needs to be running to ensure that frontend functionality works. [Backend repo](https://github.com/Onyelechie/WorkoutPal-Backend)
 
 # How to run WorkoutPal-Frontend
 
