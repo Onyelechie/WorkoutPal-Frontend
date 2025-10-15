@@ -23,32 +23,40 @@ npm run dev
 npm install
 ```
 
-2. Run all the tests:
+2. Run all the unit tests:
 ```bash
 npm run test
 ```
 
-## To selectively run only unit tests
-
+3. Run all the acceptance tests:
 ```bash
-npm run test
+npm run cy:run
 ```
 
-## To selectively run only acceptance tests
+## To run acceptance test using the Cypress GUI
 
+1. Open the UI
 ```bash
-npm run test
+npm run cy:open
 ```
+
+2. Select 'E2E Testing'
+
+3. Choose any browser and start E2E Testing
+
+4. Select any of the tests in cypress/e2e
+
+5. See the test run to completion
 
 ## To run only a very specific test
 
 ```bash
-npm run test path/to/file/here.ts
+npm run test path/to/file/here.test.ts
 ```
 
 ## To run with test coverage
 
-1. Run the test with coverage:
+1. Run the unit tests with coverage:
 ```bash
 npm run test:coverage
 ```
