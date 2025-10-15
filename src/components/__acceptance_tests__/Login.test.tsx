@@ -1,5 +1,5 @@
-import { render, screen, fireEvent, } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { it, expect } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Routes, Route, } from 'react-router';
 import Login from '../../pages/Auth/Login';
