@@ -1,11 +1,11 @@
 import { Routes, Route, Navigate } from "react-router";
-import Home from "../pages/Home";
+import HomePage from "../pages/HomePage";
 import PageNotFound from "../pages/PageNotFound";
 
 import ProfilePage from "../pages/Profile/ProfilePage";
-import Login from "../pages/Auth/Login";
-import Register from "../pages/Auth/Register";
-import Routine from "../pages/Routine/RoutinePage";
+import LoginPage from "../pages/Auth/LoginPage";
+import RegisterPage from "../pages/Auth/RegisterPage";
+import RoutinePage from "../pages/Routine/RoutinePage";
 
 export const LOGIN_ROUTE = "/auth/login";
 export const REGISTER_ROUTE = "/auth/register";
@@ -22,12 +22,12 @@ export default function AppRoutes() {
         {/* Redirect path '/' to the login. Redirection code retrieved from ChatGPT */}
         <Route path="/" element={<Navigate to={LOGIN_ROUTE} replace />} />
 
-        <Route path={LOGIN_ROUTE} element={<Login />} />
-        <Route path={REGISTER_ROUTE} element={<Register />} />
+        <Route path={LOGIN_ROUTE} element={<LoginPage />} />
+        <Route path={REGISTER_ROUTE} element={<RegisterPage />} />
 
-        <Route path={HOME_ROUTE} element={<Home />} />
+        <Route path={HOME_ROUTE} element={<HomePage />} />
         <Route path={PROFILE_ROUTE} element={<ProfilePage />} />
-        <Route path={ROUTINE_ROUTE} element={<Routine />} />
+        <Route path={ROUTINE_ROUTE} element={<RoutinePage />} />
 
         {/* Direct to PageNotFound for routes that are not implemented */}
         <Route path="*" element={<PageNotFound />} />

@@ -24,7 +24,7 @@ export async function getRequest(endpoint: string) {
 export async function postRequest(endpoint: string, payload: any) {
   let url = `${BACKEND_URL}${endpoint}`;
 
-  const response = await axios.post(url, payload); // payload here is optional
+  const response = await axios.post(url, payload);
   return response; // return the response
 }
 
@@ -34,13 +34,13 @@ export async function postRequest(endpoint: string, payload: any) {
 export async function putRequest(endpoint: string, payload: any) {
   let url = `${BACKEND_URL}${endpoint}`;
 
-    const response = await axios.put(url, payload); // payload here is optional
-    return response.data; // return the data
+    const response = await axios.put(url, payload);
+    return response; // return the response
 };
 
 // delete request
 // note: caller of this util function needs to try {} catch (error) {} for when the request fails
 export async function deleteRequest(endpoint: string) {
     const response = await axios.delete(`${BACKEND_URL}${endpoint}`);
-    return response.data; // return the data
+    return response; // return the response
 };

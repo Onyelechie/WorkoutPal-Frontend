@@ -108,3 +108,5 @@ export interface User {
   weight: number;
   weightMetric: string;
 }
+
+/* ----------------- END OF USERS ----------------- */

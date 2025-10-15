@@ -71,7 +71,7 @@ describe("/utils/apiRequests.ts", () => {
 
     const result = await putRequest(mockURL, mockData);
 
-    expect(result).toEqual(mockResponse);
+    expect(result.data).toEqual(mockResponse);
     expect(axios.put).toHaveBeenCalledTimes(1);
     // the actual URL request needs to contain the backend URL with the endpoint appended
     expect(axios.put).toHaveBeenCalledWith(`${BACKEND_URL}${mockURL}`, mockData);
@@ -92,7 +92,7 @@ describe("/utils/apiRequests.ts", () => {
 
         const response = await deleteRequest(mockURL);
 
-        expect(response).toEqual(mockResponse);
+        expect(response.data).toEqual(mockResponse);
         expect(axios.delete).toHaveBeenCalledTimes(1);
         expect(axios.delete).toHaveBeenCalledWith(`${BACKEND_URL}${mockURL}`);
     });
