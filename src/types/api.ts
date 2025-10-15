@@ -77,8 +77,6 @@ export interface Goal {
   userId: number;
 }
 
-export interface User {}
-
 export interface Routine {
   createdAt: string;
   description: string;

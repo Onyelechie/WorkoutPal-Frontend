@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { getRequest } from "../utils/apiRequests"; // adjust path if needed
 import type { User } from "../types/api";
 
-export function useUser(id: number) {
-  const ENDPOINT = `/mock/users/: ${id}`;
+export function useMe() {
+  const ENDPOINT = "/me";
 
   // state variables
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  async function fetchUser() {
+  async function fetchMe() {
     try {
       setIsLoading(true);
       setError(null); // remove any previous error messages
@@ -25,13 +25,13 @@ export function useUser(id: number) {
   }
 
   useEffect(() => {
-    fetchUser(); // fetch on mount
+    fetchMe(); // fetch on mount
   }, []);
 
   return {
     user,
     isLoading,
     error,
-    fetchUser,
+    fetchMe,
   };
 }

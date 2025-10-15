@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
-import { getRequest } from '../utils/apiRequests'; // adjust path if needed
-import type { Post } from '../types/api';
+import { useEffect, useState } from "react";
+import { getRequest } from "../utils/apiRequests"; // adjust path if needed
+import type { Post } from "../types/api";
 
 export function usePosts() {
-
-  const ENDPOINT = '/mock/posts';
+  const ENDPOINT = "/mock/posts";
 
   // state variables
   const [posts, setPosts] = useState<Post[]>([]);
@@ -17,13 +16,13 @@ export function usePosts() {
       setError(null); // remove any previous error messages
 
       const response = await getRequest(ENDPOINT);
-      setPosts(response);
+      setPosts(response.data);
     } catch (err: any) {
       setError(err);
     } finally {
       setIsLoading(false);
     }
-  };
+  }
 
   useEffect(() => {
     fetchPosts(); // fetch on mount
@@ -33,6 +32,6 @@ export function usePosts() {
     posts,
     isLoading,
     error,
-    fetchPosts
+    fetchPosts,
   };
-};
+}

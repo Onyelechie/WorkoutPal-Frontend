@@ -14,8 +14,6 @@ export const PROFILE_ROUTE = "/profile";
 export const ROUTINE_ROUTE = "/routine";
 
 export default function AppRoutes() {
-
-
   return (
     <>
       {/* All routes in the app */}
