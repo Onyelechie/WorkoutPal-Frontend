@@ -56,7 +56,7 @@ npm run test path/to/file/here.test.ts
 
 ## To run with test coverage
 
-1. Run the unit test with coverage:
+1. Run the unit tests with coverage:
 ```bash
 npm run test:coverage
 ```
