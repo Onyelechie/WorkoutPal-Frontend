@@ -1,3 +1,8 @@
+# Links
+
+- [Current unit tests]{https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/src/utils/__tests__}
+- [Current acceptance tests]{https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/cypress/e2e} 
+
 # Prerequisites
 
 1. Node.js v22.20.0 - https://nodejs.org/en/download
@@ -40,7 +45,7 @@ npm run test
 npm run test path/to/file/here.test.ts
 ```
 
-## To run with test coverage
+### To run with test coverage
 
 1. Run the unit tests with coverage:
 ```bash
