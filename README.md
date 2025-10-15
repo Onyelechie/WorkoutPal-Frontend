@@ -1,7 +1,7 @@
-# Links
+# Quick Links
 
-- [Current unit tests]{https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/src/utils/__tests__}
-- [Current acceptance tests]{https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/cypress/e2e} 
+- [Current unit tests](https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/src/utils/__tests__)
+- [Current acceptance tests](https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/cypress/e2e) 
 
 # Prerequisites
 
