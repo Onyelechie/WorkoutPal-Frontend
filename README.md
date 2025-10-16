@@ -1,17 +1,17 @@
-# Quick Links
-
+# WorkoutPal-Frontend
+## Quick Links
 - [Current unit tests](https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/src/utils/__unit_tests__) - tests our utils logic
 - [Current acceptance tests](https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/cypress/e2e) - currently only tests authentication (login and register).
 - [Sprint 1 Test Coverage report](/documentation/tests/sprint_1_test_coverage.png)
 
-# Backend Repository
+## Backend Repository
 - [WorkoutPal-Backend](https://github.com/Onyelechie/WorkoutPal-Backend)
 
-# Prerequisites
+## Prerequisites
 1. Node.js v22.20.0 - https://nodejs.org/en/download
 2. **Backend and database needs to be running to ensure that frontend functionality works**. [Backend repo](https://github.com/Onyelechie/WorkoutPal-Backend)
 
-# How to run WorkoutPal-Frontend
+## How to run WorkoutPal-Frontend
 
 1. Clone the repository:
 ```bash
@@ -30,7 +30,7 @@ npm run dev
 ```
 **Note**: Please make sure the [backend](https://github.com/Onyelechie/WorkoutPal-Backend) is running.
 
-# How to run tests
+## How to run tests
 
 ### Unit tests
 
