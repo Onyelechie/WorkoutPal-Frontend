@@ -10,8 +10,8 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "test:coverage": "vitest run --coverage.reporter=text",
-    "test:coverage:html": "vitest run --coverage.reporter=text --coverage.reporter=html",
+    "test:coverage": "vitest run --coverage --coverage.reporter=text",
+    "test:coverage:html": "vitest run --coverage --coverage.reporter=text --coverage.reporter=html",
     "cy:open": "cypress open",
     "cy:run": "cypress run"
   },
