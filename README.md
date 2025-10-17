@@ -28,6 +28,9 @@ npm install
 ```bash
 npm run dev
 ```
+4.  Visit the link shown in the terminal e.g. `http://localhost:5173/` to view our frontend application.
+
+   
 **Note**: Please make sure the [backend](https://github.com/Onyelechie/WorkoutPal-Backend) is running.
 
 ## How to run tests
