@@ -52,10 +52,15 @@ npm run test path/to/file/here.test.ts
 
 ### To run with test coverage
 
-1. Run the unit tests with coverage:
+1. Run the unit tests with coverage (**terminal output**):
 ```bash
 npm run test:coverage
 ```
+2. Optionally, generate the coverage through html
+```bash
+npm run test:coverage:html
+```
+- Output file can be found in `coverage/index.html`
 
 ### Acceptance tests
 
