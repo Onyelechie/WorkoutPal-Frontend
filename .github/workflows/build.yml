@@ -78,8 +78,8 @@ jobs:
         run: npm run build
 
       # Run unit tests with coverage
-      - name: Run frontend tests with coverage
-        run: npm run test:coverage
+      - name: Run frontend tests with coverage and create html file for coverage results
+        run: npm run test:coverage:html
 
       # Run Cypress tests
       - name: Run Cypress tests
