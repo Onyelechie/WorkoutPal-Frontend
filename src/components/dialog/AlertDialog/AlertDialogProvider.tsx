@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { AlertDialogContext } from "./AlertDialogContext";
 import "./Dialog.css";
+import { AlertDialog } from "./AlertDialog";
 
 type AlertDialogState = {
   isOpen: boolean;
@@ -37,22 +38,19 @@ export function AlertDialogProvider({ children }: { children: ReactNode }) {
 
   function handleClose() {
     setDialog((prev) => ({ ...prev, isOpen: false }));
+    // this is just setDialog ( {title: unchanged, message: unchanged, isOpen: false} )
   }
 
   return (
-    <AlertDialogContext.Provider value={{ showAlert }}>
+    <AlertDialogContext.Provider value={{ showAlert  }}>
       {children} {/* Entire app. children is <App /> Component. Check "/src/main.tsx" */}
 
       {/* Dialog */}
       {dialog.isOpen && (
         <div className="dialog-backdrop" >
-          <div className="dialog-container" >
-            <h3>{dialog.title}</h3>
-            <p>{dialog.message}</p>
-            <div className="actions">
-              <button onClick={handleClose}>OK</button>
-            </div>
-          </div>
+          {/* very elegant */}
+          {/* pass the title, message and handleClose function via props (Properties)*/}
+            <AlertDialog title={dialog.title} message={dialog.message} handleClose={handleClose}/>
         </div>
       )}
     </AlertDialogContext.Provider>
