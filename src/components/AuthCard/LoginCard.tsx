@@ -3,7 +3,7 @@ import "./AuthCard.css";
 import React, { useState } from "react";
 import { postRequest } from "../../utils/apiRequests";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
-import { useAlertDialog } from "../dialog/useAlertDialog";
+import { useAlertDialog } from "../../hooks/useAlertDialog";
 
 function LoginCard() {
   const [email, setEmail] = useState("");

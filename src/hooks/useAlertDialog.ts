@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { AlertDialogContext } from "./AlertDialog/AlertDialogContext";
-import type { AlertDialogContextType } from "./contextTypes";
+import { AlertDialogContext } from "../components/AlertDialog/AlertDialogContext";
+import type { AlertDialogContextType } from "../types/context";
 
 /**
  * Wrapper function to create dialog context

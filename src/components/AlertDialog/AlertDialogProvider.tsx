@@ -1,6 +1,5 @@
 import { useState, type ReactNode } from "react";
 import { AlertDialogContext } from "./AlertDialogContext";
-import "./Dialog.css";
 import { AlertDialog } from "./AlertDialog";
 
 type AlertDialogState = {
@@ -47,11 +46,11 @@ export function AlertDialogProvider({ children }: { children: ReactNode }) {
 
       {/* Dialog */}
       {dialog.isOpen && (
-        <div className="dialog-backdrop" >
+        <>
           {/* very elegant */}
           {/* pass the title, message and handleClose function via props (Properties)*/}
-            <AlertDialog title={dialog.title} message={dialog.message} handleClose={handleClose}/>
-        </div>
+          <AlertDialog title={dialog.title} message={dialog.message} handleClose={handleClose}/>
+        </>
       )}
     </AlertDialogContext.Provider>
   );

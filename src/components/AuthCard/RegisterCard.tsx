@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { postRequest } from "../../utils/apiRequests";
 import bcrypt from "bcryptjs";
-import { useAlertDialog } from "../dialog/useAlertDialog";
+import { useAlertDialog } from "../../hooks/useAlertDialog";
 
 export default function RegisterCard() {
   const { navLogin } = useAppNavigation();
