@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/global.css";
 import App from "./app/App.tsx";
+import { AlertDialogProvider } from "./components/dialog/AlertDialog/AlertDialogProvider.tsx";
 
 // For Google OAuth stretch goal 
 // import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -9,6 +10,8 @@ import App from "./app/App.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <AlertDialogProvider>
+      <App />
+    </AlertDialogProvider>
   </StrictMode>
 );
