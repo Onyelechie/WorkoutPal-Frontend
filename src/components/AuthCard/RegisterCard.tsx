@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { postRequest } from "../../utils/apiRequests";
 import bcrypt from "bcryptjs";
+import { useAlertDialog } from "../../hooks/useAlertDialog";
 
 export default function RegisterCard() {
   const { navLogin } = useAppNavigation();
@@ -12,12 +13,13 @@ export default function RegisterCard() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const dialogContext = useAlertDialog();
   const saltRounds = 10;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) return alert("Passwords do not match");
+    if (password !== confirmPassword) return dialogContext.showAlert("Password mismatch", "Passwords do not match");
 
     const hashPass = await bcrypt.hash(password, saltRounds);
 
@@ -34,7 +36,7 @@ export default function RegisterCard() {
       navLogin();
     } catch (error) {
       console.error("Account creation failed: ", error);
-      alert("Account creation failed:  " + error);
+      dialogContext.showAlert("Account creation failed","Account creation failed:  " + error);
     }
   };
 

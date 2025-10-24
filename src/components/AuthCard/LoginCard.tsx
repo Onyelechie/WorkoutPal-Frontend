@@ -3,11 +3,13 @@ import "./AuthCard.css";
 import React, { useState } from "react";
 import { postRequest } from "../../utils/apiRequests";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
+import { useAlertDialog } from "../../hooks/useAlertDialog";
 
 function LoginCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { navHome, navRegister } = useAppNavigation();
+  const dialogContext = useAlertDialog(); // access showAlert through context
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,9 +30,12 @@ function LoginCard() {
       .catch((error) => {
         if (error?.response) {
           console.error("Login failed:", error);
-          alert("Login failed. Please check your credentials and try again. " +
+          dialogContext.showAlert("Login failed", "Please check your credentials and try again. " +
               error.response.data
           );
+        }
+        else {
+          dialogContext.showAlert("Server Error", "Unable to communicate with our server. Please try again later.")
         }
       });
   };
