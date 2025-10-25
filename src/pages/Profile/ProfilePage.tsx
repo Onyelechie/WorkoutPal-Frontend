@@ -16,11 +16,14 @@ function ProfilePage() {
           {user && !isLoading && !error && (
             <>
               <ProfileCard
-              avatar={user.avatar}
-              name={user.name}
-              username={user.username}
-              email={user.email}
-            />
+                avatar={user.avatar}
+                name={user.name}
+                username={user.username}
+                email={user.email}
+                postsCount={user.postsCount || 0}
+                followersCount={user.followersCount || 0}
+                followingCount={user.followingCount || 0}
+              />
             <div className="stats-container">
               <ul className="stats">
                 <li>Age: {user.age}</li>
