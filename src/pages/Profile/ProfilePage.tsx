@@ -20,18 +20,48 @@ function ProfilePage() {
                 name={user.name}
                 username={user.username}
                 email={user.email}
+                userId={user.id}
                 postsCount={user.postsCount || 0}
                 followersCount={user.followersCount || 0}
                 followingCount={user.followingCount || 0}
               />
             <div className="stats-container">
-              <ul className="stats">
-                <li>Age: {user.age}</li>
-                <li>Height: {user.height}</li>
-                <li>Height &#40;Metric&#41; : {user.age}</li>
-                <li>Weight: {user.weight}</li>
-                <li>Weight &#40;Metric&#41; : {user.age}</li>
-              </ul>
+              <div className="stats-grid">
+                <div className="stat-card">
+                  <span className="stat-value">{user.age || 0}</span>
+                  <span className="stat-title">Age</span>
+                </div>
+                <div className="stat-card">
+                  <span className="stat-value">{user.height || 0}</span>
+                  <span className="stat-title">Height</span>
+                </div>
+                <div className="stat-card">
+                  <span className="stat-value">{user.weight || 0}</span>
+                  <span className="stat-title">Weight</span>
+                </div>
+                <div className="stat-card">
+                  <span className="stat-value">{user.heightUnit || 'cm'}</span>
+                  <span className="stat-title">Height Unit</span>
+                </div>
+                <div className="stat-card">
+                  <span className="stat-value">{user.weightUnit || 'kg'}</span>
+                  <span className="stat-title">Weight Unit</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="posts-section">
+              <h2 className="section-title">Posts</h2>
+              <div className="posts-grid">
+                {/* Mock posts - replace with actual user posts */}
+                {Array.from({length: 6}, (_, i) => (
+                  <div key={i} className="post-item">
+                    <div className="post-image">
+                      <span>Post {i + 1}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="my-workouts-container">
