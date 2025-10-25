@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./ProfileCard.css";
-import { relationshipService, User } from "../../services/relationshipService";
+import { relationshipService } from "../../services/relationshipService";
+import type { User } from "../../services/relationshipService";
 
 interface ProfileCardProps {
   avatar: string;

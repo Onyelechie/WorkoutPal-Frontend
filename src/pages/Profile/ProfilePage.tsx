@@ -40,11 +40,11 @@ function ProfilePage() {
                   <span className="stat-title">Weight</span>
                 </div>
                 <div className="stat-card">
-                  <span className="stat-value">{user.heightUnit || 'cm'}</span>
+                  <span className="stat-value">{user.heightMetric || 'cm'}</span>
                   <span className="stat-title">Height Unit</span>
                 </div>
                 <div className="stat-card">
-                  <span className="stat-value">{user.weightUnit || 'kg'}</span>
+                  <span className="stat-value">{user.weightMetric || 'kg'}</span>
                   <span className="stat-title">Weight Unit</span>
                 </div>
               </div>
