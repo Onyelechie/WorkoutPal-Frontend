@@ -23,7 +23,9 @@ const mockUser: User = {
   following: [],
   goals: [],
   Posts: [],
-  Routines: []
+  Routines: [],
+  googleId: null,
+  provider: 'local'
 };
 
 describe('EditProfile', () => {
