@@ -24,7 +24,7 @@ const mockUser: User = {
   goals: [],
   Posts: [],
   Routines: [],
-  googleId: null,
+  googleId: '',
   provider: 'local'
 };
 
