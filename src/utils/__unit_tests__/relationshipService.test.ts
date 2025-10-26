@@ -41,9 +41,9 @@ describe('relationshipService', () => {
     it('follows a user', async () => {
       (postRequest as any).mockResolvedValue({ data: { message: 'success' } });
 
-      await relationshipService.followUser(456);
+      await relationshipService.followUser(456, 123);
 
-      expect(postRequest).toHaveBeenCalledWith('/users/456/follow?follower_id=undefined', {});
+      expect(postRequest).toHaveBeenCalledWith('/users/456/follow?follower_id=123', {});
     });
   });
 
@@ -51,9 +51,9 @@ describe('relationshipService', () => {
     it('unfollows a user', async () => {
       (postRequest as any).mockResolvedValue({ data: { message: 'success' } });
 
-      await relationshipService.unfollowUser(456);
+      await relationshipService.unfollowUser(456, 123);
 
-      expect(postRequest).toHaveBeenCalledWith('/users/456/unfollow?follower_id=undefined', {});
+      expect(postRequest).toHaveBeenCalledWith('/users/456/unfollow?follower_id=123', {});
     });
   });
 

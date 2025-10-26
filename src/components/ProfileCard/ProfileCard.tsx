@@ -19,10 +19,6 @@ interface ProfileCardProps {
 }
 
 function ProfileCard({ 
-  avatar, 
-  name, 
-  username, 
-  email, 
   userId,
   postsCount = 0, 
   followersCount = 0, 

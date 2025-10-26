@@ -3,6 +3,7 @@ import "./OtherUserProfile.css";
 import { relationshipService } from "../../services/relationshipService";
 import { getRequest } from "../../utils/apiRequests";
 import type { User } from "../../types/api";
+import type { User as RelationshipUser } from "../../services/relationshipService";
 
 interface OtherUserProfileProps {
   userId: number;
@@ -16,8 +17,8 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
   const [followLoading, setFollowLoading] = useState(false);
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
-  const [followers, setFollowers] = useState<User[]>([]);
-  const [following, setFollowing] = useState<User[]>([]);
+  const [followers, setFollowers] = useState<RelationshipUser[]>([]);
+  const [following, setFollowing] = useState<RelationshipUser[]>([]);
 
   useEffect(() => {
     fetchUserProfile();
@@ -65,13 +66,13 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
   const handleShowFollowers = async () => {
     setShowFollowers(true);
     const followersData = await relationshipService.getFollowers(userId);
-    setFollowers(followersData);
+    setFollowers(followersData as RelationshipUser[]);
   };
 
   const handleShowFollowing = async () => {
     setShowFollowing(true);
     const followingData = await relationshipService.getFollowing(userId);
-    setFollowing(followingData);
+    setFollowing(followingData as RelationshipUser[]);
   };
 
   if (loading) return <div className="loading">Loading profile...</div>;

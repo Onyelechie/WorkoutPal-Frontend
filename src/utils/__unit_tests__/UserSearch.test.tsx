@@ -2,10 +2,10 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import UserSearch from '../../components/UserSearch/UserSearch';
 import { getRequest } from '../apiRequests';
-import { relationshipService } from '../../services/relationshipService';
+
 
 vi.mock('../apiRequests');
-vi.mock('../../services/relationshipService');
+
 
 describe('UserSearch', () => {
   beforeEach(() => {

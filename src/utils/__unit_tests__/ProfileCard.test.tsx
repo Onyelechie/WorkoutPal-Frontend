@@ -17,7 +17,14 @@ const mockUser: User = {
   heightMetric: 'cm',
   weightMetric: 'kg',
   avatar: '',
-  isVerified: false
+  isVerified: false,
+  Achievements: [],
+  followers: [],
+  following: [],
+  goals: [],
+  Posts: [],
+  routines: [],
+  password: ''
 };
 
 describe('ProfileCard', () => {

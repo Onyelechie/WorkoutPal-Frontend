@@ -8,7 +8,7 @@ function ProfilePage() {
   const { user, isLoading, error, fetchMe } = useMe();
   const { navLogin } = useAppNavigation();
 
-  const handleUserUpdate = async (updatedUser: any) => {
+  const handleUserUpdate = async () => {
     // Refresh user data after update
     await fetchMe();
   };
