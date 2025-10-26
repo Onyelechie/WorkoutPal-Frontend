@@ -23,8 +23,7 @@ const mockUser: User = {
   following: [],
   goals: [],
   Posts: [],
-  Routines: [],
-  password: ''
+  Routines: []
 };
 
 describe('ProfileCard', () => {
