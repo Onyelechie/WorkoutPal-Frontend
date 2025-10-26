@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
-import { useMe } from '../../hooks/useMe';
-import { getRequest } from '../apiRequests';
+import { useMe } from '../useMe';
+import { getRequest } from '../../utils/apiRequests';
 
-vi.mock('../apiRequests');
+vi.mock('../../utils/apiRequests');
 
 describe('useMe hook', () => {
   beforeEach(() => {
