@@ -8,6 +8,8 @@ export interface User {
   email: string;
 }
 
+import { postRequest } from '../utils/apiRequests';
+
 export const relationshipService = {
   async getFollowers(userId: number): Promise<User[]> {
     try {
@@ -26,6 +28,26 @@ export const relationshipService = {
     } catch (error) {
       console.error('Error fetching following:', error);
       return [];
+    }
+  },
+
+  async followUser(userIdToFollow: number, followerId: number): Promise<boolean> {
+    try {
+      await postRequest(`/users/${userIdToFollow}/follow?follower_id=${followerId}`, {});
+      return true;
+    } catch (error) {
+      console.error('Error following user:', error);
+      return false;
+    }
+  },
+
+  async unfollowUser(userIdToUnfollow: number, followerId: number): Promise<boolean> {
+    try {
+      await postRequest(`/users/${userIdToUnfollow}/unfollow?follower_id=${followerId}`, {});
+      return true;
+    } catch (error) {
+      console.error('Error unfollowing user:', error);
+      return false;
     }
   }
 };

@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./ProfileCard.css";
 import { relationshipService } from "../../services/relationshipService";
 import type { User } from "../../services/relationshipService";
+import EditProfile from "../EditProfile/EditProfile";
+import type { User as ApiUser } from "../../types/api";
 
 interface ProfileCardProps {
   avatar: string;
@@ -12,6 +14,8 @@ interface ProfileCardProps {
   postsCount?: number;
   followersCount?: number;
   followingCount?: number;
+  user: ApiUser;
+  onUserUpdate?: (updatedUser: ApiUser) => void;
 }
 
 function ProfileCard({ 
@@ -22,7 +26,9 @@ function ProfileCard({
   userId,
   postsCount = 0, 
   followersCount = 0, 
-  followingCount = 0
+  followingCount = 0,
+  user,
+  onUserUpdate
 }: ProfileCardProps) {
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
@@ -30,6 +36,7 @@ function ProfileCard({
   const [following, setFollowing] = useState<User[]>([]);
   const [loadingFollowers, setLoadingFollowers] = useState(false);
   const [loadingFollowing, setLoadingFollowing] = useState(false);
+  const [showEditProfile, setShowEditProfile] = useState(false);
 
   const handleShowFollowers = async () => {
     setShowFollowers(true);
@@ -51,11 +58,18 @@ function ProfileCard({
     <>
       <div className="profile-container">
         <div className="profile-header">
-          <img className="avatar" src={avatar} alt="User Avatar" />
+          {user.avatar ? (
+            <img className="avatar" src={user.avatar} alt="User Avatar" />
+          ) : (
+            <div className="avatar avatar-placeholder">👤</div>
+          )}
           <div className="profile-info">
-            <h1 className="name">{name}</h1>
-            <h3 className="username">@{username}</h3>
-            <p className="email">{email}</p>
+            <h1 className="name">{user.name}</h1>
+            <h3 className="username">@{user.username}</h3>
+            <p className="email">{user.email}</p>
+            <button className="edit-profile-btn" onClick={() => setShowEditProfile(true)}>
+              Edit Profile
+            </button>
           </div>
         </div>
         
@@ -133,6 +147,18 @@ function ProfileCard({
             </div>
           </div>
         </div>
+      )}
+
+      {/* Edit Profile Modal */}
+      {showEditProfile && (
+        <EditProfile
+          user={user}
+          onSave={(updatedUser) => {
+            onUserUpdate?.(updatedUser);
+            setShowEditProfile(false);
+          }}
+          onCancel={() => setShowEditProfile(false)}
+        />
       )}
     </>
   );

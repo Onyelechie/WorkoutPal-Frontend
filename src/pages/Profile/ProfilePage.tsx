@@ -5,8 +5,13 @@ import { useMe } from "../../hooks/useMe";
 import MyWorkouts from "../../components/MyWorkouts/MyWorkouts";
 
 function ProfilePage() {
-  const { user, isLoading, error } = useMe();
+  const { user, isLoading, error, fetchMe } = useMe();
   const { navLogin } = useAppNavigation();
+
+  const handleUserUpdate = async (updatedUser: any) => {
+    // Refresh user data after update
+    await fetchMe();
+  };
 
   return (
     <div className="profile-page-container flex-row">
@@ -21,9 +26,11 @@ function ProfilePage() {
                 username={user.username}
                 email={user.email}
                 userId={user.id}
-                postsCount={user.postsCount || 0}
-                followersCount={user.followersCount || 0}
-                followingCount={user.followingCount || 0}
+                postsCount={user.Posts?.length || 0}
+                followersCount={user.followers?.length || 0}
+                followingCount={user.following?.length || 0}
+                user={user}
+                onUserUpdate={handleUserUpdate}
               />
             <div className="stats-container">
               <div className="stats-grid">
