@@ -23,7 +23,7 @@ const mockUser: User = {
   following: [],
   goals: [],
   Posts: [],
-  routines: [],
+  Routines: [],
   password: ''
 };
 
