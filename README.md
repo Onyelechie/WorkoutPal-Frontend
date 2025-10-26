@@ -1,6 +1,15 @@
 # WorkoutPal-Frontend
+
+React-based frontend for WorkoutPal fitness tracking application with enhanced profile management and social features.
+
+## Features
+- **User Authentication**: Login and registration
+- **Enhanced Profile Management**: Edit profile with age, height, weight, and metrics
+- **Profile Display**: Enhanced profile cards with social stats display
+- **Responsive Design**: Full-width profile layouts with improved UI
+
 ## Quick Links
-- [Current unit tests](https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/src/utils/__unit_tests__) - tests our utils logic
+- [Current unit tests](https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/src/utils/__unit_tests__) - tests our utils logic and components
 - [Current acceptance tests](https://github.com/Onyelechie/WorkoutPal-Frontend/tree/main/cypress/e2e) - currently only tests authentication (login and register).
 - [Sprint 1 Test Coverage report](/documentation/tests/sprint_1_test_coverage.png)
 - [Worksheets and Testing plan](https://github.com/Onyelechie/WorkoutPal-Backend/tree/main/docs) (in our backend repo)
