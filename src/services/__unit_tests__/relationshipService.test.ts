@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { relationshipService } from '../../services/relationshipService';
-import { getRequest, postRequest } from '../apiRequests';
+import { relationshipService } from '../relationshipService';
+import { getRequest, postRequest } from '../../utils/apiRequests';
 
-vi.mock('../apiRequests');
+vi.mock('../../utils/apiRequests');
 
 describe('relationshipService', () => {
   beforeEach(() => {

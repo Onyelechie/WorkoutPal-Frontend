@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import EditProfile from '../EditProfile';
-import { patchRequest } from '../../../utils/apiRequests';
-import type { User } from '../../../types/api';
+import EditProfile from '../EditProfile/EditProfile';
+import { patchRequest } from '../../utils/apiRequests';
+import type { User } from '../../types/api';
 
-vi.mock('../../../utils/apiRequests');
+vi.mock('../../utils/apiRequests');
 
 const mockUser: User = {
   id: 1,
