@@ -1,10 +1,10 @@
 import clsx from "clsx"
-import { getTodayIndex } from "../../../utils/date"
-import type { Schedule } from "../../../types/api";
+import { formatApiDate, getTodayIndex, minutesToHours } from "../../../utils/date"
+import type { Schedule, Routine } from "../../../types/api";
 
 interface ScheduleRowProps {
     schedules: Schedule[],
-    routines: any[],
+    routines: Routine[],
     day: string,
     index: number,
 }
@@ -43,21 +43,21 @@ export function ScheduleRow({schedules, routines, day, index}:ScheduleRowProps) 
             }
         )}
         >
-        {/* Only show the day cell once per group, using rowSpan */}
-        {i === 0 && (
-            <td rowSpan={daySchedules.length}>{day}</td>
-        )}
-        <td>{schedule.name}</td>
-        <td>
-            <ol>
-            {schedule.RoutineIDs.map(id => {
-                const routine = routines.find(r => r.id === id);
-                return routine ? <li key={id}>{routine.name}</li> : <li key={id}>Routine {id} does not exist</li>;
-            })}
-            </ol>
-        </td>
-        <td>{schedule.TimeSlot}</td>
-        <td>{schedule.RoutineLength}</td>
+            {/* Only show the day cell once per group, using rowSpan */}
+            {i === 0 && (
+                <td rowSpan={daySchedules.length}>{day}</td>
+            )}
+            <td>{schedule.name}</td>
+            <td>
+                <ol>
+                {schedule.routineIds.map(id => {
+                    const routine = routines.find(r => r.id === id);
+                    return routine ? <li key={id}>{routine.name}</li> : <li key={id}>Routine {id} does not exist</li>;
+                })}
+                </ol>
+            </td>
+            <td>{formatApiDate(schedule.timeSlot)}</td>
+            <td>{schedule.routineLengthMinutes} minutes ({minutesToHours(schedule.routineLengthMinutes)} hours)</td>
         </tr>
     ));
             

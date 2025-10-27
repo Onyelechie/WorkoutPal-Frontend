@@ -119,9 +119,9 @@ export interface Schedule {
   name: string, 
   userId: number, 
   dayOfWeek: number, 
-  RoutineIDs: number[], 
-  TimeSlot: string, 
-  RoutineLength: number
+  routineIds: number[], 
+  timeSlot: string, 
+  routineLengthMinutes: number
 }
 
 /* ----------------- END OF SCHEDULE ----------------- */

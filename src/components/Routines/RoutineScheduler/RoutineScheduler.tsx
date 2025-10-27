@@ -1,34 +1,18 @@
 import './RoutineScheduler.css';
 
 import { useState, useEffect } from 'react';
-import { daysLongForm, getTodayIndex } from '../../../utils/date';
+import { daysLongForm } from '../../../utils/date';
 import { useRoutines } from '../../../hooks/useRoutines';
-import { useMe } from '../../../hooks/useMe';
 import { ScheduleRow } from './ScheduleRow';
-import { type Schedule } from '../../../types/api';
+import { useSchedules } from '../../../hooks/useSchedules';
+import { postRequest } from '../../../utils/apiRequests';
+import type { Schedule } from '../../../types/api';
 
 
 export default function RoutineScheduler() {
 
-  const { user } = useMe();
   const { routines } = useRoutines();
-
-  const userId = user?.id;
-
-  let schedules:Schedule[] = [];
-
-  // Temporary. Will eventually grab from backend
-  if (userId != null) {
-    schedules = [
-      {id: 1, name: "first routine", userId: userId, dayOfWeek: 0, RoutineIDs: [10, 12], TimeSlot: "12:00", RoutineLength: 120},
-      {id: 2, name: "push", userId: userId, dayOfWeek: 1, RoutineIDs: [12], TimeSlot: "1:00", RoutineLength: 120},
-      {id: 3, name: "pull", userId: userId, dayOfWeek: 1, RoutineIDs: [12, 13], TimeSlot: "12:00", RoutineLength: 120},
-      {id: 4, name: "fourth routine", userId: userId, dayOfWeek: 2, RoutineIDs: [13], TimeSlot: "13:00", RoutineLength: 120},
-      {id: 5, name: "fifth routine", userId: userId, dayOfWeek: 4, RoutineIDs: [10], TimeSlot: "12:00", RoutineLength: 120},
-      {id: 6, name: "sixth routine", userId: userId, dayOfWeek: 5, RoutineIDs: [12], TimeSlot: "15:00", RoutineLength: 120},
-      {id: 7, name: "seventh routine", userId: userId, dayOfWeek: 6, RoutineIDs: [13], TimeSlot: "19:00", RoutineLength: 120},
-    ]
-  }
+  const { schedules } = useSchedules();
 
   // live day and time
   const [now, setNow] = useState(new Date());
@@ -43,12 +27,37 @@ export default function RoutineScheduler() {
     return () => clearInterval(intervalId);
   }, []);
 
+  // useEffect(() => {
+
+  //   async function postSched() {
+  //     try {
+  //       const payload = {
+  //         dayOfWeek: 1,
+  //         name: "Test schedule",
+  //         routineIds: [10,13],
+  //         routineLengthMinutes: 120,
+  //         timeSlot: "13:00"
+  //       }
+  //       const response = await postRequest("/schedules", payload);
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+
+  //   postSched();
+   
+  // }, []);
+
   return (
     <>
       <div>
         <header className="routine-scheduler-header">
-          <h2>Schedule your workout routines!</h2>
-          <button>Edit schedule</button>
+          <h2>Schedule your weekly workout routines!</h2>
+          <div>
+            <button>Edit schedule</button>
+            <button>Create schedule</button>
+          </div>
         </header>
 
         <header className="routine-scheduler-time">
