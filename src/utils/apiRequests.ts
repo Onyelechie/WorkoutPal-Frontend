@@ -38,6 +38,16 @@ export async function putRequest(endpoint: string, payload: any) {
     return response; // return the response
 };
 
+// patch request
+// note: caller of this util function needs to try {} catch (error) {} for when the request fails
+// payload - this is the payload to send to the backend
+export async function patchRequest(endpoint: string, payload: any) {
+  let url = `${BACKEND_URL}${endpoint}`;
+
+  const response = await axios.patch(url, payload);
+  return response; // return the response
+};
+
 // delete request
 // note: caller of this util function needs to try {} catch (error) {} for when the request fails
 export async function deleteRequest(endpoint: string) {

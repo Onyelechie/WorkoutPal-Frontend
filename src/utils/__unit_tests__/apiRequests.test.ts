@@ -5,7 +5,8 @@ import {
   getRequest,
   postRequest,
   putRequest,
-  deleteRequest
+  deleteRequest,
+  patchRequest
 } from "../apiRequests.ts";
 
 describe("/utils/apiRequests.ts", () => {
@@ -105,4 +106,23 @@ describe("/utils/apiRequests.ts", () => {
         expect(axios.delete).toHaveBeenCalledWith(`${BACKEND_URL}${mockURL}`);
     });
     //----------------------End of Test deleteRequest----------------------// 
+
+  //----------------------Test patchRequest----------------------//
+  it('patchRequest returns data and uses appropriate URL when axios.patch resolves', async () => {
+    (axios.patch as any).mockResolvedValue({ data: mockResponse });
+
+    const result = await patchRequest(mockURL, mockData);
+
+    expect(result.data).toEqual(mockResponse);
+    expect(axios.patch).toHaveBeenCalledTimes(1);
+    expect(axios.patch).toHaveBeenCalledWith(`${BACKEND_URL}${mockURL}`, mockData);
+  });
+
+  it('patchRequest throws an error when axios.patch rejects', async () => {
+    (axios.patch as any).mockRejectedValue(mockError);
+
+    await expect(patchRequest(mockURL, mockData)).rejects.toThrow(mockError);
+    expect(axios.patch).toHaveBeenCalledTimes(1);
+  });
+  //----------------------End of Test patchRequest----------------------//
 });
