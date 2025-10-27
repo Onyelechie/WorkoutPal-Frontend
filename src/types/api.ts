@@ -110,3 +110,18 @@ export interface User {
 }
 
 /* ----------------- END OF USERS ----------------- */
+
+
+/* ----------------- SCHEDULE ----------------- */
+
+export interface Schedule {
+  id: number, 
+  name: string, 
+  userId: number, 
+  dayOfWeek: number, 
+  RoutineIDs: number[], 
+  TimeSlot: string, 
+  RoutineLength: number
+}
+
+/* ----------------- END OF SCHEDULE ----------------- */

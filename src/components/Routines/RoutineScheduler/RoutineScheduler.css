@@ -1,0 +1,56 @@
+.routine-scheduler-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.routine-scheduler-time {
+  display: flex;
+  gap: 2rem;
+}
+
+.routine-scheduler-table-container {
+  overflow-x: auto;
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Base table style */
+.routine-scheduler-table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table header */
+.routine-scheduler-table-container th {
+  background-color: var(--color-primary-1); /* Green header */
+  color: white;
+  text-align: left;
+  padding: 12px;
+  font-weight: 600;
+}
+
+/* Table body cells */
+.routine-scheduler-table-container td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-row-light {
+  background-color: var(--color-light-1);
+}
+
+.table-row-dark {
+  background-color: var(--color-light-2);
+}
+
+/* Hover effect */
+.routine-scheduler-table-container tr:hover {
+  background-color: var(--color-light-1);
+}
+
+/* Optional: rounded corners for table */
+.routine-scheduler-table-container table {
+  border-radius: 8px;
+  overflow: hidden;
+}

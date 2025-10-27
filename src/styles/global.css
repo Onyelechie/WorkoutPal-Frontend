@@ -95,7 +95,20 @@ button:disabled {
   color: var(--color-primary-1);
 }
 
+.highlight-text {
+  color: var(--color-primary-1);
+  font-weight: bold;
+}
+
 /******** End of text styles ********/
+
+/******** Default container styles ********/
+
+.default-container {
+  margin: 2rem;
+}
+
+/******** End of default container styles ********/
 
 /* Flex containers */
 

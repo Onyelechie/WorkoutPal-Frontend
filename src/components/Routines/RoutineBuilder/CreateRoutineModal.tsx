@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getRequest, postRequest } from '../../utils/apiRequests';
-import { toggleExerciseSelection, filterExercises, buildRoutinePayload } from '../../utils/routineHelpers';
+import { getRequest, postRequest } from '../../../utils/apiRequests';
+import { toggleExerciseSelection, filterExercises, buildRoutinePayload } from '../../../utils/routineHelpers';
 import './RoutineBuilder.css';
 
 interface CreateRoutineModalProps {

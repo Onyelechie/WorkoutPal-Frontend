@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { getRequest } from "../../utils/apiRequests.ts";
-import { notYetImplemented } from "../../utils/construction.ts";
+import { getRequest } from "../../../utils/apiRequests.ts";
 import RoutineList from "./RoutineList.tsx";
 import CreateRoutineModal from "./CreateRoutineModal.tsx";
 import "./RoutineBuilder.css";
@@ -35,8 +34,7 @@ export default function RoutineBuilder() {
   return (
     <div className="routine-builder-container">
       <header className="routine-builder-header">
-        <button onClick={notYetImplemented}>Back</button>
-        <h2 className="routine-builder-title">Plan your workout routines!</h2>
+        <h2 className="routine-builder-title">Build your workout routines!</h2>
         <div className="routine-builder-action-buttons grouped-buttons">
           <button onClick={handleAddRoutineClick}>Add routine</button>
         </div>
