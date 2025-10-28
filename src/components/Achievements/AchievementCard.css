@@ -4,16 +4,13 @@
     gap: 2rem;
     border: 1px solid #ddd;
     border-radius: 8px;
-
-
     padding: 1rem;
     background-color: #f7f8ffcc;
-    transition: background-color 0.2s ease, transform 0.2s ease;
 
 }
 
 .incomplete>.achievement-card {
-    opacity: 75%;
+    opacity: 0.75;
     background-color: #97949436;
 }
 
