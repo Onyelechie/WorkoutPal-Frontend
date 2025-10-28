@@ -1,7 +1,13 @@
+import Achievements from "../../components/Achievements/Achievements";
+
 
 export default function AchievementsPage() {
-    return (
 
-        <h1>HEllo</h1>
-    );
+	return (
+		<>
+			<Achievements />
+		</>
+	);
 };
+
+
