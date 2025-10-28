@@ -16,6 +16,13 @@ npm install
 npm run dev
 ```
 
+## Continuous Deployment (CD)
+
+WorkoutPal-Backend uses GitHub Actions to automatically build, push, and deploy Docker images to Azure App Service whenever changes are merged into the main branch.
+
+### How It Works
+ On every push to main, GitHub Actions checks out the code and pushes it to azure app service. Deployed frontend can be found [here](workoutpal-frontend-bnauhbbafdcqh7ds.canadacentral-01.azurewebsites.net)
+
 ### How to run tests
 
 1. Install dependencies (if not yet done):
