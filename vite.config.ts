@@ -10,7 +10,8 @@ export default defineConfig({
     setupFiles: './src/setupTests.ts',
     coverage: {
       provider: 'v8',       // Coverage provider
-      reporter: ['text'], // Formats of coverage report
+      reporter: ['text', 'html'], // Formats of coverage report
+      reportsDirectory: './coverage',
       all: true,             // Include files even if not tested
       include: ['src/**/*.{ts,tsx}'],  // Which files to include
       exclude: ['**/*.test.{ts,tsx}'] // Exclude test files themselves

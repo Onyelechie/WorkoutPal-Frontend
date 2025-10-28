@@ -1,11 +1,11 @@
 import WorkoutCard from "../WorkoutCard/WorkoutCard";
 import "./MyWorkouts.css";
 
+// Will eventually fetch from backend
 const workouts = [
   { title: "Cardio Blast", description: "High intensity cardio workout." },
   { title: "Strength Training", description: "Build muscle and strength." },
   { title: "Yoga Flow", description: "Relaxing yoga session." },
-  // Add more workouts as needed
 ];
 
 function MyWorkouts() {

@@ -1,7 +1,7 @@
 import LoginCard from "../../components/AuthCard/LoginCard";
-import "./Auth.css";
+import "./AuthPage.css";
 
-export default function Login() {
+export default function LoginPage() {
   return (
     <div className="auth-card-holder">
       <LoginCard />

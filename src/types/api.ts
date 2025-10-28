@@ -77,8 +77,6 @@ export interface Goal {
   userId: number;
 }
 
-export interface User {}
-
 export interface Routine {
   createdAt: string;
   description: string;
@@ -110,3 +108,5 @@ export interface User {
   weight: number;
   weightMetric: string;
 }
+
+/* ----------------- END OF USERS ----------------- */

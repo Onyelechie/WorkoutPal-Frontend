@@ -22,7 +22,7 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
             );
 
             try {
-                const exercisePromises = allExerciseIds.map((id) => getRequest(`/exercises/${id}`));
+                const exercisePromises = allExerciseIds.map((id) => getRequest(`/exercises/${id}`).then((res) => res.data));
                 const exercises = await Promise.all(exercisePromises);
 
                 const map: Record<number, Exercise> = {};

@@ -1,6 +1,6 @@
 import RoutineBuilder from "../../components/Routines/RoutineBuilder.tsx";
 
-export default function Home() {
+export default function RoutinePage() {
 
     return (
     <>

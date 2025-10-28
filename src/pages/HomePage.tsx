@@ -1,6 +1,6 @@
 import Dashboard from "../components/Dashboard/Dashboard.tsx";
 
-export default function Home() {
+export default function HomePage() {
 
     return (
     <>

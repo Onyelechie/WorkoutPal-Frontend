@@ -4,21 +4,22 @@ import React, { useState } from "react";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { postRequest } from "../../utils/apiRequests";
 import bcrypt from "bcryptjs";
+import { useAlertDialog } from "../../hooks/useAlertDialog";
 
 export default function RegisterCard() {
-
   const { navLogin } = useAppNavigation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const dialogContext = useAlertDialog();
   const saltRounds = 10;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) return alert("Passwords do not match");
+    if (password !== confirmPassword) return dialogContext.showAlert("Password mismatch", "Passwords do not match");
 
     const hashPass = await bcrypt.hash(password, saltRounds);
 
@@ -30,12 +31,12 @@ export default function RegisterCard() {
     };
 
     try {
-      await postRequest("/users", payload)
+      await postRequest("/users", payload);
       console.log("Account Created");
       navLogin();
     } catch (error) {
       console.error("Account creation failed: ", error);
-      alert("Account creation failed:  " + error);
+      dialogContext.showAlert("Account creation failed","Account creation failed:  " + error);
     }
   };
 
@@ -87,8 +88,10 @@ export default function RegisterCard() {
       </form>
       <div className="auth-switch">
         <p>Already have an account?</p>
-        <a className="text-link" onClick={navLogin}>Sign In</a>
+        <a className="text-link" onClick={navLogin}>
+          Sign In
+        </a>
       </div>
     </div>
   );
-};
+}
