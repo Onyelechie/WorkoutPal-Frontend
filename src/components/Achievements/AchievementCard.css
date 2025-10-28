@@ -18,6 +18,7 @@
 }
 
 
+
 /* Achievement card designed originally with (some help of ChatGPT) */
 .achievement-card:hover {
     background-color: #ffffffcb;
@@ -61,13 +62,17 @@
 
 .achievement-date {
     font-size: 0.8rem;
-    color: #999;
+    font-weight: bold;
+    color: #288137;
 }
 
-.achievement-card.incomplete {
-    opacity: 0.6;
+.achievement-tracker {
+    color: #ffffff;
+    background-color: #114dbdad;
+    padding: 2px;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
-
 
 @media (max-width: 600px) {
     .achievement-card {
