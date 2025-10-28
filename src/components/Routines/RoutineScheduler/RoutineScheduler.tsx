@@ -5,14 +5,15 @@ import { daysLongForm } from '../../../utils/date';
 import { useRoutines } from '../../../hooks/useRoutines';
 import { ScheduleRow } from './ScheduleRow';
 import { useSchedules } from '../../../hooks/useSchedules';
-import { postRequest } from '../../../utils/apiRequests';
-import type { Schedule } from '../../../types/api';
+import CreateScheduleModal from './CreateScheduleModal';
 
 
 export default function RoutineScheduler() {
 
   const { routines } = useRoutines();
-  const { schedules } = useSchedules();
+  const { schedules, setSchedules } = useSchedules();
+
+  const tableColumns = ["Day", "Routine Name", "Routines", "Time Slot", "Routine Length"];
 
   // live day and time
   const [now, setNow] = useState(new Date());
@@ -27,36 +28,18 @@ export default function RoutineScheduler() {
     return () => clearInterval(intervalId);
   }, []);
 
-  // useEffect(() => {
-
-  //   async function postSched() {
-  //     try {
-  //       const payload = {
-  //         dayOfWeek: 1,
-  //         name: "Test schedule",
-  //         routineIds: [10,13],
-  //         routineLengthMinutes: 120,
-  //         timeSlot: "13:00"
-  //       }
-  //       const response = await postRequest("/schedules", payload);
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-
-  //   postSched();
-   
-  // }, []);
+  const [openCreateModal, setOpenCreateModal] = useState(false);
+  function showCreateModal() { setOpenCreateModal(true) };
+  function closeCreateModal() { setOpenCreateModal(false) };
 
   return (
     <>
+      <CreateScheduleModal open={openCreateModal} onClose={closeCreateModal} routines={routines} setSchedules={setSchedules}/>
       <div>
         <header className="routine-scheduler-header">
           <h2>Schedule your weekly workout routines!</h2>
           <div>
-            <button>Edit schedule</button>
-            <button>Create schedule</button>
+            <button onClick={showCreateModal}>Create schedule</button>
           </div>
         </header>
 
@@ -68,11 +51,9 @@ export default function RoutineScheduler() {
           <table className="routine-scheduler-table">
             <thead>
               <tr>
-                <th>Day</th>
-                <th>Routine Name</th>
-                <th>Routines</th>
-                <th>Time Slot</th>
-                <th>Routine Length (mins)</th>
+                {tableColumns.map((col) => (
+                  <th>{col}</th>
+                ))}
               </tr>
             </thead>
             

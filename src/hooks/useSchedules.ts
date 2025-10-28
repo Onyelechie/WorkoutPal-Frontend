@@ -16,7 +16,7 @@ export function useSchedules() {
       setError(null); // remove any previous error messages
 
       const response = await getRequest(ENDPOINT);
-      setSchedules(response.data);
+      if (response?.data != null) setSchedules(response.data);
     } catch (err: any) {
       setError(err);
     } finally {
@@ -30,6 +30,7 @@ export function useSchedules() {
 
   return {
     schedules,
+    setSchedules,
     isLoading,
     error,
     fetchSchedules

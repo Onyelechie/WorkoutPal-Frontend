@@ -12,9 +12,14 @@ export function getTodayIndex() {
     return today.getDay(); 
 };
 
-// formats the date we get from the API to "HH:MM"
-export function formatApiDate(apiDate:string) {
-    const date = new Date(apiDate);
+export function getCurrentTime() {
+    const now = new Date();
+    return now.toTimeString().slice(0, 5);
+}
+
+// formats the time we get from the API to "HH:MM"
+export function formatApiTime(apiTime:string) {
+    const date = new Date(apiTime);
 
     // Get hours and minutes
     const hours = date.getUTCHours(); // use getUTCHours() because the date the api uses is in UTC

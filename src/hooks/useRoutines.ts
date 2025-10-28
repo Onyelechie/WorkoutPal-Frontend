@@ -20,7 +20,7 @@ export function useRoutines() {
                 setError(null); // remove any previous error messages
 
                 const response = await getRequest(`/users/${user?.id}/routines`);
-                setRoutines(response.data);
+                if (response.data != null) setRoutines(response.data);
             } catch (err: any) {
                 setError(err);
             } finally {

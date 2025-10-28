@@ -1,12 +1,12 @@
 import clsx from "clsx"
-import { formatApiDate, getTodayIndex, minutesToHours } from "../../../utils/date"
+import { formatApiTime, getTodayIndex, minutesToHours } from "../../../utils/date"
 import type { Schedule, Routine } from "../../../types/api";
 
 interface ScheduleRowProps {
     schedules: Schedule[],
     routines: Routine[],
     day: string,
-    index: number,
+    index: number
 }
 
 export function ScheduleRow({schedules, routines, day, index}:ScheduleRowProps) {
@@ -27,38 +27,42 @@ export function ScheduleRow({schedules, routines, day, index}:ScheduleRowProps) 
             }
         )}>
             <td>{day}</td>
-            <td colSpan={4}>No routines scheduled</td>
+            <td colSpan={4}>No routines scheduled</td> 
         </tr>
         );
     }
 
     return daySchedules.map((schedule, i) => (
+        <>
         <tr
-        key={`${index}-${i}`}
-        className={clsx(
-            "",
-            {
-            "highlight-text": index == getTodayIndex(),
-            "table-row-dark": index%2 == 0
-            }
-        )}
+            key={`${index}-${i}`}
+            className={clsx(
+                "",
+                {
+                "highlight-text": index == getTodayIndex(),
+                "table-row-dark": index%2 == 0
+                }
+            )}
+            onClick={() => {alert(`ID: ${schedule.id}Name:${schedule.name}`)}}
         >
             {/* Only show the day cell once per group, using rowSpan */}
             {i === 0 && (
                 <td rowSpan={daySchedules.length}>{day}</td>
             )}
-            <td>{schedule.name}</td>
+            <td>{schedule?.name}</td>
             <td>
                 <ol>
-                {schedule.routineIds.map(id => {
+                {schedule?.routineIds ? schedule.routineIds.map(id => {
                     const routine = routines.find(r => r.id === id);
                     return routine ? <li key={id}>{routine.name}</li> : <li key={id}>Routine {id} does not exist</li>;
-                })}
+                }) : "- No routines -"}
                 </ol>
             </td>
-            <td>{formatApiDate(schedule.timeSlot)}</td>
-            <td>{schedule.routineLengthMinutes} minutes ({minutesToHours(schedule.routineLengthMinutes)} hours)</td>
+            <td>{formatApiTime(schedule.timeSlot)}</td>
+            <td>{schedule?.routineLengthMinutes} minutes ({minutesToHours(schedule.routineLengthMinutes)} hours)</td>
         </tr>
+        
+        </>
     ));
             
 }
