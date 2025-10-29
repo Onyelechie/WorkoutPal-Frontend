@@ -81,6 +81,10 @@ describe('Auth', () => {
     // make sure access token exists upon logging in
     cy.getCookie("access_token").should('exist');
 
+    // navigate to profile page where logout button is located
+    cy.contains('button', 'Profile').click();
+    cy.url().should('include', '/profile');
+
     // intercept the request to verify status code of log out
     cy.intercept("POST", "/logout").as('logoutRequest');
     // attempt log out
