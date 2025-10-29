@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22'
+          node-version: '20'
 
       - name: Build Vite App
         run: |
@@ -29,3 +29,4 @@ jobs:
           action: "upload"
           app_location: "/"            
           output_location: "dist"
+          is_static_export: true
