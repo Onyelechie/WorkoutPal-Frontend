@@ -1,15 +1,18 @@
 import clsx from "clsx"
 import { formatApiTime, getTodayIndex, minutesToHours } from "../../../utils/date"
 import type { Schedule, Routine } from "../../../types/api";
+import { useState } from "react";
+import EditScheduleModal from "./EditScheduleModal";
 
 interface ScheduleRowProps {
     schedules: Schedule[],
+    setSchedules: React.Dispatch<React.SetStateAction<any[]>>,
     routines: Routine[],
     day: string,
     index: number
 }
 
-export function ScheduleRow({schedules, routines, day, index}:ScheduleRowProps) {
+export function ScheduleRow({schedules, setSchedules, routines, day, index}:ScheduleRowProps) {
 
     // Get all schedules for this specific day
     const daySchedules = schedules.filter(s => s.dayOfWeek === index);
@@ -32,8 +35,26 @@ export function ScheduleRow({schedules, routines, day, index}:ScheduleRowProps) 
         );
     }
 
-    return daySchedules.map((schedule, i) => (
+    const defaultSchedulePayload = (): Schedule => ({
+        id: -1, userId: -1, name: "", dayOfWeek: 0, routineIds: [], timeSlot: "", routineLengthMinutes: 0
+    })
+    const [selectedSchedule, setSelectedSchedule] = useState<Schedule>(defaultSchedulePayload);
+    const [openEditModal, setOpenEditModal] = useState(false);
+
+    function showEditModal(selected:Schedule) {
+        setSelectedSchedule(selected);
+        setOpenEditModal(true);
+    }
+    function closeEditModal() {
+        setSelectedSchedule(defaultSchedulePayload());
+        setOpenEditModal(false);
+    }
+
+    return (<>
+        <EditScheduleModal selectedSchedule={selectedSchedule} setSchedules={setSchedules} routines={routines} open={openEditModal} onClose={closeEditModal}/>
+        {daySchedules.map((schedule, i) => (
         <>
+        
         <tr
             key={`${index}-${i}`}
             className={clsx(
@@ -43,7 +64,7 @@ export function ScheduleRow({schedules, routines, day, index}:ScheduleRowProps) 
                 "table-row-dark": index%2 == 0
                 }
             )}
-            onClick={() => {alert(`ID: ${schedule.id}Name:${schedule.name}`)}}
+            onClick={() => {showEditModal(schedule)}}
         >
             {/* Only show the day cell once per group, using rowSpan */}
             {i === 0 && (
@@ -63,6 +84,7 @@ export function ScheduleRow({schedules, routines, day, index}:ScheduleRowProps) 
         </tr>
         
         </>
-    ));
+        
+    ))}</>);
             
 }

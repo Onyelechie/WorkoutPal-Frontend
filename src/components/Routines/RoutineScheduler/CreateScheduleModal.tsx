@@ -5,10 +5,10 @@ import { daysLongForm, getCurrentTime, getTodayIndex } from "../../../utils/date
 import { useErrorHandler } from "../../../hooks/useErrorHandler";
 
 interface CreateScheduleModalProps {
-    open: boolean,
-    onClose: () => void,
-    routines: Routine[],
-    setSchedules: React.Dispatch<React.SetStateAction<any[]>>
+    open: boolean, // boolean to trigger the modal
+    onClose: () => void, // function to call upon closing the modal
+    routines: Routine[], // local state of existing routines
+    setSchedules: React.Dispatch<React.SetStateAction<any[]>> // be able to set local state of schedules
 }
 
 interface SchedulePayload {
@@ -19,6 +19,7 @@ interface SchedulePayload {
     routineLengthMinutes: number | ""
 }
 
+// A modal to be able to create a schedule
 export default function CreateScheduleModal({open, onClose, routines, setSchedules}:CreateScheduleModalProps) {
 
     const { handleRequestError } = useErrorHandler();
@@ -144,17 +145,19 @@ export default function CreateScheduleModal({open, onClose, routines, setSchedul
                         {/* START OF ROUTINE LENGTH INPUT */}
                         <label className="input-label">Routine Length (minutes)</label>
                         <input
-                            type="number"
+                            type="text"
+                            inputMode="numeric"
                             value={schedulePayload.routineLengthMinutes}
-                            onChange={(e) => setSchedulePayload({...schedulePayload, routineLengthMinutes: e.target.value === "" ? "" : Number(e.target.value)})}
+                            onChange={(e) => setSchedulePayload({...schedulePayload, routineLengthMinutes: Number(e.target.value) || 0})}
                             className="text-input"
                             required
                         />
                         {/* END OF ROUTINE LENGTH INPUT */}
-
-                        <button type="submit" className="create-button">
-                            Create Schedule
-                        </button>
+                        <div className="action-button-container">
+                            <button type="submit" className="create-button">
+                                Create Schedule
+                            </button>
+                        </div>
                     </div> {/* END OF INPUT GROUP DIV */}
                 </form>
             </div>

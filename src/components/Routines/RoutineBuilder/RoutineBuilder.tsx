@@ -1,8 +1,10 @@
+import "./RoutineBuilder.css";
+import '../Routines.css';
+
 import { useEffect, useState } from "react";
 import { getRequest } from "../../../utils/apiRequests.ts";
 import RoutineList from "./RoutineList.tsx";
 import CreateRoutineModal from "./CreateRoutineModal.tsx";
-import "./RoutineBuilder.css";
 
 export default function RoutineBuilder() {
   const [routines, setRoutines] = useState<any[]>([]);

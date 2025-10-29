@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getRequest, postRequest } from '../../../utils/apiRequests';
 import { toggleExerciseSelection, filterExercises, buildRoutinePayload } from '../../../utils/routineHelpers';
-import './RoutineBuilder.css';
 
 interface CreateRoutineModalProps {
     onClose: () => void;
@@ -131,10 +130,11 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({ onClose, setRou
                         <div>No exercises found.</div>
                     )}
                 </div>
-
-                <button onClick={handleCreateRoutine} className="create-button">
-                    Create Routine
-                </button>
+                <div className="action-button-container">
+                    <button onClick={handleCreateRoutine} className="create-button">
+                        Create Routine
+                    </button>
+                </div>
             </div>
         </div>
     );

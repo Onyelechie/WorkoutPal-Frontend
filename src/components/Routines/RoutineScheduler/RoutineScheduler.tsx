@@ -1,4 +1,5 @@
 import './RoutineScheduler.css';
+import '../Routines.css';
 
 import { useState, useEffect } from 'react';
 import { daysLongForm } from '../../../utils/date';
@@ -18,6 +19,7 @@ export default function RoutineScheduler() {
   // live day and time
   const [now, setNow] = useState(new Date());
 
+  // live timer created by ChatGPT
   useEffect(() => {
     // Update every second
     const intervalId = setInterval(() => {
@@ -58,7 +60,7 @@ export default function RoutineScheduler() {
             </thead>
             
             {daysLongForm.map((day, index) => (
-              <ScheduleRow schedules={schedules} routines={routines} day={day} index={index}/>
+              <ScheduleRow schedules={schedules} setSchedules={setSchedules} routines={routines} day={day} index={index}/>
             ))}
           </table>
         </div>
