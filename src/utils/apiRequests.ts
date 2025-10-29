@@ -6,7 +6,7 @@ import axios from "axios";
 
 // temporary constant: URL for the backend
 // will eventually grab the URL from the environment variable
-export const BACKEND_URL = "http://localhost:8080";
+export const BACKEND_URL = import.meta.env?.VITE_BACKEND_URL ?? 'http://localhost:8080';
 
 // ensure all axios request has credentials
 axios.defaults.withCredentials = true;
@@ -36,6 +36,16 @@ export async function putRequest(endpoint: string, payload: any) {
 
     const response = await axios.put(url, payload);
     return response; // return the response
+};
+
+// patch request
+// note: caller of this util function needs to try {} catch (error) {} for when the request fails
+// payload - this is the payload to send to the backend
+export async function patchRequest(endpoint: string, payload: any) {
+  let url = `${BACKEND_URL}${endpoint}`;
+
+  const response = await axios.patch(url, payload);
+  return response; // return the response
 };
 
 // delete request
