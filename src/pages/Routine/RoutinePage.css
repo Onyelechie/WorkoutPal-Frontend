@@ -1,0 +1,40 @@
+/* .routine-nav-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+}
+
+.routine-nav-container button {
+    background: none;
+    color: var(--color-primary-1);
+    font-weight: bold;
+    border-radius: 0;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+} */
+
+.routine-nav-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.nav-button {
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  color: var(--text-color-dark-3);
+}
+
+.nav-button:hover {
+  background-color: var(--color-light-2);
+  text-decoration: underline;
+}
+
+.nav-button.active {
+  background-color: var(--color-primary-1);
+  color: var(--color-light-2);
+}
