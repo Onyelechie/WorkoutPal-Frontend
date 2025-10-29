@@ -3,6 +3,7 @@ import HomePage from "../pages/HomePage";
 import PageNotFound from "../pages/PageNotFound";
 
 import ProfilePage from "../pages/Profile/ProfilePage";
+import OtherUserPage from "../pages/Profile/OtherUserPage";
 import LoginPage from "../pages/Auth/LoginPage";
 import RegisterPage from "../pages/Auth/RegisterPage";
 import RoutinePage from "../pages/Routine/RoutinePage";
@@ -27,6 +28,7 @@ export default function AppRoutes() {
 
         <Route path={HOME_ROUTE} element={<HomePage />} />
         <Route path={PROFILE_ROUTE} element={<ProfilePage />} />
+  <Route path="/users/:id" element={<OtherUserPage />} />
         <Route path={ROUTINE_ROUTE} element={<RoutinePage />} />
 
         {/* Direct to PageNotFound for routes that are not implemented */}
