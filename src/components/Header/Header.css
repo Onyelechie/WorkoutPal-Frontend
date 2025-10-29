@@ -58,6 +58,24 @@
   transform: translateY(-1px);
 }
 
+.home-button {
+  background: var(--primary-color, #2563eb);
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.98rem;
+  border-radius: 8px;
+  transition: background-color 0.12s, transform 0.06s;
+}
+
+.home-button:hover,
+.home-button:focus {
+  background-color: var(--primary-color-dark, #1e40af);
+  transform: translateY(-1px);
+}
+
 .header-center {
   flex: 1 1 auto;
   display: flex;
@@ -95,6 +113,7 @@
 
 /* focus-visible for keyboard users */
 .routine-button:focus-visible,
+.home-button:focus-visible,
 .profile-button:focus-visible {
   outline: 3px solid rgba(99,102,241,0.18);
   outline-offset: 2px;

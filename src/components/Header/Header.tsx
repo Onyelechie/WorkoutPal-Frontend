@@ -19,6 +19,7 @@ function Header() {
           <img src={logoUrl} alt="WorkoutPal logo" className="logo-image" />
           <span className="logo-text">WorkoutPal</span>
         </button>
+        <button className="home-button" onClick={navHome}>Home</button>
         <button className="routine-button" onClick={navRoutine}>Routine</button>
       </div>
 
