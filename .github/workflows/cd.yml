@@ -27,7 +27,7 @@ jobs:
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: "4237f1231cce10c9c45d808e91cf9f9aeb8d4eca69a41086a31df89207b81b7c03-7c20c547-0877-438c-b6a9-2d1659366a8600f16050eeb4d10f"
+          azure_static_web_apps_api_token: "${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}"
           action: "upload"
           app_location: "/"                  # Root of your repo
           output_location: "dist"            # Vite's default build output
