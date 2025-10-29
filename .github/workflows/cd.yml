@@ -9,15 +9,17 @@ jobs:
   build_and_deploy_job:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      - name: Build Vite App
+      - name: Install Dependencies and Build
         run: |
           npm install
           npm run build
@@ -26,7 +28,13 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"            
-          output_location: "dist"
-          is_static_export: true
+          app_location: "/"                  # Root of your project
+          output_location: "dist"            # Vite's default build output
+          app_artifact_location: "dist"      # Explicitly specify artifact location
+          is_static_export: true             # Helps with static site frameworks
+          skip_app_build: true               # Skip Azure's internal build since you're building manually
+
+    env:
+      ACTIONS_STEP_DEBUG: true               # Enables debug logging for troubleshooting
