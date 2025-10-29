@@ -31,4 +31,3 @@ jobs:
           action: "upload"
           app_location: "/"                  # Root of your repo
           output_location: "dist"            # Vite's default build output
-``
