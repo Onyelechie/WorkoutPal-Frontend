@@ -14,30 +14,38 @@ function LoginCard() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const payload = {
-      email: email,
-      password: password,
-    };
+    const payload = { email, password };
 
+    try {
+      const response = await postRequest("/login", payload);
 
-    postRequest("/login", payload)
-      .then((response) => {
-        if (response.status == 200) {
-          console.log("Login successful");
-          navHome();
+      if (response.status === 200) {
+        console.log("Login successful");
+        navHome();
+      }
+    } catch (error: any) {
+      if (error?.response) {
+        console.error("Login failed:", error);
+        dialogContext.showAlert(
+          "Login failed",
+          "Please check your credentials and try again. " + error.response.data
+        );
+      } else {
+        // Now you can safely use await
+        const result = await dialogContext.showConfirm(
+          "Server Error",
+          "Unable to communicate with our server. Please try again later.",
+          "Yes",
+          "No"
+        );
+
+        if (result) {
+          alert("User clicked Yes");
+        } else {
+          alert("User clicked No");
         }
-      })
-      .catch((error) => {
-        if (error?.response) {
-          console.error("Login failed:", error);
-          dialogContext.showAlert("Login failed", "Please check your credentials and try again. " +
-              error.response.data
-          );
-        }
-        else {
-          dialogContext.showAlert("Server Error", "Unable to communicate with our server. Please try again later.")
-        }
-      });
+      }
+    }
   };
 
   return (
