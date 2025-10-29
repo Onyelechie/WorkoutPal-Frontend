@@ -62,8 +62,6 @@ export default function RoutineScheduler() {
             ))}
           </table>
         </div>
-
-
       </div>
     </>
   );

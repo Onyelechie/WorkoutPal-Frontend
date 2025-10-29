@@ -12,7 +12,10 @@ export function useRoutines() {
     const [error, setError] = useState<Error | null>(null);
 
     useEffect(() => {
-        if (!user) return;
+        if (!user) {
+            setError(new Error("Could not fetch user"));
+            return;
+        }
 
         async function fetchRoutines() {
             try {
