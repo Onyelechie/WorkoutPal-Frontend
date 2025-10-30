@@ -31,7 +31,10 @@
 body {
   background-color: var(--color-light-3);
   color: var(--text-color-dark-1);
-  width: 100vw;
+
+  /* Fixed a weird issue when the width of the app does not fit in the window, causing a horizontal scroll bar to appear */
+  width: 100%;
+
   height: 100vh;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -43,32 +46,45 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 /******** Button styles ********/
 
 button {
-  background-color: var(--color-primary-1); /* Primary color */
+  background-color: var(--color-primary-1);
+  /* Primary color */
   color: var(--text-color-light-1);
-  border: none; /* No border */
-  border-radius: 5px; /* Rounded corners */
-  padding: 0.5rem 1rem; /* Vertical + horizontal padding */
-  font-size: 1rem; /* Text size */
+  border: none;
+  /* No border */
+  border-radius: 5px;
+  /* Rounded corners */
+  padding: 0.5rem 1rem;
+  /* Vertical + horizontal padding */
+  font-size: 1rem;
+  /* Text size */
   font-weight: 500;
-  cursor: pointer; /* Pointer cursor */
-  transition: background-color 0.2s, transform 0.1s; /* Smooth hover */
-  text-decoration: none; /* Remove underline */
+  cursor: pointer;
+  /* Pointer cursor */
+  transition: background-color 0.2s, transform 0.1s;
+  /* Smooth hover */
+  text-decoration: none;
+  /* Remove underline */
   display: inline-block;
 }
 
 /* Hover effect */
 button:hover {
-  background-color: var(--color-primary-2); /* Darker on hover */
-  transform: translateY(-2px); /* Slight lift effect */
+  background-color: var(--color-primary-2);
+  /* Darker on hover */
+  transform: translateY(-2px);
+  /* Slight lift effect */
 }
 
 /* Active / click effect */
 button:active {
-  background-color: var(--color-primary-3); /* Even darker on click */
-  transform: translateY(0); /* Reset lift */
+  background-color: var(--color-primary-3);
+  /* Even darker on click */
+  transform: translateY(0);
+  /* Reset lift */
 }
 
 button:disabled {
@@ -106,6 +122,7 @@ button:disabled {
   width: 100%;
   gap: 1rem;
 }
+
 .flex-row {
   display: flex;
   flex-direction: row;
