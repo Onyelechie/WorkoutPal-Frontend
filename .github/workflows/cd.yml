@@ -31,3 +31,5 @@ jobs:
           action: "upload"
           app_location: "/"
           output_location: "dist"
+        env:
+          VITE_BACKEND_URL: "https://workoutpal-api-daghb9augub5g9ez.canadacentral-01.azurewebsites.net"
