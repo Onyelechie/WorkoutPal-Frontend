@@ -33,6 +33,15 @@ export function useMe() {
     fetchMe(); // fetch on mount
   }, []);
 
+  // Listen for external refresh requests (e.g., after follow/unfollow actions in other components)
+  useEffect(() => {
+    const handler = () => {
+      fetchMe();
+    };
+    window.addEventListener("me:refresh", handler as EventListener);
+    return () => window.removeEventListener("me:refresh", handler as EventListener);
+  }, []);
+
   return {
     user,
     isLoading,

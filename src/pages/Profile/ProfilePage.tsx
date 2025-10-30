@@ -3,6 +3,8 @@ import "./ProfilePage.css";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { useMe } from "../../hooks/useMe";
 import MyWorkouts from "../../components/MyWorkouts/MyWorkouts";
+import { postRequest } from "../../utils/apiRequests";
+import { PostCard } from "../../components/Dashboard/PostCard";
 
 function ProfilePage() {
   const { user, isLoading, error, fetchMe } = useMe();
@@ -11,6 +13,15 @@ function ProfilePage() {
   const handleUserUpdate = async () => {
     // Refresh user data after update
     await fetchMe();
+  };
+
+  const handleLogout = async () => {
+    try {
+      await postRequest('/logout', '');
+      navLogin();
+    } catch (err) {
+      console.error('Logout failed', err);
+    }
   };
 
   return (
@@ -59,15 +70,15 @@ function ProfilePage() {
 
             <div className="posts-section">
               <h2 className="section-title">Posts</h2>
-              <div className="posts-grid">
-                {/* Mock posts - replace with actual user posts */}
-                {Array.from({length: 6}, (_, i) => (
-                  <div key={i} className="post-item">
-                    <div className="post-image">
-                      <span>Post {i + 1}</span>
-                    </div>
-                  </div>
-                ))}
+              <div className="profile-posts-list">
+                {/* Render user posts similar to home feed using PostCard */}
+                {(user.Posts && user.Posts.length > 0) ? (
+                  user.Posts.map((p: any) => (
+                    <PostCard key={p.id} post={p} />
+                  ))
+                ) : (
+                  <div className="no-posts">No posts yet.</div>
+                )}
               </div>
             </div>
 
@@ -78,6 +89,12 @@ function ProfilePage() {
           )}
           
         </>
+
+      {/* Logout fixed to bottom-right of the profile page */}
+      {/* Logout below MyWorkouts, aligned right with spacing */}
+      <div className="logout-below">
+        <button className="logout-button" onClick={handleLogout}>Logout</button>
+      </div>
     </div>
   );
 }
