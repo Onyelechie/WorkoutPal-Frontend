@@ -1,34 +1,39 @@
 import "./Header.css";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
-import { postRequest } from "../../utils/apiRequests";
+import UserSearch from "../UserSearch/UserSearch";
+import { useNavigate } from "react-router";
+import logoUrl from "../../assets/react.svg";
 
 function Header() {
-  const { navHome, navProfile, navRoutine, navLogin, navAchievements } = useAppNavigation();
+  const { navHome, navProfile, navRoutine, navAchievements } = useAppNavigation();
+  const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      await postRequest("/logout", "");
-      navLogin();
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
+  const handleUserSelect = (user: { id: number }) => {
+    navigate(`/users/${user.id}`);
   };
 
   return (
-    <div className="header">
-      <img src="src/assets/react.svg" alt="Temp Logo" />
-      <h2>WorkoutPal</h2>
-      <nav className="navbar">
-        <button onClick={navHome}>Home</button>
-        <button onClick={navProfile}>Profile</button>
-        <button onClick={navRoutine}>Routine</button>
-        <button onClick={navAchievements}>My Achievements</button>
-        <button className="logout-button" onClick={handleLogout}>
-          Logout
+    <header className="header">
+      <div className="header-left">
+        <button className="logo-button" onClick={navHome} aria-label="Home">
+          <img src={logoUrl} alt="WorkoutPal logo" className="logo-image" />
+          <span className="logo-text">WorkoutPal</span>
         </button>
-      </nav>
-    </div>
+        <button className="home-button" onClick={navHome}>Home</button>
+        <button className="routine-button" onClick={navRoutine}>Routine</button>
+      </div>
+
+      <div className="header-center">
+        <UserSearch onUserSelect={handleUserSelect} />
+      </div>
+
+      <div className="header-right">
+        <button className="achievement-button" onClick={navAchievements}>Achievements</button>
+        <button className="profile-button" onClick={navProfile}>Profile</button>
+      </div>
+    </header>
   );
 }
 
 export default Header;
+

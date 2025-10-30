@@ -4,6 +4,7 @@ import { relationshipService } from "../../services/relationshipService";
 import { getRequest } from "../../utils/apiRequests";
 import type { User } from "../../types/api";
 import type { User as RelationshipUser } from "../../services/relationshipService";
+import { useMe } from "../../hooks/useMe";
 
 interface OtherUserProfileProps {
   userId: number;
@@ -45,17 +46,41 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
     }
   };
 
+  useMe();
+
   const handleFollowToggle = async () => {
     setFollowLoading(true);
     try {
       if (isFollowing) {
         await relationshipService.unfollowUser(userId, currentUserId);
         setIsFollowing(false);
+
+        // Optimistically update viewed user's followers list
+        setUser(prev => {
+          if (!prev) return prev;
+          const prevFollowers = Array.isArray(prev.followers) ? [...prev.followers] : [];
+          const newFollowers = prevFollowers.filter(id => id !== currentUserId);
+          return { ...prev, followers: newFollowers } as User;
+        });
+  // notify other parts of the app to refresh current user's data (following count)
+  window.dispatchEvent(new Event('me:refresh'));
       } else {
         await relationshipService.followUser(userId, currentUserId);
         setIsFollowing(true);
+
+        // Optimistically update viewed user's followers list
+        setUser(prev => {
+          if (!prev) return prev;
+          const prevFollowers = Array.isArray(prev.followers) ? [...prev.followers] : [];
+          // avoid duplicate
+          const newFollowers = prevFollowers.includes(currentUserId) ? prevFollowers : [...prevFollowers, currentUserId];
+          return { ...prev, followers: newFollowers } as User;
+        });
+  // notify other parts of the app to refresh current user's data (following count)
+  window.dispatchEvent(new Event('me:refresh'));
       }
-      fetchUserProfile(); // Refresh to update follower count
+      // also refresh viewed profile from server in background to reconcile
+      fetchUserProfile();
     } catch (error) {
       console.error("Error toggling follow:", error);
     } finally {

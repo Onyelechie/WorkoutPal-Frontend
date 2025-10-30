@@ -3,8 +3,8 @@
 // https://docs.cypress.io/app/end-to-end-testing/writing-your-first-end-to-end-test
 // https://docs.cypress.io/app/end-to-end-testing/testing-your-app
 
-import { BACKEND_URL } from '../../src/utils/apiRequests';
-
+// const BACKEND_URL = import.meta.env?.VITE_BACKEND_URL ?? 'http://localhost:8080';
+const BACKEND_URL = Cypress.env('VITE_BACKEND_URL');
 // ASSUMPTIONS BEFORE RUNNING ACCEPTANCE TESTS
 // 1. Backend is running and is healthy
 // 2. Database is running and is healthy
@@ -80,6 +80,10 @@ describe('Auth', () => {
     
     // make sure access token exists upon logging in
     cy.getCookie("access_token").should('exist');
+
+    // navigate to profile page where logout button is located
+    cy.contains('button', 'Profile').click();
+    cy.url().should('include', '/profile');
 
     // intercept the request to verify status code of log out
     cy.intercept("POST", "/logout").as('logoutRequest');
