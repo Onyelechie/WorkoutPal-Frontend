@@ -17,7 +17,7 @@ function ProfilePage() {
     <div className="profile-page-container flex-row">
         <>
           {isLoading && <div>Loading user profile...</div>}
-          {error && <div>Failed to get user. Login? <button onClick={navLogin}>Login</button></div>}
+          {error && <div>{error.message} <button onClick={navLogin}>Login</button></div>}
           {user && !isLoading && !error && (
             <>
               <ProfileCard

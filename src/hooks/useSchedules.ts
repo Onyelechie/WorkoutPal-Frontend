@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { getRequest } from "../utils/apiRequests"; // adjust path if needed
 import type { Schedule } from "../types/api";
+import { SCHEDULE_FETCH_FAIL } from "../app/constants/genericErrors";
+import { useErrorHandler } from "./useErrorHandler";
 
 export function useSchedules() {
-  const ENDPOINT = "/schedules";
+
+  const { handleError } = useErrorHandler();
 
   // state variables
   const [schedules, setSchedules] = useState<Schedule[]>([]);
@@ -15,10 +18,10 @@ export function useSchedules() {
       setIsLoading(true);
       setError(null); // remove any previous error messages
 
-      const response = await getRequest(ENDPOINT);
+      const response = await getRequest("/schedules");
       if (response?.data != null) setSchedules(response.data);
     } catch (err: any) {
-      setError(err);
+      handleError(err, setError, SCHEDULE_FETCH_FAIL);
     } finally {
       setIsLoading(false);
     }

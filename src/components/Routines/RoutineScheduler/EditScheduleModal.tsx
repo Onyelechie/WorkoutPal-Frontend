@@ -3,6 +3,7 @@ import { daysLongForm, formatApiTime } from "../../../utils/date";
 import { useState, useEffect } from "react";
 import { useErrorHandler } from "../../../hooks/useErrorHandler";
 import { deleteRequest, putRequest } from "../../../utils/apiRequests";
+import { SCHEDULE_DELETE_FAIL, SCHEDULE_EDIT_FAIL } from "../../../app/constants/genericErrors";
 
 interface EditScheduleModalProps {
     open: boolean, // boolean to trigger the modal
@@ -16,7 +17,7 @@ interface EditScheduleModalProps {
 export default function EditScheduleModal({open, onClose, selectedSchedule, setSchedules, routines }:EditScheduleModalProps) {
 
     // generic handler for request errors
-    const { handleRequestError } = useErrorHandler();
+    const { alertOnRequestError } = useErrorHandler();
     
     // state variable
     const [schedulePayload, setSchedulePayload] = useState<Schedule>({...selectedSchedule});
@@ -44,7 +45,7 @@ export default function EditScheduleModal({open, onClose, selectedSchedule, setS
             );
             onClose();
         } catch (error: any) {
-            handleRequestError("Could not edit the routine", error);
+            alertOnRequestError(SCHEDULE_EDIT_FAIL, error);
         }
     }
 
@@ -54,7 +55,7 @@ export default function EditScheduleModal({open, onClose, selectedSchedule, setS
             setSchedules((prev) => prev.filter((s) => s.id !== schedulePayload.id));
             onClose();
         } catch (error: any) {
-            handleRequestError("Could not delete the routine", error);
+            alertOnRequestError(SCHEDULE_DELETE_FAIL, error);
         }
     }
 

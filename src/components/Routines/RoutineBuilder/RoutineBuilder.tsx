@@ -1,35 +1,16 @@
 import "./RoutineBuilder.css";
 import '../Routines.css';
 
-import { useEffect, useState } from "react";
-import { getRequest } from "../../../utils/apiRequests.ts";
+import { useState } from "react";
 import RoutineList from "./RoutineList.tsx";
 import CreateRoutineModal from "./CreateRoutineModal.tsx";
+import { useRoutines } from "../../../hooks/useRoutines.ts";
 
 export default function RoutineBuilder() {
-  const [routines, setRoutines] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+
+  const { routines, setRoutines, error, isLoading } = useRoutines();
+
   const [showModal, setShowModal] = useState(false);
-
-    useEffect(() => {
-        async function fetchRoutines() {
-            try {
-                const meResponse = await getRequest('/me');
-                const userId = meResponse.data.id;
-
-                const routineResponse = await getRequest(`/users/${userId}/routines`);
-                setRoutines(routineResponse.data);
-            } catch (err) {
-                setError('Failed to fetch routines.');
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchRoutines();
-    }, []);
-
   const handleAddRoutineClick = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
@@ -42,9 +23,9 @@ export default function RoutineBuilder() {
         </div>
       </header>
 
-      {loading && <div>Loading routines...</div>}
-      {error && <div>{error}</div>}
-      {!loading && !error && (
+      {isLoading && <div>Loading routines...</div>}
+      {error && <div>{error.message}</div>}
+      {!isLoading && !error && (
         <RoutineList routines={routines} setRoutines={setRoutines} />
       )}
 

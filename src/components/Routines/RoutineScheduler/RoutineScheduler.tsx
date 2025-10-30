@@ -11,8 +11,8 @@ import CreateScheduleModal from './CreateScheduleModal';
 
 export default function RoutineScheduler() {
 
-  const { routines } = useRoutines();
-  const { schedules, setSchedules } = useSchedules();
+  const { routines, isLoading, error:routinesError } = useRoutines();
+  const { schedules, setSchedules, error:schedulesError } = useSchedules();
 
   const tableColumns = ["Day", "Routine Name", "Routines", "Time Slot", "Routine Length"];
 
@@ -48,6 +48,10 @@ export default function RoutineScheduler() {
         <header className="routine-scheduler-time">
           <div>Today: {now.toLocaleDateString()}, {daysLongForm[now.getDay()]}, {now.getHours()}:{now.getMinutes()}</div>
         </header>
+
+        {isLoading && <p>Loading schedule...</p>}
+        {routinesError && <p>{routinesError.message}</p>}
+        {schedulesError && <p>{schedulesError.message}</p>}
 
         <div className="routine-scheduler-table-container">
           <table className="routine-scheduler-table">

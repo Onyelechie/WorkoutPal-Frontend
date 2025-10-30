@@ -3,6 +3,7 @@ import type { Routine } from "../../../types/api";
 import { postRequest } from "../../../utils/apiRequests";
 import { daysLongForm, getCurrentTime, getTodayIndex } from "../../../utils/date";
 import { useErrorHandler } from "../../../hooks/useErrorHandler";
+import { SCHEDULE_CREATE_FAIL } from "../../../app/constants/genericErrors";
 
 interface CreateScheduleModalProps {
     open: boolean, // boolean to trigger the modal
@@ -22,7 +23,7 @@ interface SchedulePayload {
 // A modal to be able to create a schedule
 export default function CreateScheduleModal({open, onClose, routines, setSchedules}:CreateScheduleModalProps) {
 
-    const { handleRequestError } = useErrorHandler();
+    const { alertOnRequestError } = useErrorHandler();
 
     const defaultSchedulePayload = (): SchedulePayload => ({
         name: "",
@@ -46,7 +47,7 @@ export default function CreateScheduleModal({open, onClose, routines, setSchedul
             setSchedules((prev) => ([...prev, response.data]));
             onClose();
         } catch (error: any) {
-            handleRequestError("Could not create the routine", error);
+            alertOnRequestError(SCHEDULE_CREATE_FAIL, error);
         }
     }
 

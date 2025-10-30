@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { getRequest } from "../utils/apiRequests"; // adjust path if needed
 import type { Post } from "../types/api";
+import { POST_FETCH_FAIL } from "../app/constants/genericErrors";
+import { useErrorHandler } from "./useErrorHandler";
 
 export function usePosts() {
-  const ENDPOINT = "/mock/posts";
+
+  const { handleError } = useErrorHandler();
 
   // state variables
   const [posts, setPosts] = useState<Post[]>([]);
@@ -15,10 +18,10 @@ export function usePosts() {
       setIsLoading(true);
       setError(null); // remove any previous error messages
 
-      const response = await getRequest(ENDPOINT);
+      const response = await getRequest("/mock/posts");
       setPosts(response.data);
     } catch (err: any) {
-      setError(err);
+      handleError(err, setError, POST_FETCH_FAIL);
     } finally {
       setIsLoading(false);
     }
