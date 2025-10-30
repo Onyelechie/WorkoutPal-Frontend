@@ -6,5 +6,8 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    env: {
+      VITE_BACKEND_URL: 'http://localhost:8080',
+    },
   },
 });

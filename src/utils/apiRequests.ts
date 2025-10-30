@@ -6,7 +6,7 @@ import axios from "axios";
 
 // temporary constant: URL for the backend
 // will eventually grab the URL from the environment variable
-export const BACKEND_URL = "http://localhost:8080";
+export const BACKEND_URL = import.meta.env?.VITE_BACKEND_URL ?? 'http://localhost:8080';
 
 // ensure all axios request has credentials
 axios.defaults.withCredentials = true;
