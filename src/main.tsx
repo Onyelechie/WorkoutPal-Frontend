@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./styles/global.css";
 import App from "./app/App.tsx";
 import { AlertDialogProvider } from "./components/AlertDialog/AlertDialogProvider.tsx";
+import { ConfirmDialogProvider } from "./components/ConfirmDialog/ConfirmDialogProvider.tsx";
 
 // For Google OAuth stretch goal 
 // import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -11,7 +12,10 @@ import { AlertDialogProvider } from "./components/AlertDialog/AlertDialogProvide
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <AlertDialogProvider>
-      <App />
+      {/* Provider nesting problem. Refactor soon? */}
+      <ConfirmDialogProvider>
+        <App />
+      </ConfirmDialogProvider>
     </AlertDialogProvider>
   </StrictMode>
 );
