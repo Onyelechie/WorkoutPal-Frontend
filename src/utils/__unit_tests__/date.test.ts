@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from 'vitest';
-import { getTodayIndex } from '../date';
+import { describe, it, expect, vi } from 'vitest';
+import { getTodayIndex, formatApiTime } from '../date';
 
 describe('/utils/date.ts', () => {
 
@@ -13,19 +13,26 @@ describe('/utils/date.ts', () => {
         return getTodayIndex();
     };
 
-    it('getTodayIndex returns zero on a Monday', async () => {
-        const result = testOnDay('2024-01-01T12:00:00Z')
+    it('getTodayIndex returns zero on a Sunday', async () => {
+        const result = testOnDay('2024-01-07T12:00:00Z')
         expect(result).toBe(0);
     });
 
-    it('getTodayIndex returns two on a Wednesday', async () => {
+    it('getTodayIndex returns three on a Wednesday', async () => {
         const result = testOnDay('2024-01-03T12:00:00Z')
-        expect(result).toBe(2);
+        expect(result).toBe(3);
+    });
+    
+    it('getTodayIndex returns six on a Saturday', async () => {
+        const result = testOnDay('2024-01-06T12:00:00Z')
+        expect(result).toBe(6);
     });
 
-    it('getTodayIndex returns six on a Sunday', async () => {
-        const result = testOnDay('2024-01-07T12:00:00Z')
-        expect(result).toBe(6);
+    it('formatApiTime returns string with format HH:MM', async () => {
+        const sampleApiTime = "0000-01-01T18:00:00Z"; // a sample of the time we receive from the backend
+        const testTime = formatApiTime(sampleApiTime);
+        
+        expect(testTime).toBe("18:00");
     });
 
 })

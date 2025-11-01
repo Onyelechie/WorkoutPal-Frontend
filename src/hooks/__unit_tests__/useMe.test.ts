@@ -2,8 +2,15 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
 import { useMe } from '../useMe';
 import { getRequest } from '../../utils/apiRequests';
+import { USER_FETCH_FAIL } from '../../app/constants/genericErrors';
 
 vi.mock('../../utils/apiRequests');
+// Mock the hook before importing useMe (if it imports useAlertDialog directly)
+vi.mock('../useAlertDialog', () => ({
+  useAlertDialog: () => ({
+    showAlert: vi.fn(), // mock function
+  }),
+}));
 
 describe('useMe hook', () => {
   beforeEach(() => {
@@ -43,7 +50,7 @@ describe('useMe hook', () => {
     await waitFor(() => {
       expect(result.current.isLoading).toBe(false);
       expect(result.current.user).toBe(null);
-      expect(result.current.error).toEqual(mockError);
+      expect(result.current.error).toEqual(new Error(USER_FETCH_FAIL)); // Expect a user friendly message instead of mockError
     });
   });
 
