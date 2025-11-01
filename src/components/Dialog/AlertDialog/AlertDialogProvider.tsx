@@ -9,9 +9,7 @@ type AlertDialogState = {
 };
 
 /**
- * Shows/Hides a dialog in the current page.
- * 
- * ----
+ * This provider will provide an (AlertDialog) modal. Responsible for showing / hiding the dialog 
  * 
  * Parameter (Props or Properties): children (a type of ReactNode), which is just the <App /> component.
  * 
@@ -44,7 +42,7 @@ export function AlertDialogProvider({ children }: { children: ReactNode }) {
     <AlertDialogContext.Provider value={{ showAlert }}>
       {children} {/* Entire app. children is <App /> Component. Check "/src/main.tsx" */}
 
-      {/* Dialog */}
+      {/* Render the Dialog */}
       {dialog.isOpen && (
         <>
           {/* very elegant */}
