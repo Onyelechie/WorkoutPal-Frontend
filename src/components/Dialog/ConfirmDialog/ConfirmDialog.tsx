@@ -1,4 +1,5 @@
-
+import "../Dialog.css";
+import "./ConfirmDialog.css";
 
 type ConfirmDialogProps = {
     title: string;
@@ -10,9 +11,7 @@ type ConfirmDialogProps = {
 };
 
 /**
- * AlertDialog component
- * 
- * Receives dialog title, message and function as a prop to render.
+ * ConfirmDialog component
  */
 export function ConfirmDialog({ title, message, strPositiveButton, color, strNegativeButton, handleConfirm, }: ConfirmDialogProps) {
 

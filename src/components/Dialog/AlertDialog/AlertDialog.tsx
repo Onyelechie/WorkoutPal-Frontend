@@ -1,4 +1,4 @@
-import "./AlertDialog.css";
+import "../Dialog.css";
 
 type AlertDialogProps = {
   title: string;

@@ -26,7 +26,7 @@ export function AlertDialogProvider({ children }: { children: ReactNode }) {
   });
 
   /**
-   * Usage: showAlert(title, message)
+   * Show the Alert Dialog
    * @param title title of the dialog
    * @param message the content
    */
@@ -41,7 +41,7 @@ export function AlertDialogProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AlertDialogContext.Provider value={{ showAlert  }}>
+    <AlertDialogContext.Provider value={{ showAlert }}>
       {children} {/* Entire app. children is <App /> Component. Check "/src/main.tsx" */}
 
       {/* Dialog */}
@@ -49,7 +49,7 @@ export function AlertDialogProvider({ children }: { children: ReactNode }) {
         <>
           {/* very elegant */}
           {/* pass the title, message and handleClose function via props (Properties)*/}
-          <AlertDialog title={dialog.title} message={dialog.message} handleClose={handleClose}/>
+          <AlertDialog title={dialog.title} message={dialog.message} handleClose={handleClose} />
         </>
       )}
     </AlertDialogContext.Provider>

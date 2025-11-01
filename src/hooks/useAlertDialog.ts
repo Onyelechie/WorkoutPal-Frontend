@@ -1,10 +1,13 @@
 import { useContext } from "react";
-import { AlertDialogContext } from "../components/AlertDialog/AlertDialogContext";
+import { AlertDialogContext } from "../components/Dialog/AlertDialog/AlertDialogContext";
 import type { AlertDialogContextType, ConfirmDialogContextType } from "../types/context";
-import { ConfirmDialogContext } from "../components/ConfirmDialog/ConfirmDialogContext";
+import { ConfirmDialogContext } from "../components/Dialog/ConfirmDialog/ConfirmDialogContext";
+
+//  -------------- TODO: RENAME useAlertDialog.ts to useDialog.ts ----------------
 
 /**
- * Wrapper function to create dialog context
+ * Hook: A wrapper to return an AlertDialogContext
+ * @returns AlertDialogContext
  */
 export function useAlertDialog(): AlertDialogContextType {
   const context = useContext(AlertDialogContext); // this context contains a function (showAlert)
@@ -14,6 +17,10 @@ export function useAlertDialog(): AlertDialogContextType {
   return context;
 }
 
+/**
+ * Hook: A wrapper to return an ConfirmDialogContext
+ * @returns ConfirmDialogContext
+ */
 export function useConfirmDialog(): ConfirmDialogContextType {
   const context = useContext(ConfirmDialogContext); // this context contains a function (showAlert)
   if (!context) {
