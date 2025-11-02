@@ -1,103 +1,62 @@
 import "./Achievements.css"
 import type { Achievement } from "../../types/api";
 import { AchievementCard } from "./AchievementCard";
+import { deleteRequest, getRequest, postRequest } from "../../utils/apiRequests";
+import { mockAchievements } from "./mockAchievements"
 
 
-const mockAchievements: Achievement[] = [
-	{
-		id: 1,
-		title: "Welcome, Pal!",
-		description: "Log in for the first time.",
-		badgeIcon: "😄",
-		earnedAt: "2025-10-01",
-		userId: 123,
-	},
-	{
-		id: 2,
-		title: "Knowledge Sharing",
-		description: "Share a workout routine",
-		badgeIcon: "💡",
-		earnedAt: "",
-		userId: 123,
-	},
-	{
-		id: 3,
-		title: "Uplift a WorkoutPal",
-		description: "Spread positivity by liking a friend’s workout post",
-		badgeIcon: "🚀",
-		earnedAt: "",
-		userId: 123,
-	},
-	{
-		id: 4,
-		title: "Social Butterfly",
-		description: "Connect with 5 friends.",
-		badgeIcon: "🦋",
-		earnedAt: "",
-		userId: 123,
-	},
-	{
-		id: 5,
-		title: "Consistency is Key",
-		description: "Complete a workout routine 5 days in a row",
-		badgeIcon: "📶",
-		earnedAt: "",
-		userId: 123,
-	},
-	{
-		id: 6,
-		title: "Start of my Journey",
-		description: "Create your first workout routine",
-		badgeIcon: "🌄",
-		earnedAt: "2025-10-01",
-		userId: 123,
-	},
-	{
-		id: 7,
-		title: "Gym Extrovert",
-		description: "Gain 100 Followers",
-		badgeIcon: "💯",
-		earnedAt: "",
-		userId: 123,
-	},
-	{
-		id: 8,
-		title: "AChievement",
-		description: "AChievement",
-		badgeIcon: "🏋️",
-		earnedAt: "",
-		userId: 123,
-	},
-	{
-		id: 8,
-		title: "AChievement",
-		description: "AChievement",
-		badgeIcon: "🏋️",
-		earnedAt: "",
-		userId: 123,
-	},
-	{
-		id: 8,
-		title: "AChievement",
-		description: "AChievement",
-		badgeIcon: "🏋️",
-		earnedAt: "",
-		userId: 123,
-	},
-	{
-		id: 8,
-		title: "AChievement",
-		description: "AChievement",
-		badgeIcon: "🏋️",
-		earnedAt: "",
-		userId: 123,
-	},
-];
-
+function sortMockAchievements(achievements: Achievement[]) {
+	const completed = achievements.filter((a) => a.earnedAt); // if there earnedAt isn't empty then it's already completed
+	const incomplete = achievements.filter((a) => !a.earnedAt);
+	return { completed, incomplete };
+}
 
 export default function Achievements() {
-	const completed = mockAchievements.filter((a) => a.earnedAt); // if there earnedAt isn't empty then it's already completed
-	const incomplete = mockAchievements.filter((a) => !a.earnedAt);
+	const { completed, incomplete } = sortMockAchievements(mockAchievements);
+
+	async function testCall() {
+		const now = new Date();
+		// Format YYYY-MM-DD
+		// https://stackoverflow.com/questions/23593052/format-javascript-date-as-yyyy-mm-dd
+		const dateFormat = now.toISOString().substring(0, 10);
+		try {
+			const payload = {
+				id: 1,
+				title: "Welcome, Pal!",
+				description: "Log in for the first time.",
+				badgeIcon: "😄",
+				earnedAt: dateFormat,
+				userId: 6,
+			};
+
+			const response = await postRequest("/achievements", payload);
+
+			console.log("✅ Server response:", response.data);
+		} catch (error: any) {
+			console.error("❌ Request failed:", error.response?.data || error.message);
+		}
+
+	}
+	async function getCall() {
+		try {
+
+			const response = await getRequest("/achievements");
+
+			console.log("✅ Server response:", response.data);
+		} catch (error: any) {
+			console.error("❌ Request failed:", error.response?.data || error.message);
+		}
+	}
+	async function deleteCall() {
+		try {
+
+			const response = await deleteRequest(`/achievements/${3}`);
+
+			console.log("✅ Server response:", response.data);
+		} catch (error: any) {
+			console.error("❌ Request failed:", error.response?.data || error.message);
+		}
+	}
 
 	return (
 		<div className="container">
@@ -131,10 +90,13 @@ export default function Achievements() {
 						}
 
 					</div>
+					<button onClick={testCall}>Test post</button>
+					<button onClick={getCall}>Get achievement</button>
+					<button onClick={deleteCall}>delete achievement</button>
 
 				</div>
 			</div>
-		</div>
+		</div >
 
 	);
 };
