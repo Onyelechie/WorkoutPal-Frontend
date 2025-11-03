@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { AlertDialogContext } from "../components/Dialog/AlertDialog/AlertDialogContext";
-import type { AlertDialogContextType, ConfirmDialogContextType } from "../types/context";
-import { ConfirmDialogContext } from "../components/Dialog/ConfirmDialog/ConfirmDialogContext";
+import { AlertDialogContext } from "../components/Dialogs/AlertDialog/AlertDialogContext";
+import type { AlertDialogContextType, ConfirmDialogContextType } from "../types/dialogContext";
+import { ConfirmDialogContext } from "../components/Dialogs/ConfirmDialog/ConfirmDialogContext";
 
 
 /**
