@@ -82,6 +82,8 @@ npm run test:coverage
 npm run test:coverage:html
 ```
 - Output file can be found in `coverage/index.html`
+### Coverage Report
+- [Instructions to view the html generated report](#accessing-the-report)
 
 ### Acceptance tests
 
@@ -117,4 +119,11 @@ npm run cy:open
 
 5. See the test run to completion
 
-
+## Coverage Report
+### Accessing the report
+1. Click on the **Actions** tab at the top.
+2. Select the workflow "**Coverage Report**".
+3. Select the latest workflow run created from the **main** branch or **development** branch.
+4. You will see the artifact (**coverage-report**) uploaded by that run.
+5. Click on the artifact name to **download** the ZIP file.
+6. **Extract** the zip, **Navigate** to `coverage-report/index.html` to access the html generated report.
