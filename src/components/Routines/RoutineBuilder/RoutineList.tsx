@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { deleteRequest, getRequest } from '../../utils/apiRequests';
-import './RoutineBuilder.css';
+import { deleteRequest, getRequest } from '../../../utils/apiRequests';
 
 interface RoutineListProps {
     routines: any[];

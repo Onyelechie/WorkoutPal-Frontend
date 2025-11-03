@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { HOME_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, REGISTER_ROUTE, ROUTINE_ROUTE } from '../app/AppRoutes';
 
 /* Hook for navigating to different pages */
+/* Must be a parent route */
 export function useAppNavigation() {
   const navigate = useNavigate();
 

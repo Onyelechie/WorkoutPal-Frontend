@@ -3,13 +3,16 @@ import "./AuthCard.css";
 import React, { useState } from "react";
 import { postRequest } from "../../utils/apiRequests";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
-import { useAlertDialog } from "../../hooks/useAlertDialog";
+import { useErrorHandler } from "../../hooks/useErrorHandler";
+import { USER_LOGIN_FAIL } from "../../app/constants/genericErrors";
 
 function LoginCard() {
+
+  const { alertOnRequestError } = useErrorHandler();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { navHome, navRegister } = useAppNavigation();
-  const dialogContext = useAlertDialog(); // access showAlert through context
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,15 +31,7 @@ function LoginCard() {
         }
       })
       .catch((error) => {
-        if (error?.response) {
-          console.error("Login failed:", error);
-          dialogContext.showAlert("Login failed", "Please check your credentials and try again. " +
-              error.response.data
-          );
-        }
-        else {
-          dialogContext.showAlert("Server Error", "Unable to communicate with our server. Please try again later.")
-        }
+        alertOnRequestError(USER_LOGIN_FAIL, error, error.response?.data);
       });
   };
 
