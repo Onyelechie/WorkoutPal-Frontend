@@ -23,7 +23,7 @@ export function useAlertDialog(): AlertDialogContextType {
 export function useConfirmDialog(): ConfirmDialogContextType {
   const context = useContext(ConfirmDialogContext); // this context contains a function (showAlert)
   if (!context) {
-    throw new Error("useAlertDialog must be used within an ConfirmDialogProvider. You must wrap the App component with <ConfirmDialogProvider>");
+    throw new Error("useConfirmDialog must be used within an ConfirmDialogProvider. You must wrap the App component with <ConfirmDialogProvider>");
   }
   return context;
 }
