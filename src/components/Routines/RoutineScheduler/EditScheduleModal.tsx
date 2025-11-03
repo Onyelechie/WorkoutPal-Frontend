@@ -16,6 +16,8 @@ interface EditScheduleModalProps {
 // A modal to be able to edit or delete a selected schedule
 export default function EditScheduleModal({open, onClose, selectedSchedule, setSchedules, routines }:EditScheduleModalProps) {
 
+    const ENDPOINT = '/schedules';
+
     // generic handler for request errors
     const { alertOnRequestError } = useErrorHandler();
     
@@ -37,7 +39,7 @@ export default function EditScheduleModal({open, onClose, selectedSchedule, setS
     async function handleEditSchedule(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         try {
-            const response = await putRequest(`/schedules/${schedulePayload.id}`, schedulePayload);
+            const response = await putRequest(`${ENDPOINT}/${schedulePayload.id}`, schedulePayload);
             setSchedules((prev) =>
                 prev.map((s) =>
                     s.id === response.data.id ? response.data : s // replace the matching schedule
@@ -51,7 +53,7 @@ export default function EditScheduleModal({open, onClose, selectedSchedule, setS
 
     async function handleDeleteSchedule() {
         try {
-            await deleteRequest(`/schedules/${schedulePayload.id}`);
+            await deleteRequest(`${ENDPOINT}/${schedulePayload.id}`);
             setSchedules((prev) => prev.filter((s) => s.id !== schedulePayload.id));
             onClose();
         } catch (error: any) {

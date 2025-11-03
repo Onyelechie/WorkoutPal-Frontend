@@ -1,11 +1,12 @@
 import './RoutineScheduler.css';
 import '../Routines.css';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { daysLongForm } from '../../../utils/date';
 import { useRoutines } from '../../../hooks/useRoutines';
 import { ScheduleRow } from './ScheduleRow';
 import { useSchedules } from '../../../hooks/useSchedules';
+import { useTime } from '../../../hooks/useTime';
 import CreateScheduleModal from './CreateScheduleModal';
 
 
@@ -13,22 +14,9 @@ export default function RoutineScheduler() {
 
   const { routines, isLoading, error:routinesError } = useRoutines();
   const { schedules, setSchedules, error:schedulesError } = useSchedules();
+  const { liveDateTime } = useTime();
 
   const tableColumns = ["Day", "Routine Name", "Routines", "Time Slot", "Routine Length"];
-
-  // live day and time
-  const [now, setNow] = useState(new Date());
-
-  // live timer created by ChatGPT
-  useEffect(() => {
-    // Update every second
-    const intervalId = setInterval(() => {
-      setNow(new Date());
-    }, 1000);
-
-    // Cleanup on unmount
-    return () => clearInterval(intervalId);
-  }, []);
 
   const [openCreateModal, setOpenCreateModal] = useState(false);
   function showCreateModal() { setOpenCreateModal(true) };
@@ -46,7 +34,7 @@ export default function RoutineScheduler() {
         </header>
 
         <header className="routine-scheduler-time">
-          <div>Today: {now.toLocaleDateString()}, {daysLongForm[now.getDay()]}, {now.getHours()}:{now.getMinutes()}</div>
+          <div>Today: {liveDateTime.toLocaleDateString()}, {daysLongForm[liveDateTime.getDay()]}, {liveDateTime.getHours()}:{liveDateTime.getMinutes()}</div>
         </header>
 
         {isLoading && <p>Loading schedule...</p>}

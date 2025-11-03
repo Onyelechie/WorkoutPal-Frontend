@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { getTodayIndex, formatApiTime } from '../date';
+import { getTodayIndex, formatApiTime, minutesToHours } from '../date';
 
 describe('/utils/date.ts', () => {
 
@@ -34,5 +34,27 @@ describe('/utils/date.ts', () => {
         
         expect(testTime).toBe("18:00");
     });
+
+    it('formatApiTime with an invalid time returns NaN:NaN', async () => {
+        const invalidTime = "20:15"; // invalid time
+        const testTime = formatApiTime(invalidTime);
+        
+        expect(testTime).toBe("NaN:NaN");
+    });
+
+    it ('minutesToHours converts 60 minutes to 1 hour', async () => {
+        const sampleMinutes = 60;
+        const testHours = minutesToHours(sampleMinutes);
+
+        expect(testHours).toBe('1.00'); // must be in two decimal places
+    });
+
+    it ('minutesToHours returns string conversion, rounded up with two decimal places', async () => {
+        const sampleMinutes = 1234;
+        const testHours = minutesToHours(sampleMinutes);
+
+        // 1234 minutes to hours is 20.5666666667
+        expect(testHours).toBe('20.57'); // must be in two decimal places
+    }); 
 
 })
