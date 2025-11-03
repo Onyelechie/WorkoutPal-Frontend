@@ -3,7 +3,6 @@ import { AlertDialogContext } from "../components/Dialog/AlertDialog/AlertDialog
 import type { AlertDialogContextType, ConfirmDialogContextType } from "../types/context";
 import { ConfirmDialogContext } from "../components/Dialog/ConfirmDialog/ConfirmDialogContext";
 
-//  -------------- TODO: RENAME useAlertDialog.ts to useDialog.ts ----------------
 
 /**
  * Hook: A wrapper to return an AlertDialogContext
