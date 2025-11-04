@@ -115,3 +115,17 @@ export interface User {
 }
 
 /* ----------------- END OF USERS ----------------- */
+
+/* ----------------- SCHEDULE ----------------- */
+
+export interface Schedule {
+  id: number;
+  name: string;
+  userId: number;
+  dayOfWeek: number;
+  routineIds: number[];
+  timeSlot: string;
+  routineLengthMinutes: number;
+}
+
+/* ----------------- END OF SCHEDULE ----------------- */

@@ -10,6 +10,7 @@ import {
 } from "../app/AppRoutes";
 
 /* Hook for navigating to different pages */
+/* Must be a parent route */
 export function useAppNavigation() {
   const navigate = useNavigate();
 

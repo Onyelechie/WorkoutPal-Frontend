@@ -45,9 +45,7 @@ export default function Dashboard() {
       {/* Show loading message when its loading. If an error is caught, show a generic try again later message. */}
       {/* If !isLoading and !error, show appropriate message if posts.length == 0, otherwise, show the post cards */}
       {isLoading && <div>Loading...</div>}
-      {error && (
-        <div>Could not get posts at this time. Please try again later.</div>
-      )}
+      {error && <div>{error.message}</div>}
       {!isLoading && !error && posts.length === 0 && (
         <div>There are no posts at this time...</div>
       )}

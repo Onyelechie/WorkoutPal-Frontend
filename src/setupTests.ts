@@ -4,4 +4,4 @@
     If this file is moved, ensure vite.config.ts is updated to reflect the correct path to this file
 */
 
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
