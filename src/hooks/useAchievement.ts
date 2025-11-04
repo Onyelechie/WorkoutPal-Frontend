@@ -1,5 +1,5 @@
 import { unlockAchievement as unlockAchievementService } from "../services/achievementService";
-import { useAlertDialog } from "./useAlertDialog";
+import { useAlertDialog } from "./useDialog";
 
 
 export function useAchievement() {
