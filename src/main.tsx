@@ -12,7 +12,6 @@ import { ConfirmDialogProvider } from "./components/Dialogs/ConfirmDialog/Confir
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <AlertDialogProvider>
-      {/* Provider nesting problem. Refactor soon? */}
       <ConfirmDialogProvider>
         <App />
       </ConfirmDialogProvider>
