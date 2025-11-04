@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export function useTime() {
-    // live date and time
+  // live date and time
   const [liveDateTime, setLiveDateTime] = useState(new Date());
 
   // live timer created by ChatGPT
@@ -15,8 +15,7 @@ export function useTime() {
     return () => clearInterval(intervalId);
   }, []);
 
-
-  return ({
-    liveDateTime
-  });
+  return {
+    liveDateTime,
+  };
 }

@@ -19,20 +19,23 @@ function EditProfile({ user, onSave, onCancel }: EditProfileProps) {
     weight: user.weight || 0,
     heightMetric: user.heightMetric || "cm",
     weightMetric: user.weightMetric || "kg",
-    avatar: user.avatar || ""
+    avatar: user.avatar || "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: name === 'age'
-        ? parseInt(value) || 0
-        : name === 'height' || name === 'weight'
-        ? parseFloat(value) || 0
-        : value
+      [name]:
+        name === "age"
+          ? parseInt(value) || 0
+          : name === "height" || name === "weight"
+            ? parseFloat(value) || 0
+            : value,
     }));
   };
 
@@ -45,7 +48,7 @@ function EditProfile({ user, onSave, onCancel }: EditProfileProps) {
       const response = await patchRequest(`/users/${user.id}`, formData);
       onSave(response.data);
     } catch (error: any) {
-      console.error('Update error:', error);
+      console.error("Update error:", error);
       setError(error.response?.data?.message || "Failed to update profile");
     } finally {
       setLoading(false);
@@ -58,12 +61,14 @@ function EditProfile({ user, onSave, onCancel }: EditProfileProps) {
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           <div className="modal-header">
             <h2>Edit Profile</h2>
-            <button className="close-btn" onClick={onCancel}>×</button>
+            <button className="close-btn" onClick={onCancel}>
+              ×
+            </button>
           </div>
-          
+
           <form onSubmit={handleSubmit} className="edit-form">
             {error && <div className="error-message">{error}</div>}
-            
+
             <div className="form-group">
               <label>Name</label>
               <input

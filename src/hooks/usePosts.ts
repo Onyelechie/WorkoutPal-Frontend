@@ -5,7 +5,6 @@ import { POST_FETCH_FAIL } from "../app/constants/genericErrors";
 import { useErrorHandler } from "./useErrorHandler";
 
 export function usePosts() {
-
   const { handleError } = useErrorHandler();
 
   // state variables

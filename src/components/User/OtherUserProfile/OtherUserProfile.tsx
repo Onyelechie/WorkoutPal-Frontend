@@ -39,8 +39,9 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
 
   const checkFollowStatus = async () => {
     try {
-      const followingData = await relationshipService.getFollowing(currentUserId);
-      setIsFollowing(followingData.some(u => u.id === userId));
+      const followingData =
+        await relationshipService.getFollowing(currentUserId);
+      setIsFollowing(followingData.some((u) => u.id === userId));
     } catch (error) {
       console.error("Error checking follow status:", error);
     }
@@ -56,28 +57,36 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
         setIsFollowing(false);
 
         // Optimistically update viewed user's followers list
-        setUser(prev => {
+        setUser((prev) => {
           if (!prev) return prev;
-          const prevFollowers = Array.isArray(prev.followers) ? [...prev.followers] : [];
-          const newFollowers = prevFollowers.filter(id => id !== currentUserId);
+          const prevFollowers = Array.isArray(prev.followers)
+            ? [...prev.followers]
+            : [];
+          const newFollowers = prevFollowers.filter(
+            (id) => id !== currentUserId,
+          );
           return { ...prev, followers: newFollowers } as User;
         });
-  // notify other parts of the app to refresh current user's data (following count)
-  window.dispatchEvent(new Event('me:refresh'));
+        // notify other parts of the app to refresh current user's data (following count)
+        window.dispatchEvent(new Event("me:refresh"));
       } else {
         await relationshipService.followUser(userId, currentUserId);
         setIsFollowing(true);
 
         // Optimistically update viewed user's followers list
-        setUser(prev => {
+        setUser((prev) => {
           if (!prev) return prev;
-          const prevFollowers = Array.isArray(prev.followers) ? [...prev.followers] : [];
+          const prevFollowers = Array.isArray(prev.followers)
+            ? [...prev.followers]
+            : [];
           // avoid duplicate
-          const newFollowers = prevFollowers.includes(currentUserId) ? prevFollowers : [...prevFollowers, currentUserId];
+          const newFollowers = prevFollowers.includes(currentUserId)
+            ? prevFollowers
+            : [...prevFollowers, currentUserId];
           return { ...prev, followers: newFollowers } as User;
         });
-  // notify other parts of the app to refresh current user's data (following count)
-  window.dispatchEvent(new Event('me:refresh'));
+        // notify other parts of the app to refresh current user's data (following count)
+        window.dispatchEvent(new Event("me:refresh"));
       }
       // also refresh viewed profile from server in background to reconcile
       fetchUserProfile();
@@ -111,16 +120,16 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
           <div className="profile-info">
             <h1 className="name">{user.name}</h1>
             <h3 className="username">@{user.username}</h3>
-            <button 
-              className={`follow-btn ${isFollowing ? 'following' : 'follow'}`}
+            <button
+              className={`follow-btn ${isFollowing ? "following" : "follow"}`}
               onClick={handleFollowToggle}
               disabled={followLoading}
             >
-              {followLoading ? '...' : isFollowing ? 'Unfollow' : 'Follow'}
+              {followLoading ? "..." : isFollowing ? "Unfollow" : "Follow"}
             </button>
           </div>
         </div>
-        
+
         <div className="social-stats">
           <div className="stat-item">
             <span className="stat-number">{user.Posts?.length || 0}</span>
@@ -137,7 +146,7 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
         </div>
 
         <div className="posts-grid">
-          {Array.from({length: 6}, (_, i) => (
+          {Array.from({ length: 6 }, (_, i) => (
             <div key={i} className="post-item">
               <div className="post-image">
                 <span>Post {i + 1}</span>
@@ -153,12 +162,21 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Followers</h2>
-              <button className="close-btn" onClick={() => setShowFollowers(false)}>×</button>
+              <button
+                className="close-btn"
+                onClick={() => setShowFollowers(false)}
+              >
+                ×
+              </button>
             </div>
             <div className="user-list">
-              {followers.map(user => (
+              {followers.map((user) => (
                 <div key={user.id} className="user-item">
-                  <img src={user.avatar} alt={user.name} className="user-avatar" />
+                  <img
+                    src={user.avatar}
+                    alt={user.name}
+                    className="user-avatar"
+                  />
                   <div className="user-info">
                     <span className="user-name">{user.name}</span>
                     <span className="user-username">@{user.username}</span>
@@ -177,12 +195,21 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Following</h2>
-              <button className="close-btn" onClick={() => setShowFollowing(false)}>×</button>
+              <button
+                className="close-btn"
+                onClick={() => setShowFollowing(false)}
+              >
+                ×
+              </button>
             </div>
             <div className="user-list">
-              {following.map(user => (
+              {following.map((user) => (
                 <div key={user.id} className="user-item">
-                  <img src={user.avatar} alt={user.name} className="user-avatar" />
+                  <img
+                    src={user.avatar}
+                    alt={user.name}
+                    className="user-avatar"
+                  />
                   <div className="user-info">
                     <span className="user-name">{user.name}</span>
                     <span className="user-username">@{user.username}</span>

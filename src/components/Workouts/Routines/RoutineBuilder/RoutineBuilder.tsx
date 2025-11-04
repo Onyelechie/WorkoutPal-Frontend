@@ -1,5 +1,5 @@
 import "./RoutineBuilder.css";
-import '../Routines.css';
+import "../Routines.css";
 
 import { useState } from "react";
 import RoutineList from "./RoutineList.tsx";
@@ -7,7 +7,6 @@ import CreateRoutineModal from "./CreateRoutineModal.tsx";
 import { useRoutines } from "../../../hooks/useRoutines.ts";
 
 export default function RoutineBuilder() {
-
   const { routines, setRoutines, error, isLoading } = useRoutines();
 
   const [showModal, setShowModal] = useState(false);

@@ -33,8 +33,9 @@ body {
   color: var(--text-color-dark-1);
   width: 100vw;
   height: 100vh;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family:
+    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
+    Arial, sans-serif;
 }
 
 #root {
@@ -54,7 +55,9 @@ button {
   font-size: 1rem; /* Text size */
   font-weight: 500;
   cursor: pointer; /* Pointer cursor */
-  transition: background-color 0.2s, transform 0.1s; /* Smooth hover */
+  transition:
+    background-color 0.2s,
+    transform 0.1s; /* Smooth hover */
   text-decoration: none; /* Remove underline */
   display: inline-block;
 }

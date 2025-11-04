@@ -26,7 +26,9 @@ function UserSearch({ onUserSelect }: UserSearchProps) {
     const mySeq = ++seq.current;
     setLoading(true);
     try {
-      const response = await getRequest(`/users?search=${encodeURIComponent(term)}`);
+      const response = await getRequest(
+        `/users?search=${encodeURIComponent(term)}`,
+      );
       // ignore older responses
       if (mySeq < lastHandledSeq.current) return;
       lastHandledSeq.current = mySeq;
@@ -55,7 +57,9 @@ function UserSearch({ onUserSelect }: UserSearchProps) {
         const na = (a.name || "") as string;
         const nb = (b.name || "") as string;
         if (na !== nb) return na.localeCompare(nb);
-        return ((a.username || "") as string).localeCompare((b.username || "") as string);
+        return ((a.username || "") as string).localeCompare(
+          (b.username || "") as string,
+        );
       });
 
       setUsers(results);
@@ -97,16 +101,20 @@ function UserSearch({ onUserSelect }: UserSearchProps) {
         />
         {loading && <div className="search-loading">🔍</div>}
       </div>
-      
+
       {users.length > 0 && (
         <div className="search-results">
-          {users.map(user => (
-            <div 
-              key={user.id} 
+          {users.map((user) => (
+            <div
+              key={user.id}
               className="search-result-item"
               onClick={() => onUserSelect?.(user)}
             >
-              <img src={user.avatar} alt={user.name} className="result-avatar" />
+              <img
+                src={user.avatar}
+                alt={user.name}
+                className="result-avatar"
+              />
               <div className="result-info">
                 <span className="result-name">{user.name}</span>
                 <span className="result-username">@{user.username}</span>

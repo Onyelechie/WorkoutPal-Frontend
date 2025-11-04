@@ -5,8 +5,7 @@ import { useErrorHandler } from "./useErrorHandler";
 import { USER_FETCH_FAIL } from "../app/constants/genericErrors";
 
 export function useMe() {
-
-  const { handleError } = useErrorHandler(); 
+  const { handleError } = useErrorHandler();
 
   const ENDPOINT = "/me";
 
@@ -39,7 +38,8 @@ export function useMe() {
       fetchMe();
     };
     window.addEventListener("me:refresh", handler as EventListener);
-    return () => window.removeEventListener("me:refresh", handler as EventListener);
+    return () =>
+      window.removeEventListener("me:refresh", handler as EventListener);
   }, []);
 
   return {

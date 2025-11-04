@@ -11,7 +11,9 @@ function WorkoutCard({ title, description }: WorkoutCardProps) {
     <div className="workout-card">
       <h3 className="workout-title">{title}</h3>
       <p className="workout-desc">{description}</p>
-      <button className="workout-btn" onClick={notYetImplemented}>View Details</button>
+      <button className="workout-btn" onClick={notYetImplemented}>
+        View Details
+      </button>
     </div>
   );
 }

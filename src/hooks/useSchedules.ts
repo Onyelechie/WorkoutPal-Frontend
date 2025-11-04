@@ -5,7 +5,6 @@ import { SCHEDULE_FETCH_FAIL } from "../app/constants/genericErrors";
 import { useErrorHandler } from "./useErrorHandler";
 
 export function useSchedules() {
-
   const { handleError } = useErrorHandler();
 
   // state variables
@@ -36,6 +35,6 @@ export function useSchedules() {
     setSchedules,
     isLoading,
     error,
-    fetchSchedules
+    fetchSchedules,
   };
 }

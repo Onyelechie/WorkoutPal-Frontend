@@ -18,13 +18,13 @@ interface ProfileCardProps {
   onUserUpdate?: (updatedUser: ApiUser) => void;
 }
 
-function ProfileCard({ 
+function ProfileCard({
   userId,
-  postsCount = 0, 
-  followersCount = 0, 
+  postsCount = 0,
+  followersCount = 0,
   followingCount = 0,
   user,
-  onUserUpdate
+  onUserUpdate,
 }: ProfileCardProps) {
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
@@ -63,12 +63,15 @@ function ProfileCard({
             <h1 className="name">{user.name}</h1>
             <h3 className="username">@{user.username}</h3>
             <p className="email">{user.email}</p>
-            <button className="edit-profile-btn" onClick={() => setShowEditProfile(true)}>
+            <button
+              className="edit-profile-btn"
+              onClick={() => setShowEditProfile(true)}
+            >
               Edit Profile
             </button>
           </div>
         </div>
-        
+
         <div className="social-stats">
           <div className="stat-item">
             <span className="stat-number">{postsCount}</span>
@@ -91,16 +94,25 @@ function ProfileCard({
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Followers</h2>
-              <button className="close-btn" onClick={() => setShowFollowers(false)}>×</button>
+              <button
+                className="close-btn"
+                onClick={() => setShowFollowers(false)}
+              >
+                ×
+              </button>
             </div>
             <div className="user-list">
               {loadingFollowers ? (
                 <p>Loading followers...</p>
               ) : (
                 <>
-                  {followers.map(user => (
+                  {followers.map((user) => (
                     <div key={user.id} className="user-item">
-                      <img src={user.avatar} alt={user.name} className="user-avatar" />
+                      <img
+                        src={user.avatar}
+                        alt={user.name}
+                        className="user-avatar"
+                      />
                       <div className="user-info">
                         <span className="user-name">{user.name}</span>
                         <span className="user-username">@{user.username}</span>
@@ -121,16 +133,25 @@ function ProfileCard({
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Following</h2>
-              <button className="close-btn" onClick={() => setShowFollowing(false)}>×</button>
+              <button
+                className="close-btn"
+                onClick={() => setShowFollowing(false)}
+              >
+                ×
+              </button>
             </div>
             <div className="user-list">
               {loadingFollowing ? (
                 <p>Loading following...</p>
               ) : (
                 <>
-                  {following.map(user => (
+                  {following.map((user) => (
                     <div key={user.id} className="user-item">
-                      <img src={user.avatar} alt={user.name} className="user-avatar" />
+                      <img
+                        src={user.avatar}
+                        alt={user.name}
+                        className="user-avatar"
+                      />
                       <div className="user-info">
                         <span className="user-name">{user.name}</span>
                         <span className="user-username">@{user.username}</span>

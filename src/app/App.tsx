@@ -1,4 +1,4 @@
-import '../styles/global.css';
+import "../styles/global.css";
 import { BrowserRouter, useLocation } from "react-router-dom";
 import AppRoutes, { LOGIN_ROUTE, REGISTER_ROUTE } from "./AppRoutes";
 import Header from "../components/Header/Header";

@@ -41,7 +41,7 @@ export default function AppRoutes() {
         <Route path={ROUTINE_ROUTE} element={<RoutinePage />}>
           {/* Redirect to the scheduler on ROUTINE_ROUTE */}
           <Route index element={<Navigate to={SCHEDULER_ROUTE} replace />} />
-          
+
           <Route path={BUILDER_ROUTE} element={<RoutineBuilder />} />
           <Route path={SCHEDULER_ROUTE} element={<RoutineScheduler />} />
         </Route>

@@ -6,10 +6,12 @@ import { postRequest } from "../../utils/apiRequests";
 import bcrypt from "bcryptjs";
 import { useAlertDialog } from "../../hooks/useDialog";
 import { useErrorHandler } from "../../hooks/useErrorHandler";
-import { PASSWORD_MISMATCH, USER_CREATE_FAIL } from "../../app/constants/genericErrors";
+import {
+  PASSWORD_MISMATCH,
+  USER_CREATE_FAIL,
+} from "../../app/constants/genericErrors";
 
 export default function RegisterCard() {
-
   const { alertOnRequestError } = useErrorHandler();
   const { navLogin } = useAppNavigation();
   const [name, setName] = useState("");
@@ -23,7 +25,8 @@ export default function RegisterCard() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) return dialogContext.showAlert(USER_CREATE_FAIL, PASSWORD_MISMATCH);
+    if (password !== confirmPassword)
+      return dialogContext.showAlert(USER_CREATE_FAIL, PASSWORD_MISMATCH);
 
     const hashPass = await bcrypt.hash(password, saltRounds);
 
@@ -39,7 +42,11 @@ export default function RegisterCard() {
       console.log("Account Created");
       navLogin();
     } catch (error: any) {
-      alertOnRequestError(USER_CREATE_FAIL, error, error.response?.data?.message);
+      alertOnRequestError(
+        USER_CREATE_FAIL,
+        error,
+        error.response?.data?.message,
+      );
     }
   };
 

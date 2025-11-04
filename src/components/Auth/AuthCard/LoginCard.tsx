@@ -7,7 +7,6 @@ import { useErrorHandler } from "../../hooks/useErrorHandler";
 import { USER_LOGIN_FAIL } from "../../app/constants/genericErrors";
 
 function LoginCard() {
-
   const { alertOnRequestError } = useErrorHandler();
 
   const [email, setEmail] = useState("");
@@ -21,7 +20,6 @@ function LoginCard() {
       email: email,
       password: password,
     };
-
 
     postRequest("/login", payload)
       .then((response) => {
