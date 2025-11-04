@@ -1,7 +1,7 @@
-import type { Achievement } from "../../types/api";
+import type { Achievement, UserAchievement } from "../../types/api";
 
 // sample achievements for display, do not send this to the backend
-export const mockAchievements: Achievement[] = [
+export const mockAchievements: UserAchievement[] = [
     {
         id: 1,
         title: "Welcome, Pal!",

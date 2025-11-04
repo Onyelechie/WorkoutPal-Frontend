@@ -1,11 +1,11 @@
 import "./Achievements.css"
-import type { Achievement } from "../../types/api";
+import type { Achievement, UserAchievement } from "../../types/api";
 import { AchievementCard } from "./AchievementCard";
 import { deleteRequest, getRequest, postRequest } from "../../utils/apiRequests";
 import { mockAchievements } from "./mockAchievements"
 
 
-function sortMockAchievements(achievements: Achievement[]) {
+function sortMockAchievements(achievements: UserAchievement[]) {
 	const completed = achievements.filter((a) => a.earnedAt); // if there earnedAt isn't empty then it's already completed
 	const incomplete = achievements.filter((a) => !a.earnedAt);
 	return { completed, incomplete };
