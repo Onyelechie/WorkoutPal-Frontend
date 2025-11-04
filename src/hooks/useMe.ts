@@ -34,7 +34,8 @@ export function useMe() {
       fetchMe();
     };
     window.addEventListener("me:refresh", handler as EventListener);
-    return () => window.removeEventListener("me:refresh", handler as EventListener);
+    return () =>
+      window.removeEventListener("me:refresh", handler as EventListener);
   }, []);
 
   return {

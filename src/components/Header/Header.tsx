@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import logoUrl from "../../assets/react.svg";
 
 function Header() {
-  const { navHome, navProfile, navRoutine } = useAppNavigation();
+  const { navHome, navProfile, navRoutine, navActivity } = useAppNavigation();
   const navigate = useNavigate();
 
   const handleUserSelect = (user: { id: number }) => {
@@ -19,8 +19,15 @@ function Header() {
           <img src={logoUrl} alt="WorkoutPal logo" className="logo-image" />
           <span className="logo-text">WorkoutPal</span>
         </button>
-        <button className="home-button" onClick={navHome}>Home</button>
-        <button className="routine-button" onClick={navRoutine}>Routine</button>
+        <button className="header-button" onClick={navHome}>
+          Home
+        </button>
+        <button className="header-button" onClick={navActivity}>
+          Activity
+        </button>
+        <button className="header-button" onClick={navRoutine}>
+          Routine
+        </button>
       </div>
 
       <div className="header-center">
@@ -28,11 +35,12 @@ function Header() {
       </div>
 
       <div className="header-right">
-        <button className="profile-button" onClick={navProfile}>Profile</button>
+        <button className="header-button" onClick={navProfile}>
+          Profile
+        </button>
       </div>
     </header>
   );
 }
 
 export default Header;
-

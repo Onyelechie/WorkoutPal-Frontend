@@ -3,7 +3,7 @@ import { getRequest } from "../utils/apiRequests"; // adjust path if needed
 import type { Post } from "../types/api";
 
 export function usePosts() {
-  const ENDPOINT = "/mock/posts";
+  const ENDPOINT = "/posts";
 
   // state variables
   const [posts, setPosts] = useState<Post[]>([]);

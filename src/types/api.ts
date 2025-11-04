@@ -1,5 +1,7 @@
 /* Interfaces for the types of JSON responses we will get from the backend */
 
+import type { LargeNumberLike } from "crypto";
+
 /* ----------------- POSTS ----------------- */
 export interface Post {
   id: number;
@@ -13,9 +15,12 @@ export interface Post {
 }
 
 export interface Comment {
+  id: number;
   commentedBy: string;
+  commentedOn: number;
   comment: string;
   date: string;
+  parentComment: number;
 }
 /* ----------------- END OF POSTS ----------------- */
 

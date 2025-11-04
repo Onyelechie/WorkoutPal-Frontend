@@ -7,12 +7,14 @@ import OtherUserPage from "../pages/Profile/OtherUserPage";
 import LoginPage from "../pages/Auth/LoginPage";
 import RegisterPage from "../pages/Auth/RegisterPage";
 import RoutinePage from "../pages/Routine/RoutinePage";
+import ActivityFeed from "../pages/Activity/ActivityFeed";
 
 export const LOGIN_ROUTE = "/auth/login";
 export const REGISTER_ROUTE = "/auth/register";
 export const HOME_ROUTE = "/home";
 export const PROFILE_ROUTE = "/profile";
 export const ROUTINE_ROUTE = "/routine";
+export const ACTIVITY_ROUTE = "/activity";
 
 export default function AppRoutes() {
   return (
@@ -28,8 +30,9 @@ export default function AppRoutes() {
 
         <Route path={HOME_ROUTE} element={<HomePage />} />
         <Route path={PROFILE_ROUTE} element={<ProfilePage />} />
-  <Route path="/users/:id" element={<OtherUserPage />} />
+        <Route path="/users/:id" element={<OtherUserPage />} />
         <Route path={ROUTINE_ROUTE} element={<RoutinePage />} />
+        <Route path={ACTIVITY_ROUTE} element={<ActivityFeed />} />
 
         {/* Direct to PageNotFound for routes that are not implemented */}
         <Route path="*" element={<PageNotFound />} />
