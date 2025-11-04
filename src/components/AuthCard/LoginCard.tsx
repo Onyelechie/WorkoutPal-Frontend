@@ -4,12 +4,14 @@ import React, { useState } from "react";
 import { postRequest } from "../../utils/apiRequests";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { useAlertDialog } from "../../hooks/useAlertDialog";
+import { useAchievement } from "../../hooks/useAchievement";
 
 function LoginCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { navHome, navRegister } = useAppNavigation();
   const dialogContext = useAlertDialog(); // access showAlert through context
+  const achievement = useAchievement()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,9 +23,10 @@ function LoginCard() {
 
 
     postRequest("/login", payload)
-      .then((response) => {
+      .then(async (response) => {
         if (response.status == 200) {
           console.log("Login successful");
+          achievement.unlockAchievement(1, 6);
           navHome();
         }
       })
@@ -31,7 +34,7 @@ function LoginCard() {
         if (error?.response) {
           console.error("Login failed:", error);
           dialogContext.showAlert("Login failed", "Please check your credentials and try again. " +
-              error.response.data
+            error.response.data
           );
         }
         else {

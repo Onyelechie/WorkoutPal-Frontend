@@ -1,8 +1,8 @@
-import type { Achievement } from "../../types/api";
+import type { Achievement, UserAchievement } from "../../types/api";
 import "./AchievementCard.css"
 
 type AchievementCompleteProp = {
-    achievement: Achievement;
+    achievement: UserAchievement;
     completed: boolean
 };
 
