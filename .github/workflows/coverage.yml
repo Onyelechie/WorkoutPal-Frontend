@@ -9,12 +9,11 @@
 # 4. You will see the artifact (coverage-report) uploaded by that run.
 # 5. Click on the artifact name to download a ZIP file containing the files you uploaded.
 
-
 name: Coverage Report
 
 on:
   push: # trigger on push/merge
-    branches:  # trigger only for main and development branch
+    branches: # trigger only for main and development branch
       - "main"
       - "development"
 
@@ -24,11 +23,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install dependencies
         run: npm install
@@ -36,10 +35,8 @@ jobs:
       - name: Run frontend tests with coverage, report in HTML
         run: npm run test:coverage:html
 
-
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: coverage/
-

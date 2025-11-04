@@ -7,8 +7,8 @@ import OtherUserPage from "../pages/Profile/OtherUserPage";
 import LoginPage from "../pages/Auth/LoginPage";
 import RegisterPage from "../pages/Auth/RegisterPage";
 import RoutinePage from "../pages/Routine/RoutinePage";
-import RoutineBuilder from "../components/Routines/RoutineBuilder/RoutineBuilder";
-import RoutineScheduler from "../components/Routines/RoutineScheduler/RoutineScheduler";
+import RoutineBuilder from "../components/Workouts/Routines/RoutineBuilder/RoutineBuilder";
+import RoutineScheduler from "../components/Workouts/Routines/RoutineScheduler/RoutineScheduler";
 
 export const LOGIN_ROUTE = "/auth/login";
 export const REGISTER_ROUTE = "/auth/register";
@@ -41,7 +41,7 @@ export default function AppRoutes() {
         <Route path={ROUTINE_ROUTE} element={<RoutinePage />}>
           {/* Redirect to the scheduler on ROUTINE_ROUTE */}
           <Route index element={<Navigate to={SCHEDULER_ROUTE} replace />} />
-          
+
           <Route path={BUILDER_ROUTE} element={<RoutineBuilder />} />
           <Route path={SCHEDULER_ROUTE} element={<RoutineScheduler />} />
         </Route>

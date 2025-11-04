@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import OtherUserProfile from "../../components/OtherUserProfile/OtherUserProfile";
+import OtherUserProfile from "../../components/User/OtherUserProfile/OtherUserProfile";
 import { useMe } from "../../hooks/useMe";
 
 function OtherUserPage() {

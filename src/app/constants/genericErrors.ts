@@ -1,6 +1,6 @@
-
 // User errors
-export const USER_FETCH_FAIL = "Unable to get user. Please ensure you are logged in.";
+export const USER_FETCH_FAIL =
+  "Unable to get user. Please ensure you are logged in.";
 export const USER_LOGIN_FAIL = "Unable to login";
 export const USER_CREATE_FAIL = "Unable to register user";
 
