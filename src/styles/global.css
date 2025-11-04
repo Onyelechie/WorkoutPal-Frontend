@@ -36,8 +36,9 @@ body {
   width: 100%;
 
   height: 100vh;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family:
+    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
+    Arial, sans-serif;
 }
 
 #root {
@@ -62,12 +63,11 @@ button {
   font-size: 1rem;
   /* Text size */
   font-weight: 500;
-  cursor: pointer;
-  /* Pointer cursor */
-  transition: background-color 0.2s, transform 0.1s;
-  /* Smooth hover */
-  text-decoration: none;
-  /* Remove underline */
+  cursor: pointer; /* Pointer cursor */
+  transition:
+    background-color 0.2s,
+    transform 0.1s; /* Smooth hover */
+  text-decoration: none; /* Remove underline */
   display: inline-block;
 }
 
@@ -111,7 +111,20 @@ button:disabled {
   color: var(--color-primary-1);
 }
 
+.highlight-text {
+  color: var(--color-primary-1);
+  font-weight: bold;
+}
+
 /******** End of text styles ********/
+
+/******** Default container styles ********/
+
+.default-container {
+  margin: 2rem;
+}
+
+/******** End of default container styles ********/
 
 /* Flex containers */
 

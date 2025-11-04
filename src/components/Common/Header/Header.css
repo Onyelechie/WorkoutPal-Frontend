@@ -1,0 +1,135 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  z-index: 10;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.logo-image {
+  width: 36px;
+  height: 36px;
+  display: block;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.routine-button {
+  background: var(--primary-color, #2563eb);
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.98rem;
+  border-radius: 8px;
+  transition:
+    background-color 0.12s,
+    transform 0.06s;
+}
+
+.routine-button:hover,
+.routine-button:focus {
+  background-color: var(--primary-color-dark, #1e40af);
+  transform: translateY(-1px);
+}
+
+.home-button {
+  background: var(--primary-color, #2563eb);
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.98rem;
+  border-radius: 8px;
+  transition:
+    background-color 0.12s,
+    transform 0.06s;
+}
+
+.home-button:hover,
+.home-button:focus {
+  background-color: var(--primary-color-dark, #1e40af);
+  transform: translateY(-1px);
+}
+
+.header-center {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+/* Make sure the search box doesn't grow too large on wide screens */
+.header-center .user-search {
+  width: 100%;
+  max-width: 480px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.profile-button {
+  background: var(--primary-color, #2563eb);
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  transition:
+    background-color 0.12s,
+    transform 0.06s;
+}
+
+.profile-button:hover,
+.profile-button:focus {
+  background-color: var(--primary-color-dark, #1e40af);
+  transform: translateY(-1px);
+}
+
+/* focus-visible for keyboard users */
+.routine-button:focus-visible,
+.home-button:focus-visible,
+.profile-button:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, 0.18);
+  outline-offset: 2px;
+}
+
+.logout-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}

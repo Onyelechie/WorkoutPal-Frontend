@@ -14,8 +14,7 @@ const testPost: Post[] = [
     date: "2025-10-25",
     content: "Here is the full content of the post.",
     likes: 42,
-    comments: [
-    ]
+    comments: [],
   },
   {
     id: 2,
@@ -25,8 +24,8 @@ const testPost: Post[] = [
     date: "2025-10-24",
     content: "Full content goes here.",
     likes: 15,
-    comments: []
-  }
+    comments: [],
+  },
 ];
 
 export default function Dashboard() {
@@ -45,23 +44,25 @@ export default function Dashboard() {
 
       {/* Show loading message when its loading. If an error is caught, show a generic try again later message. */}
       {/* If !isLoading and !error, show appropriate message if posts.length == 0, otherwise, show the post cards */}
-      {isLoading && (<div>Loading...</div>)}
-      {error && (<div>Could not get posts at this time. Please try again later.</div>)}
-      {!isLoading && !error && posts.length === 0 && (<div>There are no posts at this time...</div>)}
-
-      {
-        // if 
-        posts && posts.length > 0 && !isLoading && !error &&
-        // display all posts if there are any
-        posts.map((post: Post) =>
-          (<PostCard key={post.id} post={post} />)
-        )
-      }
-      {/* TEST POST: REMOVE THIS LATER */}
-      {testPost.map((testPost: Post) =>
-        (<PostCard key={testPost.id} post={testPost} />)
+      {isLoading && <div>Loading...</div>}
+      {error && <div>{error.message}</div>}
+      {!isLoading && !error && posts.length === 0 && (
+        <div>There are no posts at this time...</div>
       )}
 
+      {
+        // if
+        posts &&
+          posts.length > 0 &&
+          !isLoading &&
+          !error &&
+          // display all posts if there are any
+          posts.map((post: Post) => <PostCard key={post.id} post={post} />)
+      }
+      {/* TEST POST: REMOVE THIS LATER */}
+      {testPost.map((testPost: Post) => (
+        <PostCard key={testPost.id} post={testPost} />
+      ))}
     </div>
   );
 }

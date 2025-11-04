@@ -1,6 +1,6 @@
 import type { Post } from "../../types/api";
-import "./PostCard.css"
-import { notYetImplemented } from "../../utils/construction"
+import "./PostCard.css";
+import { notYetImplemented } from "../../utils/construction";
 
 type PostProps = {
   post: Post;
@@ -8,11 +8,7 @@ type PostProps = {
 
 export function PostCard({ post }: PostProps) {
   return (
-    <div
-      key={post.id}
-      className="post-card"
-      onClick={notYetImplemented}
-    >
+    <div key={post.id} className="post-card" onClick={notYetImplemented}>
       <div className="post-header">
         <span>{post.postedBy}</span>
         <span>{post.date}</span>
@@ -20,10 +16,7 @@ export function PostCard({ post }: PostProps) {
       <div className="post-title">{post.title}</div>
       <div className="post-caption">{post.caption}</div>
       <div className="post-footer">
-        <span
-          className="post-likes post-clickable"
-          onClick={notYetImplemented}
-        >
+        <span className="post-likes post-clickable" onClick={notYetImplemented}>
           {post.likes} Likes
         </span>
         <span
