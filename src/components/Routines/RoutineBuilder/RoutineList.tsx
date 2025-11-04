@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { deleteRequest, getRequest } from '../../../utils/apiRequests';
+import { useConfirmDialog } from '../../../hooks/useDialog';
 
 interface RoutineListProps {
     routines: any[];
@@ -13,7 +14,7 @@ interface Exercise {
 
 const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
     const [exerciseMap, setExerciseMap] = useState<Record<number, Exercise>>({});
-
+    const confirmDialog = useConfirmDialog();
     useEffect(() => {
         const fetchExercises = async () => {
             const allExerciseIds = Array.from(
@@ -42,8 +43,11 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
 
     const handleDeleteRoutine = async (id: number) => {
         try {
-            await deleteRequest(`/routines/${id}`);
-            setRoutines((prevRoutines) => prevRoutines.filter((r) => r.id !== id));
+            if (await confirmDialog.showConfirmRisky("Delete Routine", "Are you sure you want to delete this routine?", "Yes, Delete", "Don't Delete")) {
+                await deleteRequest(`/routines/${id}`);
+                setRoutines((prevRoutines) => prevRoutines.filter((r) => r.id !== id));
+            }
+
         } catch (err) {
             console.error('Failed to delete routine:', err);
             alert('Failed to delete routine. Please try again.');

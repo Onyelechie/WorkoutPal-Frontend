@@ -6,7 +6,7 @@ import { USER_FETCH_FAIL } from '../../app/constants/genericErrors';
 
 vi.mock('../../utils/apiRequests');
 // Mock the hook before importing useMe (if it imports useAlertDialog directly)
-vi.mock('../useAlertDialog', () => ({
+vi.mock('../useDialog', () => ({
   useAlertDialog: () => ({
     showAlert: vi.fn(), // mock function
   }),
