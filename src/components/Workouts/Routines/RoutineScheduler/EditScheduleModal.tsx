@@ -1,12 +1,12 @@
-import type { Routine, Schedule } from "../../../types/api";
-import { daysLongForm, formatApiTime } from "../../../utils/date";
+import type { Routine, Schedule } from "../../../../types/api";
+import { daysLongForm, formatApiTime } from "../../../../utils/date";
 import { useState, useEffect } from "react";
-import { useErrorHandler } from "../../../hooks/useErrorHandler";
-import { deleteRequest, putRequest } from "../../../utils/apiRequests";
+import { useErrorHandler } from "../../../../hooks/useErrorHandler";
+import { deleteRequest, putRequest } from "../../../../utils/apiRequests";
 import {
   SCHEDULE_DELETE_FAIL,
   SCHEDULE_EDIT_FAIL,
-} from "../../../app/constants/genericErrors";
+} from "../../../../app/constants/genericErrors";
 
 interface EditScheduleModalProps {
   open: boolean; // boolean to trigger the modal

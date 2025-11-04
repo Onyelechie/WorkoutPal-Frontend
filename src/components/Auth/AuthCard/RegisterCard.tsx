@@ -1,15 +1,15 @@
 import "./AuthCard.css";
 
 import React, { useState } from "react";
-import { useAppNavigation } from "../../hooks/useAppNavigation";
-import { postRequest } from "../../utils/apiRequests";
+import { useAppNavigation } from "../../../hooks/useAppNavigation";
+import { postRequest } from "../../../utils/apiRequests";
 import bcrypt from "bcryptjs";
-import { useAlertDialog } from "../../hooks/useDialog";
-import { useErrorHandler } from "../../hooks/useErrorHandler";
+import { useAlertDialog } from "../../../hooks/useDialog";
+import { useErrorHandler } from "../../../hooks/useErrorHandler";
 import {
   PASSWORD_MISMATCH,
   USER_CREATE_FAIL,
-} from "../../app/constants/genericErrors";
+} from "../../../app/constants/genericErrors";
 
 export default function RegisterCard() {
   const { alertOnRequestError } = useErrorHandler();

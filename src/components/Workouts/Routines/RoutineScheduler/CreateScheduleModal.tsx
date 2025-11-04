@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import type { Routine } from "../../../types/api";
-import { postRequest } from "../../../utils/apiRequests";
+import type { Routine } from "../../../../types/api";
+import { postRequest } from "../../../../utils/apiRequests";
 import {
   daysLongForm,
   getCurrentTime,
   getTodayIndex,
-} from "../../../utils/date";
-import { useErrorHandler } from "../../../hooks/useErrorHandler";
-import { SCHEDULE_CREATE_FAIL } from "../../../app/constants/genericErrors";
+} from "../../../../utils/date";
+import { useErrorHandler } from "../../../../hooks/useErrorHandler";
+import { SCHEDULE_CREATE_FAIL } from "../../../../app/constants/genericErrors";
 
 interface CreateScheduleModalProps {
   open: boolean; // boolean to trigger the modal

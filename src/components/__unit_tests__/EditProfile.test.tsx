@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import EditProfile from "../EditProfile/EditProfile";
+import EditProfile from "../User/EditProfile/EditProfile";
 import { patchRequest } from "../../utils/apiRequests";
 import type { User } from "../../types/api";
 

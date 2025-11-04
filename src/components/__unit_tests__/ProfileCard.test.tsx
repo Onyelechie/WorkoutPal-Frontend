@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import ProfileCard from "../../components/ProfileCard/ProfileCard";
+import ProfileCard from "../User/ProfileCard/ProfileCard";
 import { relationshipService } from "../../services/relationshipService";
 import type { User } from "../../types/api";
 

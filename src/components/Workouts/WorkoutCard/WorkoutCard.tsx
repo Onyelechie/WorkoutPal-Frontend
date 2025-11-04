@@ -1,4 +1,4 @@
-import { notYetImplemented } from "../../utils/construction";
+import { notYetImplemented } from "../../../utils/construction";
 import "./WorkoutCard.css";
 
 interface WorkoutCardProps {

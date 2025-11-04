@@ -3,8 +3,8 @@ import {
   formatApiTime,
   getTodayIndex,
   minutesToHours,
-} from "../../../utils/date";
-import type { Schedule, Routine } from "../../../types/api";
+} from "../../../../utils/date";
+import type { Schedule, Routine } from "../../../../types/api";
 import { useState } from "react";
 import EditScheduleModal from "./EditScheduleModal";
 

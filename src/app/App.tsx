@@ -1,8 +1,8 @@
 import "../styles/global.css";
 import { BrowserRouter, useLocation } from "react-router-dom";
 import AppRoutes, { LOGIN_ROUTE, REGISTER_ROUTE } from "./AppRoutes";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
+import Header from "../components/Common/Header/Header";
+import Footer from "../components/Common/Footer/Footer";
 
 function Layout() {
   const location = useLocation();

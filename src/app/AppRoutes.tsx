@@ -7,8 +7,8 @@ import OtherUserPage from "../pages/Profile/OtherUserPage";
 import LoginPage from "../pages/Auth/LoginPage";
 import RegisterPage from "../pages/Auth/RegisterPage";
 import RoutinePage from "../pages/Routine/RoutinePage";
-import RoutineBuilder from "../components/Routines/RoutineBuilder/RoutineBuilder";
-import RoutineScheduler from "../components/Routines/RoutineScheduler/RoutineScheduler";
+import RoutineBuilder from "../components/Workouts/Routines/RoutineBuilder/RoutineBuilder";
+import RoutineScheduler from "../components/Workouts/Routines/RoutineScheduler/RoutineScheduler";
 
 export const LOGIN_ROUTE = "/auth/login";
 export const REGISTER_ROUTE = "/auth/register";

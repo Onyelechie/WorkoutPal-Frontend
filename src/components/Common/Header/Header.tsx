@@ -1,8 +1,8 @@
 import "./Header.css";
-import { useAppNavigation } from "../../hooks/useAppNavigation";
-import UserSearch from "../UserSearch/UserSearch";
+import { useAppNavigation } from "../../../hooks/useAppNavigation";
+import UserSearch from "../../User/UserSearch/UserSearch";
 import { useNavigate } from "react-router";
-import logoUrl from "../../assets/react.svg";
+import logoUrl from "../../../assets/react.svg";
 
 function Header() {
   const { navHome, navProfile, navRoutine } = useAppNavigation();

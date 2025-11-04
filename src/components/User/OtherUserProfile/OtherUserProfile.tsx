@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import "./OtherUserProfile.css";
-import { relationshipService } from "../../services/relationshipService";
-import { getRequest } from "../../utils/apiRequests";
-import type { User } from "../../types/api";
-import type { User as RelationshipUser } from "../../services/relationshipService";
-import { useMe } from "../../hooks/useMe";
+import { relationshipService } from "../../../services/relationshipService";
+import { getRequest } from "../../../utils/apiRequests";
+import type { User } from "../../../types/api";
+import type { User as RelationshipUser } from "../../../services/relationshipService";
+import { useMe } from "../../../hooks/useMe";
 
 interface OtherUserProfileProps {
   userId: number;

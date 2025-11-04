@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import UserSearch from "../UserSearch/UserSearch";
+import UserSearch from "../User/UserSearch/UserSearch";
 import { getRequest } from "../../utils/apiRequests";
 
 vi.mock("../../utils/apiRequests");

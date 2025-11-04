@@ -1,10 +1,10 @@
 import "./AuthCard.css";
 
 import React, { useState } from "react";
-import { postRequest } from "../../utils/apiRequests";
-import { useAppNavigation } from "../../hooks/useAppNavigation";
-import { useErrorHandler } from "../../hooks/useErrorHandler";
-import { USER_LOGIN_FAIL } from "../../app/constants/genericErrors";
+import { postRequest } from "../../../utils/apiRequests";
+import { useAppNavigation } from "../../../hooks/useAppNavigation";
+import { useErrorHandler } from "../../../hooks/useErrorHandler";
+import { USER_LOGIN_FAIL } from "../../../app/constants/genericErrors";
 
 function LoginCard() {
   const { alertOnRequestError } = useErrorHandler();

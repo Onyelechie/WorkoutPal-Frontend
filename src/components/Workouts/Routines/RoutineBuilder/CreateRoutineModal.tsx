@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { getRequest, postRequest } from "../../../utils/apiRequests";
+import { getRequest, postRequest } from "../../../../utils/apiRequests";
 import {
   toggleExerciseSelection,
   filterExercises,
   buildRoutinePayload,
-} from "../../../utils/routineHelpers";
-import { useErrorHandler } from "../../../hooks/useErrorHandler";
-import { ROUTINE_CREATE_FAIL } from "../../../app/constants/genericErrors";
+} from "../../../../utils/routineHelpers";
+import { useErrorHandler } from "../../../../hooks/useErrorHandler";
+import { ROUTINE_CREATE_FAIL } from "../../../../app/constants/genericErrors";
 
 interface CreateRoutineModalProps {
   onClose: () => void;

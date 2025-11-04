@@ -1,8 +1,8 @@
-import ProfileCard from "../../components/ProfileCard/ProfileCard";
+import ProfileCard from "../../components/User/ProfileCard/ProfileCard";
 import "./ProfilePage.css";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { useMe } from "../../hooks/useMe";
-import MyWorkouts from "../../components/MyWorkouts/MyWorkouts";
+import MyWorkouts from "../../components/Workouts/MyWorkouts/MyWorkouts";
 import { postRequest } from "../../utils/apiRequests";
 import { PostCard } from "../../components/Dashboard/PostCard";
 

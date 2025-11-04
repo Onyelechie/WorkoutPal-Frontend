@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { deleteRequest, getRequest } from "../../../utils/apiRequests";
-import { useConfirmDialog } from "../../../hooks/useDialog";
+import { deleteRequest, getRequest } from "../../../../utils/apiRequests";
+import { useConfirmDialog } from "../../../../hooks/useDialog";
 
 interface RoutineListProps {
   routines: any[];

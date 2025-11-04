@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./ProfileCard.css";
-import { relationshipService } from "../../services/relationshipService";
-import type { User } from "../../services/relationshipService";
+import { relationshipService } from "../../../services/relationshipService";
+import type { User } from "../../../services/relationshipService";
 import EditProfile from "../EditProfile/EditProfile";
-import type { User as ApiUser } from "../../types/api";
+import type { User as ApiUser } from "../../../types/api";
 
 interface ProfileCardProps {
   avatar: string;

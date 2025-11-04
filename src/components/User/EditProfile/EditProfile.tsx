@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./EditProfile.css";
-import { patchRequest } from "../../utils/apiRequests";
-import type { User } from "../../types/api";
+import { patchRequest } from "../../../utils/apiRequests";
+import type { User } from "../../../types/api";
 
 interface EditProfileProps {
   user: User;

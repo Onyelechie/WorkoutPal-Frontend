@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "./UserSearch.css";
-import { getRequest } from "../../utils/apiRequests";
-import type { User } from "../../types/api";
+import { getRequest } from "../../../utils/apiRequests";
+import type { User } from "../../../types/api";
 
 interface UserSearchProps {
   onUserSelect?: (user: User) => void;

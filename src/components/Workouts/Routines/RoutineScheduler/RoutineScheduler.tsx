@@ -2,11 +2,11 @@ import "./RoutineScheduler.css";
 import "../Routines.css";
 
 import { useState } from "react";
-import { daysLongForm } from "../../../utils/date";
-import { useRoutines } from "../../../hooks/useRoutines";
+import { daysLongForm } from "../../../../utils/date";
+import { useRoutines } from "../../../../hooks/useRoutines";
 import { ScheduleRow } from "./ScheduleRow";
-import { useSchedules } from "../../../hooks/useSchedules";
-import { useTime } from "../../../hooks/useTime";
+import { useSchedules } from "../../../../hooks/useSchedules";
+import { useTime } from "../../../../hooks/useTime";
 import CreateScheduleModal from "./CreateScheduleModal";
 
 export default function RoutineScheduler() {
