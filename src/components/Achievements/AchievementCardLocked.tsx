@@ -1,14 +1,14 @@
-import type { Achievement, UserAchievement } from "../../types/api";
+import type { UserAchievementLocked } from "../../types/api";
 import "./AchievementCard.css"
 
 type AchievementIncompleteProp = {
-    achievement: Achievement;
+    achievement: UserAchievementLocked;
     completed: boolean
 };
 
 
 
-export function AchievementCardLocked({ achievement, completed }: AchievementIncompleteProp) {
+export function AchievementCardLocked({ achievement }: AchievementIncompleteProp) {
 
 
     return (
@@ -18,7 +18,7 @@ export function AchievementCardLocked({ achievement, completed }: AchievementInc
             <div className="achievement-content">
                 <h3 className="achievement-title">{achievement.title}</h3>
                 <p className="achievement-description">{achievement.description}</p>
-                <small className="achievement-tracker">Progress %</small>
+                <small className="achievement-tracker">You can do it!</small>
 
             </div>
         </div>

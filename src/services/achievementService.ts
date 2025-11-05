@@ -1,10 +1,15 @@
 import { getRequest, postRequest } from "../utils/apiRequests";
 import { defaultAchievements } from "../types/achievementTemplate";
-import type { Achievement, UnlockAchievement, UserAchievement } from "../types/api";
+import type { Achievement, UnlockAchievement, UserAchievementLocked, UserAchievementUnlocked } from "../types/api";
 
-/* Achievements API */
+// helper function
+async function notUnlocked(achievementId: number): Promise<boolean> {
+    const unlocked = await getUnlockedAchievements();
+    return !unlocked.some(ua => ua.id === achievementId);
+}
 
-// Always looking for feedback on refining and refactoring this 
+/* Achievements service */
+
 export async function getAchievementsCatalog(): Promise<Achievement[]> {
     try {
         const response = await getRequest("/achievements");
@@ -20,8 +25,10 @@ export async function getAchievementsCatalog(): Promise<Achievement[]> {
 
 /**
  * Unlock an achievement, 
+ * 
+ * Note: Do not call this function directly when unlocking achievements. Use the hook useAchievement instead.
  * */
-export async function unlockAchievement(achievementId: number, userId: number): Promise<UserAchievement | undefined> {
+export async function unlockAchievement(achievementId: number, userId: number): Promise<UserAchievementUnlocked | undefined> {
     const achievementPayload: UnlockAchievement = {
         achievementId,
         userId
@@ -41,10 +48,10 @@ export async function unlockAchievement(achievementId: number, userId: number): 
     }
 }
 
-export async function getUnlockedAchievements(): Promise<UserAchievement[]> {
+export async function getUnlockedAchievements(): Promise<UserAchievementUnlocked[]> {
     try {
         const response = await getRequest("/achievements/unlocked");
-        const myAchievements: UserAchievement[] = response.data;
+        const myAchievements: UserAchievementUnlocked[] = response.data;
         console.log("getUnlockedAchievements()");
         console.log(myAchievements);
         return myAchievements;
@@ -55,12 +62,12 @@ export async function getUnlockedAchievements(): Promise<UserAchievement[]> {
     }
 }
 
-export async function getLockedAchievements(): Promise<UserAchievement[]> {
+export async function getLockedAchievements(): Promise<UserAchievementLocked[]> {
     try {
         const allAchievements: Achievement[] = (await getRequest("/achievements")).data;
-        const unlockedAchievements: UserAchievement[] = await getUnlockedAchievements();
+        const unlockedAchievements: UserAchievementUnlocked[] = await getUnlockedAchievements();
         // Temporary
-        const lockedAchievements: UserAchievement[] = allAchievements.filter(
+        const lockedAchievements: UserAchievementLocked[] = allAchievements.filter(
             (ach) => !unlockedAchievements.some((ua) => ua.id === ach.id)
         );
         console.log("getLockedAchievements()");
@@ -73,9 +80,5 @@ export async function getLockedAchievements(): Promise<UserAchievement[]> {
     }
 }
 
-async function notUnlocked(achievementId: number): Promise<boolean> {
-    const unlocked = await getUnlockedAchievements();
-    return !unlocked.some(ua => ua.id === achievementId);
-}
 
 // add more here

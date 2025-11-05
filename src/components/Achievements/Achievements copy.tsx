@@ -1,122 +1,122 @@
-import "./Achievements.css"
-import type { Achievement, UserAchievement } from "../../types/api";
-import { AchievementCard } from "./AchievementCard";
-import { deleteRequest, getRequest, postRequest } from "../../utils/apiRequests";
-import { mockAchievements } from "./mockAchievements"
-import { getUnlockedAchievements } from "../../services/achievementService";
-import { useEffect, useState } from "react";
+// import "./Achievements.css"
+// import type { Achievement, UserAchievement } from "../../types/api";
+// import { AchievementCard } from "./AchievementCard";
+// import { deleteRequest, getRequest, postRequest } from "../../utils/apiRequests";
+// import { mockAchievements } from "./mockAchievements"
+// import { getUnlockedAchievements } from "../../services/achievementService";
+// import { useEffect, useState } from "react";
 
 
-function sortMockAchievements(achievements: UserAchievement[]) {
-	const completed = achievements.filter((a) => a.earnedAt); // if there earnedAt isn't empty then it's already completed
-	const incomplete = achievements.filter((a) => !a.earnedAt);
-	return { completed, incomplete };
-}
-
-// async function fetchAchievements(setCompleted: React.Dispatch<React.SetStateAction<UserAchievement[]>>) {
-// 	const data = await getUnlockedAchievements();
-// 	setCompleted(data);
+// function sortMockAchievements(achievements: UserAchievement[]) {
+// 	const completed = achievements.filter((a) => a.earnedAt); // if there earnedAt isn't empty then it's already completed
+// 	const incomplete = achievements.filter((a) => !a.earnedAt);
+// 	return { completed, incomplete };
 // }
 
-export default function Achievements() {
-	const [completed, setCompleted] = useState<UserAchievement[]>([]);
+// // async function fetchAchievements(setCompleted: React.Dispatch<React.SetStateAction<UserAchievement[]>>) {
+// // 	const data = await getUnlockedAchievements();
+// // 	setCompleted(data);
+// // }
 
-	useEffect(() => {
-		async function fetchAchievements() {
-			const completedAchievements = await getUnlockedAchievements();
-			setCompleted(completedAchievements);
-		}
-		fetchAchievements();
-	}, []);
+// export default function Achievements() {
+// 	const [completed, setCompleted] = useState<UserAchievement[]>([]);
 
-	const incomplete = mockAchievements.filter((a) => !a.earnedAt);
-	// const { completed, incomplete } = sortMockAchievements(mockAchievements);
+// 	useEffect(() => {
+// 		async function fetchAchievements() {
+// 			const completedAchievements = await getUnlockedAchievements();
+// 			setCompleted(completedAchievements);
+// 		}
+// 		fetchAchievements();
+// 	}, []);
 
-	async function testCall() {
-		const now = new Date();
-		// Format YYYY-MM-DD
-		// https://stackoverflow.com/questions/23593052/format-javascript-date-as-yyyy-mm-dd
-		const dateFormat = now.toISOString().substring(0, 10);
-		try {
-			const payload = {
-				id: 1,
-				title: "Welcome, Pal!",
-				description: "Log in for the first time.",
-				badgeIcon: "😄",
-				earnedAt: dateFormat,
-				userId: 6,
-			};
+// 	const incomplete = mockAchievements.filter((a) => !a.earnedAt);
+// 	// const { completed, incomplete } = sortMockAchievements(mockAchievements);
 
-			const response = await postRequest("/achievements", payload);
+// 	async function testCall() {
+// 		const now = new Date();
+// 		// Format YYYY-MM-DD
+// 		// https://stackoverflow.com/questions/23593052/format-javascript-date-as-yyyy-mm-dd
+// 		const dateFormat = now.toISOString().substring(0, 10);
+// 		try {
+// 			const payload = {
+// 				id: 1,
+// 				title: "Welcome, Pal!",
+// 				description: "Log in for the first time.",
+// 				badgeIcon: "😄",
+// 				earnedAt: dateFormat,
+// 				userId: 6,
+// 			};
 
-			console.log("✅ Server response:", response.data);
-		} catch (error: any) {
-			console.error("❌ Request failed:", error.response?.data || error.message);
-		}
+// 			const response = await postRequest("/achievements", payload);
 
-	}
-	async function getCall() {
-		try {
+// 			console.log("✅ Server response:", response.data);
+// 		} catch (error: any) {
+// 			console.error("❌ Request failed:", error.response?.data || error.message);
+// 		}
 
-			const response = await getRequest("/achievements");
+// 	}
+// 	async function getCall() {
+// 		try {
 
-			console.log("✅ Server response:", response.data);
-		} catch (error: any) {
-			console.error("❌ Request failed:", error.response?.data || error.message);
-		}
-	}
-	async function deleteCall() {
-		try {
+// 			const response = await getRequest("/achievements");
 
-			const response = await deleteRequest(`/achievements/${3}`);
+// 			console.log("✅ Server response:", response.data);
+// 		} catch (error: any) {
+// 			console.error("❌ Request failed:", error.response?.data || error.message);
+// 		}
+// 	}
+// 	async function deleteCall() {
+// 		try {
 
-			console.log("✅ Server response:", response.data);
-		} catch (error: any) {
-			console.error("❌ Request failed:", error.response?.data || error.message);
-		}
-	}
+// 			const response = await deleteRequest(`/achievements/${3}`);
 
-	return (
-		<div className="container">
-			<h1 className="heading">Achievements</h1>
+// 			console.log("✅ Server response:", response.data);
+// 		} catch (error: any) {
+// 			console.error("❌ Request failed:", error.response?.data || error.message);
+// 		}
+// 	}
 
-			<div className="columns">
+// 	return (
+// 		<div className="container">
+// 			<h1 className="heading">Achievements</h1>
 
-				{/* --- Completed Achievements --- */}
-				<div className="column">
-					<div className="completed">
-						<h2>Completed ✅</h2>
+// 			<div className="columns">
 
-						{
-							completed && completed.map((achievement: any) => (
-								<AchievementCard key={achievement.id} achievement={achievement} completed={true} />
-							))
-						}
+// 				{/* --- Completed Achievements --- */}
+// 				<div className="column">
+// 					<div className="completed">
+// 						<h2>Completed ✅</h2>
 
-					</div>
-				</div>
+// 						{
+// 							completed && completed.map((achievement: any) => (
+// 								<AchievementCard key={achievement.id} achievement={achievement} completed={true} />
+// 							))
+// 						}
 
-				{/* --- Incomplete Achievements --- */}
-				<div className="column">
-					<div className="incomplete">
-						<h2>Incomplete ⏳</h2>
+// 					</div>
+// 				</div>
 
-						{
-							incomplete.map((achievement) => (
-								<AchievementCard key={achievement.id} achievement={achievement} completed={false} />
-							))
-						}
+// 				{/* --- Incomplete Achievements --- */}
+// 				<div className="column">
+// 					<div className="incomplete">
+// 						<h2>Incomplete ⏳</h2>
 
-					</div>
-					<button onClick={testCall}>Test post</button>
-					<button onClick={getCall}>Get achievement</button>
-					<button onClick={deleteCall}>delete achievement</button>
+// 						{
+// 							incomplete.map((achievement) => (
+// 								<AchievementCard key={achievement.id} achievement={achievement} completed={false} />
+// 							))
+// 						}
 
-				</div>
-			</div>
-		</div >
+// 					</div>
+// 					<button onClick={testCall}>Test post</button>
+// 					<button onClick={getCall}>Get achievement</button>
+// 					<button onClick={deleteCall}>delete achievement</button>
 
-	);
-};
+// 				</div>
+// 			</div>
+// 		</div >
+
+// 	);
+// };
 
 

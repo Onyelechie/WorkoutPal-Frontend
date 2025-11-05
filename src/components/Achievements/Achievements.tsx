@@ -1,18 +1,11 @@
 import "./Achievements.css"
-import type { Achievement, UserAchievement } from "../../types/api";
+import type { UserAchievementLocked, UserAchievementUnlocked } from "../../types/api";
 import { AchievementCard } from "./AchievementCard";
 import { AchievementCardLocked } from "./AchievementCardLocked";
-import { deleteRequest, getRequest, postRequest } from "../../utils/apiRequests";
-import { mockAchievements } from "./mockAchievements"
-import { getAchievementsCatalog, getLockedAchievements, getUnlockedAchievements } from "../../services/achievementService";
 import { useEffect, useState } from "react";
+import { getLockedAchievements, getUnlockedAchievements } from "../../services/achievementService";
+import { mockLockedAchievements } from "./mockAchievements";
 
-
-function sortMockAchievements(achievements: UserAchievement[]) {
-	const completed = achievements.filter((a) => a.earnedAt); // if there earnedAt isn't empty then it's already completed
-	const incomplete = achievements.filter((a) => !a.earnedAt);
-	return { completed, incomplete };
-}
 
 // async function fetchAchievements(setCompleted: React.Dispatch<React.SetStateAction<UserAchievement[]>>) {
 // 	const data = await getUnlockedAchievements();
@@ -20,8 +13,8 @@ function sortMockAchievements(achievements: UserAchievement[]) {
 // }
 
 export default function Achievements() {
-	const [completed, setCompleted] = useState<UserAchievement[]>([]);
-	const [incomplete, setIncomplete] = useState<UserAchievement[]>([]);
+	const [completed, setCompleted] = useState<UserAchievementUnlocked[]>([]);
+	const [incomplete, setIncomplete] = useState<UserAchievementLocked[]>([]);
 
 	useEffect(() => {
 		async function fetchAchievements() {
@@ -31,6 +24,7 @@ export default function Achievements() {
 			const incompleteAchievements = await getLockedAchievements();
 
 			setIncomplete(incompleteAchievements);
+      setIncomplete((prev) => [...prev, ...mockLockedAchievements]);
 		}
 		fetchAchievements();
 	}, []);

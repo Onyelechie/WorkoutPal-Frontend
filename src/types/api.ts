@@ -66,10 +66,12 @@ export interface Achievement {
   title: string;
 }
 
-export interface UserAchievement extends Achievement {
-  userId?: number;
-  earnedAt?: string; //optional, for locked achievements
-}
+  export interface UserAchievementUnlocked extends Achievement {
+    earnedAt: string;
+  }
+  export interface UserAchievementLocked extends Achievement {
+
+  }
 
 export interface UnlockAchievement {
   achievementId: number;
@@ -97,7 +99,7 @@ export interface Routine {
 }
 
 export interface User {
-  Achievements: UserAchievement[];
+  Achievements: UserAchievementUnlocked[];
   age: number;
   avatar: string;
   email: string;
