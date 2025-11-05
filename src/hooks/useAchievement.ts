@@ -5,7 +5,9 @@ import { useAlertDialog } from "./useDialog";
 
 export function useAchievement() {
     const { showAlert } = useAlertDialog();
-
+    
+    // Call the achievement service to post unlocked achievements
+    // Show a dialog that the achievement is unlocked when success
     async function unlockAchievement(achievementId: number) {
         try{
             const userId = (await getRequest("/me")).data.id;
@@ -15,7 +17,7 @@ export function useAchievement() {
             }
         }
         catch (error: any) {
-            console.log("useAchievement(): ", error)
+            console.log("Error in useAchievement(): ", error)
         }
     }
 
