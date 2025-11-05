@@ -36,13 +36,12 @@ function Header() {
       </div>
 
       <div className="header-right">
+        <button className="header-button" onClick={navAchievements}>
+          Achievements
+        </button>
         <button className="header-button" onClick={navProfile}>
           Profile
         </button>
-        <button className="achievement-button" onClick={navAchievements}>
-          Achievements
-        </button>
-        <button className="profile-button" onClick={navProfile}></button>
       </div>
     </header>
   );

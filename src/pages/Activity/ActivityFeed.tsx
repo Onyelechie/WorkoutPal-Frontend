@@ -1,11 +1,11 @@
 import "./ActivityFeed.css";
 import { useActivity } from "../../hooks/useActivity";
 import { PostCard } from "../../components/PostCard/PostCard";
-import type { Post, UserAchievement, Comment } from "../../types/api";
-import { AchievementCard } from "../../components/AchievementCard/AchievmentCard";
+import type { Post, UserAchievementUnlocked, Comment } from "../../types/api";
+import { UserAchievementCard } from "../../components/Achievements/UserAchievmentCard";
 import { CommentCard } from "../../components/CommentCard/CommentCard";
 
-const testActivity: (Post | UserAchievement | Comment)[] = [
+const testActivity: (Post | UserAchievementUnlocked | Comment)[] = [
   {
     id: 1,
     postedBy: "Jane Doe",
@@ -39,13 +39,13 @@ const testActivity: (Post | UserAchievement | Comment)[] = [
   },
 ];
 
-function mapActivity(activity: Post | Comment | UserAchievement) {
+function mapActivity(activity: Post | Comment | UserAchievementUnlocked) {
   if ("caption" in activity) {
     return <PostCard key={activity.id} post={activity} />;
   } else if ("comment" in activity) {
     return <CommentCard key={activity.id} comment={activity} />;
   } else {
-    return <AchievementCard key={activity.id} achievement={activity} />;
+    return <UserAchievementCard key={activity.id} userAchievement={activity} />;
   }
 }
 
@@ -80,7 +80,7 @@ function ActivityFeed() {
           !isLoading &&
           !error &&
           // display all posts if there are any
-          activity.map((activity: Post | Comment | UserAchievement) =>
+          activity.map((activity: Post | Comment | UserAchievementUnlocked) =>
             mapActivity(activity)
           )
       }

@@ -1,0 +1,16 @@
+.user-achievement-card {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 1rem 1.5rem;
+  background-color: var(--color-light-2);
+  align-items: center;
+  gap: 1rem;
+  font-weight: bold;
+  font-size: 20px;
+  width: fit-content;
+}
+
+.user-achievement-card:hover {
+  background-color: #ffffffcb;
+}
