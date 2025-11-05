@@ -85,7 +85,7 @@ describe("RoutineBuilder", () => {
                 "userId": testUser.id,
                 "dayOfWeek": 1,
                 "routineIds": [
-                    response?.body.id
+                    routineId
                 ],
                 "timeSlot": "12:00",
                 "routineLengthMinutes": 123
