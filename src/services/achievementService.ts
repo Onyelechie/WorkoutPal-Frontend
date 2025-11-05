@@ -1,5 +1,4 @@
 import { getRequest, postRequest } from "../utils/apiRequests";
-import { defaultAchievements } from "../types/achievementTemplate";
 import type { Achievement, UnlockAchievement, UserAchievementLocked, UserAchievementUnlocked } from "../types/api";
 
 // helper function
