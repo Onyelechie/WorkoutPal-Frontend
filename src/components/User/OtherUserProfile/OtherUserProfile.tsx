@@ -4,7 +4,7 @@ import { getRequest } from "../../../utils/apiRequests";
 import type { User } from "../../../types/api";
 import type { User as RelationshipUser } from "../../../services/relationshipService";
 import { useMe } from "../../../hooks/useMe";
-import { PostCard } from "../../Dashboard/PostCard";
+import { PostCard } from "../../PostCard/PostCard";
 import { useNavigate } from "react-router-dom";
 
 interface OtherUserProfileProps {
@@ -35,13 +35,13 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
     try {
       const [followersData, followingData] = await Promise.all([
         relationshipService.getFollowers(userId),
-        relationshipService.getFollowing(userId)
+        relationshipService.getFollowing(userId),
       ]);
-      
+
       setFollowersCount(followersData.length);
       setFollowingCount(followingData.length);
     } catch (error) {
-      console.error('Error fetching follow counts:', error);
+      console.error("Error fetching follow counts:", error);
       setFollowersCount(0);
       setFollowingCount(0);
     }
@@ -84,7 +84,7 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
             ? [...prev.followers]
             : [];
           const newFollowers = prevFollowers.filter(
-            (id) => id !== currentUserId,
+            (id) => id !== currentUserId
           );
           return { ...prev, followers: newFollowers } as User;
         });
@@ -179,7 +179,7 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
         <div className="posts-section">
           <h2 className="section-title">Posts</h2>
           <div className="posts-list">
-            {(user.Posts && user.Posts.length > 0) ? (
+            {user.Posts && user.Posts.length > 0 ? (
               user.Posts.map((post: any) => (
                 <PostCard key={post.id} post={post} />
               ))
@@ -204,13 +204,17 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
               </button>
             </div>
             <div className="user-list">
-              {followers.map(user => (
-                <div 
-                  key={user.id} 
+              {followers.map((user) => (
+                <div
+                  key={user.id}
                   className="user-item"
                   onClick={() => handleUserClick(user.id)}
                 >
-                  <img src={user.avatar} alt={user.name} className="user-avatar" />
+                  <img
+                    src={user.avatar}
+                    alt={user.name}
+                    className="user-avatar"
+                  />
                   <div className="user-info">
                     <span className="user-name">{user.name}</span>
                     <span className="user-username">@{user.username}</span>
@@ -237,13 +241,17 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
               </button>
             </div>
             <div className="user-list">
-              {following.map(user => (
-                <div 
-                  key={user.id} 
+              {following.map((user) => (
+                <div
+                  key={user.id}
                   className="user-item"
                   onClick={() => handleUserClick(user.id)}
                 >
-                  <img src={user.avatar} alt={user.name} className="user-avatar" />
+                  <img
+                    src={user.avatar}
+                    alt={user.name}
+                    className="user-avatar"
+                  />
                   <div className="user-info">
                     <span className="user-name">{user.name}</span>
                     <span className="user-username">@{user.username}</span>

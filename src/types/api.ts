@@ -1,12 +1,13 @@
 /* Interfaces for the types of JSON responses we will get from the backend */
 
 /* ----------------- ERROR ----------------- */
-export interface ApiError { // named to ApiError to avoid overwriting with existing Error in javascript
-  type: string,
-  status: number,
-  detail: string,
-  instance: string,
-  error: string,
+export interface ApiError {
+  // named to ApiError to avoid overwriting with existing Error in javascript
+  type: string;
+  status: number;
+  detail: string;
+  instance: string;
+  error: string;
 }
 /* ----------------- END OF ERROR ----------------- */
 
@@ -17,15 +18,19 @@ export interface Post {
   title: string;
   caption: string;
   date: string;
-  content: string;
+  body: string;
   likes: number;
+  status: string;
   comments: Comment[];
 }
 
 export interface Comment {
+  id: number;
   commentedBy: string;
+  commentedOn: number;
   comment: string;
   date: string;
+  parentComment: number;
 }
 /* ----------------- END OF POSTS ----------------- */
 
@@ -68,7 +73,6 @@ export interface Workout {
 
 /* ----------------- USERS ----------------- */
 
-
 export interface Achievement {
   badgeIcon: string;
   description: string;
@@ -76,12 +80,12 @@ export interface Achievement {
   title: string;
 }
 
-  export interface UserAchievementUnlocked extends Achievement {
-    date: string;
-  }
-  export interface UserAchievementLocked extends Achievement {
-
-  }
+export interface UserAchievementUnlocked extends Achievement {
+  date: string;
+  userId: number;
+  username: string;
+}
+export interface UserAchievementLocked extends Achievement {}
 
 export interface UnlockAchievement {
   achievementId: number;

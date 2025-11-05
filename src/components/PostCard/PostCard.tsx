@@ -11,7 +11,7 @@ export function PostCard({ post }: PostProps) {
     <div key={post.id} className="post-card" onClick={notYetImplemented}>
       <div className="post-header">
         <span>{post.postedBy}</span>
-        <span>{post.date}</span>
+        <span>{new Date(post.date).toISOString().split("T")[0]}</span>
       </div>
       <div className="post-title">{post.title}</div>
       <div className="post-caption">{post.caption}</div>

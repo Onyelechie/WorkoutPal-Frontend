@@ -7,6 +7,7 @@ import OtherUserPage from "../pages/Profile/OtherUserPage";
 import LoginPage from "../pages/Auth/LoginPage";
 import RegisterPage from "../pages/Auth/RegisterPage";
 import RoutinePage from "../pages/Routine/RoutinePage";
+import ActivityFeed from "../pages/Activity/ActivityFeed";
 import AchievementsPage from "../pages/Achievements/AchievementsPage";
 import RoutineBuilder from "../components/Workouts/Routines/RoutineBuilder/RoutineBuilder";
 import RoutineScheduler from "../components/Workouts/Routines/RoutineScheduler/RoutineScheduler";
@@ -15,9 +16,10 @@ export const LOGIN_ROUTE = "/auth/login";
 export const REGISTER_ROUTE = "/auth/register";
 export const HOME_ROUTE = "/home";
 export const PROFILE_ROUTE = "/profile";
+export const ACTIVITY_ROUTE = "/activity";
 
 //achievements
-export const ACHIEVEMENTS_ROUTE = "/achievements"
+export const ACHIEVEMENTS_ROUTE = "/achievements";
 
 // routine routes
 export const ROUTINE_ROUTE = "/routine"; // parent route
@@ -41,6 +43,7 @@ export default function AppRoutes() {
         <Route path={HOME_ROUTE} element={<HomePage />} />
         <Route path={PROFILE_ROUTE} element={<ProfilePage />} />
         <Route path="/users/:id" element={<OtherUserPage />} />
+        <Route path={ACTIVITY_ROUTE} element={<ActivityFeed />} />
         <Route path={ACHIEVEMENTS_ROUTE} element={<AchievementsPage />} />
 
         <Route path={ROUTINE_ROUTE} element={<RoutinePage />}>
@@ -53,7 +56,7 @@ export default function AppRoutes() {
 
         {/* Direct to PageNotFound for routes that are not implemented */}
         <Route path="*" element={<PageNotFound />} />
-      </Routes >
+      </Routes>
     </>
   );
 }
