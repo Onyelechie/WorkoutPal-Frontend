@@ -77,7 +77,7 @@ export interface Achievement {
 }
 
   export interface UserAchievementUnlocked extends Achievement {
-    earnedAt: string;
+    date: string;
   }
   export interface UserAchievementLocked extends Achievement {
 
