@@ -1,5 +1,15 @@
 /* Interfaces for the types of JSON responses we will get from the backend */
 
+/* ----------------- ERROR ----------------- */
+export interface ApiError { // named to ApiError to avoid overwriting with existing Error in javascript
+  type: string,
+  status: number,
+  detail: string,
+  instance: string,
+  error: string,
+}
+/* ----------------- END OF ERROR ----------------- */
+
 /* ----------------- POSTS ----------------- */
 export interface Post {
   id: number;

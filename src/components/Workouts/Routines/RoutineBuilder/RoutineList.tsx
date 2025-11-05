@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { deleteRequest, getRequest } from "../../../../utils/apiRequests";
 import { useConfirmDialog } from "../../../../hooks/useDialog";
+import { useErrorHandler } from "../../../../hooks/useErrorHandler";
+import { ROUTINE_DELETE_FAIL } from "../../../../app/constants/genericErrors";
 
 interface RoutineListProps {
   routines: any[];
@@ -13,6 +15,7 @@ interface Exercise {
 }
 
 const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
+  const { alertOnRequestError } = useErrorHandler();
   const [exerciseMap, setExerciseMap] = useState<Record<number, Exercise>>({});
   const confirmDialog = useConfirmDialog();
   useEffect(() => {
@@ -56,9 +59,8 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
         await deleteRequest(`/routines/${id}`);
         setRoutines((prevRoutines) => prevRoutines.filter((r) => r.id !== id));
       }
-    } catch (err) {
-      console.error("Failed to delete routine:", err);
-      alert("Failed to delete routine. Please try again.");
+    } catch (err:any) {
+      alertOnRequestError(ROUTINE_DELETE_FAIL, err);
     }
   };
 
