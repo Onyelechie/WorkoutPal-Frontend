@@ -36,9 +36,10 @@ export function useErrorHandler() {
       if (err?.status == 400) {
         // print the response data in case it has information.
         // otherwise, just print the generic 400 error message.
+        const responseData = err?.response?.data as any;
         dialogContext.showAlert(
           title,
-          err?.response ? `${err.response?.data}` : ERROR_400,
+          responseData?.message || responseData?.error || ERROR_400,
         );
       } else if (err?.status === 401) {
         dialogContext.showAlert(title, ERROR_401);
