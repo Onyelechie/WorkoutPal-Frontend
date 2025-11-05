@@ -7,6 +7,7 @@ import {
 } from "../../../../utils/routineHelpers";
 import { useErrorHandler } from "../../../../hooks/useErrorHandler";
 import { ROUTINE_CREATE_FAIL } from "../../../../app/constants/genericErrors";
+import { useAchievement } from "../../../../hooks/useAchievement";
 
 interface CreateRoutineModalProps {
   onClose: () => void;
@@ -25,6 +26,7 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedExercises, setSelectedExercises] = useState<any[]>([]);
   const [routineName, setRoutineName] = useState("");
+  const achievement = useAchievement();
 
   useEffect(() => {
     const fetchExercises = async () => {
@@ -58,7 +60,7 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({
       await postRequest(`/users/${userId}/routines`, payload);
       const newRoutinesResponse = await getRequest(`/users/${userId}/routines`);
       setRoutines(newRoutinesResponse.data);
-
+      achievement.unlockAchievement(2);
       onClose();
       setRoutineName("");
       setSelectedExercises([]);
