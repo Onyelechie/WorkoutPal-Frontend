@@ -10,6 +10,7 @@ export const PASSWORD_MISMATCH = "Passwords do not match!";
 // Routine errors
 export const ROUTINE_FETCH_FAIL = "Unable to get routines";
 export const ROUTINE_CREATE_FAIL = "Could not create the routine";
+export const ROUTINE_DELETE_FAIL = "Could not delete the routine";
 
 // Schedule errors
 export const SCHEDULE_FETCH_FAIL = "Unable to get schedules";

@@ -1,37 +1,72 @@
 /// <reference types="cypress" />
-// ***********************************************
-// This example commands.ts shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+
+import { BACKEND_URL } from "./constants"
+
+Cypress.Commands.add("loginTestUser", (email, password) => {
+    cy.request("POST", `${BACKEND_URL}/login`, { email: email, password: password })
+        .then((response) =>
+            expect(response.status).equal(200)
+        )
+})
+
+// assumption: testUser is logged in before calling this command
+Cypress.Commands.add("createRoutine", (userId, name, exerciseIds) => {
+    return cy.request("POST", `${BACKEND_URL}/users/${userId}/routines`, {
+        name: name,
+        exerciseIds: exerciseIds
+    }).then((response) => {
+        expect(response.status).equal(201);
+        return response.body.id;
+    })  
+})
+
+// assumption: testUser is logged in before calling this command
+Cypress.Commands.add("deleteRoutine", (routineId) => {
+    cy.request("DELETE", `${BACKEND_URL}/routines/${routineId}`).then((response) => {
+        expect(response.status).equal(200);
+    })
+})
+
+// assumption: testUser is logged in before calling this command
+Cypress.Commands.add("createSchedule", (userId, name, routineIds, routineLengthMinutes, dayOfWeek, timeSlot) => {
+    return cy.request("POST", `${BACKEND_URL}/schedules`, {
+        userId: userId,
+        name: name,
+        routineIds: routineIds,
+        routineLengthMinutes,
+        dayOfWeek: dayOfWeek,
+        timeSlot: timeSlot
+    }).then((response) => {
+        expect(response.status).equal(201);
+        return response.body.id;
+    })  
+})
+
+// assumption: testUser is logged in before calling this command
+Cypress.Commands.add("deleteSchedule", (scheduleId) => {
+    cy.request("DELETE", `${BACKEND_URL}/schedules/${scheduleId}`).then((response) => {
+        expect(response.status).equal(200);
+    })
+})
+Cypress.Commands.add("createUser", (user) => {
+    return cy.request("POST", `${BACKEND_URL}/users`, {
+        name: user.name,
+        username: user.username,
+        email: user.email,
+        password: user.password,
+    }).then((response) => {
+        expect(response.status).equal(201)
+        return response.body.id
+    })
+})
+
+Cypress.Commands.add("deleteUser", (userId, email, password) => {
+    cy.request("POST", `${BACKEND_URL}/login`, { email, password })
+        .then(() => {
+            cy.request("DELETE", `${BACKEND_URL}/users/${userId}`)
+                .then((response) => {
+                    expect(response.status).equal(200)
+                })
+        })
+})
+

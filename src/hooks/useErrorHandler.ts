@@ -11,6 +11,7 @@ import {
   ERROR_500,
   ERROR_501,
 } from "../app/constants/httpErrors";
+import type { ApiError } from "../types/api";
 
 // Error handler for handling run time errors.
 // Logs errors to make debugging easier.
@@ -21,10 +22,11 @@ export function useErrorHandler() {
 
   // helper function for handling errors thrown from making an axios request
   // show specific message depending on status code
-  // message is optional. if there is no message, then it defaults to generic error messages based on status code
+  // message is optional. if there is no message, then check the error's response data based on the ApiError interface
+  // otherwise, it defaults to generic error messages based on status code
   function alertOnRequestError(
     title: string,
-    err: AxiosError,
+    err: AxiosError<ApiError>,
     message?: string,
   ) {
     // log the error
@@ -32,31 +34,31 @@ export function useErrorHandler() {
 
     if (message) {
       dialogContext.showAlert(title, message);
+    } else if (err.response?.data?.detail) { 
+      // in the case where the response has error data according to the ApiError interface
+      // grab the details and print it
+      dialogContext.showAlert(title, err.response?.data?.detail);
     } else {
-      // Extract error message from response data (backend returns {detail, message, error})
-      const responseData = err?.response?.data as any;
-      const errorMessage = responseData?.detail || responseData?.message || responseData?.error;
-
       if (err?.status == 400) {
-        dialogContext.showAlert(title, errorMessage || ERROR_400);
+        dialogContext.showAlert(title, ERROR_400);
       } else if (err?.status === 401) {
-        dialogContext.showAlert(title, errorMessage || ERROR_401);
+        dialogContext.showAlert(title, ERROR_401);
       } else if (err?.status === 403) {
-        dialogContext.showAlert(title, errorMessage || ERROR_403);
+        dialogContext.showAlert(title, ERROR_403);
       } else if (err?.status === 404) {
-        dialogContext.showAlert(title, errorMessage || ERROR_404);
+        dialogContext.showAlert(title, ERROR_404);
       } else if (err?.status === 405) {
-        dialogContext.showAlert(title, errorMessage || ERROR_405);
+        dialogContext.showAlert(title, ERROR_405);
       } else if (err?.status === 500) {
-        dialogContext.showAlert(title, errorMessage || ERROR_500);
+        dialogContext.showAlert(title, ERROR_500);
       } else if (err?.status === 501) {
-        dialogContext.showAlert(title, errorMessage || ERROR_501);
+        dialogContext.showAlert(title, ERROR_501);
       } else if (!err.status) {
         // in the case where the error has no status code. this likely means that the backend is down.
         dialogContext.showAlert(title, FATAL_ERROR);
       } else {
         // in the case where the error is not recognized
-        dialogContext.showAlert(title, errorMessage || GENERIC_ERROR);
+        dialogContext.showAlert(title, GENERIC_ERROR);
       }
     }
   }

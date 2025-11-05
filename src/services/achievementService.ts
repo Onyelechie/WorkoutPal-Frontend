@@ -9,6 +9,9 @@ async function notUnlocked(achievementId: number): Promise<boolean> {
 
 /* Achievements service */
 
+/**
+ * Get a list of all the achievements  
+ */
 export async function getAchievementsCatalog(): Promise<Achievement[]> {
     try {
         const response = await getRequest("/achievements");
@@ -47,6 +50,9 @@ export async function unlockAchievement(achievementId: number, userId: number): 
     }
 }
 
+/**
+ * Get a list of all unlocked achievements by the user.
+ */
 export async function getUnlockedAchievements(): Promise<UserAchievementUnlocked[]> {
     try {
         const response = await getRequest("/achievements/unlocked");
@@ -61,6 +67,9 @@ export async function getUnlockedAchievements(): Promise<UserAchievementUnlocked
     }
 }
 
+/**
+ * Get a list of all locked achievements by the user.
+ */
 export async function getLockedAchievements(): Promise<UserAchievementLocked[]> {
     try {
         const allAchievements: Achievement[] = (await getRequest("/achievements")).data;
@@ -78,6 +87,3 @@ export async function getLockedAchievements(): Promise<UserAchievementLocked[]> 
         return [];
     }
 }
-
-
-// add more here

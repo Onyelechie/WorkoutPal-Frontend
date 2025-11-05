@@ -101,6 +101,7 @@ export default function EditScheduleModal({
                       })
                     }
                     className="text-input"
+                    data-cy="edit-schedule-name-input"
                     required
                   />
                   {/* END OF ROUTINE NAME INPUT */}
@@ -171,6 +172,7 @@ export default function EditScheduleModal({
                         dayOfWeek: Number(e.target.value),
                       })
                     }
+                    data-cy="edit-schedule-day-select"
                   >
                     {daysLongForm.map((day, index) => (
                       <option value={index}>{day}</option>
@@ -189,6 +191,7 @@ export default function EditScheduleModal({
                       })
                     }
                     className="text-input"
+                    data-cy="edit-schedule-time-slot-input"
                     required
                   />
                   {/* END OF TIME SLOT INPUT */}
@@ -207,6 +210,7 @@ export default function EditScheduleModal({
                       })
                     }
                     className="text-input"
+                    data-cy="edit-schedule-routine-length-input"
                     required
                   />
                   {/* END OF ROUTINE LENGTH INPUT */}
@@ -218,10 +222,11 @@ export default function EditScheduleModal({
                       type="button"
                       className="delete-button"
                       onClick={handleDeleteSchedule}
+                      data-cy="delete-schedule-btn"
                     >
                       Delete Schedule
                     </button>
-                    <button type="submit" className="create-button">
+                    <button type="submit" className="create-button" data-cy="edit-schedule-btn">
                       Edit Schedule
                     </button>
                   </div>

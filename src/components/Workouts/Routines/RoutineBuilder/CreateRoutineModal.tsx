@@ -8,6 +8,7 @@ import {
 import { useErrorHandler } from "../../../../hooks/useErrorHandler";
 import { ROUTINE_CREATE_FAIL } from "../../../../app/constants/genericErrors";
 import { useAchievement } from "../../../../hooks/useAchievement";
+import { AchievementKey } from "../../../../app/constants/achievementKey";
 
 interface CreateRoutineModalProps {
   onClose: () => void;
@@ -27,6 +28,7 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({
   const [selectedExercises, setSelectedExercises] = useState<any[]>([]);
   const [routineName, setRoutineName] = useState("");
   const achievement = useAchievement();
+  
 
   useEffect(() => {
     const fetchExercises = async () => {
@@ -60,7 +62,7 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({
       await postRequest(`/users/${userId}/routines`, payload);
       const newRoutinesResponse = await getRequest(`/users/${userId}/routines`);
       setRoutines(newRoutinesResponse.data);
-      achievement.unlockAchievement(2);
+      achievement.unlockAchievement(AchievementKey.FIRST_ROUTINE);
       onClose();
       setRoutineName("");
       setSelectedExercises([]);
@@ -87,6 +89,7 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({
               value={routineName}
               onChange={(e) => setRoutineName(e.target.value)}
               className="text-input"
+              data-cy="routine-name-input"
               required
             />
           </div>
@@ -114,6 +117,7 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({
                   >
                     <input
                       type="checkbox"
+                      data-cy="exercise-checkbox"
                       checked={selectedExercises.some(
                         (e) => e.id === exercise.id,
                       )}
@@ -150,7 +154,7 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({
             )}
           </div>
           <div className="action-button-container">
-            <button type="submit" className="create-button">
+            <button type="submit" className="create-button" data-cy="create-routine-btn">
               Create Routine
             </button>
           </div>
