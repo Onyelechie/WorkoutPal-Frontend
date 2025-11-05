@@ -10,10 +10,11 @@ import { BACKEND_URL, testUser } from "../../support/constants";
 // 3. Frontend is running on the baseUrl set in cypress.config.ts in the root folder
 
 // Another note:
-// These tests need to run to full completion to ensure the test routine that was created is deleted in the database.
-// If the test routine is not deleted, tests may start to fail.
-// The test routine needs to be manually deleted in the database.
-// The test routine will be linked to the testUser account listed in cypress/support/constants.ts
+// These tests need to run to full completion to ensure the test routine and any other seed data that was created is deleted in the database.
+// If the test routine is not deleted:
+// - tests may start to fail.
+// - The test routine needs to be manually deleted in the database.
+// - The test routine will be linked to the testUser account listed in cypress/support/constants.ts
 
 describe("RoutineBuilder", () => {
 
@@ -28,13 +29,13 @@ describe("RoutineBuilder", () => {
 
         // intercept possible requests
         cy.intercept("POST", `/users/${testUser.id}/routines`).as("addRoutineRequest");
+        cy.intercept("DELETE", `/routines/*`).as("deleteRoutineRequest");
     });
 
     it("user can create and delete a routine", () => {
         cy.visit("/routine/builder");
 
         // add the routine
-        cy.intercept("POST", `/users/${testUser.id}/routines`).as("addRoutineRequest");
         cy.get("[data-cy=add-routine-btn]").click();
         cy.get("[data-cy=routine-name-input]").type(testRoutine.name);
         cy.get("[data-cy=exercise-checkbox]").first().check();
@@ -45,7 +46,6 @@ describe("RoutineBuilder", () => {
 
             // now delete it
             cy.visit("/routine/builder");
-            cy.intercept("DELETE", `/routines/*`).as("deleteRoutineRequest");
             cy.get("[data-cy=delete-routine-btn]").first().click();
             cy.get("[data-cy=confirm-positive-btn]").click();
             cy.wait("@deleteRoutineRequest").its("response.statusCode").should("eq", 200);
@@ -69,7 +69,6 @@ describe("RoutineBuilder", () => {
         cy.visit("/routine/builder");
 
         // add the routine
-        cy.intercept("POST", `/users/${testUser.id}/routines`).as("addRoutineRequest");
         cy.get("[data-cy=add-routine-btn]").click();
         cy.get("[data-cy=routine-name-input]").type(testRoutine.name);
         cy.get("[data-cy=exercise-checkbox]").first().check();
@@ -95,7 +94,6 @@ describe("RoutineBuilder", () => {
                 
                 // attempt to delete the routine while it is linked to a schedule
                 cy.visit("/routine/builder");
-                cy.intercept("DELETE", `/routines/*`).as("deleteRoutineRequest");
                 cy.get("[data-cy=delete-routine-btn]").first().click();
                 cy.get("[data-cy=confirm-positive-btn]").click();
                 // should fail
