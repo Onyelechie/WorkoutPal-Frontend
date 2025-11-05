@@ -32,7 +32,7 @@ function LoginCard() {
         }
       })
       .catch((error) => {
-        alertOnRequestError(USER_LOGIN_FAIL, error, error.response?.data);
+        alertOnRequestError(USER_LOGIN_FAIL, error, error.response?.data?.detail);
       });
   };
 
