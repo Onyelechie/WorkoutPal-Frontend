@@ -64,6 +64,19 @@
   margin: 2rem 0;
 }
 
+.profile-posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.no-posts {
+  color: var(--text-color-dark-3);
+  text-align: center;
+  padding: 1rem 0;
+}
+
 .section-title {
   font-size: 1.5rem;
   font-weight: 600;
@@ -112,4 +125,12 @@
   border-radius: 12px;
   color: #333;
   padding: 1rem;
+}
+
+/* Fixed logout button in bottom-right of the profile page container */
+.logout-below {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
 }

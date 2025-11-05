@@ -1,0 +1,28 @@
+.routine-nav-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.nav-button {
+  background-color: var(--color-primary-3);
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  color: var(--color-light-3);
+  opacity: 0.5;
+}
+
+.nav-button:hover {
+  background-color: var(--color-primary-1);
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.nav-button.active {
+  background-color: var(--color-primary-1);
+  color: var(--color-light-2);
+  opacity: 1;
+}

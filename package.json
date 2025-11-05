@@ -6,13 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "regression": "npm run cy:run && npm run test:coverage",
     "lint": "eslint .",
+    "format": "prettier --write .",
     "preview": "vite preview",
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest run --coverage --coverage.reporter=text",
     "test:coverage:html": "vitest run --coverage --coverage.reporter=text --coverage.reporter=html",
-    "clean:coverage": "rimraf coverage", 
+    "clean:coverage": "rimraf coverage",
     "cy:open": "cypress open",
     "cy:run": "cypress run"
   },
@@ -21,8 +23,10 @@
     "axios": "^1.12.2",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
+    "clsx": "^2.1.1",
     "google-auth-library": "^10.4.0",
     "jwt-decode": "^4.0.0",
+    "prettier": "^3.6.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.4"
