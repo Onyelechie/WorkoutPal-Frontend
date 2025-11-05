@@ -10,7 +10,7 @@ type AchievementCompleteProp = {
 
 export function AchievementCard({ achievement }: AchievementCompleteProp) {
 
-    const formattedDate = (new Date(achievement.earnedAt)).toLocaleDateString();
+    const formattedDate = (new Date(achievement.date)).toLocaleDateString();
 
     return (
         <div className="achievement-card" key={achievement.id}>
