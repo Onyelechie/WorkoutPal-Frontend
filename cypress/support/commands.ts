@@ -3,10 +3,10 @@
 import { BACKEND_URL } from "./constants"
 
 Cypress.Commands.add("loginTestUser", (email, password) => {
-    cy.request("POST", `${BACKEND_URL}/login`, {email: email, password: password})
-    .then((response) =>
-        expect(response.status).equal(200)
-    )
+    cy.request("POST", `${BACKEND_URL}/login`, { email: email, password: password })
+        .then((response) =>
+            expect(response.status).equal(200)
+        )
 })
 
 // assumption: testUser is logged in before calling this command
@@ -62,8 +62,11 @@ Cypress.Commands.add("createUser", (user) => {
 
 Cypress.Commands.add("deleteUser", (userId, email, password) => {
     cy.request("POST", `${BACKEND_URL}/login`, { email, password })
-    .then(() => {
-        cy.request("DELETE", `${BACKEND_URL}/users/${userId}`)
-    })
+        .then(() => {
+            cy.request("DELETE", `${BACKEND_URL}/users/${userId}`)
+                .then((response) => {
+                    expect(response.status).equal(200)
+                })
+        })
 })
 
