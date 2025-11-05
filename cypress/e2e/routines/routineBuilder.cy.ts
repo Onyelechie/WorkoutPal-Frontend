@@ -31,7 +31,7 @@ describe("RoutineBuilder", () => {
     });
 
     it("user can create and delete a routine", () => {
-        cy.visit('/routine/builder');
+        cy.visit("/routine/builder");
 
         // add the routine
         cy.intercept("POST", `/users/${testUser.id}/routines`).as("addRoutineRequest");
@@ -44,6 +44,7 @@ describe("RoutineBuilder", () => {
             expect(response?.body.name).equal(testRoutine.name);
 
             // now delete it
+            cy.visit("/routine/builder");
             cy.intercept("DELETE", `/routines/*`).as("deleteRoutineRequest");
             cy.get("[data-cy=delete-routine-btn]").first().click();
             cy.get("[data-cy=confirm-positive-btn]").click();
