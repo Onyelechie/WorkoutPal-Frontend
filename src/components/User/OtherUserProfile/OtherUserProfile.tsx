@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { relationshipService } from "../../../services/relationshipService";
 import { getRequest } from "../../../utils/apiRequests";
 import type { User } from "../../../types/api";
