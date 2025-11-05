@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "regression": "npm run test && npm run cy:run && npm run test:coverage",
+    "regression": "npm run cy:run && npm run test:coverage",
     "lint": "eslint .",
     "format": "prettier --write .",
     "preview": "vite preview",

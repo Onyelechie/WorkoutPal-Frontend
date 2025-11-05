@@ -87,6 +87,7 @@ export default function CreateScheduleModal({
                     })
                   }
                   className="text-input"
+                  data-cy="schedule-name-input"
                   required
                 />
                 {/* END OF ROUTINE NAME INPUT */}
@@ -112,6 +113,7 @@ export default function CreateScheduleModal({
                       }
                     }}
                     className="text-input"
+                    data-cy="schedule-routine-select"
                   >
                     <option value="">Select a routine...</option>
                     {routines.map((routine) => (
@@ -191,11 +193,12 @@ export default function CreateScheduleModal({
                     })
                   }
                   className="text-input"
+                  data-cy="schedule-routine-length-input"
                   required
                 />
                 {/* END OF ROUTINE LENGTH INPUT */}
                 <div className="action-button-container">
-                  <button type="submit" className="create-button">
+                  <button type="submit" className="create-button" data-cy="add-schedule-btn">
                     Create Schedule
                   </button>
                 </div>

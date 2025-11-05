@@ -11,8 +11,9 @@ import { BACKEND_URL } from "../../support/constants";
 
 // Another note:
 // These tests need to run to full completion to ensure the test user that was created is deleted in the database.
-// If the test user is not deleted, tests may start to fail.
-// The test user needs to be manually deleted in the database.
+// If the test user is not deleted:
+// - tests may start to fail.
+// - the test user needs to be manually deleted in the database.
 
 describe("Achievements Feature", () => {
 
