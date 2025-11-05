@@ -42,11 +42,7 @@ export default function RegisterCard() {
       console.log("Account Created");
       navLogin();
     } catch (error: any) {
-      alertOnRequestError(
-        USER_CREATE_FAIL,
-        error,
-        error.response?.data?.message,
-      );
+      alertOnRequestError(USER_CREATE_FAIL, error);
     }
   };
 
