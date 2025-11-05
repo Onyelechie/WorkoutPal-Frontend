@@ -5,6 +5,8 @@ import { getRequest } from "../../utils/apiRequests";
 import type { User } from "../../types/api";
 import type { User as RelationshipUser } from "../../services/relationshipService";
 import { useMe } from "../../hooks/useMe";
+import { PostCard } from "../Dashboard/PostCard";
+import { useNavigate } from "react-router-dom";
 
 interface OtherUserProfileProps {
   userId: number;
@@ -20,11 +22,31 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
   const [showFollowing, setShowFollowing] = useState(false);
   const [followers, setFollowers] = useState<RelationshipUser[]>([]);
   const [following, setFollowing] = useState<RelationshipUser[]>([]);
+  const [followersCount, setFollowersCount] = useState<number>(0);
+  const [followingCount, setFollowingCount] = useState<number>(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchUserProfile();
     checkFollowStatus();
+    fetchFollowCounts();
   }, [userId]);
+
+  const fetchFollowCounts = async () => {
+    try {
+      const [followersData, followingData] = await Promise.all([
+        relationshipService.getFollowers(userId),
+        relationshipService.getFollowing(userId)
+      ]);
+      
+      setFollowersCount(followersData.length);
+      setFollowingCount(followingData.length);
+    } catch (error) {
+      console.error('Error fetching follow counts:', error);
+      setFollowersCount(0);
+      setFollowingCount(0);
+    }
+  };
 
   const fetchUserProfile = async () => {
     try {
@@ -81,6 +103,8 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
       }
       // also refresh viewed profile from server in background to reconcile
       fetchUserProfile();
+      // refresh the counts after follow/unfollow
+      fetchFollowCounts();
     } catch (error) {
       console.error("Error toggling follow:", error);
     } finally {
@@ -98,6 +122,14 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
     setShowFollowing(true);
     const followingData = await relationshipService.getFollowing(userId);
     setFollowing(followingData as RelationshipUser[]);
+  };
+
+  const handleUserClick = (clickedUserId: number) => {
+    // Close the modals
+    setShowFollowers(false);
+    setShowFollowing(false);
+    // Navigate to the clicked user's profile
+    navigate(`/users/${clickedUserId}`);
   };
 
   if (loading) return <div className="loading">Loading profile...</div>;
@@ -127,23 +159,26 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
             <span className="stat-label">Posts</span>
           </div>
           <div className="stat-item" onClick={handleShowFollowers}>
-            <span className="stat-number">{user.followers?.length || 0}</span>
+            <span className="stat-number">{followersCount}</span>
             <span className="stat-label">Followers</span>
           </div>
           <div className="stat-item" onClick={handleShowFollowing}>
-            <span className="stat-number">{user.following?.length || 0}</span>
+            <span className="stat-number">{followingCount}</span>
             <span className="stat-label">Following</span>
           </div>
         </div>
 
-        <div className="posts-grid">
-          {Array.from({length: 6}, (_, i) => (
-            <div key={i} className="post-item">
-              <div className="post-image">
-                <span>Post {i + 1}</span>
-              </div>
-            </div>
-          ))}
+        <div className="posts-section">
+          <h2 className="section-title">Posts</h2>
+          <div className="posts-list">
+            {(user.Posts && user.Posts.length > 0) ? (
+              user.Posts.map((post: any) => (
+                <PostCard key={post.id} post={post} />
+              ))
+            ) : (
+              <div className="no-posts">No posts yet.</div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -157,7 +192,11 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
             </div>
             <div className="user-list">
               {followers.map(user => (
-                <div key={user.id} className="user-item">
+                <div 
+                  key={user.id} 
+                  className="user-item"
+                  onClick={() => handleUserClick(user.id)}
+                >
                   <img src={user.avatar} alt={user.name} className="user-avatar" />
                   <div className="user-info">
                     <span className="user-name">{user.name}</span>
@@ -181,7 +220,11 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
             </div>
             <div className="user-list">
               {following.map(user => (
-                <div key={user.id} className="user-item">
+                <div 
+                  key={user.id} 
+                  className="user-item"
+                  onClick={() => handleUserClick(user.id)}
+                >
                   <img src={user.avatar} alt={user.name} className="user-avatar" />
                   <div className="user-info">
                     <span className="user-name">{user.name}</span>

@@ -5,10 +5,36 @@ import { useMe } from "../../hooks/useMe";
 import MyWorkouts from "../../components/MyWorkouts/MyWorkouts";
 import { postRequest } from "../../utils/apiRequests";
 import { PostCard } from "../../components/Dashboard/PostCard";
+import { useState, useEffect } from "react";
+import { relationshipService } from "../../services/relationshipService";
 
 function ProfilePage() {
   const { user, isLoading, error, fetchMe } = useMe();
   const { navLogin } = useAppNavigation();
+  const [followersCount, setFollowersCount] = useState<number>(0);
+  const [followingCount, setFollowingCount] = useState<number>(0);
+
+  useEffect(() => {
+    const fetchFollowData = async () => {
+      if (!user?.id) return;
+      
+      try {
+        const [followersData, followingData] = await Promise.all([
+          relationshipService.getFollowers(user.id),
+          relationshipService.getFollowing(user.id)
+        ]);
+        
+        setFollowersCount(followersData.length);
+        setFollowingCount(followingData.length);
+      } catch (error) {
+        console.error('Error fetching follow data:', error);
+        setFollowersCount(0);
+        setFollowingCount(0);
+      }
+    };
+
+    fetchFollowData();
+  }, [user?.id]);
 
   const handleUserUpdate = async () => {
     // Refresh user data after update
@@ -38,8 +64,8 @@ function ProfilePage() {
                 email={user.email}
                 userId={user.id}
                 postsCount={user.Posts?.length || 0}
-                followersCount={user.followers?.length || 0}
-                followingCount={user.following?.length || 0}
+                followersCount={followersCount}
+                followingCount={followingCount}
                 user={user}
                 onUserUpdate={handleUserUpdate}
               />
