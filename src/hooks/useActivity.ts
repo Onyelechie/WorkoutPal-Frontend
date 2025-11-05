@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { getRequest } from "../utils/apiRequests"; // adjust path if needed
-import type { Post, Comment, Achievement } from "../types/api";
+import type { Post, Comment, UserAchievement } from "../types/api";
 
 export function useActivity() {
   const POSTS_ENDPOINT = "/posts";
   const ACHIEVEMENTS_ENDPOINT = "/achievements/feed";
 
   // state variables
-  const [activity, setActivity] = useState<(Post | Comment | Achievement)[]>(
-    []
-  );
+  const [activity, setActivity] = useState<
+    (Post | Comment | UserAchievement)[]
+  >([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -18,7 +18,7 @@ export function useActivity() {
       setIsLoading(true);
       setError(null); // remove any previous error messages
 
-      var data: (Post | Comment | Achievement)[] = [];
+      var data: (Post | Comment | UserAchievement)[] = [];
 
       const postResponse = await getRequest(POSTS_ENDPOINT);
       data = data.concat(postResponse.data);

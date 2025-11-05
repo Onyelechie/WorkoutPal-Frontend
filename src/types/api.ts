@@ -67,6 +67,12 @@ export interface Workout {
 export interface Achievement {
   badgeIcon: string;
   description: string;
+  id: number;
+  title: string;
+}
+export interface UserAchievement {
+  badgeIcon: string;
+  description: string;
   date: string;
   id: number;
   title: string;

@@ -1,9 +1,9 @@
 import "./AchievementCard.css";
-import type { Achievement } from "../../types/api";
+import type { UserAchievement } from "../../types/api";
 import { notYetImplemented } from "../../utils/construction";
 
 type AchievementProps = {
-  achievement: Achievement;
+  achievement: UserAchievement;
 };
 
 export function AchievementCard({ achievement }: AchievementProps) {
