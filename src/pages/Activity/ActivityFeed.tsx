@@ -5,40 +5,6 @@ import type { Post, UserAchievementUnlocked, Comment } from "../../types/api";
 import { UserAchievementCard } from "../../components/Achievements/UserAchievmentCard";
 import { CommentCard } from "../../components/CommentCard/CommentCard";
 
-// const testActivity: (Post | UserAchievementUnlocked | Comment)[] = [
-//   {
-//     id: 1,
-//     postedBy: "Jane Doe",
-//     title: "My First Post",
-//     caption: "This is a caption for my post",
-//     date: "2025-10-29",
-//     body: "Here is the full content of the post.",
-//     likes: 42,
-//     status: "What is this?",
-//     comments: [],
-//   },
-//   {
-//     badgeIcon: "🫠",
-//     description: "Test achievement description goes here",
-//     date: "2025-10-25",
-//     id: 2,
-//     title: "Test Achievement",
-//     userId: 1,
-//     username: "JohnPork",
-//   },
-//   {
-//     id: 4,
-//     postedBy: "John Smith",
-//     title: "Another Post",
-//     caption: "Another caption",
-//     date: "2025-10-24",
-//     body: "Full content goes here.",
-//     likes: 15,
-//     status: "What is this?",
-//     comments: [],
-//   },
-// ];
-
 function mapActivity(activity: Post | Comment | UserAchievementUnlocked) {
   if ("caption" in activity) {
     return <PostCard key={activity.id} post={activity} />;
@@ -84,9 +50,6 @@ function ActivityFeed() {
             mapActivity(activity)
           )
       }
-      {/* {testActivity.map((activity: Post | Comment | Achievement) =>
-        mapActivity(activity)
-      )} */}
     </div>
   );
 }
