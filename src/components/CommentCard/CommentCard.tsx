@@ -7,5 +7,15 @@ type CommentProps = {
 };
 
 export function CommentCard({ comment }: CommentProps) {
-  return 2;
+  return (
+    <div className="comment-card" onClick={notYetImplemented}>
+      <div className="comment-header">
+        <h3>
+          {comment.commentedBy} commented on {comment.commentedOn}
+        </h3>
+      </div>
+      <p>{comment.comment}</p>
+      <p>{comment.date}</p>
+    </div>
+  );
 }
