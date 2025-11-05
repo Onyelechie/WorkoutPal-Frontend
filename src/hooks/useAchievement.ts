@@ -1,14 +1,21 @@
 import { unlockAchievement as unlockAchievementService } from "../services/achievementService";
+import { getRequest } from "../utils/apiRequests";
 import { useAlertDialog } from "./useDialog";
 
 
 export function useAchievement() {
     const { showAlert } = useAlertDialog();
 
-    async function unlockAchievement(userId: number, achievementId: number) {
-        const data = await unlockAchievementService(userId, achievementId);
-        if (data) {
-            showAlert(`Achievement Unlocked: ${data.badgeIcon} ${data.title}`, data.description);
+    async function unlockAchievement(achievementId: number) {
+        try{
+            const userId = (await getRequest("/me")).data.id;
+            const data = await unlockAchievementService(achievementId, userId );
+            if (data) {
+                showAlert(`Achievement Unlocked: ${data.badgeIcon} ${data.title}`, data.description);
+            }
+        }
+        catch (error: any) {
+            console.log("useAchievement(): ", error)
         }
     }
 

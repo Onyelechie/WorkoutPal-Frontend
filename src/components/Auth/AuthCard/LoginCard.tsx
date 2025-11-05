@@ -27,7 +27,7 @@ function LoginCard() {
       .then(async (response) => {
         if (response.status == 200) {
           console.log("Login successful");
-          achievement.unlockAchievement(1, 6);
+          achievement.unlockAchievement(1);
           navHome();
         }
       })

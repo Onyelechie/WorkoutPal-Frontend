@@ -60,7 +60,7 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({
       await postRequest(`/users/${userId}/routines`, payload);
       const newRoutinesResponse = await getRequest(`/users/${userId}/routines`);
       setRoutines(newRoutinesResponse.data);
-      achievement.unlockAchievement(2, 6);
+      achievement.unlockAchievement(2);
       onClose();
       setRoutineName("");
       setSelectedExercises([]);
