@@ -45,7 +45,7 @@ export default function RegisterCard() {
       alertOnRequestError(
         USER_CREATE_FAIL,
         error,
-        error.response?.data?.message,
+        error.response?.data?.detail,
       );
     }
   };
