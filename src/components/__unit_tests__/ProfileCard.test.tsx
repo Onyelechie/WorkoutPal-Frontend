@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 import ProfileCard from "../User/ProfileCard/ProfileCard";
 import { relationshipService } from "../../services/relationshipService";
 import type { User } from "../../types/api";
@@ -37,18 +38,20 @@ describe("ProfileCard", () => {
 
   it("renders user information correctly", () => {
     render(
-      <ProfileCard
-        avatar=""
-        name="Test User"
-        username="testuser"
-        email="test@example.com"
-        userId={1}
-        postsCount={5}
-        followersCount={10}
-        followingCount={15}
-        user={mockUser}
-        onUserUpdate={mockOnUserUpdate}
-      />,
+      <BrowserRouter>
+        <ProfileCard
+          avatar=""
+          name="Test User"
+          username="testuser"
+          email="test@example.com"
+          userId={1}
+          postsCount={5}
+          followersCount={10}
+          followingCount={15}
+          user={mockUser}
+          onUserUpdate={mockOnUserUpdate}
+        />
+      </BrowserRouter>,
     );
 
     expect(screen.getByText("Test User")).toBeInTheDocument();
@@ -61,15 +64,17 @@ describe("ProfileCard", () => {
 
   it("opens edit profile modal when edit button is clicked", () => {
     render(
-      <ProfileCard
-        avatar=""
-        name="Test User"
-        username="testuser"
-        email="test@example.com"
-        userId={1}
-        user={mockUser}
-        onUserUpdate={mockOnUserUpdate}
-      />,
+      <BrowserRouter>
+        <ProfileCard
+          avatar=""
+          name="Test User"
+          username="testuser"
+          email="test@example.com"
+          userId={1}
+          user={mockUser}
+          onUserUpdate={mockOnUserUpdate}
+        />
+      </BrowserRouter>,
     );
 
     const editButton = screen.getByRole("button", { name: "Edit Profile" });
@@ -86,16 +91,18 @@ describe("ProfileCard", () => {
     (relationshipService.getFollowers as any).mockResolvedValue(mockFollowers);
 
     render(
-      <ProfileCard
-        avatar=""
-        name="Test User"
-        username="testuser"
-        email="test@example.com"
-        userId={1}
-        followersCount={1}
-        user={mockUser}
-        onUserUpdate={mockOnUserUpdate}
-      />,
+      <BrowserRouter>
+        <ProfileCard
+          avatar=""
+          name="Test User"
+          username="testuser"
+          email="test@example.com"
+          userId={1}
+          followersCount={1}
+          user={mockUser}
+          onUserUpdate={mockOnUserUpdate}
+        />
+      </BrowserRouter>,
     );
 
     const followersButton = screen.getByText("Followers").closest(".stat-item");
