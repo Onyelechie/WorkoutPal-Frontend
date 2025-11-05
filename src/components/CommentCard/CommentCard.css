@@ -1,0 +1,8 @@
+.comment-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-header {
+  display: flex;
+}
