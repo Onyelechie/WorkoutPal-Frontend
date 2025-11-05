@@ -16,7 +16,7 @@ import { BACKEND_URL, testUser } from "../../support/constants";
 // - The test routine needs to be manually deleted in the database.
 // - The test routine will be linked to the testUser account listed in cypress/support/constants.ts
 
-describe("RoutineBuilder", () => {
+describe("Routine Builder Feature", () => {
 
     // ADDTIONAL ASSUMPTIONS:
     // testUser has no routines at all in their account. 

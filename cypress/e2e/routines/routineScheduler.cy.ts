@@ -17,7 +17,7 @@ import { BACKEND_URL, testUser } from "../../support/constants";
 // - The test schedule needs to be manually deleted in the database.
 // - The test schedule will be linked to the testUser account listed in cypress/support/constants.ts
 
-describe("RoutineScheduler", () => {
+describe("Routine Scheduler Feature", () => {
 
     // ADDTIONAL ASSUMPTIONS:
     // testUser has no schedules at all in their account. 
