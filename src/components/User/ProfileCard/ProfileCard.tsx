@@ -73,7 +73,7 @@ function ProfileCard({
             <h1 className="name">{user.name}</h1>
             <h3 className="username">@{user.username}</h3>
             <p className="email">{user.email}</p>
-            <button
+            <button 
               className="edit-profile-btn"
               onClick={() => setShowEditProfile(true)}
             >
