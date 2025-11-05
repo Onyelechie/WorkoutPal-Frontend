@@ -111,7 +111,7 @@ describe("achievementService", () => {
         },
       });
 
-      const result = await unlockAchievement(2, 123, "username");
+      const result = await unlockAchievement(2, 123);
 
       expect(postRequest).toHaveBeenCalledWith("/achievements", {
         achievementId: 2,
@@ -141,7 +141,7 @@ describe("achievementService", () => {
 
       (getRequest as any).mockResolvedValue({ data: unlocked });
 
-      const result = await unlockAchievement(1, 123, "username");
+      const result = await unlockAchievement(1, 123);
 
       expect(postRequest).not.toHaveBeenCalled();
       expect(result).toBeUndefined();

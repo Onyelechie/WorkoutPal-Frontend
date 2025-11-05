@@ -90,7 +90,6 @@ export interface UserAchievementLocked extends Achievement {}
 export interface UnlockAchievement {
   achievementId: number;
   userId: number;
-  username: string;
 }
 
 export interface Goal {

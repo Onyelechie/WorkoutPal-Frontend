@@ -39,13 +39,11 @@ export async function getAchievementsCatalog(): Promise<Achievement[]> {
  * */
 export async function unlockAchievement(
   achievementId: number,
-  userId: number,
-  username: string
+  userId: number
 ): Promise<UserAchievementUnlocked | undefined> {
   const achievementPayload: UnlockAchievement = {
     achievementId,
     userId,
-    username,
   };
   try {
     if (await notUnlocked(achievementId)) {

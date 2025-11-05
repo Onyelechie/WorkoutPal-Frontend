@@ -10,12 +10,7 @@ export function useAchievement() {
   async function unlockAchievement(achievementId: number) {
     try {
       const userId = (await getRequest("/me")).data.id;
-      const username = (await getRequest("/me")).data.username;
-      const data = await unlockAchievementService(
-        achievementId,
-        userId,
-        username
-      );
+      const data = await unlockAchievementService(achievementId, userId);
       if (data) {
         showAlert(
           `Achievement Unlocked: ${data.badgeIcon} ${data.title}`,
