@@ -146,3 +146,28 @@ npm run cy:open
 4. You will see the artifact (**coverage-report**) uploaded by that run.
 5. Click on the artifact name to **download** the ZIP file.
 6. **Extract** the zip, **Navigate** to `coverage-report/index.html` to access the html generated report.
+
+
+## Regression Testing Suite
+- **What runs:** Unit tests (Jest), E2E tests (Cypress), Coverage analysis. (Full Regression)
+- **Tools:** GitHub Actions, Jest, Cypress
+- **Script:** `npm run regression`
+- **Latest results:** [GitHub Actions](https://github.com/Onyelechie/WorkoutPal-Frontend/actions)
+
+### How to Rerun Tests
+**Locally:**
+ensure backend and frontend are running
+```bash
+npm run regression
+```
+**On GitHub:**
+1. Go to Actions tab
+2. Select "Coverage Report" workflow
+3. Click "Run workflow" button
+4. Choose branch and click "Run workflow"
+   
+**After failed PR:**
+1. Fix the code
+2. Push changes (automatically triggers rerun)
+3. Or manually trigger via Actions tab
+
