@@ -4,7 +4,6 @@ import { PostCard } from "../../components/PostCard/PostCard";
 import type { Post, Achievement, Comment } from "../../types/api";
 import { AchievementCard } from "../../components/AchievementCard/AchievmentCard";
 import { CommentCard } from "../../components/CommentCard/CommentCard";
-import logoUrl from "../../assets/react.svg";
 
 const testActivity: (Post | Achievement | Comment)[] = [
   {
@@ -12,7 +11,7 @@ const testActivity: (Post | Achievement | Comment)[] = [
     postedBy: "Jane Doe",
     title: "My First Post",
     caption: "This is a caption for my post",
-    date: "2025-10-25",
+    date: "2025-10-29",
     body: "Here is the full content of the post.",
     likes: 42,
     status: "What is this?",
@@ -21,18 +20,11 @@ const testActivity: (Post | Achievement | Comment)[] = [
   {
     badgeIcon: "🫠",
     description: "Test achievement description goes here",
-    earnedAt: "2025-10-25",
+    date: "2025-10-25",
     id: 2,
     title: "Test Achievement",
     userId: 1,
-  },
-  {
-    id: 3,
-    commentedBy: "string",
-    commentedOn: 1,
-    comment: "string",
-    date: "string",
-    parentComment: 1,
+    username: "JohnPork",
   },
   {
     id: 4,
@@ -92,9 +84,9 @@ function ActivityFeed() {
             mapActivity(activity)
           )
       }
-      {testActivity.map((activity: Post | Comment | Achievement) =>
+      {/* {testActivity.map((activity: Post | Comment | Achievement) =>
         mapActivity(activity)
-      )}
+      )} */}
     </div>
   );
 }

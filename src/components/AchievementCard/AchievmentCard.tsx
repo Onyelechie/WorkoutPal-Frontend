@@ -9,11 +9,11 @@ type AchievementProps = {
 export function AchievementCard({ achievement }: AchievementProps) {
   return (
     <div className="achievement-card" onClick={notYetImplemented}>
-      <p>{achievement.userId} Achieved</p>
+      <p>{achievement.username} Achieved</p>
       <div className="achievement-holder" title={achievement.description}>
         <p>{achievement.badgeIcon + " " + achievement.title}</p>
       </div>
-      <p>{achievement.earnedAt}</p>
+      <p>{new Date(achievement.date).toISOString().split("T")[0]}</p>
     </div>
   );
 }

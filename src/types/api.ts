@@ -67,10 +67,11 @@ export interface Workout {
 export interface Achievement {
   badgeIcon: string;
   description: string;
-  earnedAt: string;
+  date: string;
   id: number;
   title: string;
   userId: number;
+  username: string;
 }
 
 export interface Goal {

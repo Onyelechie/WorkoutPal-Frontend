@@ -4,7 +4,7 @@ import type { Post, Comment, Achievement } from "../types/api";
 
 export function useActivity() {
   const POSTS_ENDPOINT = "/posts";
-  const ACHIEVEMENTS_ENDPOINT = "/achievements";
+  const ACHIEVEMENTS_ENDPOINT = "/achievements/feed";
 
   // state variables
   const [activity, setActivity] = useState<(Post | Comment | Achievement)[]>(
@@ -24,6 +24,9 @@ export function useActivity() {
       data = data.concat(postResponse.data);
       const achievementResponse = await getRequest(ACHIEVEMENTS_ENDPOINT);
       data = data.concat(achievementResponse.data);
+      data.sort(
+        (a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf()
+      );
       setActivity(data);
     } catch (err: any) {
       setError(err);
