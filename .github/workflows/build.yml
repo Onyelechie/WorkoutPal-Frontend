@@ -34,7 +34,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.25.1'
+          go-version: "1.25.1"
 
       # Install Go dependencies
       - name: Download Go modules
@@ -67,7 +67,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: "20"
 
       # Install frontend dependencies
       - name: Install dependencies
@@ -86,7 +86,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           start: npm run dev
-          wait-on: 'http://localhost:5173'
+          wait-on: "http://localhost:5173"
           wait-on-timeout: 120
           browser: chrome
 
@@ -95,4 +95,3 @@ jobs:
         if: always()
         working-directory: backend/src/fitness-db
         run: docker compose down
-
