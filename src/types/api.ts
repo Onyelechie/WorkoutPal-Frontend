@@ -9,8 +9,9 @@ export interface Post {
   title: string;
   caption: string;
   date: string;
-  content: string;
+  body: string;
   likes: number;
+  status: string;
   comments: Comment[];
 }
 

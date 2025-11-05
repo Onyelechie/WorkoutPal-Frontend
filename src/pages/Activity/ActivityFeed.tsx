@@ -13,12 +13,13 @@ const testActivity: (Post | Achievement | Comment)[] = [
     title: "My First Post",
     caption: "This is a caption for my post",
     date: "2025-10-25",
-    content: "Here is the full content of the post.",
+    body: "Here is the full content of the post.",
     likes: 42,
+    status: "What is this?",
     comments: [],
   },
   {
-    badgeIcon: logoUrl,
+    badgeIcon: "🫠",
     description: "Test achievement description goes here",
     earnedAt: "2025-10-25",
     id: 2,
@@ -39,14 +40,15 @@ const testActivity: (Post | Achievement | Comment)[] = [
     title: "Another Post",
     caption: "Another caption",
     date: "2025-10-24",
-    content: "Full content goes here.",
+    body: "Full content goes here.",
     likes: 15,
+    status: "What is this?",
     comments: [],
   },
 ];
 
 function mapActivity(activity: Post | Comment | Achievement) {
-  if ("content" in activity) {
+  if ("caption" in activity) {
     return <PostCard key={activity.id} post={activity} />;
   } else if ("comment" in activity) {
     return <CommentCard key={activity.id} comment={activity} />;

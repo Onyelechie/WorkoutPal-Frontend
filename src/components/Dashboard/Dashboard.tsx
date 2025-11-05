@@ -12,8 +12,9 @@ const testPost: Post[] = [
     title: "My First Post",
     caption: "This is a caption for my post",
     date: "2025-10-25",
-    content: "Here is the full content of the post.",
+    body: "Here is the full content of the post.",
     likes: 42,
+    status: "What is this?",
     comments: [],
   },
   {
@@ -22,8 +23,9 @@ const testPost: Post[] = [
     title: "Another Post",
     caption: "Another caption",
     date: "2025-10-24",
-    content: "Full content goes here.",
+    body: "Full content goes here.",
     likes: 15,
+    status: "What is this?",
     comments: [],
   },
 ];

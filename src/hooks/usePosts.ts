@@ -17,7 +17,7 @@ export function usePosts() {
       setIsLoading(true);
       setError(null); // remove any previous error messages
 
-      const response = await getRequest("/mock/posts");
+      const response = await getRequest("/posts");
       setPosts(response.data);
     } catch (err: any) {
       handleError(err, setError, POST_FETCH_FAIL);
