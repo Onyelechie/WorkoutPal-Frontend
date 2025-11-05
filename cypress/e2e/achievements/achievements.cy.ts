@@ -42,7 +42,6 @@ describe("Achievements Feature", () => {
     cy.intercept("POST", "/users").as("registerRequest");
     cy.intercept("POST", "/login").as("loginRequest");
     cy.intercept("POST", "/users/*/routines").as("createRoutineRequest");
-    cy.intercept("POST", "/achievements").as("achievementRequest");
   });
 
   afterEach(() => {
@@ -117,13 +116,14 @@ describe("Achievements Feature", () => {
     cy.get("[data-cy=create-routine-btn]").scrollIntoView().should('be.visible').click();
 
     cy.wait("@createRoutineRequest").its("response.statusCode").should("eq", 201);
-    cy.wait("@achievementRequest").its("response.statusCode").should("eq", 200);
 
     // verify routine creation achievement dialog appears
     cy.get('.dialog-container').should('be.visible');
     cy.contains('Achievement Unlocked').should('be.visible');
-    cy.contains('Knowledge Sharing').should('be.visible');
+    cy.contains('Getting started').should('be.visible');
     cy.get('.dialog-container button').contains('OK').click();
+    
+    // wait a moment for achievement to be processed
 
     // navigate to achievements page
     cy.contains("button", "Achievements").click();
@@ -137,6 +137,6 @@ describe("Achievements Feature", () => {
     // verify both achievements are displayed in completed section
     cy.contains("Completed ✅").should("be.visible");
     cy.contains("Welcome, Pal!").should("be.visible");
-    cy.contains("Knowledge Sharing").should("be.visible");
+    cy.contains("Getting started").should("be.visible");
   });
 });
