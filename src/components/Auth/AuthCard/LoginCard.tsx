@@ -5,6 +5,7 @@ import { postRequest } from "../../../utils/apiRequests";
 import { useAppNavigation } from "../../../hooks/useAppNavigation";
 import { useErrorHandler } from "../../../hooks/useErrorHandler";
 import { USER_LOGIN_FAIL } from "../../../app/constants/genericErrors";
+import { useAchievement } from "../../../hooks/useAchievement";
 
 function LoginCard() {
   const { alertOnRequestError } = useErrorHandler();
@@ -12,6 +13,7 @@ function LoginCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { navHome, navRegister } = useAppNavigation();
+  const achievement = useAchievement()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,14 +24,15 @@ function LoginCard() {
     };
 
     postRequest("/login", payload)
-      .then((response) => {
+      .then(async (response) => {
         if (response.status == 200) {
           console.log("Login successful");
+          achievement.unlockAchievement(1);
           navHome();
         }
       })
       .catch((error) => {
-        alertOnRequestError(USER_LOGIN_FAIL, error, error.response?.data);
+        alertOnRequestError(USER_LOGIN_FAIL, error, error.response?.data?.detail);
       });
   };
 

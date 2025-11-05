@@ -11,7 +11,9 @@ function UserSearch({ onUserSelect }: UserSearchProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
   const debounceRef = useRef<number | null>(null);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
   // sequence counter to ignore out-of-order responses
   const seq = useRef(0);
   const lastHandledSeq = useRef(0);
@@ -74,6 +76,7 @@ function UserSearch({ onUserSelect }: UserSearchProps) {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);
+    setShowDropdown(true);
     // debounce requests to avoid spamming the API
     if (debounceRef.current) {
       clearTimeout(debounceRef.current);
@@ -83,14 +86,29 @@ function UserSearch({ onUserSelect }: UserSearchProps) {
     }, 250) as unknown as number;
   };
 
+  const handleUserClick = (user: User) => {
+    onUserSelect?.(user);
+    setShowDropdown(false);
+    setSearchTerm(""); // Clear search after selection
+    setUsers([]); // Clear results
+  };
+
   useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
   }, []);
 
   return (
-    <div className="user-search">
+    <div className="user-search" ref={searchContainerRef}>
       <div className="search-input-container">
         <input
           type="text"
@@ -102,13 +120,13 @@ function UserSearch({ onUserSelect }: UserSearchProps) {
         {loading && <div className="search-loading">🔍</div>}
       </div>
 
-      {users.length > 0 && (
+      {showDropdown && users.length > 0 && (
         <div className="search-results">
           {users.map((user) => (
             <div
               key={user.id}
               className="search-result-item"
-              onClick={() => onUserSelect?.(user)}
+              onClick={() => handleUserClick(user)}
             >
               <img
                 src={user.avatar}

@@ -70,12 +70,16 @@ export interface Achievement {
   id: number;
   title: string;
 }
-export interface UserAchievement {
-  badgeIcon: string;
-  description: string;
+
+export interface UserAchievementUnlocked extends Achievement {
   date: string;
-  id: number;
-  title: string;
+  userId: number;
+  username: string;
+}
+export interface UserAchievementLocked extends Achievement {}
+
+export interface UnlockAchievement {
+  achievementId: number;
   userId: number;
   username: string;
 }
@@ -101,7 +105,7 @@ export interface Routine {
 }
 
 export interface User {
-  Achievements: Achievement[];
+  Achievements: UserAchievementUnlocked[];
   age: number;
   avatar: string;
   email: string;

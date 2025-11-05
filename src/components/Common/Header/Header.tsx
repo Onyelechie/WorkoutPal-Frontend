@@ -5,7 +5,8 @@ import { useNavigate } from "react-router";
 import logoUrl from "../../../assets/react.svg";
 
 function Header() {
-  const { navHome, navProfile, navRoutine, navActivity } = useAppNavigation();
+  const { navHome, navProfile, navRoutine, navActivity, navAchievements } =
+    useAppNavigation();
   const navigate = useNavigate();
 
   const handleUserSelect = (user: { id: number }) => {
@@ -38,6 +39,10 @@ function Header() {
         <button className="header-button" onClick={navProfile}>
           Profile
         </button>
+        <button className="achievement-button" onClick={navAchievements}>
+          Achievements
+        </button>
+        <button className="profile-button" onClick={navProfile}></button>
       </div>
     </header>
   );

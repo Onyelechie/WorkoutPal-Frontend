@@ -76,6 +76,7 @@
 .header-right {
   display: flex;
   align-items: center;
+  gap: 0.75rem;
 }
 
 /* focus-visible for keyboard users */

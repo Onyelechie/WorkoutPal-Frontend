@@ -1,9 +1,10 @@
+import type { User as ApiUser } from "../../../types/api";
+import EditProfile from "../EditProfile/EditProfile";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./ProfileCard.css";
 import { relationshipService } from "../../../services/relationshipService";
 import type { User } from "../../../services/relationshipService";
-import EditProfile from "../EditProfile/EditProfile";
-import type { User as ApiUser } from "../../../types/api";
 
 interface ProfileCardProps {
   avatar: string;
@@ -33,6 +34,7 @@ function ProfileCard({
   const [loadingFollowers, setLoadingFollowers] = useState(false);
   const [loadingFollowing, setLoadingFollowing] = useState(false);
   const [showEditProfile, setShowEditProfile] = useState(false);
+  const navigate = useNavigate();
 
   const handleShowFollowers = async () => {
     setShowFollowers(true);
@@ -48,6 +50,14 @@ function ProfileCard({
     const followingData = await relationshipService.getFollowing(userId);
     setFollowing(followingData);
     setLoadingFollowing(false);
+  };
+
+  const handleUserClick = (clickedUserId: number) => {
+    // Close the modals
+    setShowFollowers(false);
+    setShowFollowing(false);
+    // Navigate to the clicked user's profile
+    navigate(`/users/${clickedUserId}`);
   };
 
   return (
@@ -106,13 +116,13 @@ function ProfileCard({
                 <p>Loading followers...</p>
               ) : (
                 <>
-                  {followers.map((user) => (
-                    <div key={user.id} className="user-item">
-                      <img
-                        src={user.avatar}
-                        alt={user.name}
-                        className="user-avatar"
-                      />
+                  {followers.map(user => (
+                    <div 
+                      key={user.id} 
+                      className="user-item"
+                      onClick={() => handleUserClick(user.id)}
+                    >
+                      <img src={user.avatar} alt={user.name} className="user-avatar" />
                       <div className="user-info">
                         <span className="user-name">{user.name}</span>
                         <span className="user-username">@{user.username}</span>
@@ -145,13 +155,13 @@ function ProfileCard({
                 <p>Loading following...</p>
               ) : (
                 <>
-                  {following.map((user) => (
-                    <div key={user.id} className="user-item">
-                      <img
-                        src={user.avatar}
-                        alt={user.name}
-                        className="user-avatar"
-                      />
+                  {following.map(user => (
+                    <div 
+                      key={user.id} 
+                      className="user-item"
+                      onClick={() => handleUserClick(user.id)}
+                    >
+                      <img src={user.avatar} alt={user.name} className="user-avatar" />
                       <div className="user-info">
                         <span className="user-name">{user.name}</span>
                         <span className="user-username">@{user.username}</span>

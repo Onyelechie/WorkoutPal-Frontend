@@ -7,6 +7,7 @@ import {
   PROFILE_ROUTE,
   REGISTER_ROUTE,
   ROUTINE_ROUTE,
+  ACHIEVEMENTS_ROUTE,
 } from "../app/AppRoutes";
 
 /* Hook for navigating to different pages */
@@ -21,5 +22,6 @@ export function useAppNavigation() {
     navRegister: () => navigate(REGISTER_ROUTE),
     navRoutine: () => navigate(ROUTINE_ROUTE),
     navActivity: () => navigate(ACTIVITY_ROUTE),
+    navAchievements: () => navigate(ACHIEVEMENTS_ROUTE),
   };
 }
