@@ -19,10 +19,10 @@ function Header() {
           <img src={logoUrl} alt="WorkoutPal logo" className="logo-image" />
           <span className="logo-text">WorkoutPal</span>
         </button>
-        <button className="home-button" onClick={navHome}>
+        <button className="header-button" onClick={navHome}>
           Home
         </button>
-        <button className="routine-button" onClick={navRoutine}>
+        <button className="header-button" onClick={navRoutine}>
           Routine
         </button>
       </div>
@@ -32,8 +32,8 @@ function Header() {
       </div>
 
       <div className="header-right">
-        <button className="achievement-button" onClick={navAchievements}>Achievements</button>
-        <button className="profile-button" onClick={navProfile}>
+        <button className="header-button" onClick={navAchievements}>Achievements</button>
+        <button className="header-button" onClick={navProfile}>
           Profile
         </button>
       </div>

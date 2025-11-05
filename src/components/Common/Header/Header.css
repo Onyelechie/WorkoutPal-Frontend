@@ -40,9 +40,9 @@
   color: #222;
 }
 
-.routine-button {
-  background: var(--primary-color, #2563eb);
-  color: #ffffff;
+.header-button {
+  background: var(--color-primary-1);
+  color: white;
   border: none;
   padding: 6px 14px;
   cursor: pointer;
@@ -54,29 +54,9 @@
     transform 0.06s;
 }
 
-.routine-button:hover,
-.routine-button:focus {
-  background-color: var(--primary-color-dark, #1e40af);
-  transform: translateY(-1px);
-}
-
-.home-button {
-  background: var(--primary-color, #2563eb);
-  color: #ffffff;
-  border: none;
-  padding: 6px 14px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 0.98rem;
-  border-radius: 8px;
-  transition:
-    background-color 0.12s,
-    transform 0.06s;
-}
-
-.home-button:hover,
-.home-button:focus {
-  background-color: var(--primary-color-dark, #1e40af);
+.header-button:hover,
+.header-button:focus {
+  background-color: var(--color-primary-3);
   transform: translateY(-1px);
 }
 
@@ -99,37 +79,8 @@
   gap: 0.75rem;
 }
 
-.profile-button {
-  background: var(--primary-color, #2563eb);
-  color: #ffffff;
-  border: none;
-  padding: 6px 14px;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 8px;
-  transition:
-    background-color 0.12s,
-    transform 0.06s;
-}
-
-.profile-button:hover,
-.profile-button:focus {
-  background-color: var(--primary-color-dark, #1e40af);
-  transform: translateY(-1px);
-}
-
 /* focus-visible for keyboard users */
-.routine-button:focus-visible,
-.home-button:focus-visible,
-.profile-button:focus-visible {
+.header-button:focus-visible {
   outline: 3px solid rgba(99, 102, 241, 0.18);
   outline-offset: 2px;
-}
-
-.logout-button {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  cursor: pointer;
 }
