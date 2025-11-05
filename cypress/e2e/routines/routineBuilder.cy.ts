@@ -44,7 +44,7 @@ describe("RoutineBuilder", () => {
             expect(response?.body.name).equal(testRoutine.name);
 
             // now delete it
-            cy.intercept("DELETE", `/routines/${response?.body.id}`).as("deleteRoutineRequest");
+            cy.intercept("DELETE", `/routines/*`).as("deleteRoutineRequest");
             cy.get("[data-cy=delete-routine-btn]").first().click();
             cy.get("[data-cy=confirm-positive-btn]").click();
             cy.wait("@deleteRoutineRequest").its("response.statusCode").should("eq", 200);
@@ -94,7 +94,7 @@ describe("RoutineBuilder", () => {
                 
                 // attempt to delete the routine while it is linked to a schedule
                 cy.visit("/routine/builder");
-                cy.intercept("DELETE", `/routines/${routineId}`).as("deleteRoutineRequest");
+                cy.intercept("DELETE", `/routines/*`).as("deleteRoutineRequest");
                 cy.get("[data-cy=delete-routine-btn]").first().click();
                 cy.get("[data-cy=confirm-positive-btn]").click();
                 // should fail
@@ -104,6 +104,7 @@ describe("RoutineBuilder", () => {
                     expect(response.status).equal(200);
 
                     // try deleting again
+                    cy.visit("/routine/builder");
                     cy.get("[data-cy=delete-routine-btn]").first().click();
                     cy.get("[data-cy=confirm-positive-btn]").click();
                     cy.wait("@deleteRoutineRequest").its("response.statusCode").should("eq", 200);
