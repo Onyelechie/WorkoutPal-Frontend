@@ -68,12 +68,23 @@ export interface Workout {
 
 /* ----------------- USERS ----------------- */
 
+
 export interface Achievement {
   badgeIcon: string;
   description: string;
-  earnedAt: string;
   id: number;
   title: string;
+}
+
+  export interface UserAchievementUnlocked extends Achievement {
+    earnedAt: string;
+  }
+  export interface UserAchievementLocked extends Achievement {
+
+  }
+
+export interface UnlockAchievement {
+  achievementId: number;
   userId: number;
 }
 
@@ -98,7 +109,7 @@ export interface Routine {
 }
 
 export interface User {
-  Achievements: Achievement[];
+  Achievements: UserAchievementUnlocked[];
   age: number;
   avatar: string;
   email: string;

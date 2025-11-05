@@ -85,6 +85,9 @@ describe("Auth", () => {
     // make sure access token exists upon logging in
     cy.getCookie("access_token").should("exist");
 
+    // achievement unlocked, click OK
+    cy.get('body').find('.dialog-container button').contains('OK').click();
+
     // navigate to profile page where logout button is located
     cy.contains("button", "Profile").click();
     cy.url().should("include", "/profile");
