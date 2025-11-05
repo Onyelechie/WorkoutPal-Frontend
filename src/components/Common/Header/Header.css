@@ -118,10 +118,31 @@
   transform: translateY(-1px);
 }
 
+.achievement-button {
+  background: var(--primary-color, #2563eb);
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  transition:
+  background-color 0.12s,
+  transform 0.06s;
+}
+
+.achievement-button:hover,
+.achievement-button:focus {
+  background-color: var(--primary-color-dark, #1e40af);
+  transform: translateY(-1px);
+}
+
+
 /* focus-visible for keyboard users */
 .routine-button:focus-visible,
 .home-button:focus-visible,
-.profile-button:focus-visible {
+.profile-button:focus-visible 
+.achievement-button:focus-visible {
   outline: 3px solid rgba(99, 102, 241, 0.18);
   outline-offset: 2px;
 }
