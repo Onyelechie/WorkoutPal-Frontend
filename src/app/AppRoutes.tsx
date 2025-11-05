@@ -43,7 +43,6 @@ export default function AppRoutes() {
         <Route path={HOME_ROUTE} element={<HomePage />} />
         <Route path={PROFILE_ROUTE} element={<ProfilePage />} />
         <Route path="/users/:id" element={<OtherUserPage />} />
-        <Route path={ROUTINE_ROUTE} element={<RoutinePage />} />
         <Route path={ACTIVITY_ROUTE} element={<ActivityFeed />} />
         <Route path={ACHIEVEMENTS_ROUTE} element={<AchievementsPage />} />
 
