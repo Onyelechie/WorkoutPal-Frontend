@@ -87,6 +87,7 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({
               value={routineName}
               onChange={(e) => setRoutineName(e.target.value)}
               className="text-input"
+              data-cy="routine-name-input"
               required
             />
           </div>
@@ -114,6 +115,7 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({
                   >
                     <input
                       type="checkbox"
+                      data-cy="exercise-checkbox"
                       checked={selectedExercises.some(
                         (e) => e.id === exercise.id,
                       )}
@@ -150,7 +152,7 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({
             )}
           </div>
           <div className="action-button-container">
-            <button type="submit" className="create-button">
+            <button type="submit" className="create-button" data-cy="create-routine-btn">
               Create Routine
             </button>
           </div>

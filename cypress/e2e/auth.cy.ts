@@ -34,7 +34,7 @@ describe("Auth", () => {
         testUser.id = null; // reset it
       });
     }
-  }
+  };
 
   beforeEach(() => {
     // intercept possible requests
