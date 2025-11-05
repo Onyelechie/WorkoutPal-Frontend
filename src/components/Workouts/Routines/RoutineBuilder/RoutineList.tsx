@@ -84,6 +84,7 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
           <button
             onClick={() => handleDeleteRoutine(routine.id)}
             className="delete-button"
+            data-cy="delete-routine-btn"
           >
             Delete
           </button>

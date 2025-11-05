@@ -33,6 +33,7 @@ export function ConfirmDialog({
           <button
             style={color ? { backgroundColor: color } : undefined}
             onClick={() => handleConfirm(true)}
+            data-cy="confirm-positive-btn"
           >
             {strPositiveButton}
           </button>
