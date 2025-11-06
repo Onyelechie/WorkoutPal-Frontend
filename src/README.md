@@ -1,30 +1,30 @@
 ## Our current structure
-  - `app`
-    - Main App.tsx. Contains our routes to specific pages (AppRoutes.tsx)
-  - `assets`
-    - Images used in the app (we have none at the moment)
-  - `components`
-    - Reusable .tsx code to be used on pages (Dashboard, Header, WeeklyGrid, etc.)
-  - `hooks`
-    - Hooks that fetch data from the backend and sets the state of the app or any other re-useable hooks
-    - Encapsulates logic, decouples UI layer (components) from logic (e.g.) API requests
-    - Avoids clutter in components
-  - `pages`
-    - The **main pages** (Landing, RoutineBuilder, Login, Register, etc.). 
-    - These main pages are made up of specific components bundled together and other miscellaneous html code.
-  - `styles`
-    - global.css that is used across the entire app
-  - `types`
-    - Includes interfaces / types used for enforcing what kind of data should a variable hold.
-  - `services`
-    - Acts as an extra layer for specific data fetches from the backend
-    - Feature related
-  - `utils`
-    - __unit_tests__
-      - keeps actual tests close to the code being tested
-      - mainly logic utility classes
-  - other (not in `src/` directory)
-    - `cypress/e2e` for acceptance testing
+  - `src/`
+    - `app/`
+      - `constants`
+        - error constants and achievement enum.
+      - Main App.tsx and AppRoutes.tsx.
+    - `assets/`
+      - Global images used in the app (logo, etc.).
+    - `components/`
+      - Reusable .tsx code to be used on pages.
+    - `hooks/`
+      - Reuseable hooks and reuseable state management from components.
+    - `pages/`
+      - The **main pages** (HomePage, RoutinePage, LoginPage, etc.). 
+      - These main pages are made up of specific `components` bundled together and other miscellaneous html code.
+    - `styles/`
+      - global.css that is used across the entire app.
+    - `types/`
+      - Includes interfaces / types to enforce expected variables for a given object.
+    - `services/`
+      - Feature oriented API requests to send to the backend.
+    - `utils/`
+      - Logic utility classes.
+  - `root folder`
+    - `cypress/e2e` for acceptance/end to end testing.
+  - `__unit_tests__`
+    - can be found in the same folder as the units being tested. 
 
 
 ### Frontend Test Plan
