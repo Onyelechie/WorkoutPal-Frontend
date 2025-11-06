@@ -1,0 +1,7 @@
+for i in {1..500}; do
+  echo "🔁 Run #$i"
+  npm run cy:run -- --spec "cypress/e2e/follow_user.cy.js" || {
+    echo "❌ Test failed on run #$i — stopping early."
+    break
+  }
+done

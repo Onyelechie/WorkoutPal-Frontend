@@ -40,5 +40,11 @@ declare namespace Cypress {
       email: string,
       password: string,
     ): Chainable<void>;
+
+    // unfollow a user through an API request
+    unfollowUser(
+      targetUserId: number,
+      followerId: number
+    ): Chainable<void>;
   }
 }
