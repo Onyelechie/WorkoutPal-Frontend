@@ -95,7 +95,10 @@ function UserSearch({ onUserSelect }: UserSearchProps) {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
+      if (
+        searchContainerRef.current &&
+        !searchContainerRef.current.contains(event.target as Node)
+      ) {
         setShowDropdown(false);
       }
     };

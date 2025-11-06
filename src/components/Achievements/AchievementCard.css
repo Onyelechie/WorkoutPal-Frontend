@@ -1,86 +1,81 @@
 .achievement-card {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1rem;
-    background-color: #f7f8ffcc;
-
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #f7f8ffcc;
 }
 
-.incomplete>.achievement-card {
-    opacity: 0.75;
-    background-color: #97949436;
+.incomplete > .achievement-card {
+  opacity: 0.75;
+  background-color: #97949436;
 }
-
-
 
 /* Achievement card designed originally with (some help of ChatGPT) */
 .achievement-card:hover {
-    background-color: #ffffffcb;
-    opacity: 100%;
+  background-color: #ffffffcb;
+  opacity: 100%;
 }
 
-
 .badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    width: 60px;
-    height: 60px;
+  width: 60px;
+  height: 60px;
 
-    background-color: #694040;
+  background-color: #694040;
 
-    /* circle border*/
-    border-radius: 50%;
-    font-size: 2.3rem;
-    flex-shrink: 0;
-
+  /* circle border*/
+  border-radius: 50%;
+  font-size: 2.3rem;
+  flex-shrink: 0;
 }
 
 .achievement-content {
-    flex: 1;
-    text-align: left;
+  flex: 1;
+  text-align: left;
 }
 
 .achievement-title {
-    font-size: 1.1rem;
-    margin: 0 0 0.25rem 0;
+  font-size: 1.1rem;
+  margin: 0 0 0.25rem 0;
 }
 
 .achievement-description {
-    font-size: 0.9rem;
-    color: #666;
-    margin: 0 0 0.25rem 0;
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 0.25rem 0;
 }
 
 .achievement-date {
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #288137;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #288137;
 }
 
 .achievement-tracker {
-    color: #ffffff;
-    background-color: #114dbdad;
-    padding: 2px;
-    font-size: 0.8rem;
-    font-weight: bold;
+  color: #ffffff;
+  background-color: #114dbdad;
+  padding: 2px;
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
 @media (max-width: 600px) {
-    .achievement-card {
-        align-items: flex-start;
-    }
+  .achievement-card {
+    align-items: flex-start;
+  }
 
-    .badge {
-        min-width: auto;
-        font-size: 2rem;
-    }
+  .badge {
+    min-width: auto;
+    font-size: 2rem;
+  }
 
-    .achievement-content {
-        text-align: center;
-    }
+  .achievement-content {
+    text-align: center;
+  }
 }

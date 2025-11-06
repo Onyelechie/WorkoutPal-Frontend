@@ -84,7 +84,7 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
             ? [...prev.followers]
             : [];
           const newFollowers = prevFollowers.filter(
-            (id) => id !== currentUserId
+            (id) => id !== currentUserId,
           );
           return { ...prev, followers: newFollowers } as User;
         });

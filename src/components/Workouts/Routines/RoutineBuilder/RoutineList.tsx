@@ -59,7 +59,7 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
         await deleteRequest(`/routines/${id}`);
         setRoutines((prevRoutines) => prevRoutines.filter((r) => r.id !== id));
       }
-    } catch (err:any) {
+    } catch (err: any) {
       alertOnRequestError(ROUTINE_DELETE_FAIL, err);
     }
   };

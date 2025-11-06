@@ -73,7 +73,7 @@ function ProfileCard({
             <h1 className="name">{user.name}</h1>
             <h3 className="username">@{user.username}</h3>
             <p className="email">{user.email}</p>
-            <button 
+            <button
               className="edit-profile-btn"
               onClick={() => setShowEditProfile(true)}
             >
@@ -116,13 +116,17 @@ function ProfileCard({
                 <p>Loading followers...</p>
               ) : (
                 <>
-                  {followers.map(user => (
-                    <div 
-                      key={user.id} 
+                  {followers.map((user) => (
+                    <div
+                      key={user.id}
                       className="user-item"
                       onClick={() => handleUserClick(user.id)}
                     >
-                      <img src={user.avatar} alt={user.name} className="user-avatar" />
+                      <img
+                        src={user.avatar}
+                        alt={user.name}
+                        className="user-avatar"
+                      />
                       <div className="user-info">
                         <span className="user-name">{user.name}</span>
                         <span className="user-username">@{user.username}</span>
@@ -155,13 +159,17 @@ function ProfileCard({
                 <p>Loading following...</p>
               ) : (
                 <>
-                  {following.map(user => (
-                    <div 
-                      key={user.id} 
+                  {following.map((user) => (
+                    <div
+                      key={user.id}
                       className="user-item"
                       onClick={() => handleUserClick(user.id)}
                     >
-                      <img src={user.avatar} alt={user.name} className="user-avatar" />
+                      <img
+                        src={user.avatar}
+                        alt={user.name}
+                        className="user-avatar"
+                      />
                       <div className="user-info">
                         <span className="user-name">{user.name}</span>
                         <span className="user-username">@{user.username}</span>
