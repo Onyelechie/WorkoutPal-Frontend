@@ -5,6 +5,9 @@ React-based frontend for WorkoutPal fitness tracking application with enhanced p
 ## Features
 
 - **User Authentication**: Login and registration
+- **Workout Routines**: Create and manage custom exercise routines
+- **Achievements**: Earn achievements by doing certain challenges (workout, social challenges, and more)
+- **Social Features**: Create and post a workout post, comment on other people's posts
 - **Enhanced Profile Management**: Edit profile with age, height, weight, and metrics
 - **Profile Display**: Enhanced profile cards with social stats display
 - **Responsive Design**: Full-width profile layouts with improved UI
