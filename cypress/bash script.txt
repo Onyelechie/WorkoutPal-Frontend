@@ -1,6 +1,6 @@
-for i in {1..500}; do
+for i in {1..100}; do
   echo "🔁 Run #$i"
-  npm run cy:run -- --spec "cypress/e2e/follow_user.cy.js" || {
+  npm run cy:run -- --spec "cypress/e2e/profile/profile.cy.ts" || {
     echo "❌ Test failed on run #$i — stopping early."
     break
   }
