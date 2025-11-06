@@ -76,7 +76,7 @@ describe("Profile Feature", () => {
   it("user can follow another user and following count increments", () => {
     cy.visit("/home");
 
-    // ensure testUser is not follow targetUser initially
+    // ensure testUser is not following targetUser initially
     cy.unfollowUser(targetUser.id, testUser.id);
 
     // navigate to targetUser's profile
