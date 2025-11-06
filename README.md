@@ -148,6 +148,7 @@ npm run cy:open
 6. **Extract** the zip, **Navigate** to `coverage-report/index.html` to access the html generated report.
 
 ## Regression Testing Suite
+
 - **What runs:** Unit tests (Vitest), E2E tests (Cypress), Coverage analysis. (Full Regression)
 - **Tools:** GitHub Actions, Vitest, Cypress
 - **Script:** `npm run regression`

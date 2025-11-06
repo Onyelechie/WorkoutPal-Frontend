@@ -12,7 +12,6 @@ import {
 } from "../../services/achievementService";
 import { mockLockedAchievements } from "./mockAchievements";
 
-
 export default function Achievements() {
   const [completed, setCompleted] = useState<UserAchievementUnlocked[]>([]);
   const [incomplete, setIncomplete] = useState<UserAchievementLocked[]>([]);
@@ -26,9 +25,9 @@ export default function Achievements() {
 
       setIncomplete(incompleteAchievements);
       setIncomplete((prev) => [...prev, ...mockLockedAchievements]);
-		}
-		fetchAchievements();
-	}, []);
+    }
+    fetchAchievements();
+  }, []);
 
   return (
     <div className="container">

@@ -47,7 +47,7 @@ function ActivityFeed() {
           !error &&
           // display all posts if there are any
           activity.map((activity: Post | Comment | UserAchievementUnlocked) =>
-            mapActivity(activity)
+            mapActivity(activity),
           )
       }
     </div>

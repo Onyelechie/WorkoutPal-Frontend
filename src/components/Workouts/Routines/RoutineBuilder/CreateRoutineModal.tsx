@@ -28,7 +28,6 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({
   const [selectedExercises, setSelectedExercises] = useState<any[]>([]);
   const [routineName, setRoutineName] = useState("");
   const achievement = useAchievement();
-  
 
   useEffect(() => {
     const fetchExercises = async () => {

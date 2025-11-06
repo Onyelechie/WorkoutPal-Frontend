@@ -14,7 +14,7 @@ export function useAchievement() {
       if (data) {
         showAlert(
           `Achievement Unlocked: ${data.badgeIcon} ${data.title}`,
-          data.description
+          data.description,
         );
       }
     } catch (error: any) {

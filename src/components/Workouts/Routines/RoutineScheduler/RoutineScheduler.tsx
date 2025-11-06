@@ -42,7 +42,9 @@ export default function RoutineScheduler() {
         <header className="routine-scheduler-header">
           <h2>Schedule your weekly workout routines!</h2>
           <div>
-            <button onClick={showCreateModal} data-cy="create-schedule-btn">Create schedule</button>
+            <button onClick={showCreateModal} data-cy="create-schedule-btn">
+              Create schedule
+            </button>
           </div>
         </header>
 
