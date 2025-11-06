@@ -34,7 +34,7 @@ export function useErrorHandler() {
 
     if (message) {
       dialogContext.showAlert(title, message);
-    } else if (err.response?.data?.detail) { 
+    } else if (err.response?.data?.detail) {
       // in the case where the response has error data according to the ApiError interface
       // grab the details and print it
       dialogContext.showAlert(title, err.response?.data?.detail);

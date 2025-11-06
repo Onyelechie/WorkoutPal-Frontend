@@ -17,7 +17,7 @@ export const HOME_ROUTE = "/home";
 export const PROFILE_ROUTE = "/profile";
 
 //achievements
-export const ACHIEVEMENTS_ROUTE = "/achievements"
+export const ACHIEVEMENTS_ROUTE = "/achievements";
 
 // routine routes
 export const ROUTINE_ROUTE = "/routine"; // parent route
@@ -53,7 +53,7 @@ export default function AppRoutes() {
 
         {/* Direct to PageNotFound for routes that are not implemented */}
         <Route path="*" element={<PageNotFound />} />
-      </Routes >
+      </Routes>
     </>
   );
 }

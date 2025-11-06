@@ -15,7 +15,6 @@ import { BACKEND_URL } from "../../support/constants";
 // The test user needs to be manually deleted in the database.
 
 describe("Achievements Feature", () => {
-
   // ADDITIONAL ASSUMPTIONS:
   // New user will get achievements for login and creating routines
   // Achievement system is working and properly configured
@@ -30,7 +29,10 @@ describe("Achievements Feature", () => {
 
   async function deleteTestUser() {
     if (testUser.id != null) {
-      cy.request("POST", `${BACKEND_URL}/login`, { email: testUser.email, password: testUser.password }).then(() => {
+      cy.request("POST", `${BACKEND_URL}/login`, {
+        email: testUser.email,
+        password: testUser.password,
+      }).then(() => {
         cy.request("DELETE", `${BACKEND_URL}/users/${testUser.id}`);
         testUser.id = null;
       });
@@ -70,17 +72,17 @@ describe("Achievements Feature", () => {
     cy.wait("@loginRequest").its("response.statusCode").should("eq", 200);
 
     // verify login achievement dialog appears
-    cy.get('.dialog-container').should('be.visible');
-    cy.contains('Achievement Unlocked').should('be.visible');
-    cy.contains('Welcome, Pal!').should('be.visible');
-    cy.get('.dialog-container button').contains('OK').click();
+    cy.get(".dialog-container").should("be.visible");
+    cy.contains("Achievement Unlocked").should("be.visible");
+    cy.contains("Welcome, Pal!").should("be.visible");
+    cy.get(".dialog-container button").contains("OK").click();
 
     // navigate to achievements page
     cy.contains("button", "Achievements").click();
     cy.url().should("include", "/achievements");
 
     // debug what's actually on the page
-    cy.get('body').then(($body) => {
+    cy.get("body").then(($body) => {
       console.log($body.text());
     });
 
@@ -106,23 +108,28 @@ describe("Achievements Feature", () => {
     cy.visit("/auth/login");
     cy.get("input[name=email]").type(testUser.email);
     cy.get("input[name=password]").type(`${testUser.password}{enter}`);
-    cy.get('.dialog-container button').contains('OK').click();
+    cy.get(".dialog-container button").contains("OK").click();
 
     // create a routine to get achievement
     cy.visit("/routine/builder");
     cy.get("[data-cy=add-routine-btn]").click();
     cy.get("[data-cy=routine-name-input]").type("Test Achievement Routine");
     cy.get("[data-cy=exercise-checkbox]").first().check();
-    cy.get("[data-cy=create-routine-btn]").scrollIntoView().should('be.visible').click();
+    cy.get("[data-cy=create-routine-btn]")
+      .scrollIntoView()
+      .should("be.visible")
+      .click();
 
-    cy.wait("@createRoutineRequest").its("response.statusCode").should("eq", 201);
+    cy.wait("@createRoutineRequest")
+      .its("response.statusCode")
+      .should("eq", 201);
 
     // verify routine creation achievement dialog appears
-    cy.get('.dialog-container').should('be.visible');
-    cy.contains('Achievement Unlocked').should('be.visible');
-    cy.contains('Getting started').should('be.visible');
-    cy.get('.dialog-container button').contains('OK').click();
-    
+    cy.get(".dialog-container").should("be.visible");
+    cy.contains("Achievement Unlocked").should("be.visible");
+    cy.contains("Getting started").should("be.visible");
+    cy.get(".dialog-container button").contains("OK").click();
+
     // wait a moment for achievement to be processed
 
     // navigate to achievements page
@@ -130,7 +137,7 @@ describe("Achievements Feature", () => {
     cy.url().should("include", "/achievements");
 
     // debug what's actually on the page
-    cy.get('body').then(($body) => {
+    cy.get("body").then(($body) => {
       console.log($body.text());
     });
 

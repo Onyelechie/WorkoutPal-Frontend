@@ -1,29 +1,24 @@
 import type { UserAchievementUnlocked } from "../../types/api";
-import "./AchievementCard.css"
+import "./AchievementCard.css";
 
 type AchievementCompleteProp = {
-    achievement: UserAchievementUnlocked;
-    completed: boolean
+  achievement: UserAchievementUnlocked;
+  completed: boolean;
 };
 
-
-
 export function AchievementCard({ achievement }: AchievementCompleteProp) {
+  const formattedDate = new Date(achievement.earnedAt).toLocaleDateString();
 
-    const formattedDate = (new Date(achievement.earnedAt)).toLocaleDateString();
+  return (
+    <div className="achievement-card" key={achievement.id}>
+      <div className="badge">{achievement.badgeIcon}</div>
 
-    return (
-        <div className="achievement-card" key={achievement.id}>
-            <div className="badge">{achievement.badgeIcon}</div>
+      <div className="achievement-content">
+        <h3 className="achievement-title">{achievement.title}</h3>
+        <p className="achievement-description">{achievement.description}</p>
 
-            <div className="achievement-content">
-                <h3 className="achievement-title">{achievement.title}</h3>
-                <p className="achievement-description">{achievement.description}</p>
-
-                <small className="achievement-date">Unlocked: {formattedDate}</small>
-
-            </div>
-        </div>
-
-    );
+        <small className="achievement-date">Unlocked: {formattedDate}</small>
+      </div>
+    </div>
+  );
 }

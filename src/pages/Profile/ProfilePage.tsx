@@ -17,17 +17,17 @@ function ProfilePage() {
   useEffect(() => {
     const fetchFollowData = async () => {
       if (!user?.id) return;
-      
+
       try {
         const [followersData, followingData] = await Promise.all([
           relationshipService.getFollowers(user.id),
-          relationshipService.getFollowing(user.id)
+          relationshipService.getFollowing(user.id),
         ]);
-        
+
         setFollowersCount(followersData.length);
         setFollowingCount(followingData.length);
       } catch (error) {
-        console.error('Error fetching follow data:', error);
+        console.error("Error fetching follow data:", error);
         setFollowersCount(0);
         setFollowingCount(0);
       }
@@ -54,7 +54,11 @@ function ProfilePage() {
     <div className="profile-page-container flex-row">
       <>
         {isLoading && <div>Loading user profile...</div>}
-        {error && <div>Failed to get user. Login? <button onClick={navLogin}>Login</button></div>}
+        {error && (
+          <div>
+            Failed to get user. Login? <button onClick={navLogin}>Login</button>
+          </div>
+        )}
         {user && !isLoading && !error && (
           <>
             <ProfileCard

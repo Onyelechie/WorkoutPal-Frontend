@@ -34,7 +34,7 @@ describe("Auth", () => {
         testUser.id = null; // reset it
       });
     }
-  };
+  }
 
   beforeEach(() => {
     // intercept possible requests
@@ -86,7 +86,7 @@ describe("Auth", () => {
     cy.getCookie("access_token").should("exist");
 
     // achievement unlocked, click OK
-    cy.get('body').find('.dialog-container button').contains('OK').click();
+    cy.get("body").find(".dialog-container button").contains("OK").click();
 
     // navigate to profile page where logout button is located
     cy.contains("button", "Profile").click();

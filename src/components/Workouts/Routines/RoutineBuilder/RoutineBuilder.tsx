@@ -18,7 +18,9 @@ export default function RoutineBuilder() {
       <header className="routine-builder-header">
         <h2 className="routine-builder-title">Build your workout routines!</h2>
         <div className="routine-builder-action-buttons grouped-buttons">
-          <button onClick={handleAddRoutineClick} data-cy="add-routine-btn">Add routine</button>
+          <button onClick={handleAddRoutineClick} data-cy="add-routine-btn">
+            Add routine
+          </button>
         </div>
       </header>
 
