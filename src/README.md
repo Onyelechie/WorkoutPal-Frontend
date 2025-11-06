@@ -1,25 +1,33 @@
 ## Our current structure
-  - app
+  - `app`
     - Main App.tsx. Contains our routes to specific pages (AppRoutes.tsx)
-  - assets
+  - `assets`
     - Images used in the app (we have none at the moment)
-  - components
+  - `components`
     - Reusable .tsx code to be used on pages (Dashboard, Header, WeeklyGrid, etc.)
-  - hooks
+  - `hooks`
     - Hooks that fetch data from the backend and sets the state of the app or any other re-useable hooks
     - Encapsulates logic, decouples UI layer (components) from logic (e.g.) API requests
     - Avoids clutter in components
-  - pages
+  - `pages`
     - The **main pages** (Landing, RoutineBuilder, Login, Register, etc.). 
     - These main pages are made up of specific components bundled together and other miscellaneous html code.
-  - styles
+  - `styles`
     - global.css that is used across the entire app
-  - types
+  - `types`
     - Includes interfaces / types used for enforcing what kind of data should a variable hold.
-  - services
+  - `services`
     - Acts as an extra layer for specific data fetches from the backend
     - Feature related
-  - utils
+  - `utils`
     - __unit_tests__
       - keeps actual tests close to the code being tested
       - mainly logic utility classes
+  - other (not in `src/` directory)
+    - `cypress/e2e` for acceptance testing
+
+
+### Frontend Test Plan
+- **Logic:** ≥80% coverage.
+  - `utils`, `services`
+- **UI:** Acceptance Test (End-To-End) **all** features to ensure full functionality that meets the user's expectations.
