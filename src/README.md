@@ -9,10 +9,10 @@
     - `components/`
       - Reusable .tsx code to be used on pages.
     - `hooks/`
-      - Reuseable hooks and reuseable state management from components.
+      - Reuseable hooks and reuseable state management for components.
     - `pages/`
       - The **main pages** (HomePage, RoutinePage, LoginPage, etc.). 
-      - These main pages are made up of specific `components` bundled together and other miscellaneous html code.
+      - Main pages that would be routed by AppRoutes.tsx.
     - `styles/`
       - global.css that is used across the entire app.
     - `types/`
