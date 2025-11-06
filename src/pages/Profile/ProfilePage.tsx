@@ -4,7 +4,7 @@ import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { useMe } from "../../hooks/useMe";
 import MyWorkouts from "../../components/Workouts/MyWorkouts/MyWorkouts";
 import { postRequest } from "../../utils/apiRequests";
-import { PostCard } from "../../components/Dashboard/PostCard";
+import { PostCard } from "../../components/PostCard/PostCard";
 import { useState, useEffect } from "react";
 import { relationshipService } from "../../services/relationshipService";
 

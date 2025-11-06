@@ -14,6 +14,9 @@ async function notUnlocked(achievementId: number): Promise<boolean> {
 
 /* Achievements service */
 
+/**
+ * Get a list of all the achievements
+ */
 export async function getAchievementsCatalog(): Promise<Achievement[]> {
   try {
     const response = await getRequest("/achievements");
@@ -23,7 +26,7 @@ export async function getAchievementsCatalog(): Promise<Achievement[]> {
   } catch (error: any) {
     console.error(
       "Error getting achievements",
-      error.response?.data || error.message,
+      error.response?.data || error.message
     );
     return [];
   }
@@ -36,7 +39,7 @@ export async function getAchievementsCatalog(): Promise<Achievement[]> {
  * */
 export async function unlockAchievement(
   achievementId: number,
-  userId: number,
+  userId: number
 ): Promise<UserAchievementUnlocked | undefined> {
   const achievementPayload: UnlockAchievement = {
     achievementId,
@@ -56,6 +59,9 @@ export async function unlockAchievement(
   }
 }
 
+/**
+ * Get a list of all unlocked achievements by the user.
+ */
 export async function getUnlockedAchievements(): Promise<
   UserAchievementUnlocked[]
 > {
@@ -68,12 +74,15 @@ export async function getUnlockedAchievements(): Promise<
   } catch (error: any) {
     console.error(
       "Unable to fetch unlocked achievements: ",
-      error.response?.data || error.message,
+      error.response?.data || error.message
     );
     return [];
   }
 }
 
+/**
+ * Get a list of all locked achievements by the user.
+ */
 export async function getLockedAchievements(): Promise<
   UserAchievementLocked[]
 > {
@@ -84,7 +93,7 @@ export async function getLockedAchievements(): Promise<
       await getUnlockedAchievements();
     // Temporary
     const lockedAchievements: UserAchievementLocked[] = allAchievements.filter(
-      (ach) => !unlockedAchievements.some((ua) => ua.id === ach.id),
+      (ach) => !unlockedAchievements.some((ua) => ua.id === ach.id)
     );
     console.log("getLockedAchievements()");
     console.log(lockedAchievements);
@@ -92,10 +101,8 @@ export async function getLockedAchievements(): Promise<
   } catch (error: any) {
     console.error(
       "Unable to fetch locked achievements: ",
-      error.response?.data || error.message,
+      error.response?.data || error.message
     );
     return [];
   }
 }
-
-// add more here

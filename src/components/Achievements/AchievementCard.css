@@ -15,9 +15,8 @@
 
 /* Achievement card designed originally with (some help of ChatGPT) */
 .achievement-card:hover {
-  background-color: #ffffffcb;
-  opacity: 100%;
-  /* transform: scale(1.0); */
+    background-color: #ffffffcb;
+    opacity: 100%;
 }
 
 .badge {

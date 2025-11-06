@@ -24,7 +24,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
+  padding: 0.5rem;
 }
 
 .logo-image {
@@ -40,7 +40,7 @@
   color: #222;
 }
 
-.routine-button {
+.header-button {
   background: var(--primary-color, #2563eb);
   color: #ffffff;
   border: none;
@@ -54,28 +54,8 @@
     transform 0.06s;
 }
 
-.routine-button:hover,
-.routine-button:focus {
-  background-color: var(--primary-color-dark, #1e40af);
-  transform: translateY(-1px);
-}
-
-.home-button {
-  background: var(--primary-color, #2563eb);
-  color: #ffffff;
-  border: none;
-  padding: 6px 14px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 0.98rem;
-  border-radius: 8px;
-  transition:
-    background-color 0.12s,
-    transform 0.06s;
-}
-
-.home-button:hover,
-.home-button:focus {
+.header-button:hover,
+.header-button:focus {
   background-color: var(--primary-color-dark, #1e40af);
   transform: translateY(-1px);
 }
@@ -97,25 +77,6 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-}
-
-.profile-button {
-  background: var(--primary-color, #2563eb);
-  color: #ffffff;
-  border: none;
-  padding: 6px 14px;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 8px;
-  transition:
-    background-color 0.12s,
-    transform 0.06s;
-}
-
-.profile-button:hover,
-.profile-button:focus {
-  background-color: var(--primary-color-dark, #1e40af);
-  transform: translateY(-1px);
 }
 
 /* focus-visible for keyboard users */

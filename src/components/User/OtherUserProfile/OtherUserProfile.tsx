@@ -4,7 +4,7 @@ import { getRequest } from "../../../utils/apiRequests";
 import type { User } from "../../../types/api";
 import type { User as RelationshipUser } from "../../../services/relationshipService";
 import { useMe } from "../../../hooks/useMe";
-import { PostCard } from "../../Dashboard/PostCard";
+import { PostCard } from "../../PostCard/PostCard";
 import { useNavigate } from "react-router-dom";
 
 interface OtherUserProfileProps {
@@ -84,7 +84,7 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
             ? [...prev.followers]
             : [];
           const newFollowers = prevFollowers.filter(
-            (id) => id !== currentUserId,
+            (id) => id !== currentUserId
           );
           return { ...prev, followers: newFollowers } as User;
         });

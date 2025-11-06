@@ -18,15 +18,19 @@ export interface Post {
   title: string;
   caption: string;
   date: string;
-  content: string;
+  body: string;
   likes: number;
+  status: string;
   comments: Comment[];
 }
 
 export interface Comment {
+  id: number;
   commentedBy: string;
+  commentedOn: number;
   comment: string;
   date: string;
+  parentComment: number;
 }
 /* ----------------- END OF POSTS ----------------- */
 
@@ -77,7 +81,9 @@ export interface Achievement {
 }
 
 export interface UserAchievementUnlocked extends Achievement {
-  earnedAt: string;
+  date: string;
+  userId: number;
+  username: string;
 }
 export interface UserAchievementLocked extends Achievement {}
 

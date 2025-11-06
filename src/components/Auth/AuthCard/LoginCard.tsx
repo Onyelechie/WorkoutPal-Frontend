@@ -6,6 +6,7 @@ import { useAppNavigation } from "../../../hooks/useAppNavigation";
 import { useErrorHandler } from "../../../hooks/useErrorHandler";
 import { USER_LOGIN_FAIL } from "../../../app/constants/genericErrors";
 import { useAchievement } from "../../../hooks/useAchievement";
+import { AchievementKey } from "../../../app/constants/achievementKey";
 
 function LoginCard() {
   const { alertOnRequestError } = useErrorHandler();
@@ -27,7 +28,7 @@ function LoginCard() {
       .then(async (response) => {
         if (response.status == 200) {
           console.log("Login successful");
-          achievement.unlockAchievement(1);
+          achievement.unlockAchievement(AchievementKey.FIRST_LOGIN);
           navHome();
         }
       })
