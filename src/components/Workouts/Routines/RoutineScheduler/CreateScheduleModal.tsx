@@ -198,7 +198,11 @@ export default function CreateScheduleModal({
                 />
                 {/* END OF ROUTINE LENGTH INPUT */}
                 <div className="action-button-container">
-                  <button type="submit" className="create-button" data-cy="add-schedule-btn">
+                  <button
+                    type="submit"
+                    className="create-button"
+                    data-cy="add-schedule-btn"
+                  >
                     Create Schedule
                   </button>
                 </div>

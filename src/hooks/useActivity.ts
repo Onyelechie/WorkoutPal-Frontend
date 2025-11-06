@@ -25,7 +25,7 @@ export function useActivity() {
       const achievementResponse = await getRequest(ACHIEVEMENTS_ENDPOINT);
       data = data.concat(achievementResponse.data);
       data.sort(
-        (a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf()
+        (a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf(),
       );
       setActivity(data);
     } catch (err: any) {

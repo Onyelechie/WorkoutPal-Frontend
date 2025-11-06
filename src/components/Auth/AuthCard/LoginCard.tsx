@@ -14,7 +14,7 @@ function LoginCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { navHome, navRegister } = useAppNavigation();
-  const achievement = useAchievement()
+  const achievement = useAchievement();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

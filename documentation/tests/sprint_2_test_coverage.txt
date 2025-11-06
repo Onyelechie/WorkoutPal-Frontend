@@ -1,0 +1,106 @@
+ Test Files  9 passed (9)
+      Tests  46 passed (46)
+   Start at  21:14:01
+   Duration  5.49s (transform 416ms, setup 817ms, collect 1.53s, tests 1.47s, environment 6.70s, prepare 1.01s)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   20.26 |    51.63 |   40.38 |   20.26 |                   
+ src               |       0 |        0 |       0 |       0 |                   
+  main.tsx         |       0 |        0 |       0 |       0 | 1-20              
+ src/app           |       0 |        0 |       0 |       0 |                   
+  App.tsx          |       0 |        0 |       0 |       0 | 1-31              
+  AppRoutes.tsx    |       0 |        0 |       0 |       0 | 1-62              
+ src/app/constants |    86.2 |        0 |       0 |    86.2 |                   
+  ...evementKey.ts |       0 |        0 |       0 |       0 | 1-4               
+  genericErrors.ts |     100 |      100 |     100 |     100 |                   
+  httpErrors.ts    |     100 |      100 |     100 |     100 |                   
+ ...s/Achievements |       0 |       60 |      60 |       0 |                   
+  ...ementCard.tsx |       0 |      100 |     100 |       0 | 2-24              
+  ...ardLocked.tsx |       0 |      100 |     100 |       0 | 2-27              
+  Achievements.tsx |       0 |        0 |       0 |       0 | 1-65              
+  ...vmentCard.tsx |       0 |        0 |       0 |       0 | 1-18              
+  ...hievements.ts |       0 |      100 |     100 |       0 | 4-42              
+ .../Auth/AuthCard |       0 |        0 |       0 |       0 |                   
+  LoginCard.tsx    |       0 |        0 |       0 |       0 | 1-72              
+  RegisterCard.tsx |       0 |        0 |       0 |       0 | 1-103             
+ ...ts/CommentCard |       0 |        0 |       0 |       0 |                   
+  CommentCard.tsx  |       0 |        0 |       0 |       0 | 1-21              
+ ...gs/AlertDialog |       0 |        0 |       0 |       0 |                   
+  AlertDialog.tsx  |       0 |        0 |       0 |       0 | 1-26              
+  ...ogContext.tsx |       0 |        0 |       0 |       0 | 1-6               
+  ...gProvider.tsx |       0 |        0 |       0 |       0 | 1-59              
+ .../ConfirmDialog |       0 |        0 |       0 |       0 |                   
+  ...irmDialog.tsx |       0 |        0 |       0 |       0 | 1-44              
+  ...ogContext.tsx |       0 |        0 |       0 |       0 | 1-6               
+  ...gProvider.tsx |       0 |        0 |       0 |       0 | 1-125             
+ .../Common/Footer |       0 |        0 |       0 |       0 |                   
+  Footer.tsx       |       0 |        0 |       0 |       0 | 1-11              
+ .../Common/Header |       0 |        0 |       0 |       0 |                   
+  Header.tsx       |       0 |        0 |       0 |       0 | 1-50              
+ ...ents/Dashboard |       0 |        0 |       0 |       0 |                   
+  Dashboard.tsx    |       0 |        0 |       0 |       0 | 1-70              
+ ...nents/PostCard |       0 |      100 |     100 |       0 |                   
+  PostCard.tsx     |       0 |      100 |     100 |       0 | 2-31              
+ ...er/EditProfile |   98.06 |       45 |     100 |   98.06 |                   
+  EditProfile.tsx  |   98.06 |       45 |     100 |   98.06 | 36-38             
+ ...herUserProfile |       0 |        0 |       0 |       0 |                   
+  ...erProfile.tsx |       0 |        0 |       0 |       0 | 1-270             
+ ...er/ProfileCard |   59.73 |     62.5 |   23.07 |   59.73 |                   
+  ProfileCard.tsx  |   59.73 |     62.5 |   23.07 |   59.73 | ...42-176,184-186 
+ ...ser/UserSearch |   71.07 |     62.5 |   42.85 |   71.07 |                   
+  UserSearch.tsx   |   71.07 |     62.5 |   42.85 |   71.07 | ...3,90-94,98-101 
+ ...uts/MyWorkouts |       0 |        0 |       0 |       0 |                   
+  MyWorkouts.tsx   |       0 |        0 |       0 |       0 | 1-26              
+ ...RoutineBuilder |       0 |        0 |       0 |       0 |                   
+  ...tineModal.tsx |       0 |        0 |       0 |       0 | 1-167             
+  ...neBuilder.tsx |       0 |        0 |       0 |       0 | 1-39              
+  RoutineList.tsx  |       0 |        0 |       0 |       0 | 1-99              
+ ...utineScheduler |       0 |       25 |      25 |       0 |                   
+  ...duleModal.tsx |       0 |        0 |       0 |       0 | 1-213             
+  ...duleModal.tsx |       0 |      100 |     100 |       0 | 2-242             
+  ...Scheduler.tsx |       0 |        0 |       0 |       0 | 1-85              
+  ScheduleRow.tsx  |       0 |        0 |       0 |       0 | 1-118             
+ ...ts/WorkoutCard |       0 |        0 |       0 |       0 |                   
+  WorkoutCard.tsx  |       0 |        0 |       0 |       0 | 1-21              
+ src/hooks         |   18.85 |    52.94 |   28.57 |   18.85 |                   
+  ...chievement.ts |       0 |        0 |       0 |       0 | 1-26              
+  useActivity.ts   |       0 |        0 |       0 |       0 | 1-48              
+  ...Navigation.ts |       0 |        0 |       0 |       0 | 1-27              
+  useDialog.ts     |       0 |        0 |       0 |       0 | 1-35              
+  ...rorHandler.ts |   36.73 |      100 |   66.66 |   36.73 | 28-64             
+  useMe.ts         |      95 |      100 |   66.66 |      95 | 38-39             
+  usePosts.ts      |       0 |        0 |       0 |       0 | 1-39              
+  useRoutines.ts   |       0 |        0 |       0 |       0 | 1-47              
+  useSchedules.ts  |       0 |        0 |       0 |       0 | 1-40              
+  useTime.ts       |       0 |        0 |       0 |       0 | 1-21              
+ src/pages         |       0 |        0 |       0 |       0 |                   
+  HomePage.tsx     |       0 |        0 |       0 |       0 | 1-9               
+  PageNotFound.tsx |       0 |        0 |       0 |       0 | 1-15              
+ ...s/Achievements |       0 |        0 |       0 |       0 |                   
+  ...mentsPage.tsx |       0 |        0 |       0 |       0 | 1-11              
+ ...pages/Activity |       0 |        0 |       0 |       0 |                   
+  ActivityFeed.tsx |       0 |        0 |       0 |       0 | 1-56              
+ src/pages/Auth    |       0 |        0 |       0 |       0 |                   
+  LoginPage.tsx    |       0 |        0 |       0 |       0 | 1-10              
+  RegisterPage.tsx |       0 |        0 |       0 |       0 | 1-10              
+ src/pages/Profile |       0 |        0 |       0 |       0 |                   
+  ...rUserPage.tsx |       0 |        0 |       0 |       0 | 1-15              
+  ProfilePage.tsx  |       0 |        0 |       0 |       0 | 1-135             
+ src/pages/Routine |       0 |        0 |       0 |       0 |                   
+  RoutinePage.tsx  |       0 |        0 |       0 |       0 | 1-35              
+ src/services      |   67.96 |    57.14 |   88.88 |   67.96 |                   
+  ...entService.ts |   61.84 |    72.72 |      80 |   61.84 | ...,75-80,102-107 
+  ...hipService.ts |   76.92 |       40 |     100 |   76.92 | ...31,45-47,61-63 
+ src/types         |       0 |      100 |     100 |       0 |                   
+  ...ntTemplate.ts |       0 |      100 |     100 |       0 | 8-16              
+  api.ts           |       0 |        0 |       0 |       0 |                   
+  dialogContext.ts |       0 |        0 |       0 |       0 |                   
+ src/utils         |   92.04 |    96.29 |    92.3 |   92.04 |                   
+  apiRequests.ts   |     100 |      100 |     100 |     100 |                   
+  construction.ts  |       0 |      100 |     100 |       0 | 4-6               
+  date.ts          |   91.42 |      100 |      75 |   91.42 | 33-35             
+  ...ineHelpers.ts |   95.65 |     92.3 |     100 |   95.65 | 14                
+-------------------|---------|----------|---------|---------|-------------------

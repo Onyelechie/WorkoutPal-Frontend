@@ -28,7 +28,6 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({
   const [selectedExercises, setSelectedExercises] = useState<any[]>([]);
   const [routineName, setRoutineName] = useState("");
   const achievement = useAchievement();
-  
 
   useEffect(() => {
     const fetchExercises = async () => {
@@ -154,7 +153,11 @@ const CreateRoutineModal: React.FC<CreateRoutineModalProps> = ({
             )}
           </div>
           <div className="action-button-container">
-            <button type="submit" className="create-button" data-cy="create-routine-btn">
+            <button
+              type="submit"
+              className="create-button"
+              data-cy="create-routine-btn"
+            >
               Create Routine
             </button>
           </div>

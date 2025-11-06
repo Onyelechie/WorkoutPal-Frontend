@@ -226,7 +226,11 @@ export default function EditScheduleModal({
                     >
                       Delete Schedule
                     </button>
-                    <button type="submit" className="create-button" data-cy="edit-schedule-btn">
+                    <button
+                      type="submit"
+                      className="create-button"
+                      data-cy="edit-schedule-btn"
+                    >
                       Edit Schedule
                     </button>
                   </div>
