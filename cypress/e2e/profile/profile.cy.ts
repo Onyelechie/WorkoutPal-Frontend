@@ -73,7 +73,7 @@ describe("Profile Feature", () => {
     cy.contains(targetUser.name).should("be.visible");
   });
 
-  it.only("user can follow another user and following count increments", () => {
+  it("user can follow another user and following count increments", () => {
     cy.visit("/home");
 
     // ensure testUser is not follow targetUser initially
