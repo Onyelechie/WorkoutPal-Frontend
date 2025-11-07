@@ -7,9 +7,11 @@ function OtherUserPage() {
   const userId = params.id ? parseInt(params.id, 10) : NaN;
   const { user: me } = useMe();
 
-  if (isNaN(userId)) return <div>Invalid user id</div>;
+  if (isNaN(userId)) return <div>Cannot find user.</div>;
 
-  return <OtherUserProfile userId={userId} currentUserId={me?.id || 0} />;
+  if (!me) return <div>Please make sure you are logged in!</div>
+
+  return <OtherUserProfile userId={userId} currentUserId={me.id} />;
 }
 
 export default OtherUserPage;

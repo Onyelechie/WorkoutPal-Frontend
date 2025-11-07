@@ -80,3 +80,16 @@ Cypress.Commands.add("deleteUser", (userId, email, password) => {
     });
   });
 });
+
+Cypress.Commands.add("unfollowUser", (targetUserId, followerId) => {
+  cy.request({
+      method: "POST",
+      url: `${BACKEND_URL}/users/${targetUserId}/unfollow?follower_id=${followerId}`,
+      failOnStatusCode: false,
+    }).then((response) => {
+      // we can expect either a 200 or 500
+      // 200 if follower was originally following the targetUser
+      // 500 if follower was originally not following the targetUser
+      expect([200, 500]).to.include(response.status);
+    });
+});
