@@ -5,11 +5,12 @@ import { useMe } from "../../hooks/useMe";
 function OtherUserPage() {
   const params = useParams();
   const userId = params.id ? parseInt(params.id, 10) : NaN;
-  const { user: me } = useMe();
+  const { user: me, isLoading } = useMe();
 
   if (isNaN(userId)) return <div>Cannot find user.</div>;
-
-  if (!me) return <div>Please make sure you are logged in!</div>
+  
+  // Wait for current user to load before rendering profile
+  if (isLoading || !me) return <div>Please make sure you are logged in!</div>;
 
   return <OtherUserProfile userId={userId} currentUserId={me.id} />;
 }
