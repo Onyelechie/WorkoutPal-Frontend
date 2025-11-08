@@ -2,8 +2,6 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/global.css";
 import App from "./app/App.tsx";
-import { AlertDialogProvider } from "./components/Common/Dialogs/AlertDialog/AlertDialogProvider.tsx";
-import { ConfirmDialogProvider } from "./components/Common/Dialogs/ConfirmDialog/ConfirmDialogProvider.tsx";
 import { DialogProvider } from "./components/Common/Dialogs/DialogProvider.tsx";
 
 // For Google OAuth stretch goal
