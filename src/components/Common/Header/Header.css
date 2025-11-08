@@ -27,6 +27,14 @@
   padding: 0.5rem;
 }
 
+.logo-button:hover{
+  background-color: transparent;  
+}
+.logo-button:hover > .logo-text {
+  text-decoration: underline;
+}
+
+
 .logo-image {
   width: 36px;
   height: 36px;
