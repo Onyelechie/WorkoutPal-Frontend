@@ -9,6 +9,11 @@
   font-weight: bold;
   font-size: 20px;
   width: fit-content;
+
+  width: 100%;
+    /* <-- Full width of parent */
+    box-sizing: border-box;
+    /* <-- includes padding and border in width */
 }
 
 .user-achievement-card:hover {

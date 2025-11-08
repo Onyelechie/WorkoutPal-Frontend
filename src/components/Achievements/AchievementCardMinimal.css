@@ -1,0 +1,14 @@
+.minimal-achievement-card {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+}
+.minimal-achievement-card p {
+  margin: 0;
+  display: inline-block;
+}
+.minimal-achievement-card>.badge {
+  border: none;
+  box-shadow: none;
+  transform: scale(0.6);
+}
