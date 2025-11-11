@@ -2,6 +2,11 @@
     This is the global styling to be used in all pages/components.
 */
 
+html, body, #root {
+  width: 100%;
+  min-height: 100dvh;
+}
+
 /* CSS reset */
 * {
   margin: 0;
@@ -39,16 +44,16 @@ body {
 
   /* Fixed a weird issue when the width of the app does not fit in the window, causing a horizontal scroll bar to appear */
   width: 100%;
-
+  margin: 0;
+  padding: 0;
   height: 100%;
   font-family:
     "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
     Arial, sans-serif;
+  overflow-x: hidden;
 }
 
 #root {
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
