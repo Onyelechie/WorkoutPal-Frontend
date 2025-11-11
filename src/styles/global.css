@@ -12,18 +12,21 @@
 /* Global variables */
 :root {
   /* Color variables */
-  --text-color-dark-1: black;
-  --text-color-dark-2: rgb(50, 50, 50);
-  --text-color-dark-3: rgb(100, 100, 100);
+  --text-color-dark-1: rgb(5, 23, 82);
+  --text-color-dark-2: rgb(50, 50, 50);  
+  --text-color-dark-3: rgb(100, 100, 100);  
   --text-color-light-1: white;
 
-  --color-light-1: rgb(254, 255, 248);
-  --color-light-2: rgb(240, 241, 233);
+  --color-light-1: rgb(249, 248, 255);
+  --color-light-2: rgb(255, 255, 255);
   --color-light-3: rgb(227, 228, 220);
 
-  --color-primary-1: #2274a5;
-  --color-primary-2: rgb(29, 100, 141);
+  --color-primary-1: #03167ed8;
+  --color-primary-2: rgb(20, 19, 104);
   --color-primary-3: rgb(22, 75, 105);
+
+  --color-background-secondary: rgba(138, 143, 156, 0.445);
+  --color-background-primary: rgb(248, 248, 253);
 
   --color-nav-underline: #22218d;
 
@@ -31,7 +34,7 @@
 }
 
 body {
-  background-color: var(--color-light-3);
+  background: linear-gradient(317deg, var(--color-background-secondary) 12%, var(--color-background-primary)  96%);
   color: var(--text-color-dark-1);
 
   /* Fixed a weird issue when the width of the app does not fit in the window, causing a horizontal scroll bar to appear */

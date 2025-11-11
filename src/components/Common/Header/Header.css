@@ -54,7 +54,7 @@
 
 .header-button {
   background-color: transparent;
-  color: #2e2d2d;
+  color: var(--text-color-dark-2);
   border: none;
   padding: 15px 15px;
   font-weight: bold;

@@ -3,7 +3,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 1rem 1.5rem;
-  background-color: var(--color-light-2);
+  background-color: var(--color-background-primary);
 }
 
 .post-card:hover {
