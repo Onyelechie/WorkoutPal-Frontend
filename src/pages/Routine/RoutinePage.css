@@ -5,17 +5,14 @@
   align-items: center;
 
 }
+
+.routine-scheduler-container,
 .routine-builder-container {
   padding: 15px;
   border-radius: 0px 10px 10px 10px;
   box-shadow: var(--box-shadow-2);
   background-color: var(--color-background-primary);
-}
-.routine-scheduler-container {
-  padding: 15px;
-  border-radius: 0px 10px 10px 10px;
-  box-shadow: var(--box-shadow-2);
-  background-color: var(--color-background-primary);
+  min-height: 50vh;
 }
 
 .nav-button {

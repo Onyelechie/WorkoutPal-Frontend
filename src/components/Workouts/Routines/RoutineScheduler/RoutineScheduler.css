@@ -12,18 +12,18 @@
   overflow-x: auto;
   margin: 20px 0;
   font-family: Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Base table style */
 .routine-scheduler-table-container table {
   width: 100%;
   border-collapse: collapse;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Table header */
 .routine-scheduler-table-container th {
-  background-color: var(--color-primary-1); /* Green header */
+  background-color: var(--color-primary-1);
   color: white;
   text-align: left;
   padding: 12px;
@@ -37,16 +37,16 @@
 }
 
 .table-row-light {
-  background-color: var(--color-light-1);
+  background-color: var(--color-tr-1);
 }
 
 .table-row-dark {
-  background-color: var(--color-light-2);
+  background-color: var(--color-tr-2);
 }
 
 /* Hover effect */
 .routine-scheduler-table-container tr:hover {
-  background-color: var(--color-light-1);
+  background-color: rgb(242, 242, 255);
 }
 
 /* Rounded corners for table */

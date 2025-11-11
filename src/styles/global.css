@@ -22,9 +22,14 @@ html, body, #root {
   --text-color-dark-3: rgb(7, 1, 39);  
   --text-color-light-1: white;
 
-  --color-light-1: rgb(249, 248, 255);
-  --color-light-2: rgb(255, 255, 255);
-  --color-light-3: rgb(227, 228, 220);
+  /* with small hint of blue, 3 is the darkest */
+  --color-light-1: rgb(255, 255, 255);
+  --color-light-2: rgb(249, 248, 255);
+  --color-light-3: rgb(228, 230, 241);
+
+  /* table row colors */
+  --color-tr-1: var(--color-light-1);
+  --color-tr-2: var(--color-light-3);
 
   --color-primary-1: #03167ed8;
   --color-primary-2: rgb(20, 19, 104);
