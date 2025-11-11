@@ -12,14 +12,14 @@ export default function RoutinePage() {
       <div className="default-container">
         <nav className="routine-nav-container">
           <button
-            className={`nav-button ${location.pathname.endsWith(SCHEDULER_ROUTE) ? "active" : ""}`}
+            className={`nav-button sched ${location.pathname.endsWith(SCHEDULER_ROUTE) ? "active" : ""}`}
             onClick={() => navigate(SCHEDULER_ROUTE)}
           >
             Scheduler
           </button>
 
           <button
-            className={`nav-button ${location.pathname.endsWith(BUILDER_ROUTE) ? "active" : ""}`}
+            className={`nav-button build ${location.pathname.endsWith(BUILDER_ROUTE) ? "active" : ""}`}
             onClick={() => navigate(BUILDER_ROUTE)}
           >
             Builder

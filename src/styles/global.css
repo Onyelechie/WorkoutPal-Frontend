@@ -19,7 +19,7 @@ html, body, #root {
   /* Color variables */
   --text-color-dark-1: rgb(5, 23, 82);
   --text-color-dark-2: rgb(50, 50, 50);  
-  --text-color-dark-3: rgb(100, 100, 100);  
+  --text-color-dark-3: rgb(7, 1, 39);  
   --text-color-light-1: white;
 
   --color-light-1: rgb(249, 248, 255);
@@ -28,7 +28,7 @@ html, body, #root {
 
   --color-primary-1: #03167ed8;
   --color-primary-2: rgb(20, 19, 104);
-  --color-primary-3: rgb(22, 75, 105);
+  --color-primary-3: rgba(4, 31, 107, 0.877);
 
   --color-background-secondary: rgba(138, 143, 156, 0.445);
   --color-background-primary: rgb(248, 248, 253);
@@ -36,6 +36,7 @@ html, body, #root {
   --color-nav-underline: #22218d;
 
   --box-shadow-1: rgba(0, 0, 0, 0.1);
+  --box-shadow-2: 0px 0px 15px -4px rgba(0, 0, 0, 0.52);
 }
 
 body {

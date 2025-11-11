@@ -38,7 +38,7 @@ export default function RoutineScheduler() {
         routines={routines}
         setSchedules={setSchedules}
       />
-      <div>
+      <div className="routine-scheduler-container">
         <header className="routine-scheduler-header">
           <h2>Schedule your weekly workout routines!</h2>
           <div>
