@@ -9,12 +9,14 @@
 }
 
 .incomplete > .achievement-card {
+  filter: grayscale(80%);
   opacity: 0.75;
   background-color: #97949436;
 }
 
 /* Achievement card designed originally with (some help of ChatGPT) */
 .achievement-card:hover {
+  filter: none;
   background-color: #ffffffcb;
   opacity: 100%;
 }
