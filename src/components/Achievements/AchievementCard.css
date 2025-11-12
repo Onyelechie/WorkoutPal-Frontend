@@ -17,7 +17,7 @@
 /* Achievement card designed originally with (some help of ChatGPT) */
 .achievement-card:hover {
   filter: none;
-  background-color: #ffffffcb;
+  background-color: var(--color-div-hover);
   opacity: 100%;
 }
 
@@ -29,7 +29,7 @@
   width: 60px;
   height: 60px;
 
-  background-color: #694040;
+  background-color: #743e3e;
 
   /* circle border*/
   border-radius: 50%;
@@ -49,7 +49,7 @@
 
 .achievement-description {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-color-dark-2);
   margin: 0 0 0.25rem 0;
 }
 

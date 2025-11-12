@@ -30,6 +30,9 @@
   padding: 0.5rem;
   margin-right: 5px;
 }
+.logo-button:hover {
+  background-color: transparent;
+}
 
 .logo-image {
   width: 36px;
@@ -54,7 +57,7 @@
 
 .header-button {
   background-color: transparent;
-  color: var(--text-color-dark-2);
+  color: var(--text-color-dark-3);
   border: none;
   padding: 15px 15px;
   font-weight: bold;

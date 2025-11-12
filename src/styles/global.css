@@ -37,14 +37,16 @@ html, body, #root {
 
   --color-background-secondary: rgba(138, 143, 156, 0.445);
   --color-background-primary: rgb(248, 248, 253);
-
+  
   --color-nav-underline: #22218d;
+  --color-div-hover: rgb(239, 239, 248);
 
   --box-shadow-1: rgba(0, 0, 0, 0.1);
   --box-shadow-2: 0px 0px 15px -4px rgba(0, 0, 0, 0.52);
 }
 
 body {
+  /* https://cssgradient.io/*/
   background: linear-gradient(317deg, var(--color-background-secondary) 12%, var(--color-background-primary)  96%);
   color: var(--text-color-dark-1);
 
