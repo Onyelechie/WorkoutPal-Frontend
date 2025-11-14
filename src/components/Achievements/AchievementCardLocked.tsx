@@ -3,7 +3,6 @@ import "./AchievementCard.css";
 
 type AchievementIncompleteProp = {
   achievement: UserAchievementLocked;
-  completed: boolean;
 };
 
 export function AchievementCardLocked({
