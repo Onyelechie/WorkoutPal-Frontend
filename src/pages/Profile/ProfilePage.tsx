@@ -7,12 +7,21 @@ import { postRequest } from "../../utils/apiRequests";
 import { PostCard } from "../../components/PostCard/PostCard";
 import { useState, useEffect } from "react";
 import { relationshipService } from "../../services/relationshipService";
+import { useConfirmDialog } from "../../hooks/useDialog";
+
+const logoutMsg = {
+  title: "Log out of WorkoutPal",
+  message: "Do you want to logout?",
+  positiveBtn: "Yes, time to rest",
+  negativeBtn: "No, I'm still in!"
+}
 
 function ProfilePage() {
   const { user, isLoading, error, fetchMe } = useMe();
   const { navLogin } = useAppNavigation();
   const [followersCount, setFollowersCount] = useState<number>(0);
   const [followingCount, setFollowingCount] = useState<number>(0);
+  const { showConfirmRisky } = useConfirmDialog();
 
   useEffect(() => {
     const fetchFollowData = async () => {
@@ -42,11 +51,15 @@ function ProfilePage() {
   };
 
   const handleLogout = async () => {
-    try {
-      await postRequest("/logout", "");
-      navLogin();
-    } catch (err) {
-      console.error("Logout failed", err);
+    if (await showConfirmRisky(logoutMsg.title, logoutMsg.message, logoutMsg.positiveBtn, logoutMsg.negativeBtn))
+    {
+      try {
+        await postRequest("/logout", "");
+        navLogin();
+      } catch (err) {
+        console.error("Logout failed", err);
+      }
+
     }
   };
 
