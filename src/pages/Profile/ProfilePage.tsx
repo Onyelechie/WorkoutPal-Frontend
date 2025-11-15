@@ -21,7 +21,7 @@ function ProfilePage() {
   const { navLogin } = useAppNavigation();
   const [followersCount, setFollowersCount] = useState<number>(0);
   const [followingCount, setFollowingCount] = useState<number>(0);
-  const { showConfirmRisky } = useConfirmDialog();
+  const { showConfirmSafe } = useConfirmDialog();
 
   useEffect(() => {
     const fetchFollowData = async () => {
@@ -51,7 +51,7 @@ function ProfilePage() {
   };
 
   const handleLogout = async () => {
-    if (await showConfirmRisky(logoutMsg.title, logoutMsg.message, logoutMsg.positiveBtn, logoutMsg.negativeBtn))
+    if (await showConfirmSafe(logoutMsg.title, logoutMsg.message, logoutMsg.positiveBtn, logoutMsg.negativeBtn))
     {
       try {
         await postRequest("/logout", "");
