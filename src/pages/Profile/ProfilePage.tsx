@@ -13,7 +13,7 @@ const logoutMsg = {
   title: "Log out of WorkoutPal",
   message: "Do you want to logout?",
   positiveBtn: "Yes, time to rest",
-  negativeBtn: "No, I'm still in!"
+  negativeBtn: "No, still grinding!"
 }
 
 function ProfilePage() {
