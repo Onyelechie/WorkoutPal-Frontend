@@ -12,5 +12,5 @@
 }
 
 .user-achievement-card:hover {
-  background-color: #ffffffcb;
+  background-color: var(--color-div-hover);
 }

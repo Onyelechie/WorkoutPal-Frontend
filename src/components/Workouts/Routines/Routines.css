@@ -88,3 +88,11 @@ select:focus {
 .modal-title {
   text-align: center;
 }
+
+.input-label {
+  font-weight: bold;
+}
+
+.exercise-list {
+  color: var(--text-color-dark-2)
+}
