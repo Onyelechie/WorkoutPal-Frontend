@@ -134,3 +134,11 @@
   justify-content: flex-end;
   margin-top: 1.5rem;
 }
+
+.logout-button {
+  background-color: rgb(211, 4, 4);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
