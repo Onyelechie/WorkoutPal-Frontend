@@ -3,7 +3,6 @@ import { relationshipService } from "../../../services/relationshipService";
 import { getRequest } from "../../../utils/apiRequests";
 import type { User } from "../../../types/api";
 import type { User as RelationshipUser } from "../../../services/relationshipService";
-import { useMe } from "../../../hooks/useMe";
 import { PostCard } from "../../PostCard/PostCard";
 import { useNavigate } from "react-router-dom";
 
@@ -27,9 +26,9 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
 
   useEffect(() => {
     fetchUserProfile();
-    checkFollowStatus();
     fetchFollowCounts();
-  }, [userId]);
+    checkFollowStatus();
+  }, [userId, currentUserId]);
 
   const fetchFollowCounts = async () => {
     try {
@@ -62,20 +61,23 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
     try {
       const followingData =
         await relationshipService.getFollowing(currentUserId);
-      setIsFollowing(followingData.some((u) => u.id === userId));
+      const following = followingData.some((u) => u.id === userId);
+      console.log(`Checking follow status: currentUser=${currentUserId}, viewedUser=${userId}, isFollowing=${following}`, followingData);
+      setIsFollowing(following);
     } catch (error) {
       console.error("Error checking follow status:", error);
+      setIsFollowing(false);
     }
   };
-
-  useMe();
 
   const handleFollowToggle = async () => {
     setFollowLoading(true);
     try {
       if (isFollowing) {
+        console.log(`Unfollowing user ${userId}`);
         await relationshipService.unfollowUser(userId, currentUserId);
         setIsFollowing(false);
+        console.log(`Set isFollowing to false`);
 
         // Optimistically update viewed user's followers list
         setUser((prev) => {
@@ -91,8 +93,10 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
         // notify other parts of the app to refresh current user's data (following count)
         window.dispatchEvent(new Event("me:refresh"));
       } else {
+        console.log(`Following user ${userId}`);
         await relationshipService.followUser(userId, currentUserId);
         setIsFollowing(true);
+        console.log(`Set isFollowing to true`);
 
         // Optimistically update viewed user's followers list
         setUser((prev) => {
@@ -113,8 +117,12 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
       fetchUserProfile();
       // refresh the counts after follow/unfollow
       fetchFollowCounts();
+      // Don't recheck follow status here - we already set it optimistically above
+      // and rechecking might revert to stale server data
     } catch (error) {
       console.error("Error toggling follow:", error);
+      // On error, recheck the actual status
+      await checkFollowStatus();
     } finally {
       setFollowLoading(false);
     }
@@ -142,6 +150,8 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
 
   if (loading) return <div className="loading">Loading profile...</div>;
   if (!user) return <div className="error">User not found</div>;
+
+  console.log(`Rendering OtherUserProfile: userId=${userId}, currentUserId=${currentUserId}, isFollowing=${isFollowing}`);
 
   return (
     <>

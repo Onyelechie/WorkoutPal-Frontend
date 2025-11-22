@@ -12,18 +12,25 @@
   opacity: 0.6;
   background-color: #c5c5c5;
 }
+
 .incomplete > .achievement-card > .badge {
   border: 4px inset rgb(144, 161, 216);
   box-shadow: none;
+  filter: grayscale(80%);
+  opacity: 0.75;
+  background-color: #743e3e;
 }
 
 /* Achievement card designed originally with (some help of ChatGPT) */
 .achievement-card:hover {
-  background-color: #ffffff;
+  filter: none;
+  background-color: var(--color-div-hover);
   opacity: 100%;
 }
 .achievement-card:hover > .badge {
   transform: scale(1.1);
+  filter: none;
+  opacity: 1;
 }
 
 .badge {
@@ -34,7 +41,7 @@
   width: 60px;
   height: 60px;
 
-  background-color: #694040;
+  background-color: #743e3e;
 
   /* circle border*/
   border: 2px solid gold;
@@ -57,9 +64,8 @@
 }
 
 .achievement-description {
-  font-size: 0.95rem;
-  color: #444444;
-  font-weight: bold;
+  font-size: 0.9rem;
+  color: var(--text-color-dark-2);
   margin: 0 0 0.25rem 0;
 }
 
