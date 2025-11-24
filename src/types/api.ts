@@ -125,6 +125,8 @@ export interface User {
   heightMetric: string;
   id: number;
   isVerified: boolean;
+  isPrivate?: boolean;
+  showMetricsToFollowers?: boolean;
   name: string;
   Posts: Post[];
   provider: string;

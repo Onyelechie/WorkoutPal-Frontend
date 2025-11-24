@@ -1,11 +1,13 @@
-.other-user-profile {
+.other-user-profile,
+.profile-container {
   width: 100%;
-  max-width: 600px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 2rem;
   background: var(--color-light-1);
   border-radius: 16px;
   box-shadow: 0 4px 12px var(--box-shadow-1);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .profile-header {
@@ -25,6 +27,15 @@
   border: 3px solid #fff;
 }
 
+.avatar-placeholder {
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #999;
+}
+
 .profile-info {
   width: 100%;
 }
@@ -38,15 +49,29 @@
 
 .username {
   color: var(--text-color-dark-1);
-  margin: 0.25rem 0 1rem 0;
+  margin: 0.25rem 0;
   font-size: 1rem;
   font-weight: 500;
 }
 
+.email {
+  color: var(--text-color-dark-3);
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.privacy-message {
+  color: var(--text-color-dark-3);
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
 .follow-btn {
-  padding: 0.75rem 2rem;
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
   border: none;
-  border-radius: 25px;
+  border-radius: 20px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -72,6 +97,15 @@
   color: white;
 }
 
+.follow-btn.requested {
+  background: #f5a623;
+  color: white;
+}
+
+.follow-btn.requested:hover {
+  background: #e09612;
+}
+
 .follow-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -82,8 +116,6 @@
   justify-content: space-around;
   padding: 1rem 0;
   border-top: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
-  margin-bottom: 2rem;
 }
 
 .stat-item {
@@ -117,7 +149,7 @@
 
 .posts-section {
   width: 100%;
-  margin-bottom: 2rem;
+  margin-top: 1.5rem;
 }
 
 .section-title {
@@ -125,6 +157,8 @@
   font-weight: 600;
   margin-bottom: 1rem;
   color: var(--text-color-dark-1);
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
 }
 
 .posts-list {
@@ -135,9 +169,11 @@
 
 .no-posts {
   text-align: center;
-  padding: 2rem;
-  color: var(--text-color-dark-1);
-  font-size: 1rem;
+  padding: 2rem 1rem;
+  color: var(--text-color-dark-3);
+  font-size: 0.95rem;
+  background: #f8f9fa;
+  border-radius: 8px;
 }
 
 .posts-grid {
