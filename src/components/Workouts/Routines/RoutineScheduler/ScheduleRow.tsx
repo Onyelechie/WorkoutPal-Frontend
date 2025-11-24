@@ -81,7 +81,7 @@ export function ScheduleRow({
             <tr
               key={`${index}-${i}`}
               className={clsx("", {
-                "highlight-text": ((index + 1) % 7) == getTodayIndex(),
+                "highlight-text": index == getTodayIndex(),
                 "table-row-dark": index % 2 == 0,
                 "table-row-light": index % 2 !== 0,
               })}

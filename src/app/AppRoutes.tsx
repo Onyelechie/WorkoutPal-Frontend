@@ -11,6 +11,7 @@ import ActivityFeed from "../pages/Activity/ActivityFeed";
 import AchievementsPage from "../pages/Achievements/AchievementsPage";
 import RoutineBuilder from "../components/Workouts/Routines/RoutineBuilder/RoutineBuilder";
 import RoutineScheduler from "../components/Workouts/Routines/RoutineScheduler/RoutineScheduler";
+import RoutineRunner from "../components/Workouts/Routines/RoutineRunner/RoutineRunner";
 
 export const LOGIN_ROUTE = "/auth/login";
 export const REGISTER_ROUTE = "/auth/register";
@@ -25,6 +26,7 @@ export const ACHIEVEMENTS_ROUTE = "/achievements";
 export const ROUTINE_ROUTE = "/routine"; // parent route
 export const BUILDER_ROUTE = "builder"; // relative child route
 export const SCHEDULER_ROUTE = "scheduler"; // relative child route
+export const ROUTINE_START_ROUTE = "start"; // relative child route
 
 export default function AppRoutes() {
   return (
@@ -52,6 +54,7 @@ export default function AppRoutes() {
 
           <Route path={BUILDER_ROUTE} element={<RoutineBuilder />} />
           <Route path={SCHEDULER_ROUTE} element={<RoutineScheduler />} />
+          <Route path={ROUTINE_START_ROUTE} element={<RoutineRunner />} />
         </Route>
 
         {/* Direct to PageNotFound for routes that are not implemented */}

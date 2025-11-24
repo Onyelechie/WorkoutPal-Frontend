@@ -1,15 +1,19 @@
+.routine-btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .routine-nav-container {
   display: flex;
   margin-bottom: 0rem;
   justify-content: flex-start;
   align-items: center;
-
 }
 
 .routine-scheduler-container,
 .routine-builder-container {
   padding: 15px;
-  border-radius: 0px 10px 10px 10px;
+  border-radius: 0px 0px 10px 10px;
   box-shadow: var(--box-shadow-2);
   background-color: var(--color-background-primary);
   min-height: 50vh;
@@ -17,7 +21,6 @@
 
 .nav-button {
   background-color: var(--color-primary-3);
-
   cursor: pointer;
   font-weight: bold;
   border-radius: 0;
@@ -36,6 +39,13 @@
 
 .nav-button.build {
   border-radius: 0px 10px 0px 0px;
+}
+
+.nav-button.start {
+  border-radius: 10px 10px 0px 0px;
+  background-color: var(--color-primary-1);
+  color: var(--color-light-2);
+  opacity: 1;
 }
 
 .nav-button:hover {
