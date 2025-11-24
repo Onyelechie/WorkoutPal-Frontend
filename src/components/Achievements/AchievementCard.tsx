@@ -3,7 +3,6 @@ import "./AchievementCard.css";
 
 type AchievementCompleteProp = {
   achievement: UserAchievementUnlocked;
-  completed: boolean;
 };
 
 export function AchievementCard({ achievement }: AchievementCompleteProp) {

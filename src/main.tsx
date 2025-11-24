@@ -2,8 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/global.css";
 import App from "./app/App.tsx";
-import { AlertDialogProvider } from "./components/Common/Dialogs/AlertDialog/AlertDialogProvider.tsx";
-import { ConfirmDialogProvider } from "./components/Common/Dialogs/ConfirmDialog/ConfirmDialogProvider.tsx";
+import { DialogProvider } from "./components/Common/Dialogs/DialogProvider.tsx";
 
 // For Google OAuth stretch goal
 // import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -11,10 +10,8 @@ import { ConfirmDialogProvider } from "./components/Common/Dialogs/ConfirmDialog
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <AlertDialogProvider>
-      <ConfirmDialogProvider>
-        <App />
-      </ConfirmDialogProvider>
-    </AlertDialogProvider>
+    <DialogProvider>
+      <App />
+    </DialogProvider>
   </StrictMode>,
 );

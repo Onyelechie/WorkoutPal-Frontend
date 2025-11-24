@@ -44,7 +44,6 @@ export default function Achievements() {
                 <AchievementCard
                   key={achievement.id}
                   achievement={achievement}
-                  completed={true}
                 />
               ))}
           </div>
@@ -60,7 +59,6 @@ export default function Achievements() {
                 <AchievementCardLocked
                   key={achievement.id}
                   achievement={achievement}
-                  completed={false}
                 />
               ))}
           </div>
