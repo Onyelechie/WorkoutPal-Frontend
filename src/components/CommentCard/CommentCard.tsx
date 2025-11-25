@@ -1,6 +1,5 @@
 import "./CommentCard.css";
 import type { Comment } from "../../types/api";
-import { notYetImplemented } from "../../utils/construction";
 
 type CommentProps = {
   comment: Comment;
@@ -8,14 +7,21 @@ type CommentProps = {
 
 export function CommentCard({ comment }: CommentProps) {
   return (
-    <div className="comment-card" onClick={notYetImplemented}>
+    <div className="comment-card">
       <div className="comment-header">
-        <h3>
-          {comment.commentedBy} commented on {comment.commentedOn}
-        </h3>
+        <h3>{comment.username}</h3>
+        <span>{new Date(comment.date).toLocaleDateString()}</span>
       </div>
       <p>{comment.comment}</p>
-      <p>{comment.date}</p>
+      {comment.replies && comment.replies.length > 0 && (
+        <div className="replies">
+          {comment.replies.map((reply, idx) => (
+            <div key={idx} className="reply">
+              <p>{reply}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

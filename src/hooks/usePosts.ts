@@ -78,9 +78,20 @@ export function usePosts() {
     try {
       setError(null);
       await postRequest("/posts/comment", { postId, userId, comment });
-      await fetchPosts(); // Refresh posts to get updated comments
+      await fetchPosts();
     } catch (err: any) {
       handleError(err, setError, "Failed to add comment");
+      throw err;
+    }
+  }
+
+  async function replyToComment(postId: number, commentId: number, userId: number, comment: string) {
+    try {
+      setError(null);
+      await postRequest("/posts/comment/reply", { postId, commentId, userId, comment });
+      await fetchPosts();
+    } catch (err: any) {
+      handleError(err, setError, "Failed to add reply");
       throw err;
     }
   }
@@ -95,5 +106,6 @@ export function usePosts() {
     likePost,
     unlikePost,
     addComment,
+    replyToComment,
   };
 }

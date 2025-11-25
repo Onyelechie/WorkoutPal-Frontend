@@ -1,5 +1,5 @@
-import { useState } from "react";
-import type { Post } from "../../types/api";
+import { useState, useEffect } from "react";
+import type { Post, Comment } from "../../types/api";
 import { usePosts } from "../../hooks/usePosts";
 import { useMe } from "../../hooks/useMe";
 import "./CommentsModal.css";
@@ -7,12 +7,21 @@ import "./CommentsModal.css";
 interface CommentsModalProps {
   post: Post;
   onClose: () => void;
+  onCommentAdded?: () => void;
 }
 
-export function CommentsModal({ post, onClose }: CommentsModalProps) {
-  const { addComment } = usePosts();
+export function CommentsModal({ post, onClose, onCommentAdded }: CommentsModalProps) {
+  const { addComment, replyToComment, posts } = usePosts();
+  const [currentPost, setCurrentPost] = useState(post);
   const { user } = useMe();
   const [newComment, setNewComment] = useState("");
+  const [replyingTo, setReplyingTo] = useState<number | null>(null);
+  const [replyText, setReplyText] = useState("");
+
+  useEffect(() => {
+    const updatedPost = posts.find(p => p.id === post.id);
+    if (updatedPost) setCurrentPost(updatedPost);
+  }, [posts, post.id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,6 +30,19 @@ export function CommentsModal({ post, onClose }: CommentsModalProps) {
     try {
       await addComment(post.id, user.id, newComment.trim());
       setNewComment("");
+      onCommentAdded?.();
+    } catch (err) {
+      // Error handled by hook
+    }
+  };
+
+  const handleReply = async (commentId: number) => {
+    if (!user || !replyText.trim()) return;
+
+    try {
+      await replyToComment(post.id, commentId, user.id, replyText.trim());
+      setReplyText("");
+      setReplyingTo(null);
     } catch (err) {
       // Error handled by hook
     }
@@ -35,16 +57,47 @@ export function CommentsModal({ post, onClose }: CommentsModalProps) {
         </div>
         
         <div className="comments-list">
-          {post.comments.length === 0 ? (
+          {currentPost.comments.length === 0 ? (
             <p>No comments yet</p>
           ) : (
-            post.comments.map((comment) => (
+            currentPost.comments.map((comment) => (
               <div key={comment.id} className="comment">
                 <div className="comment-header">
-                  <span className="comment-author">{comment.commentedBy}</span>
+                  <span className="comment-author">{comment.username}</span>
                   <span className="comment-date">{new Date(comment.date).toLocaleDateString()}</span>
                 </div>
                 <p className="comment-text">{comment.comment}</p>
+                {comment.replies && comment.replies.length > 0 && (
+                  <div className="replies">
+                    {comment.replies.map((reply, idx) => (
+                      <div key={idx} className="reply">
+                        <div className="comment-header">
+                          <span className="comment-author">{reply.username}</span>
+                          <span className="comment-date">{new Date(reply.date).toLocaleDateString()}</span>
+                        </div>
+                        <p className="reply-text">{reply.comment}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <button 
+                  className="reply-button" 
+                  onClick={() => setReplyingTo(comment.id)}
+                >
+                  Reply
+                </button>
+                {replyingTo === comment.id && (
+                  <div className="reply-form">
+                    <input
+                      type="text"
+                      value={replyText}
+                      onChange={(e) => setReplyText(e.target.value)}
+                      placeholder="Write a reply..."
+                    />
+                    <button onClick={() => handleReply(comment.id)}>Post</button>
+                    <button onClick={() => { setReplyingTo(null); setReplyText(""); }}>Cancel</button>
+                  </div>
+                )}
               </div>
             ))
           )}

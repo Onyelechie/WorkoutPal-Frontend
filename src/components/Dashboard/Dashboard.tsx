@@ -11,6 +11,10 @@ export default function Dashboard() {
   const { posts, isLoading, error, fetchPosts } = usePosts();
   const [showCreatePost, setShowCreatePost] = useState(false);
 
+  const sortedPosts = [...posts].sort((a, b) => 
+    new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
   return (
     <div className="dashboard-container">
       <h1 className="dashboard-header">Dashboard</h1>
@@ -24,7 +28,10 @@ export default function Dashboard() {
 
       {showCreatePost && (
         <CreatePost
-          onPostCreated={() => setShowCreatePost(false)}
+          onPostCreated={() => {
+            setShowCreatePost(false);
+            fetchPosts();
+          }}
           onCancel={() => setShowCreatePost(false)}
         />
       )}
@@ -44,7 +51,7 @@ export default function Dashboard() {
           !isLoading &&
           !error &&
           // display all posts if there are any
-          posts.map((post: Post) => <PostCard key={post.id} post={post} />)
+          sortedPosts.map((post: Post) => <PostCard key={post.id} post={post} onUpdate={fetchPosts} />)
       }
     </div>
   );

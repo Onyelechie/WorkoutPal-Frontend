@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Post } from "../../types/api";
 import "./PostCard.css";
 import { usePosts } from "../../hooks/usePosts";
@@ -7,13 +7,15 @@ import { CommentsModal } from "../CommentsModal/CommentsModal";
 
 type PostProps = {
   post: Post;
+  onUpdate?: () => void;
 };
 
-export function PostCard({ post }: PostProps) {
+export function PostCard({ post, onUpdate }: PostProps) {
   const { likePost, unlikePost } = usePosts();
   const { user } = useMe();
   const [isLiked, setIsLiked] = useState(post.isLiked || false);
   const [likeCount, setLikeCount] = useState(post.likes);
+  const [commentCount, setCommentCount] = useState(post.comments.length);
   const [showComments, setShowComments] = useState(false);
 
   const handleLikeClick = async (e: React.MouseEvent) => {
@@ -57,13 +59,14 @@ export function PostCard({ post }: PostProps) {
           }}
         >
           <span className="comment-icon">💬</span>
-          {post.comments.length} Comment(s)
+          {commentCount} Comment(s)
         </span>
       </div>
       {showComments && (
         <CommentsModal
           post={post}
           onClose={() => setShowComments(false)}
+          onCommentAdded={() => setCommentCount(prev => prev + 1)}
         />
       )}
     </div>
