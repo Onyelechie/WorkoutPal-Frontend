@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCreatePost } from "../../hooks/useCreatePost";
+import { usePosts } from "../../hooks/usePosts";
 import "./CreatePost.css";
 
 interface CreatePostProps {
@@ -8,7 +8,7 @@ interface CreatePostProps {
 }
 
 export function CreatePost({ onPostCreated, onCancel }: CreatePostProps) {
-  const { createPost, isCreating, error } = useCreatePost();
+  const { createPost, isCreating, error } = usePosts();
   const [formData, setFormData] = useState({
     title: "",
     caption: "",

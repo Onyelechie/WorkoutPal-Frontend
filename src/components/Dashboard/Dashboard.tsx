@@ -48,10 +48,7 @@ export default function Dashboard() {
 
       {showCreatePost && (
         <CreatePost
-          onPostCreated={() => {
-            setShowCreatePost(false);
-            fetchPosts();
-          }}
+          onPostCreated={() => setShowCreatePost(false)}
           onCancel={() => setShowCreatePost(false)}
         />
       )}

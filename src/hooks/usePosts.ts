@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
-import { getRequest } from "../utils/apiRequests"; // adjust path if needed
+import { getRequest, postRequest } from "../utils/apiRequests";
 import type { Post } from "../types/api";
 import { POST_FETCH_FAIL } from "../app/constants/genericErrors";
 import { useErrorHandler } from "./useErrorHandler";
+
+interface CreatePostData {
+  title: string;
+  caption: string;
+  body: string;
+  status: string;
+  postedBy: number;
+}
 
 export function usePosts() {
   const { handleError } = useErrorHandler();
@@ -10,6 +18,7 @@ export function usePosts() {
   // state variables
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isCreating, setIsCreating] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
   async function fetchPosts() {
@@ -30,10 +39,27 @@ export function usePosts() {
     fetchPosts(); // fetch on mount
   }, []);
 
+  async function createPost(postData: CreatePostData) {
+    try {
+      setIsCreating(true);
+      setError(null);
+      const response = await postRequest("/posts", postData);
+      await fetchPosts(); // Refresh posts after creation
+      return response.data;
+    } catch (err: any) {
+      handleError(err, setError, "Failed to create post");
+      throw err;
+    } finally {
+      setIsCreating(false);
+    }
+  }
+
   return {
     posts,
     isLoading,
+    isCreating,
     error,
     fetchPosts,
+    createPost,
   };
 }
