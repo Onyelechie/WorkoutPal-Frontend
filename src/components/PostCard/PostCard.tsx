@@ -15,6 +15,7 @@ export function PostCard({ post }: PostProps) {
       </div>
       <div className="post-title">{post.title}</div>
       <div className="post-caption">{post.caption}</div>
+      <div className="post-body">{post.body}</div>
       <div className="post-footer">
         <span className="post-likes post-clickable" onClick={notYetImplemented}>
           {post.likes} Likes
