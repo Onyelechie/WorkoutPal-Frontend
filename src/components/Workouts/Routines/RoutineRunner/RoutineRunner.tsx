@@ -11,6 +11,8 @@ export default function RoutineRunner() {
 
     const { alertOnRequestError } = useErrorHandler();
 
+    const [isLoading, setIsLoading] = useState(true);
+
     const today = getTodayIndex();
     const [currDayIndex, setCurrDayIndex] = useState(today);
 
@@ -38,9 +40,9 @@ export default function RoutineRunner() {
     }
     
     useEffect(() => {
+        setIsLoading(true);
         getSchedules(currDayIndex);
-        // re-initialize schedules and routines
-        setSchedules([]);
+        setIsLoading(false);
     }, [currDayIndex]);
 
     useEffect(() => {
@@ -54,7 +56,9 @@ export default function RoutineRunner() {
     return (
         <>  
             <div className="routine-runner-container">
-                { !startSchedule ?
+                { isLoading ? 
+                    "Loading.."
+                : !startSchedule ?
                     <ScheduleSelector 
                         schedules={schedules} setSelectedSchedule={setSelectedSchedule} 
                         currSchedIndex={currSchedIndex} setCurrSchedIndex={setCurrSchedIndex}

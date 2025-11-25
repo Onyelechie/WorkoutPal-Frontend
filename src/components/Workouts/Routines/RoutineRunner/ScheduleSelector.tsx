@@ -147,7 +147,7 @@ export default function ScheduleSelector({schedules, setSelectedSchedule, currSc
                 </div>
 
                 <div className="grid-item">
-                    <h3>{currDayIndex == today ? "Today's" : `${daysLongForm[currDayIndex]}'s`} routines {hasSchedules && `for ${schedules[currSchedIndex].name}`}</h3>
+                    <h3>{currDayIndex == today ? "Today's" : `${daysLongForm[currDayIndex]}'s`} routines {hasSchedules && `for ${schedules[currSchedIndex]?.name}`}</h3>
                     <RoutineList routines={routines} setRoutines={setRoutines}/>
                 </div>
             </div>
