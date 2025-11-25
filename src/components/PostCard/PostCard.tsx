@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import type { Post } from "../../types/api";
 import "./PostCard.css";
 import { usePosts } from "../../hooks/usePosts";
@@ -10,7 +10,7 @@ type PostProps = {
   onUpdate?: () => void;
 };
 
-export function PostCard({ post, onUpdate }: PostProps) {
+export function PostCard({ post }: PostProps) {
   const { likePost, unlikePost } = usePosts();
   const { user } = useMe();
   const [isLiked, setIsLiked] = useState(post.isLiked || false);

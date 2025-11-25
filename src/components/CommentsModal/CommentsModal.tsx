@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import type { Post, Comment } from "../../types/api";
+import type { Post } from "../../types/api";
 import { usePosts } from "../../hooks/usePosts";
 import { useMe } from "../../hooks/useMe";
 import "./CommentsModal.css";
@@ -71,11 +71,7 @@ export function CommentsModal({ post, onClose, onCommentAdded }: CommentsModalPr
                   <div className="replies">
                     {comment.replies.map((reply, idx) => (
                       <div key={idx} className="reply">
-                        <div className="comment-header">
-                          <span className="comment-author">{reply.username}</span>
-                          <span className="comment-date">{new Date(reply.date).toLocaleDateString()}</span>
-                        </div>
-                        <p className="reply-text">{reply.comment}</p>
+                        <p className="reply-text">{reply}</p>
                       </div>
                     ))}
                   </div>
