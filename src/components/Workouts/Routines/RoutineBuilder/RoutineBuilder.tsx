@@ -27,7 +27,7 @@ export default function RoutineBuilder() {
       {isLoading && <div>Loading routines...</div>}
       {error && <div>{error.message}</div>}
       {!isLoading && !error && (
-        <RoutineList routines={routines} setRoutines={setRoutines} />
+        <RoutineList routines={routines} setRoutines={setRoutines} deleteBtn />
       )}
 
       {showModal && (

@@ -1,7 +1,7 @@
 import "./RoutinePage.css";
 
 import { Outlet, useLocation, useNavigate } from "react-router";
-import { SCHEDULER_ROUTE, BUILDER_ROUTE, ROUTINE_START_ROUTE } from "../../app/AppRoutes";
+import { SCHEDULER_ROUTE, BUILDER_ROUTE, RUNNER_ROUTE } from "../../app/AppRoutes";
 
 export default function RoutinePage() {
   
@@ -9,7 +9,7 @@ export default function RoutinePage() {
   const location = useLocation();
 
   // the paths where the header must be hidden
-  const noHeader = [ROUTINE_START_ROUTE];
+  const noHeader = [RUNNER_ROUTE];
 
   // boolean to hide the header
   const hideHeader = noHeader.some(route =>
@@ -38,7 +38,7 @@ export default function RoutinePage() {
           <nav className="routine-nav-container">
             <button 
               className="nav-button start"
-              onClick={() => navigate(ROUTINE_START_ROUTE)}
+              onClick={() => navigate(RUNNER_ROUTE)}
             >
               Start today's workout routine
             </button>

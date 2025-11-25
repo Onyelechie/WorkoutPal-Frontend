@@ -1,0 +1,64 @@
+.routine-runner-container {
+    margin: 0 auto;
+    width: 70vw;
+}
+
+.schedule-selector-grid {
+    display: grid;
+    grid-template-columns: 
+        repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.schedule-selector-grid .grid-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule-info-list {
+    list-style: none;
+    margin: 0;
+    text-align: center;
+}
+
+.schedule-selector-grid .grid-item label {
+    margin-bottom: 5px;
+}
+.schedule-selector-grid .grid-item select {
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.runner-select-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.runner-btn {
+    width: 250px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 25px;
+}
+
+.runner-btn:active {
+    filter: brightness(0.9);
+}
+
+.runner-btn:hover {
+    border: 1px solid black;
+}
+
+.runner-btn.blue {
+    background-color: rgb(72, 170, 212);
+}
+
+.runner-btn.unavailable {
+    background-color: var(--color-primary-1);
+}

@@ -16,10 +16,10 @@ export default function RoutineScheduler() {
 
   const tableColumns = [
     "Day",
-    "Routine Name",
+    "Name",
     "Routines",
     "Time Slot",
-    "Routine Length",
+    "Total Length",
   ];
 
   const [openCreateModal, setOpenCreateModal] = useState(false);

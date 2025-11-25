@@ -7,6 +7,7 @@ import { ROUTINE_DELETE_FAIL } from "../../../../app/constants/genericErrors";
 interface RoutineListProps {
   routines: any[];
   setRoutines: React.Dispatch<React.SetStateAction<any[]>>;
+  deleteBtn?: boolean;
 }
 
 interface Exercise {
@@ -14,7 +15,7 @@ interface Exercise {
   name: string;
 }
 
-const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
+const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines, deleteBtn }) => {
   const { alertOnRequestError } = useErrorHandler();
   const [exerciseMap, setExerciseMap] = useState<Record<number, Exercise>>({});
   const confirmDialog = useConfirmDialog();
@@ -83,13 +84,16 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
           ) : (
             <p>No exercises added</p>
           )}
-          <button
-            onClick={() => handleDeleteRoutine(routine.id)}
-            className="delete-button"
-            data-cy="delete-routine-btn"
-          >
-            Delete
-          </button>
+
+          {deleteBtn && 
+            <button
+              onClick={() => handleDeleteRoutine(routine.id)}
+              className="delete-button"
+              data-cy="delete-routine-btn"
+            >
+              Delete
+            </button>
+          }
         </div>
       ))}
     </div>

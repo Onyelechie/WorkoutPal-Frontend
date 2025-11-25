@@ -26,7 +26,7 @@ export const ACHIEVEMENTS_ROUTE = "/achievements";
 export const ROUTINE_ROUTE = "/routine"; // parent route
 export const BUILDER_ROUTE = "builder"; // relative child route
 export const SCHEDULER_ROUTE = "scheduler"; // relative child route
-export const ROUTINE_START_ROUTE = "start"; // relative child route
+export const RUNNER_ROUTE = "runner"; // relative child route
 
 export default function AppRoutes() {
   return (
@@ -54,7 +54,7 @@ export default function AppRoutes() {
 
           <Route path={BUILDER_ROUTE} element={<RoutineBuilder />} />
           <Route path={SCHEDULER_ROUTE} element={<RoutineScheduler />} />
-          <Route path={ROUTINE_START_ROUTE} element={<RoutineRunner />} />
+          <Route path={RUNNER_ROUTE} element={<RoutineRunner />} />
         </Route>
 
         {/* Direct to PageNotFound for routes that are not implemented */}
