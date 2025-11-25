@@ -37,8 +37,12 @@ export default function ScheduleSelector({schedules, setSelectedSchedule, currSc
             setSelectedSchedule(schedules[currSchedIndex]);
         } else {
             // go back to the scheduler
-            navigate(`../${SCHEDULER_ROUTE}`);
+            goBack();
         }
+    }
+
+    function goBack() {
+        navigate(`../${SCHEDULER_ROUTE}`);
     }
 
     async function getRoutines(ids: number[]) {
@@ -70,6 +74,7 @@ export default function ScheduleSelector({schedules, setSelectedSchedule, currSc
 
     return (
         <>
+            <button onClick={goBack}>{"← Back"}</button>
             <div className="schedule-selector-grid">
                 <div className="grid-item">
                     <div className="runner-select-container">
