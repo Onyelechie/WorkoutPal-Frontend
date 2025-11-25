@@ -54,6 +54,37 @@ export function usePosts() {
     }
   }
 
+  async function likePost(postId: number, userId: number) {
+    try {
+      setError(null);
+      await postRequest("/posts/like", { postId, userId });
+    } catch (err: any) {
+      handleError(err, setError, "Failed to like post");
+      throw err;
+    }
+  }
+
+  async function unlikePost(postId: number, userId: number) {
+    try {
+      setError(null);
+      await postRequest("/posts/unlike", { postId, userId });
+    } catch (err: any) {
+      handleError(err, setError, "Failed to unlike post");
+      throw err;
+    }
+  }
+
+  async function addComment(postId: number, userId: number, comment: string) {
+    try {
+      setError(null);
+      await postRequest("/posts/comment", { postId, userId, comment });
+      await fetchPosts(); // Refresh posts to get updated comments
+    } catch (err: any) {
+      handleError(err, setError, "Failed to add comment");
+      throw err;
+    }
+  }
+
   return {
     posts,
     isLoading,
@@ -61,5 +92,8 @@ export function usePosts() {
     error,
     fetchPosts,
     createPost,
+    likePost,
+    unlikePost,
+    addComment,
   };
 }

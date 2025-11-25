@@ -1,19 +1,20 @@
 import { useState } from "react";
 import type { Post } from "../../types/api";
 import "./PostCard.css";
-import { useLikePost } from "../../hooks/useLikePost";
+import { usePosts } from "../../hooks/usePosts";
 import { useMe } from "../../hooks/useMe";
-import { notYetImplemented } from "../../utils/construction";
+import { CommentsModal } from "../CommentsModal/CommentsModal";
 
 type PostProps = {
   post: Post;
 };
 
 export function PostCard({ post }: PostProps) {
-  const { likePost, unlikePost } = useLikePost();
+  const { likePost, unlikePost } = usePosts();
   const { user } = useMe();
   const [isLiked, setIsLiked] = useState(post.isLiked || false);
   const [likeCount, setLikeCount] = useState(post.likes);
+  const [showComments, setShowComments] = useState(false);
 
   const handleLikeClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -35,7 +36,7 @@ export function PostCard({ post }: PostProps) {
   };
 
   return (
-    <div key={post.id} className="post-card" onClick={notYetImplemented}>
+    <div key={post.id} className="post-card">
       <div className="post-header">
         <span>{post.postedBy}</span>
         <span>{new Date(post.date).toISOString().split("T")[0]}</span>
@@ -50,11 +51,21 @@ export function PostCard({ post }: PostProps) {
         </span>
         <span
           className="post-comments post-clickable"
-          onClick={notYetImplemented}
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowComments(true);
+          }}
         >
+          <span className="comment-icon">💬</span>
           {post.comments.length} Comment(s)
         </span>
       </div>
+      {showComments && (
+        <CommentsModal
+          post={post}
+          onClose={() => setShowComments(false)}
+        />
+      )}
     </div>
   );
 }

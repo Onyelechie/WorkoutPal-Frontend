@@ -5,31 +5,7 @@ import { PostCard } from "../PostCard/PostCard.tsx";
 import { CreatePost } from "../CreatePost/CreatePost.tsx";
 import type { Post } from "../../types/api.ts";
 
-// MOCK POST (REMOVE)
-const testPost: Post[] = [
-  {
-    id: 1,
-    postedBy: "Jane Doe",
-    title: "My First Post",
-    caption: "This is a caption for my post",
-    date: "2025-10-25",
-    body: "Here is the full content of the post.",
-    likes: 42,
-    status: "What is this?",
-    comments: [],
-  },
-  {
-    id: 2,
-    postedBy: "John Smith",
-    title: "Another Post",
-    caption: "Another caption",
-    date: "2025-10-24",
-    body: "Full content goes here.",
-    likes: 15,
-    status: "What is this?",
-    comments: [],
-  },
-];
+
 
 export default function Dashboard() {
   const { posts, isLoading, error, fetchPosts } = usePosts();
@@ -70,10 +46,6 @@ export default function Dashboard() {
           // display all posts if there are any
           posts.map((post: Post) => <PostCard key={post.id} post={post} />)
       }
-      {/* TEST POST: REMOVE THIS LATER */}
-      {testPost.map((testPost: Post) => (
-        <PostCard key={testPost.id} post={testPost} />
-      ))}
     </div>
   );
 }
