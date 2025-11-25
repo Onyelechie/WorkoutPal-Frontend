@@ -1,7 +1,8 @@
 import "./Dashboard.css";
-import { notYetImplemented } from "../../utils/construction.ts";
+import { useState } from "react";
 import { usePosts } from "../../hooks/usePosts.ts";
 import { PostCard } from "../PostCard/PostCard.tsx";
+import { CreatePost } from "../CreatePost/CreatePost.tsx";
 import type { Post } from "../../types/api.ts";
 
 // MOCK POST (REMOVE)
@@ -32,6 +33,7 @@ const testPost: Post[] = [
 
 export default function Dashboard() {
   const { posts, isLoading, error, fetchPosts } = usePosts();
+  const [showCreatePost, setShowCreatePost] = useState(false);
 
   return (
     <div className="dashboard-container">
@@ -41,8 +43,18 @@ export default function Dashboard() {
         <button onClick={fetchPosts} disabled={isLoading}>
           Refresh
         </button>
-        <button onClick={notYetImplemented}>Create Post</button>
+        <button onClick={() => setShowCreatePost(true)}>Create Post</button>
       </div>
+
+      {showCreatePost && (
+        <CreatePost
+          onPostCreated={() => {
+            setShowCreatePost(false);
+            fetchPosts();
+          }}
+          onCancel={() => setShowCreatePost(false)}
+        />
+      )}
 
       {/* Show loading message when its loading. If an error is caught, show a generic try again later message. */}
       {/* If !isLoading and !error, show appropriate message if posts.length == 0, otherwise, show the post cards */}
