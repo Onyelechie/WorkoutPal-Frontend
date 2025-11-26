@@ -3,6 +3,7 @@ import type { UserExerciseSettings } from "../../../../types/api";
 import { postRequest, putRequest } from "../../../../utils/apiRequests";
 import { getMinutes, getSeconds, minutesAndSecondsToMs } from "../../../../utils/dateTime";
 import { useEffect, useState } from "react";
+import { buildExerciseSettingPayload } from "../../../../utils/routineHelpers";
 
 interface SettingsModalProps {
   open: boolean; // boolean to trigger the modal
@@ -15,9 +16,9 @@ interface SettingsModalProps {
 
 export default function ExerciseSettingsModal({open, onClose, routineId, exerciseId, exerciseSettings, setExerciseSettings}:SettingsModalProps) {
 
-  const { alertOnRequestError } = useErrorHandler();
-
   const endpoint =  `/exercise-settings`;
+
+  const { alertOnRequestError } = useErrorHandler();
 
   const [settings, setSettings] = useState<UserExerciseSettings>(exerciseSettings);
 
@@ -33,14 +34,6 @@ export default function ExerciseSettingsModal({open, onClose, routineId, exercis
     }
   }, [exerciseSettings, open]);
 
-  function buildExercisePayload(exerciseSettings: UserExerciseSettings, exerciseId: number, routineId: number) {
-    return {
-      ...exerciseSettings,
-      exerciseId,
-      workoutRoutineId: routineId
-    };
-  }
-
   function updateSettingsState(exerciseSettings: UserExerciseSettings) {
     setExerciseSettings(exerciseSettings);
   }
@@ -49,7 +42,7 @@ export default function ExerciseSettingsModal({open, onClose, routineId, exercis
     event.preventDefault();
 
     try {
-      const payload = buildExercisePayload(settings, exerciseId, routineId);
+      const payload = buildExerciseSettingPayload(settings, exerciseId, routineId);
       // attempt a put request
       await putRequest(endpoint, payload);
       updateSettingsState(settings);
@@ -66,7 +59,7 @@ export default function ExerciseSettingsModal({open, onClose, routineId, exercis
 
   async function createExerciseSettings() {
     try {
-      const payload = buildExercisePayload(exerciseSettings, exerciseId, routineId);
+      const payload = buildExerciseSettingPayload(exerciseSettings, exerciseId, routineId);
       await postRequest(endpoint, payload);
       updateSettingsState(settings);
       onClose();
