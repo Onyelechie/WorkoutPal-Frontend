@@ -27,7 +27,10 @@ export function ConfirmDialog({
         <h3>{title}</h3>
         <p>{message}</p>
         <div className="actions">
-          <button onClick={() => handleConfirm(false)}>
+          <button 
+            style={{ backgroundColor: "rgba(62, 61, 109, 1)"}}  
+            onClick={() => handleConfirm(false)}
+          >
             {strNegativeButton}
           </button>
           <button

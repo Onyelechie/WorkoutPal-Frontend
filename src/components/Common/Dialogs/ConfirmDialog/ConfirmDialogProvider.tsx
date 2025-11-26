@@ -11,8 +11,8 @@ type ConfirmDialogState = {
 };
 
 // Button colors
-const positiveColorRisky = "red";
-const positiveColorSafe = "#2da848ff";
+const positiveColorRisky = "#f83838ff";
+const positiveColorSafe = "#1e2d83d8";
 
 export function ConfirmDialogProvider({ children }: { children: ReactNode }) {
   const [dialog, setDialog] = useState<ConfirmDialogState | null>(null);

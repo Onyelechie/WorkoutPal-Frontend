@@ -15,10 +15,6 @@
   z-index: 1000;
 }
 
-h3 {
-  border-bottom: 1px solid #adadad;
-  margin-bottom: 1rem;
-}
 
 .dialog-container {
   background-color: #fff;
@@ -28,6 +24,13 @@ h3 {
   max-width: 500px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   white-space: pre-wrap;
+}
+.dialog-container > h3 {
+  border-bottom: 1px solid #adadad;
+  margin-bottom: 1rem;
+}
+.dialog-container > p {
+  color: var(--text-color-dark-3);
 }
 
 .actions {
