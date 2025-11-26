@@ -1,5 +1,5 @@
 import "./UserAchievementCard.css";
-import "./AchievementCard.css"
+import ".././Achievements/AchievementCard.css"
 import type { UserAchievementUnlocked } from "../../types/api";
 import { notYetImplemented } from "../../utils/construction";
 

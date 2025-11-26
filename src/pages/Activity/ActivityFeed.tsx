@@ -2,7 +2,7 @@ import "./ActivityFeed.css";
 import { useActivity } from "../../hooks/useActivity";
 import { PostCard } from "../../components/PostCard/PostCard";
 import type { Post, UserAchievementUnlocked, Comment } from "../../types/api";
-import { UserAchievementCard } from "../../components/Achievements/UserAchievmentCard";
+import { UserAchievementCard } from "../../components/Activity/UserAchievementCard";
 import { CommentCard } from "../../components/CommentCard/CommentCard";
 
 function mapActivity(activity: Post | Comment | UserAchievementUnlocked) {

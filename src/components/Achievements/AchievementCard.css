@@ -47,7 +47,7 @@
   border: 2px solid gold;
   box-shadow: 0 0 8px rgb(235, 212, 11);
   border-radius: 50%;
-  font-size: 2.3rem;
+  font-size: 32px;
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
