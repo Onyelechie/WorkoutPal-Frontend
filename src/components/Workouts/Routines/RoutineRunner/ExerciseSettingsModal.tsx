@@ -1,7 +1,7 @@
 import { useErrorHandler } from "../../../../hooks/useErrorHandler";
 import type { UserExerciseSettings } from "../../../../types/api";
 import { postRequest, putRequest } from "../../../../utils/apiRequests";
-import { getMinutes, getSeconds, minutesAndSecondsToMs } from "../../../../utils/date";
+import { getMinutes, getSeconds, minutesAndSecondsToMs } from "../../../../utils/dateTime";
 import { useEffect, useState } from "react";
 
 interface SettingsModalProps {

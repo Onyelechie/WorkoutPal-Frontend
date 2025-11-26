@@ -5,7 +5,7 @@ import {
   daysLongForm,
   getCurrentTime,
   getTodayIndex,
-} from "../../../../utils/date";
+} from "../../../../utils/dateTime";
 import { useErrorHandler } from "../../../../hooks/useErrorHandler";
 import { SCHEDULE_CREATE_FAIL } from "../../../../app/constants/genericErrors";
 

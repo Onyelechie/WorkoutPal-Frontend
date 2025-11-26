@@ -1,5 +1,5 @@
 import type { Routine, Schedule } from "../../../../types/api";
-import { daysLongForm, formatApiTime } from "../../../../utils/date";
+import { daysLongForm, formatApiTime } from "../../../../utils/dateTime";
 import { useState, useEffect } from "react";
 import { useErrorHandler } from "../../../../hooks/useErrorHandler";
 import { deleteRequest, putRequest } from "../../../../utils/apiRequests";

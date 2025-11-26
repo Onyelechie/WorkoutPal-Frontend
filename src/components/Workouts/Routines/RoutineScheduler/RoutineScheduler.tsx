@@ -2,7 +2,7 @@ import "./RoutineScheduler.css";
 import "../Routines.css";
 
 import { useState } from "react";
-import { daysLongForm } from "../../../../utils/date";
+import { daysLongForm } from "../../../../utils/dateTime";
 import { useRoutines } from "../../../../hooks/useRoutines";
 import { ScheduleRow } from "./ScheduleRow";
 import { useSchedules } from "../../../../hooks/useSchedules";

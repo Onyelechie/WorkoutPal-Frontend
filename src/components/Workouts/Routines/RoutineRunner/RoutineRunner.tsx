@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { type Exercise, type Routine, type Schedule, type UserExerciseSettings } from "../../../../types/api";
 import { getRequest } from "../../../../utils/apiRequests";
-import { formatMs, getTodayIndex } from "../../../../utils/date";
+import { formatMs, getTodayIndex } from "../../../../utils/dateTime";
 import { useErrorHandler } from "../../../../hooks/useErrorHandler";
 import ScheduleSelector from "./ScheduleSelector";
 import clsx from "clsx";
@@ -22,6 +22,7 @@ export default function RoutineRunner() {
     const today = getTodayIndex();
     const [currDayIndex, setCurrDayIndex] = useState(today);
 
+    // settings modal states
     const [openSettings, setOpenSettings] = useState(false);
     function showSettingsModal() {
         setOpenSettings(true);

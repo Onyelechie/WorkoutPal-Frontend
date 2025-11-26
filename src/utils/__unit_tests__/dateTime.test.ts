@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
-import { getTodayIndex, formatApiTime, minutesToHours } from "../date";
+import { getTodayIndex, formatApiTime, minutesToHours } from "../dateTime";
 
-describe("/utils/date.ts", () => {
+describe("/utils/dateTime.ts", () => {
   // use fake timers for all date tests
   vi.useFakeTimers();
 
