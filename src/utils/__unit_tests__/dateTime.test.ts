@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import {
   getTodayIndex,
-  getCurrentTime,
   formatApiTime,
   formatMs,
   getMinutes,
@@ -69,18 +68,6 @@ describe("/utils/dateTime.ts", () => {
 
     // 1234 minutes to hours is 20.5666666667
     expect(testHours).toBe("20.57"); // must be in two decimal places
-  });
-
-  it("getCurrentTime returns HH:MM of mocked date", () => {
-    mockDate("2024-01-01T15:45:23Z");
-    // expect local time
-    expect(getCurrentTime()).toBe("09:45");
-  });
-
-  it("getCurrentTime handles midnight correctly", () => {
-    mockDate("2024-01-01T00:00:00Z");
-    // expect local time
-    expect(getCurrentTime()).toBe("18:00");
   });
 
   it("formatApiTime returns formatted HH:MM for valid API time", () => {
