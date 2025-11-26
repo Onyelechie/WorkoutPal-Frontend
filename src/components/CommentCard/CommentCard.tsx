@@ -17,7 +17,7 @@ export function CommentCard({ comment }: CommentProps) {
         <div className="replies">
           {comment.replies.map((reply, idx) => (
             <div key={idx} className="reply">
-              <p>{reply}</p>
+              <p>{reply.comment}</p>
             </div>
           ))}
         </div>

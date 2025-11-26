@@ -30,7 +30,7 @@ export interface Comment {
   username: string;
   comment: string;
   date: string;
-  replies: string[];
+  replies: Comment[];
 }
 /* ----------------- END OF POSTS ----------------- */
 

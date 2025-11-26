@@ -71,7 +71,11 @@ export function CommentsModal({ post, onClose, onCommentAdded }: CommentsModalPr
                   <div className="replies">
                     {comment.replies.map((reply, idx) => (
                       <div key={idx} className="reply">
-                        <p className="reply-text">{reply}</p>
+                        <div className="comment-header">
+                          <span className="comment-author">{reply.username}</span>
+                          <span className="comment-date">{new Date(reply.date).toLocaleDateString()}</span>
+                        </div>
+                        <p className="reply-text">{reply.comment}</p>
                       </div>
                     ))}
                   </div>
