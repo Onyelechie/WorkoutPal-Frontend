@@ -15,10 +15,6 @@ describe("/utils/dateTime.ts", () => {
   // use fake timers for all date tests
   vi.useFakeTimers();
 
-  function mockDate(dateString: string) {
-    vi.setSystemTime(new Date(dateString));
-  }
-
   // reusable function to test on a given day
   function testOnDay(dateString: string) {
     const mockDate = new Date(dateString);
