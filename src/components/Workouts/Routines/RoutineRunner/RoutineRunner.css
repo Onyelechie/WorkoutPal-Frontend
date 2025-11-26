@@ -11,34 +11,35 @@
     margin-top: 10px;
 }
 
-.schedule-selector-grid .grid-item {
+.schedule-info-list {
+    list-style: none;
+    text-align: center;
+    margin: 0;
+}
+
+.item-container {
     display: flex;
     flex-direction: column;
     background-color: var(--color-light-2);
+    margin: 0 auto;
+    width: clamp(300px, 100%, 600px);
     padding: 50px;
     border-radius: 20px;
 }
 
-.schedule-info-list {
-    list-style: none;
-    margin: 0;
-    text-align: center;
-}
-
-.schedule-selector-grid .grid-item label {
+.item-container label {
     margin-bottom: 5px;
 }
-.schedule-selector-grid .grid-item select {
-    width: 300px;
-    margin: 0 auto;
+
+.item-container select {
     margin-bottom: 15px;
 }
 
-.runner-select-container {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    width: 300px;
+.runner-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .runner-btn {
@@ -63,6 +64,54 @@
     background-color: rgb(72, 170, 212);
 }
 
+.runner-btn.green {
+    background-color: rgb(72, 212, 74);
+}
+
+.runner-btn.red {
+    background-color: rgb(212, 72, 72);
+}
+
 .runner-btn.unavailable {
     background-color: var(--color-primary-1);
+}
+
+.break-timer {
+    font-size: 20px;
+}
+
+.cancel-runner-btn {
+    max-width: 80px;
+}
+
+.stop-break-btn {
+    color: var(--text-color-dark-3);
+    background: none;
+    margin: 0 auto;
+    max-width: 150px;
+    text-decoration: underline;
+}
+
+.stop-break-btn:hover {
+    color: var(--text-color-dark-3);
+    background: var(--color-background-secondary);
+    text-decoration: underline;
+}
+
+.edit-settings-btn {
+    max-width: 60px;
+    margin: 0 auto;
+}
+
+.runner-exercise-settings-list ul {
+    margin: 0;
+}
+
+.runner-exercise-settings-list li {
+    list-style: none;
+    background-color: var(--color-light-3);
+    text-align: center;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 10px;
 }
