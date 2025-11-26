@@ -1,9 +1,24 @@
 import { describe, it, expect, vi } from "vitest";
-import { getTodayIndex, formatApiTime, minutesToHours } from "../dateTime";
+import {
+  getTodayIndex,
+  getCurrentTime,
+  formatApiTime,
+  formatMs,
+  getMinutes,
+  getSeconds,
+  minutesAndSecondsToMs,
+  minutesToHours,
+  daysShortForm,
+  daysLongForm
+} from "../dateTime";
 
 describe("/utils/dateTime.ts", () => {
   // use fake timers for all date tests
   vi.useFakeTimers();
+
+  function mockDate(dateString: string) {
+    vi.setSystemTime(new Date(dateString));
+  }
 
   // reusable function to test on a given day
   function testOnDay(dateString: string) {
@@ -55,4 +70,92 @@ describe("/utils/dateTime.ts", () => {
     // 1234 minutes to hours is 20.5666666667
     expect(testHours).toBe("20.57"); // must be in two decimal places
   });
+
+  it("getCurrentTime returns HH:MM of mocked date", () => {
+    mockDate("2024-01-01T15:45:23Z");
+    // expect local time
+    expect(getCurrentTime()).toBe("09:45");
+  });
+
+  it("getCurrentTime handles midnight correctly", () => {
+    mockDate("2024-01-01T00:00:00Z");
+    // expect local time
+    expect(getCurrentTime()).toBe("18:00");
+  });
+
+  it("formatApiTime returns formatted HH:MM for valid API time", () => {
+    expect(formatApiTime("0000-01-01T18:00:00Z")).toBe("18:00");
+  });
+
+  it("formatApiTime handles different minutes", () => {
+    expect(formatApiTime("0000-01-01T05:09:00Z")).toBe("05:09");
+  });
+
+  it("formatApiTime returns NaN:NaN for invalid string", () => {
+    expect(formatApiTime("invalid")).toBe("NaN:NaN");
+  });
+
+  it("formatMs formats ms into MM:SS", () => {
+    expect(formatMs(90000)).toBe("01 min 30 sec");
+  });
+
+  it("formatMs handles zero correctly", () => {
+    expect(formatMs(0)).toBe("00 min 00 sec");
+  });
+
+  it("formatMs handles exact minute boundary", () => {
+    expect(formatMs(60000)).toBe("01 min 00 sec");
+  });
+
+  it("getMinutes extracts whole minutes from ms", () => {
+    expect(getMinutes(120000)).toBe(2);
+  });
+
+  it("getMinutes floors partial minutes", () => {
+    expect(getMinutes(119999)).toBe(1);
+  });
+
+  it("getSeconds extracts remaining seconds within a minute", () => {
+    expect(getSeconds(90000)).toBe(30);
+  });
+
+  it("getSeconds returns 0 on exact minute mark", () => {
+    expect(getSeconds(60000)).toBe(0);
+  });
+
+  it("minutesAndSecondsToMs converts correctly", () => {
+    expect(minutesAndSecondsToMs(1, 30)).toBe(90000);
+  });
+
+  it("minutesAndSecondsToMs handles zeros", () => {
+    expect(minutesAndSecondsToMs(0, 0)).toBe(0);
+  });
+
+  it("minutesToHours converts minutes to hours (60 → 1.00)", () => {
+    expect(minutesToHours(60)).toBe("1.00");
+  });
+
+  it("minutesToHours rounds to 2 decimals", () => {
+    expect(minutesToHours(1234)).toBe("20.57");
+  });
+
+  it("minutesToHours handles small values", () => {
+    expect(minutesToHours(1)).toBe("0.02");
+  });
+
+  it("minutesToHours works with zero", () => {
+    expect(minutesToHours(0)).toBe("0.00");
+  });
+
+  it("daysShortForm and daysLongForm arrays are parallel", () => {
+    expect(daysShortForm.length).toBe(7);
+    expect(daysLongForm.length).toBe(7);
+
+    // Check indices match the intended names
+    expect(daysShortForm[0]).toBe("Sun");
+    expect(daysLongForm[0]).toBe("Sunday");
+    expect(daysShortForm[6]).toBe("Sat");
+    expect(daysLongForm[6]).toBe("Saturday");
+  });
+  
 });
