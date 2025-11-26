@@ -61,15 +61,15 @@
 }
 
 .runner-btn.blue {
-    background-color: rgb(72, 170, 212);
+    background-color: var(--color-blue);
 }
 
 .runner-btn.green {
-    background-color: rgb(72, 212, 74);
+    background-color: var(--color-green);
 }
 
 .runner-btn.red {
-    background-color: rgb(212, 72, 72);
+    background-color: var(--color-red);
 }
 
 .runner-btn.unavailable {

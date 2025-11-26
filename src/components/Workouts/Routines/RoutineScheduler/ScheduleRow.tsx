@@ -62,7 +62,7 @@ export function ScheduleRow({
         })}
       >
         <td>{day}</td>
-        <td colSpan={4}>No routines scheduled</td>
+        <td colSpan={4}><em>No routines scheduled</em></td>
       </tr>
     );
   } else {

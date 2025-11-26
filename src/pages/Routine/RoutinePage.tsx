@@ -37,7 +37,7 @@ export default function RoutinePage() {
 
           <nav className="routine-nav-container">
             <button 
-              className="nav-button start"
+              className="start-routine-btn"
               onClick={() => navigate(RUNNER_ROUTE)}
             >
               Start today's workout routine

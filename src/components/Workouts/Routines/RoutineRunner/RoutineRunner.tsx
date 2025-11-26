@@ -13,7 +13,9 @@ import ExerciseSettingsModal from "./ExerciseSettingsModal";
 export default function RoutineRunner() {
 
     const { alertOnRequestError } = useErrorHandler();
-    const { countdown, startCountdown, stopCountdown, resetCountdown, setCountdownMs:setBreakTimer } = useTime();
+    const { countdown, startCountdown, stopCountdown, resetCountdown, setCountdownMs:setBreakTimer,
+        stopwatch, startStopwatch,stopStopwatch, resetStopwatch,
+     } = useTime();
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -71,11 +73,14 @@ export default function RoutineRunner() {
     function startExerciseSet() {
         setOnExerciseSet(true);
         incrementExerciseSet();
+        resetStopwatch();
+        startStopwatch();
         setButtonText(END_SET);
     }
 
     function stopExerciseSet() {
         setOnExerciseSet(false);
+        stopStopwatch();
         startBreak();
     }
 
@@ -89,6 +94,7 @@ export default function RoutineRunner() {
         setOnBreak(false);
         setButtonText(START_SET);
         stopCountdown();
+        resetStopwatch();
         resetCountdown();
     }
 
@@ -267,10 +273,9 @@ export default function RoutineRunner() {
                         <ul className="runner-exercise-settings-list">
                             <li><strong>{exerciseSettings?.sets} sets, {exerciseSettings?.reps} reps</strong></li>
                             <li className="weight-setting">Weight: <strong>{exerciseSettings.weight} lbs</strong></li>
-                            <li className="break-timer" style={{color: onBreak ? "red" : ""}} >Break timer: <strong>{formatMs(countdown)}</strong></li>
+                            <li className="break-timer" style={{color: onBreak ? "red" : "inherit"}}>Break timer: <strong>{formatMs(countdown)}</strong></li>
+                            <li style={{color: onExerciseSet ? "green" : "inherit"}}>Set: {setCount}, Time: {formatMs(stopwatch)}</li>
                         </ul>
-
-                        <p>Current set: {setCount}</p>
 
                         <button className={clsx("runner-btn", {
                             "green" : !onExerciseSet && !onBreak,
@@ -284,6 +289,7 @@ export default function RoutineRunner() {
                         >
                             {buttonText}
                         </button>
+                        
                         {onBreak && <button className="stop-break-btn" onClick={stopBreak}>Stop Break</button>}
                         <button className="edit-settings-btn" onClick={showSettingsModal}>Edit</button>
                     </div>

@@ -19,14 +19,19 @@ export default function ExerciseSettingsModal({open, onClose, routineId, exercis
 
   const endpoint =  `/exercise-settings`;
 
+  const [settings, setSettings] = useState<UserExerciseSettings>(exerciseSettings);
+
   const [breakIntervalMin, setBreakIntervalMin] = useState(getMinutes(exerciseSettings.breakInterval));
   const [breakIntervalSec, setBreakIntervalSec] = useState(getSeconds(exerciseSettings.breakInterval));
 
   useEffect(() => {
     // re-initialize break interval minutes and seconds
-    setBreakIntervalMin(getMinutes(exerciseSettings.breakInterval));
-    setBreakIntervalSec(getSeconds(exerciseSettings.breakInterval));
-  }, [exerciseSettings]);
+    if (open) {
+      setSettings(exerciseSettings);
+      setBreakIntervalMin(getMinutes(exerciseSettings.breakInterval));
+      setBreakIntervalSec(getSeconds(exerciseSettings.breakInterval));
+    }
+  }, [exerciseSettings, open]);
 
   function buildExercisePayload(exerciseSettings: UserExerciseSettings, exerciseId: number, routineId: number) {
     return {
@@ -36,13 +41,19 @@ export default function ExerciseSettingsModal({open, onClose, routineId, exercis
     };
   }
 
+  function updateSettingsState(exerciseSettings: UserExerciseSettings) {
+    setExerciseSettings(exerciseSettings);
+  }
+
   async function handleEditSettings(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     try {
-      const payload = buildExercisePayload(exerciseSettings, exerciseId, routineId);
+      const payload = buildExercisePayload(settings, exerciseId, routineId);
       // attempt a put request
       await putRequest(endpoint, payload);
+      updateSettingsState(settings);
+      onClose();
     } catch (error: any) {
       // if settings dont exist yet, then create it
       if (error.status === 404) {
@@ -50,8 +61,6 @@ export default function ExerciseSettingsModal({open, onClose, routineId, exercis
       } else {
         alertOnRequestError("Unable to edit excercise settings", error);
       }
-    } finally {
-      onClose();
     }
   }
 
@@ -59,6 +68,8 @@ export default function ExerciseSettingsModal({open, onClose, routineId, exercis
     try {
       const payload = buildExercisePayload(exerciseSettings, exerciseId, routineId);
       await postRequest(endpoint, payload);
+      updateSettingsState(settings);
+      onClose();
     } catch (error: any) {
       alertOnRequestError("Unable to add exercise settings", error);
     }
@@ -79,8 +90,8 @@ export default function ExerciseSettingsModal({open, onClose, routineId, exercis
               <input className="text-input" 
                 type="text" 
                 inputMode="numeric" 
-                value={exerciseSettings.sets}
-                onChange={(e) => setExerciseSettings(prev => ({
+                value={settings.sets}
+                onChange={(e) => setSettings(prev => ({
                   ...prev,
                   sets: Number(e.target.value) || 0
                 }))}  
@@ -90,8 +101,8 @@ export default function ExerciseSettingsModal({open, onClose, routineId, exercis
               <input className="text-input" 
                 type="text" 
                 inputMode="numeric" 
-                value={exerciseSettings.reps}
-                onChange={(e) => setExerciseSettings(prev => ({
+                value={settings.reps}
+                onChange={(e) => setSettings(prev => ({
                   ...prev,
                   reps: Number(e.target.value) || 0
                 }))} 
@@ -101,8 +112,8 @@ export default function ExerciseSettingsModal({open, onClose, routineId, exercis
               <input className="text-input" 
                 type="text" 
                 inputMode="numeric" 
-                value={exerciseSettings.weight}
-                onChange={(e) => setExerciseSettings(prev => ({
+                value={settings.weight}
+                onChange={(e) => setSettings(prev => ({
                   ...prev,
                   weight: Number(e.target.value) || 0
                 }))}   
@@ -117,8 +128,8 @@ export default function ExerciseSettingsModal({open, onClose, routineId, exercis
                     value={breakIntervalMin} 
                     onChange={(e) => {
                       const value = Number(e.target.value) || 0;
-                      setBreakIntervalSec(value);
-                      setExerciseSettings((prev) => ({
+                      setBreakIntervalMin(value);
+                      setSettings((prev) => ({
                         ...prev,
                         breakInterval: minutesAndSecondsToMs(value, breakIntervalSec),
                       }));
@@ -134,7 +145,7 @@ export default function ExerciseSettingsModal({open, onClose, routineId, exercis
                     onChange={(e) => {
                       const value = Number(e.target.value) || 0;
                       setBreakIntervalSec(value);
-                      setExerciseSettings((prev) => ({
+                      setSettings((prev) => ({
                         ...prev,
                         breakInterval: minutesAndSecondsToMs(breakIntervalMin, value),
                       }));

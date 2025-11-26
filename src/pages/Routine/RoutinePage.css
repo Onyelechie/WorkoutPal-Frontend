@@ -13,7 +13,7 @@
 .routine-scheduler-container,
 .routine-builder-container {
   padding: 15px;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 10px 10px 10px;
   box-shadow: var(--box-shadow-2);
   background-color: var(--color-background-primary);
   min-height: 50vh;
@@ -41,11 +41,12 @@
   border-radius: 0px 10px 0px 0px;
 }
 
-.nav-button.start {
-  border-radius: 10px 10px 0px 0px;
-  background-color: var(--color-primary-1);
-  color: var(--color-light-2);
-  opacity: 1;
+.start-routine-btn {
+  transform: translateY(-10px);
+}
+
+.start-routine-btn:hover {
+  transform: translateY(-12px);
 }
 
 .nav-button:hover {

@@ -41,6 +41,10 @@ html, body, #root {
   --color-nav-underline: #22218d;
   --color-div-hover: rgb(239, 239, 248);
 
+  --color-red: rgb(212, 72, 72);
+  --color-green: rgb(72, 212, 74);
+  --color-blue: rgb(72, 170, 212);
+
   --box-shadow-1: rgba(0, 0, 0, 0.1);
   --box-shadow-2: 0px 0px 15px -4px rgba(0, 0, 0, 0.52);
 }
