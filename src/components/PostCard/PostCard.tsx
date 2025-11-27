@@ -48,7 +48,7 @@ export function PostCard({ post }: PostProps) {
       <div className="post-body">{post.body}</div>
       <div className="post-footer">
         <span className="post-likes post-clickable" onClick={handleLikeClick}>
-          <span className={`heart ${isLiked ? 'liked' : ''}`}>♥</span>
+          {/* <span className={`heart ${isLiked ? 'liked' : ''}`}>♥</span> */}
           {likeCount} Likes
         </span>
         <span
