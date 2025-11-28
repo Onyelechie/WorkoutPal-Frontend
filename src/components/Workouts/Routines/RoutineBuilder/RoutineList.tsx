@@ -103,22 +103,26 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines, delete
         
 
           <div className="routine-actions">
-            <button
-              onClick={() => handleShareRoutine(routine)}
-              className="share-button"
-            >
-              Share
-            </button>
+            <div className="actions-left">
+              {deleteBtn && 
+              <button
+                onClick={() => handleDeleteRoutine(routine.id)}
+                className="delete-button"
+                data-cy="delete-routine-btn"
+              >
+                Delete
+              </button>
+              }
+            </div>
 
-            {deleteBtn && 
-            <button
-              onClick={() => handleDeleteRoutine(routine.id)}
-              className="delete-button"
-              data-cy="delete-routine-btn"
-            >
-              Delete
-            </button>
-            }
+            <div className="actions-right">
+              <button
+                onClick={() => handleShareRoutine(routine)}
+                className="share-button"
+              >
+                Share
+              </button>
+            </div>
           </div>
         </div>
       ))}
