@@ -4,7 +4,6 @@ import { useConfirmDialog } from "../../../../hooks/useDialog";
 import { useErrorHandler } from "../../../../hooks/useErrorHandler";
 import { ROUTINE_DELETE_FAIL } from "../../../../app/constants/genericErrors";
 import { CreatePost } from "../../../CreatePost/CreatePost";
-import { AchievementCard } from "../../../Achievements/AchievementCard";
 import { useAchievement } from "../../../../hooks/useAchievement";
 import { AchievementKey } from "../../../../app/constants/achievementKey";
 
