@@ -1,7 +1,6 @@
 import "./UserAchievementCard.css";
 import ".././Achievements/AchievementCard.css"
 import type { UserAchievementUnlocked } from "../../types/api";
-import { notYetImplemented } from "../../utils/construction";
 
 type UserAchievementProps = {
   userAchievement: UserAchievementUnlocked;

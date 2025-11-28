@@ -3,11 +3,7 @@ import { useRoutines } from "../../../hooks/useRoutines";
 import { useState, useEffect } from "react";
 import { getRequest } from "../../../utils/apiRequests";
 import "./MyWorkouts.css";
-
-interface Exercise {
-  id: number;
-  name: string;
-}
+import type { Exercise } from "../../../types/api";
 
 function MyWorkouts() {
   const { routines, isLoading, error } = useRoutines();
@@ -18,7 +14,7 @@ function MyWorkouts() {
       if (!routines || routines.length === 0) return;
       
       const allExerciseIds = Array.from(
-        new Set(routines.flatMap((r) => r.exerciseIds || []))
+        new Set(routines.flatMap((r) => r.Exercises || []))
       );
 
       try {
@@ -59,7 +55,7 @@ function MyWorkouts() {
   return (
     <>
       <div className="my-workouts-container">
-        <h2>My Routines</h2>
+        <h2>My Workouts</h2>
         <div className="workout-cards-container">
           {isLoading && <div>Loading routines...</div>}
           {error && <div>Failed to load routines</div>}

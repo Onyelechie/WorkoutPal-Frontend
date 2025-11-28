@@ -1,6 +1,5 @@
 import "./Dashboard.css";
 import { useState } from "react";
-import { usePosts } from "../../hooks/usePosts.ts";
 import { useActivity } from "../../hooks/useActivity.ts";
 import { PostCard } from "../PostCard/PostCard.tsx";
 import { CreatePost } from "../CreatePost/CreatePost.tsx";
@@ -21,7 +20,7 @@ function mapActivity(activity: Post | Comment | UserAchievementUnlocked) {
 }
 
 export default function Dashboard() {
-  const { fetchPosts } = usePosts();
+
   const { activity, isLoading, error, fetchActivity } = useActivity();
   const [showCreatePost, setShowCreatePost] = useState(false);
 
