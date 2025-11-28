@@ -11,7 +11,7 @@
 
 .exercise-in-routine-list {
   list-style-type: none;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   padding: 10px;
   color: var(--text-color-dark-1);
   box-shadow: var(--box-shadow-3);
@@ -81,7 +81,7 @@
 }
 
 .routine-name {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   margin: 0 0 0.8rem 0;
   color: var(--text-color-dark-3);
 }
