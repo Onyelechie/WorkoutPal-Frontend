@@ -4,6 +4,9 @@ import { useConfirmDialog } from "../../../../hooks/useDialog";
 import { useErrorHandler } from "../../../../hooks/useErrorHandler";
 import { ROUTINE_DELETE_FAIL } from "../../../../app/constants/genericErrors";
 import { CreatePost } from "../../../CreatePost/CreatePost";
+import { AchievementCard } from "../../../Achievements/AchievementCard";
+import { useAchievement } from "../../../../hooks/useAchievement";
+import { AchievementKey } from "../../../../app/constants/achievementKey";
 
 interface RoutineListProps {
   routines: any[];
@@ -21,6 +24,9 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [shareRoutine, setShareRoutine] = useState<any>(null);
   const confirmDialog = useConfirmDialog();
+  const achievement = useAchievement();
+
+
   useEffect(() => {
     const fetchExercises = async () => {
       const allExerciseIds = Array.from(
@@ -55,7 +61,7 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
         await confirmDialog.showConfirmRisky(
           "Delete Routine",
           "Are you sure you want to delete this routine?",
-          "Yes, Delete",
+          "Delete",
           "Don't Delete",
         )
       ) {
@@ -122,6 +128,8 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
           onPostCreated={() => {
             setShowCreatePost(false);
             setShareRoutine(null);
+            achievement.unlockAchievement(AchievementKey.SHARE_ROUTINE);
+            
           }}
           onCancel={() => {
             setShowCreatePost(false);
