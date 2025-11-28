@@ -9,7 +9,7 @@ import clsx from "clsx";
 import "./RoutineRunner.css";
 import { useTime } from "../../../../hooks/useTime";
 import ExerciseSettingsModal from "./ExerciseSettingsModal";
-import { ROUTINE_FETCH_FAIL } from "../../../../app/constants/genericErrors";
+import { EXERCISE_SETTINGS_FETCH_FAIL, EXERCISES_FETCH_FAIL, ROUTINE_FETCH_FAIL, SCHEDULE_FETCH_FAIL } from "../../../../app/constants/genericErrors";
 import { routineService } from "../../../../services/routineService";
 
 export default function RoutineRunner() {
@@ -109,7 +109,7 @@ export default function RoutineRunner() {
                 else setSchedules([]);
             } catch (error: any) {
                 setSchedules([]);
-                alertOnRequestError("Could not get today's schedule", error);
+                alertOnRequestError(SCHEDULE_FETCH_FAIL, error);
             }
         } else {
             setSchedules([]);
@@ -137,7 +137,7 @@ export default function RoutineRunner() {
                 setExercises(exercises);
             } catch (error: any) {
                 setExercises([]);
-                alertOnRequestError("Could not get exercises", error);
+                alertOnRequestError(EXERCISES_FETCH_FAIL, error);
             }
         } else {
             setExercises([]);
@@ -156,7 +156,7 @@ export default function RoutineRunner() {
                     // if no exercise settings found, use default settings
                     setExerciseSettings(defaultExerciseSettings);
                 } else {
-                    alertOnRequestError("Could not get exercise settings", error);
+                    alertOnRequestError(EXERCISE_SETTINGS_FETCH_FAIL, error);
                 }
             }
         } else {

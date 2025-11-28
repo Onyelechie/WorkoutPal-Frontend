@@ -13,10 +13,17 @@ export const ROUTINE_CREATE_FAIL = "Could not create the routine";
 export const ROUTINE_DELETE_FAIL = "Could not delete the routine";
 
 // Schedule errors
-export const SCHEDULE_FETCH_FAIL = "Unable to get schedules";
+export const SCHEDULE_FETCH_FAIL = "Unable to get the schedule for this day";
+export const SCHEDULES_FETCH_FAIL = "Unable to get schedules";
 export const SCHEDULE_CREATE_FAIL = "Could not create the schedule";
 export const SCHEDULE_EDIT_FAIL = "Could not edit the schedule";
 export const SCHEDULE_DELETE_FAIL = "Could not delete the schedule";
+
+// Exercise errors
+export const EXERCISES_FETCH_FAIL = "Unable to get exercises";
+
+// Exercise Settings errors
+export const EXERCISE_SETTINGS_FETCH_FAIL = "Unable to get exercise settings";
 
 // Post error
 export const POST_FETCH_FAIL = "Could not get posts at this time.";
