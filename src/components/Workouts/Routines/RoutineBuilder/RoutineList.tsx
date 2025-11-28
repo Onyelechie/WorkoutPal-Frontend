@@ -90,7 +90,6 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
       {routines.map((routine) => (
         <div key={routine.id} className="routine-card">
           <h3 className="routine-name">{routine.name}</h3>
-          <h4>Exercises:</h4>
           {routine.exerciseIds && routine.exerciseIds.length > 0 ? (
             <ul className="exercise-in-routine-list">
               {routine.exerciseIds.map((id: number) => (

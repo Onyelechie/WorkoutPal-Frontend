@@ -6,6 +6,7 @@ import { CreatePost } from "../CreatePost/CreatePost.tsx";
 import { UserAchievementCard } from "../UserAchievementCard/UserAchievementCard.tsx";
 import { CommentCard } from "../CommentCard/CommentCard.tsx";
 import type { Post, UserAchievementUnlocked, Comment } from "../../types/api.ts";
+import { useAchievementChecker } from "../../hooks/useAchievementChecker.ts";
 
 
 
@@ -24,38 +25,41 @@ export default function Dashboard() {
   const { activity, isLoading, error, fetchActivity } = useActivity();
   const [showCreatePost, setShowCreatePost] = useState(false);
 
+  useAchievementChecker();
+
+
   return (
     <div className="dashboard-container">
       <h1 className="dashboard-header">Dashboard</h1>
+      <div className="dashboard-content">
+        <div className="dashboard-action-buttons grouped-buttons">
+          <button onClick={fetchActivity} disabled={isLoading}>
+            Refresh
+          </button>
+          <button onClick={() => setShowCreatePost(true)}>Create Post</button>
+        </div>
 
-      <div className="dashboard-action-buttons grouped-buttons">
-        <button onClick={fetchActivity} disabled={isLoading}>
-          Refresh
-        </button>
-        <button onClick={() => setShowCreatePost(true)}>Create Post</button>
-      </div>
+        {showCreatePost && (
+          <CreatePost
+            onPostCreated={() => {
+              setShowCreatePost(false);
+              fetchActivity();
+            }}
+            onCancel={() => setShowCreatePost(false)}
+          />
+        )}
 
-      {showCreatePost && (
-        <CreatePost
-          onPostCreated={() => {
-            setShowCreatePost(false);
-            fetchActivity();
-          }}
-          onCancel={() => setShowCreatePost(false)}
-        />
-      )}
+        {/* Show loading message when its loading. If an error is caught, show a generic try again later message. */}
+        {/* If !isLoading and !error, show appropriate message if posts.length == 0, otherwise, show the post cards */}
+        {isLoading && <div>Loading...</div>}
+        {error && <div>Could not get activity at this time. Please try again later.</div>}
+        {!isLoading && !error && activity.length === 0 && (
+          <div>There is no recent activity at this time...</div>
+        )}
 
-      {/* Show loading message when its loading. If an error is caught, show a generic try again later message. */}
-      {/* If !isLoading and !error, show appropriate message if posts.length == 0, otherwise, show the post cards */}
-      {isLoading && <div>Loading...</div>}
-      {error && <div>Could not get activity at this time. Please try again later.</div>}
-      {!isLoading && !error && activity.length === 0 && (
-        <div>There is no recent activity at this time...</div>
-      )}
-
-      {
-        // if
-        activity &&
+        {
+          // if
+          activity &&
           activity.length > 0 &&
           !isLoading &&
           !error &&
@@ -63,7 +67,8 @@ export default function Dashboard() {
           activity.map((item: Post | Comment | UserAchievementUnlocked) =>
             mapActivity(item),
           )
-      }
+        }
+      </div>
     </div>
   );
 }

@@ -32,9 +32,3 @@
 .dialog-container > p {
   color: var(--text-color-dark-3);
 }
-
-.actions {
-  margin-top: 1.5rem;
-  display: flex;
-  justify-content: flex-end;
-}

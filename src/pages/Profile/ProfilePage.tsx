@@ -160,9 +160,9 @@ function ProfilePage() {
               )}
             </div>
 
-            <div className="my-workouts-container">
-              <MyWorkouts />
-            </div>
+  
+            <MyWorkouts />
+          
           </>
         )}
       </>

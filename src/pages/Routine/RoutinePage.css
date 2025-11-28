@@ -6,8 +6,7 @@
 
 }
 
-.routine-scheduler-container,
-.routine-builder-container {
+.routine-scheduler-container {
   padding: 15px;
   border-radius: 0px 10px 10px 10px;
   box-shadow: var(--box-shadow-2);
