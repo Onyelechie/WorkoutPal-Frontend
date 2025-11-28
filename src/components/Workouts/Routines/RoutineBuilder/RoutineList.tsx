@@ -3,6 +3,7 @@ import { deleteRequest, getRequest } from "../../../../utils/apiRequests";
 import { useConfirmDialog } from "../../../../hooks/useDialog";
 import { useErrorHandler } from "../../../../hooks/useErrorHandler";
 import { ROUTINE_DELETE_FAIL } from "../../../../app/constants/genericErrors";
+import { CreatePost } from "../../../CreatePost/CreatePost";
 
 interface RoutineListProps {
   routines: any[];
@@ -17,6 +18,8 @@ interface Exercise {
 const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
   const { alertOnRequestError } = useErrorHandler();
   const [exerciseMap, setExerciseMap] = useState<Record<number, Exercise>>({});
+  const [showCreatePost, setShowCreatePost] = useState(false);
+  const [shareRoutine, setShareRoutine] = useState<any>(null);
   const confirmDialog = useConfirmDialog();
   useEffect(() => {
     const fetchExercises = async () => {
@@ -64,6 +67,20 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
     }
   };
 
+  const handleShareRoutine = (routine: any) => {
+    setShareRoutine(routine);
+    setShowCreatePost(true);
+  };
+
+  const getRoutineShareText = (routine: any) => {
+    const exerciseList = routine.exerciseIds
+      ?.map((id: number) => exerciseMap[id]?.name)
+      .filter(Boolean)
+      .join("\n\t") || "No exercises";
+    
+    return `Check out my workout routine: ${routine.name}\n\nExercises: \n\t${exerciseList}`;
+  };
+
   if (!routines || routines.length === 0) {
     return <div>No routines available.</div>;
   }
@@ -83,15 +100,41 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
           ) : (
             <p>No exercises added</p>
           )}
-          <button
-            onClick={() => handleDeleteRoutine(routine.id)}
-            className="delete-button"
-            data-cy="delete-routine-btn"
-          >
-            Delete
-          </button>
+          <div className="routine-actions">
+            <button
+              onClick={() => handleShareRoutine(routine)}
+              className="share-button"
+            >
+              Share
+            </button>
+            <button
+              onClick={() => handleDeleteRoutine(routine.id)}
+              className="delete-button"
+              data-cy="delete-routine-btn"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       ))}
+      
+      {showCreatePost && shareRoutine && (
+        <CreatePost
+          onPostCreated={() => {
+            setShowCreatePost(false);
+            setShareRoutine(null);
+          }}
+          onCancel={() => {
+            setShowCreatePost(false);
+            setShareRoutine(null);
+          }}
+          initialData={{
+            title: `My Workout Routine: ${shareRoutine.name}`,
+            caption: "Check out my workout routine!",
+            body: getRoutineShareText(shareRoutine)
+          }}
+        />
+      )}
     </div>
   );
 };

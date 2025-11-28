@@ -21,7 +21,7 @@ export function PostCard({ post }: PostProps) {
   const handleLikeClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!user) return;
-    
+
     try {
       if (isLiked) {
         await unlikePost(post.id, user.id);
@@ -45,7 +45,7 @@ export function PostCard({ post }: PostProps) {
       </div>
       <div className="post-title">{post.title}</div>
       <div className="post-caption">{post.caption}</div>
-      <div className="post-body">{post.body}</div>
+      <div className="post-body" style={{ whiteSpace: 'pre-wrap' }}>{post.body}</div>  {/* the whiteSpace style doesnt work in css file */}
       <div className="post-footer">
         <span className="post-likes post-clickable" onClick={handleLikeClick}>
           <span className={`heart ${isLiked ? 'liked' : ''}`}>♥</span>
