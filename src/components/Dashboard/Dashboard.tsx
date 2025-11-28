@@ -1,26 +1,35 @@
 import "./Dashboard.css";
 import { useState } from "react";
-import { usePosts } from "../../hooks/usePosts.ts";
+import { useActivity } from "../../hooks/useActivity.ts";
 import { PostCard } from "../PostCard/PostCard.tsx";
 import { CreatePost } from "../CreatePost/CreatePost.tsx";
-import type { Post } from "../../types/api.ts";
+import { UserAchievementCard } from "../UserAchievementCard/UserAchievementCard.tsx";
+import { CommentCard } from "../CommentCard/CommentCard.tsx";
+import type { Post, UserAchievementUnlocked, Comment } from "../../types/api.ts";
 
 
+
+function mapActivity(activity: Post | Comment | UserAchievementUnlocked) {
+  if ("caption" in activity) {
+    return <PostCard key={activity.id} post={activity} />;
+  } else if ("comment" in activity) {
+    return <CommentCard key={activity.id} comment={activity} />;
+  } else {
+    return <UserAchievementCard key={activity.id} userAchievement={activity} />;
+  }
+}
 
 export default function Dashboard() {
-  const { posts, isLoading, error, fetchPosts } = usePosts();
-  const [showCreatePost, setShowCreatePost] = useState(false);
 
-  const sortedPosts = [...posts].sort((a, b) => 
-    new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  const { activity, isLoading, error, fetchActivity } = useActivity();
+  const [showCreatePost, setShowCreatePost] = useState(false);
 
   return (
     <div className="dashboard-container">
       <h1 className="dashboard-header">Dashboard</h1>
 
       <div className="dashboard-action-buttons grouped-buttons">
-        <button onClick={fetchPosts} disabled={isLoading}>
+        <button onClick={fetchActivity} disabled={isLoading}>
           Refresh
         </button>
         <button onClick={() => setShowCreatePost(true)}>Create Post</button>
@@ -30,7 +39,7 @@ export default function Dashboard() {
         <CreatePost
           onPostCreated={() => {
             setShowCreatePost(false);
-            fetchPosts();
+            fetchActivity();
           }}
           onCancel={() => setShowCreatePost(false)}
         />
@@ -39,19 +48,21 @@ export default function Dashboard() {
       {/* Show loading message when its loading. If an error is caught, show a generic try again later message. */}
       {/* If !isLoading and !error, show appropriate message if posts.length == 0, otherwise, show the post cards */}
       {isLoading && <div>Loading...</div>}
-      {error && <div>{error.message}</div>}
-      {!isLoading && !error && posts.length === 0 && (
-        <div>There are no posts at this time...</div>
+      {error && <div>Could not get activity at this time. Please try again later.</div>}
+      {!isLoading && !error && activity.length === 0 && (
+        <div>There is no recent activity at this time...</div>
       )}
 
       {
         // if
-        posts &&
-          posts.length > 0 &&
+        activity &&
+          activity.length > 0 &&
           !isLoading &&
           !error &&
-          // display all posts if there are any
-          sortedPosts.map((post: Post) => <PostCard key={post.id} post={post} onUpdate={fetchPosts} />)
+          // display all activity if there are any
+          activity.map((item: Post | Comment | UserAchievementUnlocked) =>
+            mapActivity(item),
+          )
       }
     </div>
   );

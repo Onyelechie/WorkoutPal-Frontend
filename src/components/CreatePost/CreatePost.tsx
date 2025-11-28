@@ -5,14 +5,19 @@ import "./CreatePost.css";
 interface CreatePostProps {
   onPostCreated: () => void;
   onCancel: () => void;
+  initialData?: {
+    title?: string;
+    caption?: string;
+    body?: string;
+  };
 }
 
-export function CreatePost({ onPostCreated, onCancel }: CreatePostProps) {
+export function CreatePost({ onPostCreated, onCancel, initialData }: CreatePostProps) {
   const { createPost, isCreating, error } = usePosts();
   const [formData, setFormData] = useState({
-    title: "",
-    caption: "",
-    body: "",
+    title: initialData?.title || "",
+    caption: initialData?.caption || "",
+    body: initialData?.body || "",
     status: "",
   });
 

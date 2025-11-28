@@ -61,3 +61,9 @@
   margin: 0 0 0.5rem 0;
   color: #333;
 }
+
+.routine-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 10px;
+}
