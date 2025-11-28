@@ -60,9 +60,9 @@ function Header() {
         <button className={`header-button ${isActive(HOME_ROUTE) ? "active" : ""}`} onClick={navHome}>
           Home
         </button>
-        <button className={`header-button ${isActive(ACTIVITY_ROUTE) ? "active" : ""}`} onClick={navActivity}>
+        {/* <button className={`header-button ${isActive(ACTIVITY_ROUTE) ? "active" : ""}`} onClick={navActivity}>
           Activity
-        </button>
+        </button> */}
         <button className={`header-button ${isActive(ROUTINE_ROUTE) ? "active" : ""}`} onClick={navRoutine}>
           Routine
         </button>
