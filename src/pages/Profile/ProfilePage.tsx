@@ -106,7 +106,7 @@ function ProfilePage() {
               username={user.username}
               email={user.email}
               userId={user.id}
-              postsCount={user.Posts?.length || 0}
+              postsCount={userPosts.length}
               followersCount={followersCount}
               followingCount={followingCount}
               user={user}
