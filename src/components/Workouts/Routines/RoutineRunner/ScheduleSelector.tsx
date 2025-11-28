@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { daysLongForm, formatApiTime } from "../../../../utils/dateTime";
 import RoutineList from "../RoutineBuilder/RoutineList";
 import type { Schedule, Routine } from "../../../../types/api"
-import { getRequest } from "../../../../utils/apiRequests";
 import { useErrorHandler } from "../../../../hooks/useErrorHandler";
 import { getTodayIndex } from "../../../../utils/dateTime";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
 import { SCHEDULER_ROUTE } from "../../../../app/AppRoutes";
+import { ROUTINE_FETCH_FAIL } from "../../../../app/constants/genericErrors";
+import { routineService } from "../../../../services/routineService";
 
 interface ScheduleSelectorProps {
     schedules: Schedule[],
@@ -45,20 +46,13 @@ export default function ScheduleSelector({schedules, setSelectedSchedule, currDa
         navigate(`../${SCHEDULER_ROUTE}`);
     }
 
-    async function getRoutines(ids: number[]) {
-        if (ids !== null) {
-            try {
-                const responses = await Promise.all(
-                    ids.map((id) => getRequest(`/routines/${id}`))
-                );
-                const routines: Routine[] = responses.map((res) => res.data);
-                setRoutines(routines);
-            } catch (error: any) {
-                setRoutines([]);
-                alertOnRequestError("Could not get routines", error);
-            }
-        } else {
+    async function getRoutinesByIds(ids: number[]) {
+        try {
+            const routines = await routineService.getRoutinesByIds(ids);
+            setRoutines(routines);
+        } catch (error: any) {
             setRoutines([]);
+            alertOnRequestError(ROUTINE_FETCH_FAIL, error);
         }
     }
 
@@ -66,7 +60,7 @@ export default function ScheduleSelector({schedules, setSelectedSchedule, currDa
     useEffect(() => {
         // only get routines if there's a schedule
         if (schedules && schedules[currSchedIndex]) {
-            getRoutines(schedules[currSchedIndex].routineIds);
+            getRoutinesByIds(schedules[currSchedIndex].routineIds);
         } else {
             setRoutines([]);
         }

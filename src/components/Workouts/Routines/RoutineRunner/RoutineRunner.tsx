@@ -9,6 +9,8 @@ import clsx from "clsx";
 import "./RoutineRunner.css";
 import { useTime } from "../../../../hooks/useTime";
 import ExerciseSettingsModal from "./ExerciseSettingsModal";
+import { ROUTINE_FETCH_FAIL } from "../../../../app/constants/genericErrors";
+import { routineService } from "../../../../services/routineService";
 
 export default function RoutineRunner() {
 
@@ -115,19 +117,12 @@ export default function RoutineRunner() {
     }
 
     async function getRoutinesByIds(ids: number[]) {
-        if (ids !== null) {
-            try {
-                const responses = await Promise.all(
-                    ids.map((id) => getRequest(`/routines/${id}`))
-                );
-                const routines: Routine[] = responses.map((res) => res.data);
-                setRoutines(routines);
-            } catch (error: any) {
-                setRoutines([]);
-                alertOnRequestError("Could not get routines", error);
-            }
-        } else {
+        try {
+            const routines = await routineService.getRoutinesByIds(ids);
+            setRoutines(routines);
+        } catch (error: any) {
             setRoutines([]);
+            alertOnRequestError(ROUTINE_FETCH_FAIL, error);
         }
     }
 
@@ -178,10 +173,11 @@ export default function RoutineRunner() {
 
     useEffect(() => {
         // start the schedule once a schedule has been selected
-        // and get the routines associated with the schedule
+        // and get the routines associated with the schedule and reset curr routine index to zero
         if (selectedSchedule !== undefined) {
             setStartSchedule(true); // start the schedule
             getRoutinesByIds(selectedSchedule?.routineIds);
+            setCurrRoutineIndex(0);
         } else {
             setRoutines([]);
         }
