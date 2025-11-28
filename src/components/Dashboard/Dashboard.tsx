@@ -3,6 +3,12 @@ import { notYetImplemented } from "../../utils/construction.ts";
 import { usePosts } from "../../hooks/usePosts.ts";
 import { PostCard } from "../PostCard/PostCard.tsx";
 import type { Post } from "../../types/api.ts";
+import { useMe } from "../../hooks/useMe.ts";
+import { relationshipService } from "../../services/relationshipService.ts";
+import { AchievementKey } from "../../app/constants/achievementKey.ts";
+import { useAchievement } from "../../hooks/useAchievement.ts";
+import { useEffect } from "react";
+import { useAchievementChecker } from "../../hooks/useAchievementChecker.ts";
 
 // MOCK POST (REMOVE)
 const testPost: Post[] = [
@@ -32,7 +38,8 @@ const testPost: Post[] = [
 
 export default function Dashboard() {
   const { posts, isLoading, error, fetchPosts } = usePosts();
-
+  useAchievementChecker();
+  
   return (
     <div className="dashboard-container">
       <h1 className="dashboard-header">Dashboard</h1>
