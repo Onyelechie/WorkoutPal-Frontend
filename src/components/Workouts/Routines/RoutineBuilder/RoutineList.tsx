@@ -3,6 +3,7 @@ import { deleteRequest, getRequest } from "../../../../utils/apiRequests";
 import { useConfirmDialog } from "../../../../hooks/useDialog";
 import { useErrorHandler } from "../../../../hooks/useErrorHandler";
 import { ROUTINE_DELETE_FAIL } from "../../../../app/constants/genericErrors";
+import { CreatePost } from "../../../CreatePost/CreatePost";
 
 interface RoutineListProps {
   routines: any[];
@@ -18,6 +19,8 @@ interface Exercise {
 const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines, deleteBtn }) => {
   const { alertOnRequestError } = useErrorHandler();
   const [exerciseMap, setExerciseMap] = useState<Record<number, Exercise>>({});
+  const [showCreatePost, setShowCreatePost] = useState(false);
+  const [shareRoutine, setShareRoutine] = useState<any>(null);
   const confirmDialog = useConfirmDialog();
   useEffect(() => {
     const fetchExercises = async () => {
@@ -65,6 +68,20 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines, delete
     }
   };
 
+  const handleShareRoutine = (routine: any) => {
+    setShareRoutine(routine);
+    setShowCreatePost(true);
+  };
+
+  const getRoutineShareText = (routine: any) => {
+    const exerciseList = routine.exerciseIds
+      ?.map((id: number) => exerciseMap[id]?.name)
+      .filter(Boolean)
+      .join("\n\t") || "No exercises";
+    
+    return `Check out my workout routine: ${routine.name}\n\nExercises: \n\t${exerciseList}`;
+  };
+
   if (!routines || routines.length === 0) {
     return <div>No routines available.</div>;
   }
@@ -74,7 +91,6 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines, delete
       {routines.map((routine) => (
         <div key={routine.id} className="routine-card">
           <h3 className="routine-name">{routine.name}</h3>
-          <h4>Exercises:</h4>
           {routine.exerciseIds && routine.exerciseIds.length > 0 ? (
             <ul className="exercise-in-routine-list">
               {routine.exerciseIds.map((id: number) => (
@@ -84,8 +100,17 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines, delete
           ) : (
             <p>No exercises added</p>
           )}
+        
 
-          {deleteBtn && 
+          <div className="routine-actions">
+            <button
+              onClick={() => handleShareRoutine(routine)}
+              className="share-button"
+            >
+              Share
+            </button>
+
+            {deleteBtn && 
             <button
               onClick={() => handleDeleteRoutine(routine.id)}
               className="delete-button"
@@ -93,9 +118,28 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines, delete
             >
               Delete
             </button>
-          }
+            }
+          </div>
         </div>
       ))}
+      
+      {showCreatePost && shareRoutine && (
+        <CreatePost
+          onPostCreated={() => {
+            setShowCreatePost(false);
+            setShareRoutine(null);
+          }}
+          onCancel={() => {
+            setShowCreatePost(false);
+            setShareRoutine(null);
+          }}
+          initialData={{
+            title: `My Workout Routine: ${shareRoutine.name}`,
+            caption: "Check out my workout routine!",
+            body: getRoutineShareText(shareRoutine)
+          }}
+        />
+      )}
     </div>
   );
 };

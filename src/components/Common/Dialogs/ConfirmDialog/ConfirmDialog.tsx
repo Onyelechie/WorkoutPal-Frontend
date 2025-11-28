@@ -26,11 +26,16 @@ export function ConfirmDialog({
       <div className="dialog-container">
         <h3>{title}</h3>
         <p>{message}</p>
-        <div className="actions">
-          <button onClick={() => handleConfirm(false)}>
+        <div className="confirm-actions">
+          <button 
+            className="negativeBtn" 
+            style={{ backgroundColor: "rgba(62, 61, 109, 1)"}}  
+            onClick={() => handleConfirm(false)}
+            >
             {strNegativeButton}
           </button>
           <button
+            className="positiveBtn" 
             style={color ? { backgroundColor: color } : undefined}
             onClick={() => handleConfirm(true)}
             data-cy="confirm-positive-btn"

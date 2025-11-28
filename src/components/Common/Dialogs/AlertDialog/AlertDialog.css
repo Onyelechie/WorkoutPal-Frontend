@@ -1,0 +1,14 @@
+.alert-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0;
+}
+
+.alert-actions > .positiveBtn {
+  width: 100%;
+  padding: 0.75rem;
+  /* adjust as needed */
+  font-size: 1rem;
+  border-radius: 10px;
+}

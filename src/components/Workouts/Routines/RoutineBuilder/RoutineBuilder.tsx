@@ -24,18 +24,22 @@ export default function RoutineBuilder() {
         </div>
       </header>
 
-      {isLoading && <div>Loading routines...</div>}
-      {error && <div>{error.message}</div>}
-      {!isLoading && !error && (
-        <RoutineList routines={routines} setRoutines={setRoutines} deleteBtn />
-      )}
+      <div className="routine-builder-content">
+        {isLoading && <div>Loading routines...</div>}
+        {error && <div>{error.message}</div>}
+        {!isLoading && !error && (
+          <RoutineList routines={routines} setRoutines={setRoutines} deleteBtn/>
+        )}
 
-      {showModal && (
-        <CreateRoutineModal
-          onClose={handleCloseModal}
-          setRoutines={setRoutines}
-        />
-      )}
+        {showModal && (
+          <CreateRoutineModal
+            onClose={handleCloseModal}
+            setRoutines={setRoutines}
+          />
+        )}
+      </div>
+
     </div>
+
   );
 }

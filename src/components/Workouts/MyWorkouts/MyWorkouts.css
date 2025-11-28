@@ -1,7 +1,7 @@
 .my-workouts-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 50%;
   max-width: 1200px;
   background: rgba(255, 255, 255, 0.7);
   padding: 1rem;
