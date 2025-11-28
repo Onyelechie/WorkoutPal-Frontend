@@ -89,6 +89,19 @@
 .routine-actions {
   margin-top: 1rem;
   display: flex;
-  gap: 10px;
+  justify-content: center;
 }
-
+.share-button {
+  width: 100%;
+  font-weight: bold;
+  max-width: 400px;
+  border-radius: 10px 0px 0px 10px;
+}
+.delete-button {
+  background: rgb(206, 40, 54);
+  width: 100%;
+  max-width: 400px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 0px 10px 10px 0px;
+}
