@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { relationshipService } from "../../../services/relationshipService";
 import { getRequest } from "../../../utils/apiRequests";
-import type { User } from "../../../types/api";
+import { postService } from "../../../services/postService";
+import type { User, Post } from "../../../types/api";
 import type { User as RelationshipUser } from "../../../services/relationshipService";
 import { PostCard } from "../../PostCard/PostCard";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +14,8 @@ interface OtherUserProfileProps {
 
 function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
   const [user, setUser] = useState<User | null>(null);
+  const [userPosts, setUserPosts] = useState<Post[]>([]);
+  const [postsLoading, setPostsLoading] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isPrivateProfile, setIsPrivateProfile] = useState(false);
@@ -33,6 +36,21 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
     checkFollowStatus();
     checkFollowRequestStatus();
   }, [userId, currentUserId]);
+
+  const fetchUserPosts = async () => {
+    try {
+      setPostsLoading(true);
+      const posts = await postService.getUserPosts(userId);
+      setUserPosts(posts.sort((a: Post, b: Post) => 
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+      ));
+    } catch (error) {
+      console.error("Error fetching user posts:", error);
+      setUserPosts([]);
+    } finally {
+      setPostsLoading(false);
+    }
+  };
 
   const fetchFollowCounts = async () => {
     try {
@@ -69,6 +87,8 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
       setIsPrivateProfile(false);
       setPrivacyMessage(null);
       setFollowRequestStatus(null);
+      // Always fetch posts to show count, but only display them if not private
+      fetchUserPosts();
     } catch (error) {
       // Handle private profile (403) distinctly
       const status = (error as any)?.response?.status;
@@ -257,6 +277,10 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
         </div>
 
         <div className="social-stats">
+          <div className="stat-item">
+            <span className="stat-number">{userPosts.length}</span>
+            <span className="stat-label">Posts</span>
+          </div>
           <div className="stat-item" onClick={handleShowFollowers}>
             <span className="stat-number">{followersCount}</span>
             <span className="stat-label">Followers</span>
@@ -365,7 +389,7 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
 
         <div className="social-stats">
           <div className="stat-item">
-            <span className="stat-number">{user.Posts?.length || 0}</span>
+            <span className="stat-number">{userPosts.length}</span>
             <span className="stat-label">Posts</span>
           </div>
           <div className="stat-item" onClick={handleShowFollowers}>
@@ -378,18 +402,21 @@ function OtherUserProfile({ userId, currentUserId }: OtherUserProfileProps) {
           </div>
         </div>
 
-        <div className="posts-section">
-          <h2 className="section-title">Posts</h2>
-          <div className="posts-list">
-            {user.Posts && user.Posts.length > 0 ? (
-              user.Posts.map((post: any) => (
-                <PostCard key={post.id} post={post} />
-              ))
-            ) : (
-              <div className="no-posts">No posts yet.</div>
-            )}
+        {!user.isPrivate && (
+          <div className="posts-section">
+            <h2 className="section-title">Posts</h2>
+            <div className="posts-list">
+              {postsLoading && <div>Loading posts...</div>}
+              {!postsLoading && userPosts.length > 0 ? (
+                userPosts.map((post: Post) => (
+                  <PostCard key={post.id} post={post} />
+                ))
+              ) : (
+                !postsLoading && <div className="no-posts">No posts yet.</div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Followers Modal */}
