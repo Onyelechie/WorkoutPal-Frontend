@@ -16,6 +16,7 @@
   margin-bottom: 0.5rem;
   font-weight: bold;
   font-size: 20px;
+  border-bottom: 1px solid #ccc;
 }
 
 .post-title {

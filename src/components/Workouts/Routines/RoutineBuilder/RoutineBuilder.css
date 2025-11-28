@@ -10,13 +10,36 @@
 }
 
 .exercise-in-routine-list {
-  list-style-type: disc;
-  padding-left: 20px;
+  list-style-type: none;
+  font-size: 1.1rem;
+  padding: 10px;
+  color: var(--text-color-dark-1);
+  box-shadow: var(--box-shadow-3);
+  background-color: var(--color-light-3);
+  border-radius: 10px;
+  font-weight: bold;
   margin: 0;
   border: none;
 }
 
+.routine-builder-container {
+  padding: 15px;
+  border-radius: 0px 10px 10px 10px;
+  box-shadow: var(--box-shadow-2);
+  background-color: var(--color-background-primary);
+  min-height: 50vh;
+}
+
+.routine-builder-content {
+  width: 75%;
+  margin: 0 auto;
+}
+
 .exercise-in-routine-list li {
+  background-color: rgba(255, 255, 255, 0.63);
+  padding: 4px;
+  padding-left: 10px;
+  border-radius: 16px;
   margin-bottom: 5px;
 }
 
@@ -54,12 +77,13 @@
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: white;
 }
 
 .routine-name {
-  margin: 0 0 0.5rem 0;
-  color: #333;
+  font-size: 1.6rem;
+  margin: 0 0 0.8rem 0;
+  color: var(--text-color-dark-3);
 }
 
 .routine-actions {
@@ -67,3 +91,4 @@
   display: flex;
   gap: 10px;
 }
+

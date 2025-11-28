@@ -92,7 +92,3 @@ select:focus {
 .input-label {
   font-weight: bold;
 }
-
-.exercise-list {
-  color: var(--text-color-dark-2)
-}
