@@ -1,0 +1,144 @@
+.comments-modal {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.comments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.comments-header button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+.comments-list {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.comment {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-left: 3px solid var(--color-primary-1);
+  background: #f8f9fa;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: var(--color-primary-1);
+}
+
+.comment-date {
+  color: #666;
+  font-size: 12px;
+}
+
+.comment-text {
+  margin: 0;
+  color: #333;
+}
+
+.comment-form {
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.comment-form input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.comment-form button {
+  padding: 10px 20px;
+  background: var(--color-primary-1);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.replies {
+  margin-left: 20px;
+  margin-top: 10px;
+  border-left: 2px solid #ddd;
+  padding-left: 10px;
+}
+
+.reply {
+  margin-bottom: 8px;
+  padding: 8px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.reply-text {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+}
+
+.reply-button {
+  margin-top: 8px;
+  padding: 5px 10px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.reply-form {
+  margin-top: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.reply-form input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.reply-form button {
+  padding: 8px 12px;
+  background: var(--color-primary-1);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.reply-form button:last-child {
+  background: #6c757d;
+}

@@ -20,3 +20,9 @@ export const SCHEDULE_DELETE_FAIL = "Could not delete the schedule";
 
 // Post error
 export const POST_FETCH_FAIL = "Could not get posts at this time.";
+export const POST_CREATE_FAIL = "Failed to create post";
+export const POST_LIKE_FAIL = "Failed to like post";
+export const POST_UNLIKE_FAIL = "Failed to unlike post";
+export const POST_COMMENT_FAIL = "Failed to add comment";
+export const POST_REPLY_FAIL = "Failed to add reply";
+

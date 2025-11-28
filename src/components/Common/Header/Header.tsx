@@ -4,13 +4,13 @@ import { useAppNavigation } from "../../../hooks/useAppNavigation";
 import UserSearch from "../../User/UserSearch/UserSearch";
 import { useLocation, useNavigate } from "react-router";
 import logoUrl from "../../../assets/react.svg";
-import { ACHIEVEMENTS_ROUTE, ACTIVITY_ROUTE, HOME_ROUTE, PROFILE_ROUTE, ROUTINE_ROUTE } from "../../../app/AppRoutes";
+import { ACHIEVEMENTS_ROUTE, HOME_ROUTE, PROFILE_ROUTE, ROUTINE_ROUTE } from "../../../app/AppRoutes";
 import { useMe } from "../../../hooks/useMe";
 import { relationshipService } from "../../../services/relationshipService";
 import FollowRequestsModal from "../../FollowRequests/FollowRequestsModal";
 
 function Header() {
-  const { navHome, navProfile, navRoutine, navActivity, navAchievements } =
+  const { navHome, navProfile, navRoutine, navAchievements } =
     useAppNavigation();
   const navigate = useNavigate();
   const location = useLocation();
@@ -60,9 +60,9 @@ function Header() {
         <button className={`header-button ${isActive(HOME_ROUTE) ? "active" : ""}`} onClick={navHome}>
           Home
         </button>
-        <button className={`header-button ${isActive(ACTIVITY_ROUTE) ? "active" : ""}`} onClick={navActivity}>
+        {/* <button className={`header-button ${isActive(ACTIVITY_ROUTE) ? "active" : ""}`} onClick={navActivity}>
           Activity
-        </button>
+        </button> */}
         <button className={`header-button ${isActive(ROUTINE_ROUTE) ? "active" : ""}`} onClick={navRoutine}>
           Routine
         </button>
