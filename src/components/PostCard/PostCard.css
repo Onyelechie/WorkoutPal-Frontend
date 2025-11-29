@@ -46,6 +46,17 @@
   text-decoration: underline;
 }
 
+.post-username {
+  color: var(--color-primary);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.post-username:hover {
+  text-decoration: underline;
+  color: var(--color-primary-dark);
+}
+
 .heart {
   margin-right: 5px;
   font-size: 16px;

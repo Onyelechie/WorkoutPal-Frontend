@@ -92,7 +92,32 @@ function ProfilePage() {
   return (
     <div className="profile-page-container flex-row">
       <>
-        {isLoading && <div>Loading user profile...</div>}
+        {isLoading && (
+          <div className="profile-container">
+            <div className="profile-header">
+              <div className="skeleton-avatar"></div>
+              <div className="profile-info">
+                <div className="skeleton-name"></div>
+                <div className="skeleton-username"></div>
+              </div>
+            </div>
+
+            <div className="social-stats">
+              <div className="stat-item">
+                <div className="skeleton-stat-number"></div>
+                <span className="stat-label">Posts</span>
+              </div>
+              <div className="stat-item">
+                <div className="skeleton-stat-number"></div>
+                <span className="stat-label">Followers</span>
+              </div>
+              <div className="stat-item">
+                <div className="skeleton-stat-number"></div>
+                <span className="stat-label">Following</span>
+              </div>
+            </div>
+          </div>
+        )}
         {error && (
           <div>
             Failed to get user. Login? <button onClick={navLogin}>Login</button>
