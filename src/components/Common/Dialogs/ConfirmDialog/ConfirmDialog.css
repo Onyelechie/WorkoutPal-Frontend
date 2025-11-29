@@ -7,11 +7,5 @@
 
 .confirm-actions > .negativeBtn {
   padding: 0.75rem;
-  /* adjust as needed */
   font-size: 1rem;  
-  /* border-radius: 10px 0px 0px 10px; */
-      
-}
-.confirm-actions > .positiveBtn {
-  /* border-radius: 0px 10px 10px 0px; */
 }

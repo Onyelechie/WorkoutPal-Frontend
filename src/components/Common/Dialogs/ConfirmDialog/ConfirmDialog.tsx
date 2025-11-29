@@ -29,7 +29,7 @@ export function ConfirmDialog({
         <div className="confirm-actions">
           <button 
             className="negativeBtn" 
-            style={{ backgroundColor: "rgba(62, 61, 109, 1)"}}  
+            style={{ backgroundColor: "rgba(92, 92, 116, 1)"}}  
             onClick={() => handleConfirm(false)}
             >
             {strNegativeButton}
