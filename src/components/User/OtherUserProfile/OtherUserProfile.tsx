@@ -22,7 +22,6 @@ function OtherUserProfile({ userId, username, currentUserId }: OtherUserProfileP
   const [isFollowing, setIsFollowing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isPrivateProfile, setIsPrivateProfile] = useState(false);
-  const [privacyMessage, setPrivacyMessage] = useState<string | null>(null);
   const [followLoading, setFollowLoading] = useState(false);
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
@@ -121,7 +120,6 @@ function OtherUserProfile({ userId, username, currentUserId }: OtherUserProfileP
       const response = await getRequest(`/users/${resolvedUserId}`);
       setUser(response.data);
       setIsPrivateProfile(false);
-      setPrivacyMessage(null);
       setFollowRequestStatus(null);
       // Always fetch posts - backend will handle privacy logic
       fetchUserPosts();
@@ -129,11 +127,9 @@ function OtherUserProfile({ userId, username, currentUserId }: OtherUserProfileP
       // Handle private profile (403) distinctly
       const status = (error as any)?.response?.status;
       const data = (error as any)?.response?.data;
-      const message = data?.message;
       
       if (status === 403) {
         setIsPrivateProfile(true);
-        setPrivacyMessage(message || "This profile is private");
         
         // If backend sends basic user info, use it
         if (data?.user) {
@@ -174,7 +170,7 @@ function OtherUserProfile({ userId, username, currentUserId }: OtherUserProfileP
       // Handle pending follow request: treat click as a re-request (nudge) instead of cancellation
       if (followRequestStatus === "pending") {
         console.log(`Re-sending (nudging) follow request to user ${resolvedUserId}`);
-        const success = await relationshipService.sendFollowRequest(resolvedUserId, currentUserId);
+        const success = await relationshipService.sendFollowRequest(resolvedUserId!, currentUserId);
         if (success) {
           // status remains pending; timestamp updated server-side
           setFollowRequestStatus("pending");
@@ -188,7 +184,7 @@ function OtherUserProfile({ userId, username, currentUserId }: OtherUserProfileP
 
       if (isFollowing) {
         console.log(`Unfollowing user ${resolvedUserId}`);
-        await relationshipService.unfollowUser(resolvedUserId, currentUserId);
+        await relationshipService.unfollowUser(resolvedUserId!, currentUserId);
         setIsFollowing(false);
         console.log(`Set isFollowing to false`);
 
@@ -215,7 +211,7 @@ function OtherUserProfile({ userId, username, currentUserId }: OtherUserProfileP
         if (isPrivateProfile || user?.isPrivate) {
           // Send follow request instead of direct follow
           console.log(`Sending follow request to user ${resolvedUserId}`);
-          const success = await relationshipService.sendFollowRequest(resolvedUserId, currentUserId);
+          const success = await relationshipService.sendFollowRequest(resolvedUserId!, currentUserId);
           if (success) {
             setFollowRequestStatus("pending");
             console.log(`Follow request sent`);
@@ -226,7 +222,7 @@ function OtherUserProfile({ userId, username, currentUserId }: OtherUserProfileP
         } else {
           // Public profile: direct follow
           console.log(`Following user ${resolvedUserId}`);
-          await relationshipService.followUser(resolvedUserId, currentUserId);
+          await relationshipService.followUser(resolvedUserId!, currentUserId);
           setIsFollowing(true);
           console.log(`Set isFollowing to true`);
 

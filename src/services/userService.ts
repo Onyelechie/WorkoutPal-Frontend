@@ -18,7 +18,7 @@ export const userService = {
         cacheTime = now;
       }
       
-      const user = usersCache.find((u) => u.username === username);
+      const user = usersCache?.find((u) => u.username === username);
       return user ? user.id : null;
     } catch (error) {
       console.error("Error getting user by username:", error);
