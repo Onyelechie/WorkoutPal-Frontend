@@ -1,70 +1,74 @@
 import "./Dashboard.css";
-import { notYetImplemented } from "../../utils/construction.ts";
-import { usePosts } from "../../hooks/usePosts.ts";
+import { useState } from "react";
+import { useActivity } from "../../hooks/useActivity.ts";
 import { PostCard } from "../PostCard/PostCard.tsx";
-import type { Post } from "../../types/api.ts";
+import { CreatePost } from "../CreatePost/CreatePost.tsx";
+import { UserAchievementCard } from "../UserAchievementCard/UserAchievementCard.tsx";
+import { CommentCard } from "../CommentCard/CommentCard.tsx";
+import type { Post, UserAchievementUnlocked, Comment } from "../../types/api.ts";
+import { useAchievementChecker } from "../../hooks/useAchievementChecker.ts";
 
-// MOCK POST (REMOVE)
-const testPost: Post[] = [
-  {
-    id: 1,
-    postedBy: "Jane Doe",
-    title: "My First Post",
-    caption: "This is a caption for my post",
-    date: "2025-10-25",
-    body: "Here is the full content of the post.",
-    likes: 42,
-    status: "What is this?",
-    comments: [],
-  },
-  {
-    id: 2,
-    postedBy: "John Smith",
-    title: "Another Post",
-    caption: "Another caption",
-    date: "2025-10-24",
-    body: "Full content goes here.",
-    likes: 15,
-    status: "What is this?",
-    comments: [],
-  },
-];
+
+
+function mapActivity(activity: Post | Comment | UserAchievementUnlocked) {
+  if ("caption" in activity) {
+    return <PostCard key={activity.id} post={activity} />;
+  } else if ("comment" in activity) {
+    return <CommentCard key={activity.id} comment={activity} />;
+  } else {
+    return <UserAchievementCard key={activity.id} userAchievement={activity} />;
+  }
+}
 
 export default function Dashboard() {
-  const { posts, isLoading, error, fetchPosts } = usePosts();
+
+  const { activity, isLoading, error, fetchActivity } = useActivity();
+  const [showCreatePost, setShowCreatePost] = useState(false);
+
+  useAchievementChecker();
+
 
   return (
     <div className="dashboard-container">
       <h1 className="dashboard-header">Dashboard</h1>
+      <div className="dashboard-content">
+        <div className="dashboard-action-buttons grouped-buttons">
+          <button onClick={fetchActivity} disabled={isLoading}>
+            Refresh
+          </button>
+          <button onClick={() => setShowCreatePost(true)}>Create Post</button>
+        </div>
 
-      <div className="dashboard-action-buttons grouped-buttons">
-        <button onClick={fetchPosts} disabled={isLoading}>
-          Refresh
-        </button>
-        <button onClick={notYetImplemented}>Create Post</button>
-      </div>
+        {showCreatePost && (
+          <CreatePost
+            onPostCreated={() => {
+              setShowCreatePost(false);
+              fetchActivity();
+            }}
+            onCancel={() => setShowCreatePost(false)}
+          />
+        )}
 
-      {/* Show loading message when its loading. If an error is caught, show a generic try again later message. */}
-      {/* If !isLoading and !error, show appropriate message if posts.length == 0, otherwise, show the post cards */}
-      {isLoading && <div>Loading...</div>}
-      {error && <div>{error.message}</div>}
-      {!isLoading && !error && posts.length === 0 && (
-        <div>There are no posts at this time...</div>
-      )}
+        {/* Show loading message when its loading. If an error is caught, show a generic try again later message. */}
+        {/* If !isLoading and !error, show appropriate message if posts.length == 0, otherwise, show the post cards */}
+        {isLoading && <div>Loading...</div>}
+        {error && <div>Could not get activity at this time. Please try again later.</div>}
+        {!isLoading && !error && activity.length === 0 && (
+          <div>There is no recent activity at this time...</div>
+        )}
 
-      {
-        // if
-        posts &&
-          posts.length > 0 &&
+        {
+          // if
+          activity &&
+          activity.length > 0 &&
           !isLoading &&
           !error &&
-          // display all posts if there are any
-          posts.map((post: Post) => <PostCard key={post.id} post={post} />)
-      }
-      {/* TEST POST: REMOVE THIS LATER */}
-      {testPost.map((testPost: Post) => (
-        <PostCard key={testPost.id} post={testPost} />
-      ))}
+          // display all activity if there are any
+          activity.map((item: Post | Comment | UserAchievementUnlocked) =>
+            mapActivity(item),
+          )
+        }
+      </div>
     </div>
   );
 }

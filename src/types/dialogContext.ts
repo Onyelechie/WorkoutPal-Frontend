@@ -23,7 +23,7 @@ export type ConfirmDialogContextType = {
 
   // ConfirmDialogContext.showConfirmSafe() -> display a confirm dialog (2 buttons)
   // Safe means the action is a safe action e.g: Saving a file.
-  // The positive button is colored 'GREEN'
+  // The positive button is colored 'PURPLE'
   showConfirmSafe: (
     title: string,
     message: string,

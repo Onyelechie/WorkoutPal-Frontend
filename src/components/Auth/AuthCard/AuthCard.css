@@ -4,17 +4,20 @@
 
 .auth-card {
   width: 300px;
-  margin: 40px auto;
-  padding: 2rem;
-  background: #fff;
+  margin: 0px auto;
+  padding: none;
+  background: var(--color-background-primary);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
 .auth-card h2 {
-  margin-bottom: 1.5rem;
+  padding: 17px;
+  border-radius: 8px 8px 0px 0px;
+  background: radial-gradient(circle, rgba(229, 229, 243, 0.8) 10%, rgba(235, 237, 253, 0.808) 100%);  margin-bottom: 2rem;
   color: #333;
+  margin-bottom: 25px;
 }
 
 .auth-card input {
@@ -23,6 +26,9 @@
   margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+.auth-card form {
+  padding: 0px 35px 0px 35px;
 }
 
 .auth-card button {
@@ -40,8 +46,9 @@
 }
 
 .auth-card .auth-switch {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   display: flex;
+  padding: 15px;
   justify-content: center;
   align-items: center;
   color: #666;

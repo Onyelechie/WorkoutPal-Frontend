@@ -1,4 +1,5 @@
 import "../Dialog.css";
+import "./AlertDialog.css";
 
 type AlertDialogProps = {
   title: string;
@@ -17,8 +18,8 @@ export function AlertDialog({ title, message, handleClose }: AlertDialogProps) {
       <div className="dialog-container">
         <h3>{title}</h3>
         <p>{message}</p>
-        <div className="actions">
-          <button onClick={handleClose}>OK</button>
+        <div className="alert-actions">
+          <button className="positiveBtn" onClick={handleClose}>OK</button>
         </div>
       </div>
     </div>

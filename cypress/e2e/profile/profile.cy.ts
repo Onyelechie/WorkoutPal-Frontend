@@ -3,23 +3,25 @@
 // https://docs.cypress.io/app/end-to-end-testing/writing-your-first-end-to-end-test
 // https://docs.cypress.io/app/end-to-end-testing/testing-your-app
 
-import { BACKEND_URL, testUser } from "../../support/constants";
+import { testUser } from "../../support/constants";
 // ASSUMPTIONS BEFORE RUNNING ACCEPTANCE TESTS
 // 1. Backend is running and is healthy
 // 2. Database is running and is healthy
 // 3. Frontend is running on the baseUrl set in cypress.config.ts in the root folder
 
 // Another note:
-// These tests need to run to full completion to ensure the test users that were created are deleted in the database.
-// If the test users are not deleted:
+// These tests need to run to full completion to ensure the necessary clean up is performed.
+// If the clean ups are not performed:
 // - tests may start to fail.
-// - the test user need to be manually deleted in the database.
 
 describe("Profile Feature", () => {
   // ADDITIONAL ASSUMPTIONS:
   // testUser has access to profile features and can interact with other users
-  // Jane Smith is a default user that exists in the system
+  // targetUser is a default user that exists in the system
   // See cypress/support/constants.ts to see the details of testUser
+
+  // the target user to follow. must be different from testUser
+  const targetUser = { id: 2, name: "Jane Smith", nameLowercase: "jane smith" }; 
 
   beforeEach(() => {
     // make sure we are logged in to be able to perform actions in the website
@@ -61,24 +63,28 @@ describe("Profile Feature", () => {
   it("user can search for other users", () => {
     cy.visit("/home");
 
-    // search for Jane Smith and navigate to her profile
-    cy.get("input[placeholder='Search users...']").type("jane smith");
+    // search for targetUser and navigate to her profile
+    cy.get("input[placeholder='Search users...']").type(targetUser.nameLowercase);
     cy.wait("@searchRequest");
-    cy.contains("Jane Smith").click();
+    cy.contains(targetUser.name).click();
 
-    // verify we are on Jane's profile
+    // verify we are on targetUser's profile
     cy.url().should("include", "/users/");
-    cy.contains("Jane Smith").should("be.visible");
+    cy.contains(targetUser.name).should("be.visible");
   });
 
   it("user can follow another user and following count increments", () => {
     cy.visit("/home");
 
-    // navigate to Jane Smith's profile
-    cy.get("input[placeholder='Search users...']").type("jane smith");
-    cy.contains("Jane Smith").click();
+    // ensure testUser is not following targetUser initially
+    cy.unfollowUser(targetUser.id, testUser.id);
 
-    // follow Jane Smith
+    // navigate to targetUser's profile
+    cy.get("input[placeholder='Search users...']").type(targetUser.nameLowercase);
+    cy.contains(targetUser.name).click();
+    cy.url().should("include", `/users/${targetUser.id}`);
+
+    // follow targetUser
     cy.contains("button", "Follow").click();
     cy.wait("@followRequest").its("response.statusCode").should("eq", 200);
     cy.contains("button", "Unfollow").should("be.visible");
@@ -87,16 +93,22 @@ describe("Profile Feature", () => {
     cy.contains("button", "Profile").click();
     cy.reload();
     cy.get(".stat-number").eq(2).should("contain", "1");
+
+    // ensure testUser is not following targetUser after this test
+    cy.unfollowUser(targetUser.id, testUser.id);
   });
 
   it("user can unfollow another user and following count decrements", () => {
     cy.visit("/home");
 
-    // navigate to Jane Smith's profile
-    cy.get("input[placeholder='Search users...']").type("jane smith");
-    cy.contains("Jane Smith").click();
+    // ensure testUser is not following targetUser initially
+    cy.unfollowUser(targetUser.id, testUser.id);
 
-    // follow then unfollow Jane Smith
+    // navigate to targetUser's profile
+    cy.get("input[placeholder='Search users...']").type(targetUser.nameLowercase);
+    cy.contains(targetUser.name).click();
+
+    // follow then unfollow targetUser
     cy.contains("button", "Follow").click();
     cy.wait("@followRequest");
 

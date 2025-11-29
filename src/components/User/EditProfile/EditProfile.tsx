@@ -20,6 +20,8 @@ function EditProfile({ user, onSave, onCancel }: EditProfileProps) {
     heightMetric: user.heightMetric || "cm",
     weightMetric: user.weightMetric || "kg",
     avatar: user.avatar || "",
+    isPrivate: user.isPrivate ?? false,
+    showMetricsToFollowers: user.showMetricsToFollowers ?? false,
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -27,15 +29,17 @@ function EditProfile({ user, onSave, onCancel }: EditProfileProps) {
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target as HTMLInputElement;
     setFormData((prev) => ({
       ...prev,
       [name]:
-        name === "age"
+        type === "checkbox"
+          ? checked
+          : name === "age"
           ? parseInt(value) || 0
           : name === "height" || name === "weight"
-            ? parseFloat(value) || 0
-            : value,
+          ? parseFloat(value) || 0
+          : value,
     }));
   };
 
@@ -78,6 +82,32 @@ function EditProfile({ user, onSave, onCancel }: EditProfileProps) {
                 onChange={handleInputChange}
                 required
               />
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="isPrivate"
+                    checked={formData.isPrivate}
+                    onChange={handleInputChange}
+                  />
+                  Make my profile private
+                </label>
+              </div>
+
+              <div className="form-group">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="showMetricsToFollowers"
+                    checked={formData.showMetricsToFollowers}
+                    onChange={handleInputChange}
+                  />
+                  Show my metrics to followers
+                </label>
+              </div>
             </div>
 
             <div className="form-group">

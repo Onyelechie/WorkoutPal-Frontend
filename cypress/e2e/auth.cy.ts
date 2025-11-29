@@ -96,6 +96,7 @@ describe("Auth", () => {
     cy.intercept("POST", "/logout").as("logoutRequest");
     // attempt log out
     cy.contains("button", "Logout").click();
+    cy.get("[data-cy=confirm-positive-btn]").click();
     cy.wait("@logoutRequest").its("response.statusCode").should("eq", 200);
 
     // make sure we are redirected back to the login page

@@ -21,16 +21,16 @@ export interface Post {
   body: string;
   likes: number;
   status: string;
+  isLiked: boolean;
   comments: Comment[];
 }
 
 export interface Comment {
   id: number;
-  commentedBy: string;
-  commentedOn: number;
+  username: string;
   comment: string;
   date: string;
-  parentComment: number;
+  replies: Comment[];
 }
 /* ----------------- END OF POSTS ----------------- */
 
@@ -125,6 +125,8 @@ export interface User {
   heightMetric: string;
   id: number;
   isVerified: boolean;
+  isPrivate?: boolean;
+  showMetricsToFollowers?: boolean;
   name: string;
   Posts: Post[];
   provider: string;

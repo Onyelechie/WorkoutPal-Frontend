@@ -1,0 +1,170 @@
+.follow-requests-modal-overlay {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  z-index: 1000;
+}
+
+.follow-requests-modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 400px;
+  max-height: 500px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.follow-requests-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.follow-requests-modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--text-color-dark-1);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.close-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.follow-requests-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.loading-state,
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-color-dark-3);
+  font-size: 1rem;
+}
+
+.follow-request-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.follow-request-item:hover {
+  background-color: #f8f9fa;
+}
+
+.request-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e0e0e0;
+}
+
+.request-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.request-name {
+  font-weight: 600;
+  color: var(--text-color-dark-1);
+  font-size: 1rem;
+}
+
+.request-username {
+  color: var(--text-color-dark-3);
+  font-size: 0.9rem;
+}
+
+.request-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.accept-btn,
+.reject-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.accept-btn {
+  background: var(--color-primary-1);
+  color: white;
+}
+
+.accept-btn:hover {
+  background: var(--color-primary-2);
+}
+
+.accept-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.reject-btn {
+  background: #e0e0e0;
+  color: #666;
+}
+
+.reject-btn:hover {
+  background: #ff4757;
+  color: white;
+}
+
+.reject-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Scrollbar styling */
+.follow-requests-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.follow-requests-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.follow-requests-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.follow-requests-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

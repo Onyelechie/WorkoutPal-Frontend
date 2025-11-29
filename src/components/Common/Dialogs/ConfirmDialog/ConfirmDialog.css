@@ -1,6 +1,11 @@
-.actions {
+.confirm-actions {
   margin-top: 1.5rem;
   display: flex;
-  gap: 10px;
   justify-content: flex-end;
+  gap: 2px;
+}
+
+.confirm-actions > .negativeBtn {
+  padding: 0.75rem;
+  font-size: 1rem;  
 }

@@ -1,16 +1,17 @@
 .user-achievement-card {
   display: flex;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc77;
   border-radius: 5px;
   padding: 1rem 1.5rem;
-  background-color: var(--color-light-2);
+  background-color: var(--color-background-primary);
+  box-shadow: var(--box-shadow-3);
   align-items: center;
   gap: 1rem;
   font-weight: bold;
   font-size: 20px;
-  width: fit-content;
+  width: 100%;
 }
 
 .user-achievement-card:hover {
-  background-color: #ffffffcb;
+  background-color: var(--color-div-hover);
 }
