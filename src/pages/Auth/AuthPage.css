@@ -4,4 +4,31 @@
   place-items: center;
   flex: 1;
   justify-content: center;
+  height: 100%;
+}
+
+.workoutpal-logo {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 10px;
+  flex-direction: column;
+}
+
+.workoutpal-img {
+  width: 180px;
+}
+.workoutpal-title {
+  color: var(--text-color-dark-3);
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.workoutpal-motto {
+  color: black;
+  background-color: rgba(161, 166, 206, 0.61);
+  padding: 2px 5px 2px 5px;
+  border-radius: 5px;
+  font-size: 1.15rem;
+  font-style: italic;
 }

@@ -3,7 +3,7 @@ import "./Header.css";
 import { useAppNavigation } from "../../../hooks/useAppNavigation";
 import UserSearch from "../../User/UserSearch/UserSearch";
 import { useLocation, useNavigate } from "react-router";
-import logoUrl from "../../../assets/react.svg";
+import logoUrl from "../../../assets/workoutPal.png";
 import { ACHIEVEMENTS_ROUTE, HOME_ROUTE, PROFILE_ROUTE, ROUTINE_ROUTE } from "../../../app/AppRoutes";
 import { useMe } from "../../../hooks/useMe";
 import { relationshipService } from "../../../services/relationshipService";
