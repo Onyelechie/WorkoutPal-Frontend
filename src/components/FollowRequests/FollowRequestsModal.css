@@ -122,12 +122,12 @@
 }
 
 .accept-btn {
-  background: #667eea;
+  background: var(--color-primary-1);
   color: white;
 }
 
 .accept-btn:hover {
-  background: #5a6fd8;
+  background: var(--color-primary-2);
 }
 
 .accept-btn:disabled {

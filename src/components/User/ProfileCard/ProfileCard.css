@@ -61,7 +61,7 @@
 .edit-profile-btn {
   margin-top: 1rem;
   padding: 0.5rem 1.5rem;
-  background: #667eea;
+  background: var(--color-primary-1);
   color: white;
   border: none;
   border-radius: 20px;
@@ -71,7 +71,7 @@
 }
 
 .edit-profile-btn:hover {
-  background: #5a6fd8;
+  background: var(--color-primary-2);
 }
 
 .social-stats {
