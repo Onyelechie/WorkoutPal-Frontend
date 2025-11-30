@@ -5,6 +5,7 @@ import { useState } from "react";
 import "./ProfileCard.css";
 import { relationshipService } from "../../../services/relationshipService";
 import type { User } from "../../../services/relationshipService";
+import { getAvatarUrlOrNull } from "../../../utils/imageUtils";
 
 interface ProfileCardProps {
   avatar: string;
@@ -64,8 +65,8 @@ function ProfileCard({
     <>
       <div className="profile-container">
         <div className="profile-header">
-          {user.avatar ? (
-            <img className="avatar" src={user.avatar} alt="User Avatar" />
+          {getAvatarUrlOrNull(user.avatar) ? (
+            <img className="avatar" src={getAvatarUrlOrNull(user.avatar)!} alt="User Avatar" />
           ) : (
             <div className="avatar avatar-placeholder">👤</div>
           )}

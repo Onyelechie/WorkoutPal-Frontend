@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./EditProfile.css";
-import { patchRequest } from "../../../utils/apiRequests";
+import { patchRequest, postRequest } from "../../../utils/apiRequests";
 import type { User } from "../../../types/api";
+import { getAvatarUrlOrNull } from "../../../utils/imageUtils";
 
 interface EditProfileProps {
   user: User;
@@ -25,6 +26,9 @@ function EditProfile({ user, onSave, onCancel }: EditProfileProps) {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const [avatarPreview, setAvatarPreview] = useState<string>(getAvatarUrlOrNull(user.avatar) || "");
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -43,13 +47,77 @@ function EditProfile({ user, onSave, onCancel }: EditProfileProps) {
     }));
   };
 
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        setError('Please select an image file');
+        return;
+      }
+      // Validate file size (5MB max)
+      if (file.size > 5 * 1024 * 1024) {
+        setError('File size must be less than 5MB');
+        return;
+      }
+      setAvatarFile(file);
+      // Create preview
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setAvatarPreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+      setError(''); // Clear any previous errors
+    }
+  };
+
+  const uploadAvatar = async (): Promise<string | null> => {
+    if (!avatarFile) return null;
+    
+    setUploadingAvatar(true);
+    try {
+      // Convert file to base64
+      const base64 = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = reject;
+        reader.readAsDataURL(avatarFile);
+      });
+      
+      const response = await postRequest(`/users/${user.id}/avatar`, {
+        avatar: base64
+      });
+      
+      return response.data.avatar;
+    } catch (error: any) {
+      console.error('Avatar upload error:', error);
+      setError(error.message || 'Failed to upload avatar');
+      return null;
+    } finally {
+      setUploadingAvatar(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
 
     try {
-      const response = await patchRequest(`/users/${user.id}`, formData);
+      let updatedFormData = { ...formData };
+      
+      // Upload avatar first if a new one was selected
+      if (avatarFile) {
+        const avatarUrl = await uploadAvatar();
+        if (avatarUrl) {
+          updatedFormData.avatar = avatarUrl;
+        } else {
+          setLoading(false);
+          return; // Stop if avatar upload failed
+        }
+      }
+      
+      const response = await patchRequest(`/users/${user.id}`, updatedFormData);
       onSave(response.data);
     } catch (error: any) {
       console.error("Update error:", error);
@@ -72,6 +140,28 @@ function EditProfile({ user, onSave, onCancel }: EditProfileProps) {
 
           <form onSubmit={handleSubmit} className="edit-form">
             {error && <div className="error-message">{error}</div>}
+
+            <div className="form-group">
+              <label>Profile Picture</label>
+              <div className="avatar-upload-section">
+                {avatarPreview && (
+                  <div className="avatar-preview">
+                    <img 
+                      src={avatarPreview} 
+                      alt="Avatar preview" 
+                      className="avatar-preview-img"
+                    />
+                  </div>
+                )}
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleAvatarChange}
+                  className="avatar-input"
+                />
+                <small className="file-info">Max file size: 5MB. Supported formats: JPG, PNG, GIF</small>
+              </div>
+            </div>
 
             <div className="form-group">
               <label>Name</label>
@@ -199,8 +289,8 @@ function EditProfile({ user, onSave, onCancel }: EditProfileProps) {
               <button type="button" onClick={onCancel} className="cancel-btn">
                 Cancel
               </button>
-              <button type="submit" disabled={loading} className="save-btn">
-                {loading ? "Saving..." : "Save Changes"}
+              <button type="submit" disabled={loading || uploadingAvatar} className="save-btn">
+                {uploadingAvatar ? "Uploading..." : loading ? "Saving..." : "Save Changes"}
               </button>
             </div>
           </form>

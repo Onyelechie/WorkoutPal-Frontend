@@ -145,6 +145,47 @@
   cursor: not-allowed;
 }
 
+/* Avatar Upload Styles */
+.avatar-upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.avatar-preview {
+  display: flex;
+  justify-content: center;
+}
+
+.avatar-preview-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--color-primary-1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-input {
+  padding: 0.5rem;
+  border: 2px dashed var(--color-primary-2);
+  border-radius: 8px;
+  background-color: var(--color-primary-1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.avatar-input:hover {
+  border-color: var(--color-primary-3);
+  background-color: var(--color-primary-2);
+}
+
+.file-info {
+  color: var(--text-color-dark-3);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
 @media (max-width: 600px) {
   .form-row {
     grid-template-columns: 1fr;
