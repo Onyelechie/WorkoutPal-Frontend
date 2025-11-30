@@ -43,8 +43,7 @@
 
 
 .logo-image {
-  width: 36px;
-  height: 36px;
+  width: 60px;
   display: block;
   object-fit: contain;
 }
@@ -52,7 +51,7 @@
 .logo-text {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #222;
+  color: var(--text-color-dark-3);
 }
 
 .vertical-line {
