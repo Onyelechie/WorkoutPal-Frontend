@@ -10,6 +10,7 @@ import { AchievementKey } from "../../../../app/constants/achievementKey";
 interface RoutineListProps {
   routines: any[];
   setRoutines: React.Dispatch<React.SetStateAction<any[]>>;
+  deleteBtn?: boolean;
 }
 
 interface Exercise {
@@ -17,7 +18,7 @@ interface Exercise {
   name: string;
 }
 
-const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
+const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines, deleteBtn }) => {
   const { alertOnRequestError } = useErrorHandler();
   const [exerciseMap, setExerciseMap] = useState<Record<number, Exercise>>({});
   const [showCreatePost, setShowCreatePost] = useState(false);
@@ -104,20 +105,29 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
           ) : (
             <p>No exercises added</p>
           )}
+        
+
           <div className="routine-actions">
-            <button
-              onClick={() => handleShareRoutine(routine)}
-              className="share-button"
-            >
-              Share
-            </button>
-            <button
-              onClick={() => handleDeleteRoutine(routine.id)}
-              className="delete-button"
-              data-cy="delete-routine-btn"
-            >
-              Delete
-            </button>
+            <div className="actions-left">
+              {deleteBtn && 
+              <button
+                onClick={() => handleDeleteRoutine(routine.id)}
+                className="delete-button"
+                data-cy="delete-routine-btn"
+              >
+                Delete
+              </button>
+              }
+            </div>
+
+            <div className="actions-right">
+              <button
+                onClick={() => handleShareRoutine(routine)}
+                className="share-button"
+              >
+                Share
+              </button>
+            </div>
           </div>
         </div>
       ))}

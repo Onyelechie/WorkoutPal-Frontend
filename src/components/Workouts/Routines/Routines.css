@@ -52,6 +52,10 @@ select:focus {
   gap: 10px;
 }
 
+.action-button-container.space-between {
+  justify-content: space-between;
+}
+
 /* Modal css */
 .modal-overlay {
   position: fixed;
@@ -71,8 +75,8 @@ select:focus {
   background: #fff;
   padding: 2rem;
   border-radius: 8px;
-  max-width: 85%;
-  min-width: 600px;
+  max-width: 40%;
+  min-width: 500px;
   max-height: 80vh;
   overflow-y: auto;
   position: relative;

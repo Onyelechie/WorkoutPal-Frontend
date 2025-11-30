@@ -50,14 +50,11 @@ export interface Exercise {
   custom: boolean;
 }
 
-/* Exercises (plural) */
-export interface Exercises {
-  startTime: number;
-  endTime: number;
-  count: number;
+export interface UserExerciseSettings {
+  weight: number;
+  reps: number;
   sets: number;
-  duration: number;
-  exercise: Exercise;
+  breakInterval: number;
 }
 /* ----------------- END OF EXERCISES ----------------- */
 
@@ -67,7 +64,7 @@ export interface Workout {
   name: string;
   frequency: string;
   nextRound: string;
-  exercises: Exercises[];
+  exercises: Exercise[];
 }
 /* ----------------- END OF WORKOUTS ----------------- */
 
@@ -105,7 +102,7 @@ export interface Goal {
 export interface Routine {
   createdAt: string;
   description: string;
-  Exercises: Exercise[];
+  exerciseIds: number[];
   id: number;
   isActive: boolean;
   name: string;

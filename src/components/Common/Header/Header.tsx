@@ -47,7 +47,6 @@ function Header() {
 
   const isActive = (path: string) => location.pathname.startsWith(path);
 
-  console.log(location.pathname);
   return (
     
     <header className="header">

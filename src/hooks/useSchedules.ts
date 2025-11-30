@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getRequest } from "../utils/apiRequests"; // adjust path if needed
 import type { Schedule } from "../types/api";
-import { SCHEDULE_FETCH_FAIL } from "../app/constants/genericErrors";
+import { SCHEDULES_FETCH_FAIL } from "../app/constants/genericErrors";
 import { useErrorHandler } from "./useErrorHandler";
 
 export function useSchedules() {
@@ -20,7 +20,7 @@ export function useSchedules() {
       const response = await getRequest("/schedules");
       if (response?.data != null) setSchedules(response.data);
     } catch (err: any) {
-      handleError(err, setError, SCHEDULE_FETCH_FAIL);
+      handleError(err, setError, SCHEDULES_FETCH_FAIL);
     } finally {
       setIsLoading(false);
     }

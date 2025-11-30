@@ -3,8 +3,7 @@
 // https://docs.cypress.io/app/end-to-end-testing/writing-your-first-end-to-end-test
 // https://docs.cypress.io/app/end-to-end-testing/testing-your-app
 
-import { removeUndefinedValuesInObject } from "google-auth-library/build/src/util";
-import { BACKEND_URL, testUser } from "../../support/constants";
+import { testUser } from "../../support/constants";
 // ASSUMPTIONS BEFORE RUNNING ACCEPTANCE TESTS
 // 1. Backend is running and is healthy
 // 2. Database is running and is healthy

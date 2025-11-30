@@ -2,6 +2,7 @@ import {
   toggleExerciseSelection,
   filterExercises,
   buildRoutinePayload,
+  buildExerciseSettingPayload
 } from "../routineHelpers";
 import { describe, it, expect } from "vitest";
 
@@ -58,3 +59,60 @@ describe("buildRoutinePayload", () => {
     expect(payload.name).toBe("Routine X");
   });
 });
+
+describe("buildExerciseSettingPayload", () => {
+  it("creates correct payload with all merged fields", () => {
+    const settings = {
+      weight: 50,
+      reps: 10,
+      sets: 3,
+      breakInterval: 60,
+    };
+
+    const payload = buildExerciseSettingPayload(settings, 5, 12);
+
+    expect(payload).toEqual({
+      weight: 50,
+      reps: 10,
+      sets: 3,
+      breakInterval: 60,
+      exerciseId: 5,
+      workoutRoutineId: 12,
+    });
+  });
+
+  it("preserves all original user settings fields", () => {
+    const settings = {
+      weight: 90,
+      reps: 5,
+      sets: 5,
+      breakInterval: 120,
+    };
+
+    const payload = buildExerciseSettingPayload(settings, 2, 99);
+
+    expect(payload.weight).toBe(90);
+    expect(payload.reps).toBe(5);
+    expect(payload.sets).toBe(5);
+    expect(payload.breakInterval).toBe(120);
+  });
+
+  it("correctly overrides exerciseId and workoutRoutineId even if the settings object contains those keys", () => {
+    const settings = {
+      weight: 20,
+      reps: 8,
+      sets: 4,
+      breakInterval: 45,
+
+      // these should be ignored and overwritten
+      exerciseId: 999 as any,
+      workoutRoutineId: 999 as any,
+    };
+
+    const payload = buildExerciseSettingPayload(settings, 7, 33);
+
+    expect(payload.exerciseId).toBe(7);
+    expect(payload.workoutRoutineId).toBe(33);
+  });
+});
+
