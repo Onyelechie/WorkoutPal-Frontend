@@ -7,6 +7,7 @@ import type { User, Post } from "../../../types/api";
 import type { User as RelationshipUser } from "../../../services/relationshipService";
 import { PostCard } from "../../PostCard/PostCard";
 import { useNavigate } from "react-router-dom";
+import { getAvatarUrlOrNull } from "../../../utils/imageUtils";
 
 interface OtherUserProfileProps {
   userId?: number;
@@ -355,8 +356,8 @@ function OtherUserProfile({ userId, username, currentUserId }: OtherUserProfileP
       <div className="profile-page-container flex-row">
         <div className="profile-container">
           <div className="profile-header">
-          {user?.avatar ? (
-            <img className="avatar" src={user.avatar} alt="User Avatar" />
+          {getAvatarUrlOrNull(user?.avatar) ? (
+            <img className="avatar" src={getAvatarUrlOrNull(user.avatar)!} alt="User Avatar" />
           ) : (
             <div className="avatar avatar-placeholder">🔒</div>
           )}
@@ -492,8 +493,8 @@ function OtherUserProfile({ userId, username, currentUserId }: OtherUserProfileP
     <div className="profile-page-container flex-row">
       <div className="profile-container">
         <div className="profile-header">
-          {user.avatar ? (
-            <img className="avatar" src={user.avatar} alt="User Avatar" />
+          {getAvatarUrlOrNull(user.avatar) ? (
+            <img className="avatar" src={getAvatarUrlOrNull(user.avatar)!} alt="User Avatar" />
           ) : (
             <div className="avatar avatar-placeholder">👤</div>
           )}
