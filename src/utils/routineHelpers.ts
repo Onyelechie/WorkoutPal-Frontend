@@ -1,3 +1,5 @@
+import type { UserExerciseSettings } from "../types/api";
+
 export function toggleExerciseSelection(currentSelected: any[], exercise: any) {
   if (currentSelected.some((e) => e.id === exercise.id)) {
     return currentSelected.filter((e) => e.id !== exercise.id);
@@ -23,5 +25,13 @@ export function buildRoutinePayload(name: string, selectedExercises: any[]) {
   return {
     name: name.trim(),
     exerciseIds: selectedExercises.map((e) => e.id),
+  };
+}
+
+export function buildExerciseSettingPayload(exerciseSettings: UserExerciseSettings, exerciseId: number, routineId: number) {
+  return {
+    ...exerciseSettings,
+    exerciseId,
+    workoutRoutineId: routineId
   };
 }

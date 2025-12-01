@@ -1,9 +1,13 @@
+.routine-btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .routine-nav-container {
   display: flex;
   margin-bottom: 0rem;
   justify-content: flex-start;
   align-items: center;
-
 }
 
 .routine-scheduler-container {
@@ -16,7 +20,6 @@
 
 .nav-button {
   background-color: var(--color-primary-3);
-
   cursor: pointer;
   font-weight: bold;
   border-radius: 0;
@@ -35,6 +38,14 @@
 
 .nav-button.build {
   border-radius: 0px 10px 0px 0px;
+}
+
+.start-routine-btn {
+  transform: translateY(-10px);
+}
+
+.start-routine-btn:hover {
+  transform: translateY(-12px);
 }
 
 .nav-button:hover {
