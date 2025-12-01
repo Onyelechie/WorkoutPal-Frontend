@@ -1,18 +1,51 @@
+.routine-btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .routine-nav-container {
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
   justify-content: flex-start;
   align-items: center;
+}
+
+.routine-scheduler-container {
+  padding: 15px;
+  border-radius: 0px 10px 10px 10px;
+  box-shadow: var(--box-shadow-2);
+  background-color: var(--color-background-primary);
+  min-height: 50vh;
 }
 
 .nav-button {
   background-color: var(--color-primary-3);
   cursor: pointer;
   font-weight: bold;
-  transition: all 0.3s ease;
+  border-radius: 0;
+  transition: none;
   color: var(--color-light-3);
   opacity: 0.5;
+}
+
+.nav-button:hover {
+  transform: none;
+}
+
+.nav-button.sched {
+  border-radius: 10px 0 0 0px;
+}
+
+.nav-button.build {
+  border-radius: 0px 10px 0px 0px;
+}
+
+.start-routine-btn {
+  transform: translateY(-10px);
+}
+
+.start-routine-btn:hover {
+  transform: translateY(-12px);
 }
 
 .nav-button:hover {

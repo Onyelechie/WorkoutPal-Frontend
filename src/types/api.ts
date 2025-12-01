@@ -21,16 +21,16 @@ export interface Post {
   body: string;
   likes: number;
   status: string;
+  isLiked: boolean;
   comments: Comment[];
 }
 
 export interface Comment {
   id: number;
-  commentedBy: string;
-  commentedOn: number;
+  username: string;
   comment: string;
   date: string;
-  parentComment: number;
+  replies: Comment[];
 }
 /* ----------------- END OF POSTS ----------------- */
 
@@ -50,14 +50,11 @@ export interface Exercise {
   custom: boolean;
 }
 
-/* Exercises (plural) */
-export interface Exercises {
-  startTime: number;
-  endTime: number;
-  count: number;
+export interface UserExerciseSettings {
+  weight: number;
+  reps: number;
   sets: number;
-  duration: number;
-  exercise: Exercise;
+  breakInterval: number;
 }
 /* ----------------- END OF EXERCISES ----------------- */
 
@@ -67,7 +64,7 @@ export interface Workout {
   name: string;
   frequency: string;
   nextRound: string;
-  exercises: Exercises[];
+  exercises: Exercise[];
 }
 /* ----------------- END OF WORKOUTS ----------------- */
 
@@ -105,7 +102,7 @@ export interface Goal {
 export interface Routine {
   createdAt: string;
   description: string;
-  Exercises: Exercise[];
+  exerciseIds: number[];
   id: number;
   isActive: boolean;
   name: string;
@@ -125,6 +122,8 @@ export interface User {
   heightMetric: string;
   id: number;
   isVerified: boolean;
+  isPrivate?: boolean;
+  showMetricsToFollowers?: boolean;
   name: string;
   Posts: Post[];
   provider: string;

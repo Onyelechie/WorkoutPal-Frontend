@@ -2,7 +2,7 @@ import "./RoutineScheduler.css";
 import "../Routines.css";
 
 import { useState } from "react";
-import { daysLongForm } from "../../../../utils/date";
+import { daysLongForm } from "../../../../utils/dateTime";
 import { useRoutines } from "../../../../hooks/useRoutines";
 import { ScheduleRow } from "./ScheduleRow";
 import { useSchedules } from "../../../../hooks/useSchedules";
@@ -16,10 +16,10 @@ export default function RoutineScheduler() {
 
   const tableColumns = [
     "Day",
-    "Routine Name",
+    "Name",
     "Routines",
     "Time Slot",
-    "Routine Length",
+    "Total Length",
   ];
 
   const [openCreateModal, setOpenCreateModal] = useState(false);
@@ -38,7 +38,7 @@ export default function RoutineScheduler() {
         routines={routines}
         setSchedules={setSchedules}
       />
-      <div>
+      <div className="routine-scheduler-container">
         <header className="routine-scheduler-header">
           <h2>Schedule your weekly workout routines!</h2>
           <div>

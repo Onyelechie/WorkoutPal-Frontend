@@ -5,7 +5,7 @@ import {
   daysLongForm,
   getCurrentTime,
   getTodayIndex,
-} from "../../../../utils/date";
+} from "../../../../utils/dateTime";
 import { useErrorHandler } from "../../../../hooks/useErrorHandler";
 import { SCHEDULE_CREATE_FAIL } from "../../../../app/constants/genericErrors";
 
@@ -76,7 +76,7 @@ export default function CreateScheduleModal({
                 {" "}
                 {/* START OF INPUT GROUP DIV */}
                 {/* START OF ROUTINE NAME INPUT */}
-                <label className="input-label">Routine Name</label>
+                <label className="input-label">Name</label>
                 <input
                   type="text"
                   value={schedulePayload.name}
@@ -181,7 +181,7 @@ export default function CreateScheduleModal({
                 />
                 {/* END OF TIME SLOT INPUT */}
                 {/* START OF ROUTINE LENGTH INPUT */}
-                <label className="input-label">Routine Length (minutes)</label>
+                <label className="input-label">Total Length (minutes)</label>
                 <input
                   type="text"
                   inputMode="numeric"

@@ -16,3 +16,10 @@
 .dashboard-action-buttons {
   margin-left: auto;
 }
+
+.dashboard-content {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

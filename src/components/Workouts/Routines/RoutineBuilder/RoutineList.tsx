@@ -3,10 +3,14 @@ import { deleteRequest, getRequest } from "../../../../utils/apiRequests";
 import { useConfirmDialog } from "../../../../hooks/useDialog";
 import { useErrorHandler } from "../../../../hooks/useErrorHandler";
 import { ROUTINE_DELETE_FAIL } from "../../../../app/constants/genericErrors";
+import { CreatePost } from "../../../CreatePost/CreatePost";
+import { useAchievement } from "../../../../hooks/useAchievement";
+import { AchievementKey } from "../../../../app/constants/achievementKey";
 
 interface RoutineListProps {
   routines: any[];
   setRoutines: React.Dispatch<React.SetStateAction<any[]>>;
+  deleteBtn?: boolean;
 }
 
 interface Exercise {
@@ -14,10 +18,15 @@ interface Exercise {
   name: string;
 }
 
-const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
+const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines, deleteBtn }) => {
   const { alertOnRequestError } = useErrorHandler();
   const [exerciseMap, setExerciseMap] = useState<Record<number, Exercise>>({});
+  const [showCreatePost, setShowCreatePost] = useState(false);
+  const [shareRoutine, setShareRoutine] = useState<any>(null);
   const confirmDialog = useConfirmDialog();
+  const achievement = useAchievement();
+
+
   useEffect(() => {
     const fetchExercises = async () => {
       const allExerciseIds = Array.from(
@@ -52,7 +61,7 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
         await confirmDialog.showConfirmRisky(
           "Delete Routine",
           "Are you sure you want to delete this routine?",
-          "Yes, Delete",
+          "Delete",
           "Don't Delete",
         )
       ) {
@@ -64,6 +73,20 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
     }
   };
 
+  const handleShareRoutine = (routine: any) => {
+    setShareRoutine(routine);
+    setShowCreatePost(true);
+  };
+
+  const getRoutineShareText = (routine: any) => {
+    const exerciseList = routine.exerciseIds
+      ?.map((id: number) => exerciseMap[id]?.name)
+      .filter(Boolean)
+      .join("\n\t") || "No exercises";
+    
+    return `Check out my workout routine: ${routine.name}\n\nExercises: \n\t${exerciseList}`;
+  };
+
   if (!routines || routines.length === 0) {
     return <div>No routines available.</div>;
   }
@@ -73,7 +96,6 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
       {routines.map((routine) => (
         <div key={routine.id} className="routine-card">
           <h3 className="routine-name">{routine.name}</h3>
-          <h4>Exercises:</h4>
           {routine.exerciseIds && routine.exerciseIds.length > 0 ? (
             <ul className="exercise-in-routine-list">
               {routine.exerciseIds.map((id: number) => (
@@ -83,15 +105,52 @@ const RoutineList: React.FC<RoutineListProps> = ({ routines, setRoutines }) => {
           ) : (
             <p>No exercises added</p>
           )}
-          <button
-            onClick={() => handleDeleteRoutine(routine.id)}
-            className="delete-button"
-            data-cy="delete-routine-btn"
-          >
-            Delete
-          </button>
+        
+
+          <div className="routine-actions">
+            <div className="actions-left">
+              {deleteBtn && 
+              <button
+                onClick={() => handleDeleteRoutine(routine.id)}
+                className="delete-button"
+                data-cy="delete-routine-btn"
+              >
+                Delete
+              </button>
+              }
+            </div>
+
+            <div className="actions-right">
+              <button
+                onClick={() => handleShareRoutine(routine)}
+                className="share-button"
+              >
+                Share
+              </button>
+            </div>
+          </div>
         </div>
       ))}
+      
+      {showCreatePost && shareRoutine && (
+        <CreatePost
+          onPostCreated={() => {
+            setShowCreatePost(false);
+            setShareRoutine(null);
+            achievement.unlockAchievement(AchievementKey.SHARE_ROUTINE);
+            
+          }}
+          onCancel={() => {
+            setShowCreatePost(false);
+            setShareRoutine(null);
+          }}
+          initialData={{
+            title: `My Workout Routine: ${shareRoutine.name}`,
+            caption: "Check out my workout routine!",
+            body: getRoutineShareText(shareRoutine)
+          }}
+        />
+      )}
     </div>
   );
 };

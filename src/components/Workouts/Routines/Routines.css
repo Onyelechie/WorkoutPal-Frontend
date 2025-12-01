@@ -45,18 +45,15 @@ select:focus {
   cursor: pointer;
 }
 
-.delete-button {
-  background: red;
-  color: white;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
 .action-button-container {
   margin-top: 1rem;
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+}
+
+.action-button-container.space-between {
+  justify-content: space-between;
 }
 
 /* Modal css */
@@ -78,8 +75,8 @@ select:focus {
   background: #fff;
   padding: 2rem;
   border-radius: 8px;
-  max-width: 85%;
-  min-width: 600px;
+  max-width: 40%;
+  min-width: 500px;
   max-height: 80vh;
   overflow-y: auto;
   position: relative;
@@ -87,4 +84,8 @@ select:focus {
 
 .modal-title {
   text-align: center;
+}
+
+.input-label {
+  font-weight: bold;
 }

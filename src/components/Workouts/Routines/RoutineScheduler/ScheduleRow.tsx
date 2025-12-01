@@ -3,7 +3,7 @@ import {
   formatApiTime,
   getTodayIndex,
   minutesToHours,
-} from "../../../../utils/date";
+} from "../../../../utils/dateTime";
 import type { Schedule, Routine } from "../../../../types/api";
 import { useState } from "react";
 import EditScheduleModal from "./EditScheduleModal";
@@ -58,10 +58,11 @@ export function ScheduleRow({
         className={clsx("", {
           "highlight-text": index == getTodayIndex(),
           "table-row-dark": index % 2 == 0,
+          "table-row-light": index % 2 !== 0,
         })}
       >
         <td>{day}</td>
-        <td colSpan={4}>No routines scheduled</td>
+        <td colSpan={4}><em>No routines scheduled</em></td>
       </tr>
     );
   } else {
@@ -82,6 +83,7 @@ export function ScheduleRow({
               className={clsx("", {
                 "highlight-text": index == getTodayIndex(),
                 "table-row-dark": index % 2 == 0,
+                "table-row-light": index % 2 !== 0,
               })}
               onClick={() => {
                 showEditModal(schedule);
