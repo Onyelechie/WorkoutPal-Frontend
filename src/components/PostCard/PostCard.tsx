@@ -37,7 +37,7 @@ export function PostCard({ post }: PostProps) {
         await likePost(post.id, user.id);
         setLikeCount(prev => prev + 1);
         setIsLiked(true);
-        if (user.name !== post.postedBy)
+        if (user.username !== post.postedBy)
         {
           achievement.unlockAchievement(AchievementKey.FIRST_LIKE);
         }
