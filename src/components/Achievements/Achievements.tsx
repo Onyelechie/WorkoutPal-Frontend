@@ -11,20 +11,29 @@ import {
   getUnlockedAchievements,
 } from "../../services/achievementService";
 import { mockLockedAchievements } from "./mockAchievements";
+import { useErrorHandler } from "../../hooks/useErrorHandler";
+import { ACHIEVEMENT_FETCH_FAIL_DESCR, ACHIEVEMENT_FETCH_FAIL_TITLE } from "../../app/constants/genericErrors";
 
 export default function Achievements() {
   const [completed, setCompleted] = useState<UserAchievementUnlocked[]>([]);
   const [incomplete, setIncomplete] = useState<UserAchievementLocked[]>([]);
+  const { alertOnRequestError } = useErrorHandler();
+
 
   useEffect(() => {
     async function fetchAchievements() {
-      const completedAchievements = await getUnlockedAchievements();
-      setCompleted(completedAchievements);
+      try {
+        const completedAchievements = await getUnlockedAchievements();
+        const incompleteAchievements = await getLockedAchievements();
+        
+        setCompleted(completedAchievements);
+        setIncomplete(incompleteAchievements);
+        setIncomplete((prev) => [...prev, ...mockLockedAchievements]);
 
-      const incompleteAchievements = await getLockedAchievements();
+      } catch (err) {
+        alertOnRequestError(ACHIEVEMENT_FETCH_FAIL_TITLE, err as any, ACHIEVEMENT_FETCH_FAIL_DESCR);
+      }
 
-      setIncomplete(incompleteAchievements);
-      setIncomplete((prev) => [...prev, ...mockLockedAchievements]);
     }
     fetchAchievements();
   }, []);

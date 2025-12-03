@@ -5,6 +5,7 @@ type AchievementCompleteProp = {
   achievement: UserAchievementUnlocked;
 };
 
+// Achievement card when unlocked
 export function AchievementCard({ achievement }: AchievementCompleteProp) {
   const formattedDate = new Date(achievement.date).toLocaleDateString();
 

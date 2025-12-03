@@ -5,6 +5,7 @@ type AchievementIncompleteProp = {
   achievement: UserAchievementLocked;
 };
 
+// Achievement card when locked
 export function AchievementCardLocked({
   achievement,
 }: AchievementIncompleteProp) {
