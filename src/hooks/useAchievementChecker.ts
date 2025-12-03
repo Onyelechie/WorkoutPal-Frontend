@@ -12,8 +12,7 @@ export function useAchievementChecker() {
   useEffect(() => {
     if (!user) return;
 
-    const checkAllAchievements = async () => {
-
+    const checkFollowerAchievements = async () => {
       // Gain 5 Followers
       const followers = (await relationshipService.getFollowers(user.id)).length;
       if (followers >= 5) {
@@ -28,6 +27,6 @@ export function useAchievementChecker() {
 
     };
 
-    checkAllAchievements();
+    checkFollowerAchievements();
   }, [user]);
 }
