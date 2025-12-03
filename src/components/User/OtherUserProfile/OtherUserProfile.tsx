@@ -8,6 +8,7 @@ import type { User as RelationshipUser } from "../../../services/relationshipSer
 import { PostCard } from "../../PostCard/PostCard";
 import { useNavigate } from "react-router-dom";
 import { getAvatarUrlOrNull } from "../../../utils/imageUtils";
+import { useAchievementChecker } from "../../../hooks/useAchievementChecker";
 
 interface OtherUserProfileProps {
   userId?: number;
@@ -33,6 +34,9 @@ function OtherUserProfile({ userId, username, currentUserId }: OtherUserProfileP
   const [followRequestStatus, setFollowRequestStatus] = useState<string | null>(null); // pending, accepted, rejected, null
   const navigate = useNavigate();
 
+  //checks for follower achievements
+  useAchievementChecker();
+  
   // Effect to resolve username to userId if needed
   useEffect(() => {
     const resolveUserId = async () => {

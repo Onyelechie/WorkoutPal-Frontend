@@ -33,3 +33,7 @@ export const POST_UNLIKE_FAIL = "Failed to unlike post";
 export const POST_COMMENT_FAIL = "Failed to add comment";
 export const POST_REPLY_FAIL = "Failed to add reply";
 
+// Achievement error
+export const ACHIEVEMENT_FETCH_FAIL_TITLE = "Unable to fetch achievements";
+export const ACHIEVEMENT_FETCH_FAIL_DESCR = "Please make sure you are logged in";
+

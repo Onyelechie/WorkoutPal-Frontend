@@ -74,6 +74,7 @@ export function useErrorHandler() {
     setError(new Error(message));
   }
 
+
   return {
     alertOnRequestError,
     handleError,
