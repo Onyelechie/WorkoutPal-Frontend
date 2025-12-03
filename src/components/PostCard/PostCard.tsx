@@ -6,6 +6,8 @@ import { usePosts } from "../../hooks/usePosts";
 import { useMe } from "../../hooks/useMe";
 import { CommentsModal } from "../CommentsModal/CommentsModal";
 import { userService } from "../../services/userService";
+import { useAchievement } from "../../hooks/useAchievement";
+import { AchievementKey } from "../../app/constants/achievementKey";
 
 type PostProps = {
   post: Post;
@@ -20,6 +22,7 @@ export function PostCard({ post }: PostProps) {
   const [likeCount, setLikeCount] = useState(post.likes);
   const [commentCount, setCommentCount] = useState(post.comments.length);
   const [showComments, setShowComments] = useState(false);
+  const achievement = useAchievement();
 
   const handleLikeClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -34,6 +37,10 @@ export function PostCard({ post }: PostProps) {
         await likePost(post.id, user.id);
         setLikeCount(prev => prev + 1);
         setIsLiked(true);
+        if (user.name !== post.postedBy)
+        {
+          achievement.unlockAchievement(AchievementKey.FIRST_LIKE);
+        }
       }
     } catch (err) {
       // Error handled by hook

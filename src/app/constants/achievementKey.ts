@@ -5,5 +5,4 @@ export const AchievementKey = {
   FIVE_FOLLOWING: 4,
   FIRST_LIKE: 5,
   SHARE_ROUTINE: 6,
-  LIKE_POST: 7
 } as const;
